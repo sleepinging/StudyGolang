@@ -19,6 +19,8 @@ func mysort(arr [5]int) { //桶排序
 }
 func testarr(){
 	var arr [5]int
+	arr0 := []int{0, 1, 2, 3, 4, 5}
+	fmt.Println(arr0[2:4])
 	fmt.Println("请输入5个数")
 	for i := 0; i < 5; i++ {
 		fmt.Scanf("%d", &(arr[i]))
@@ -46,7 +48,7 @@ type Animal struct {
 }
 func main() {
 	//testarr()
-	pointarrtest()
+	//pointarrtest()
 
 	var a Animal= Animal{"Luck","Dog",10}
 	a.Type="Cat"
