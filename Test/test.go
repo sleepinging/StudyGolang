@@ -1,8 +1,9 @@
-package main
+package mytools
 
 import (
 	"fmt"
 	"time"
+	mtols "./mytools"
 )
 
 func mysort(arr [5]int) { //桶排序
@@ -55,6 +56,9 @@ func structtest() {
 func stringtest() {
 	var str string = "0123456"
 	fmt.Printf(string(str[2:]))
+}
+func packagetest() {
+	mtols.SayHello("阿良")
 }
 func main() {
 	//testarr()
