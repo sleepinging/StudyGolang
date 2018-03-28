@@ -1,9 +1,10 @@
-package mytools
+package main
 
 import (
-	"fmt"
-	"time"
 	mtols "./mytools"
+	"fmt"
+	"math"
+	"time"
 )
 
 func mysort(arr [5]int) { //桶排序
@@ -18,7 +19,7 @@ func mysort(arr [5]int) { //桶排序
 	}
 	fmt.Println()
 }
-func testarr(){
+func testarr() {
 	var arr [5]int
 	arr0 := []int{0, 1, 2, 3, 4, 5}
 	fmt.Println(arr0[2:4])
@@ -26,26 +27,27 @@ func testarr(){
 	for i := 0; i < 5; i++ {
 		fmt.Scanf("%d", &(arr[i]))
 	}
-	t1:=time.Now()
+	t1 := time.Now()
 	mysort(arr)
-	t2:=time.Now()
-	fmt.Println(t2.Sub(t1).Seconds()*1000,"ms")
+	t2 := time.Now()
+	fmt.Println(t2.Sub(t1).Seconds()*1000, "ms")
 }
-func pointarrtest()  {
+func pointarrtest() {
 	//指向数组的指针
-	var arr=[]int{1,2,3}
+	var arr = []int{1, 2, 3}
 	var arrp *[]int
-	arrp=&arr
+	arrp = &arr
 	fmt.Println((*arrp)[1])
 	//保存指针的数组
-	a0:=1
-	var parr=[3]*int{&a0}
+	a0 := 1
+	var parr = [3]*int{&a0}
 	fmt.Println(*(parr[0]))
 }
+
 type Animal struct {
 	Name string
 	Type string
-	Id int
+	Id   int
 }
 
 func structtest() {
@@ -55,13 +57,35 @@ func structtest() {
 }
 func stringtest() {
 	var str string = "0123456"
-	fmt.Printf(string(str[2:]))
+	fmt.Printf(string(str[2:]) + "\n")
+	str = `D:\tt\1.txt`
+	fmt.Println(str)
 }
 func packagetest() {
 	mtols.SayHello("阿良")
 }
-func main() {
+func mysqrt(i float64) (r float64, ok bool) {
+	if i < 0 {
+		return
+	}
+	return math.Sqrt(i), true
+}
+func labeltest() {
+LABEL1:
+	for i := 0; i <= 5; i++ {
+		if i == 4 {
+			continue LABEL1
+		}
+		fmt.Println(i)
+	}
+}
+func test() {
 	//testarr()
 	//pointarrtest()
-	stringtest()
+	//stringtest()
+	//packagetest()
+	labeltest()
+}
+func main() {
+	test()
 }
