@@ -46,11 +46,18 @@ type Animal struct {
 	Type string
 	Id int
 }
+
+func structtest() {
+	var a Animal = Animal{"Luck", "Dog", 10}
+	a.Type = "Cat"
+	fmt.Println(a)
+}
+func stringtest() {
+	var str string = "0123456"
+	fmt.Printf(string(str[2:]))
+}
 func main() {
 	//testarr()
 	//pointarrtest()
-
-	var a Animal= Animal{"Luck","Dog",10}
-	a.Type="Cat"
-	fmt.Println(a)
+	stringtest()
 }
