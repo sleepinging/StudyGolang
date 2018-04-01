@@ -79,12 +79,33 @@ LABEL1:
 		fmt.Println(i)
 	}
 }
+func deferf() (ret int) {
+	defer func() {
+		ret++
+	}()
+	return 1
+}
+func defertest() {
+	fmt.Println(deferf())
+}
+func qiepiantest() {
+	var arr = []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+	qp := arr[5:8]
+	qp[0] = 88
+	fmt.Println(arr, "\r\n", qp, "len:", len(qp), "cap:", cap(qp))
+}
+func maptest() {
+	mp := map[int]string{}
+	mp[1] = ""
+}
 func test() {
 	//testarr()
 	//pointarrtest()
 	//stringtest()
 	//packagetest()
-	labeltest()
+	//labeltest()
+	//qiepiantest()
+	maptest()
 }
 func main() {
 	test()
