@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"math"
 	"time"
+	"math/big"
 )
-
 func mysort(arr [5]int) { //桶排序
 	var bucket [5 + 1]int //6个桶
 	for _, v := range arr {
@@ -54,6 +54,9 @@ func structtest() {
 	var a Animal = Animal{"Luck", "Dog", 10}
 	a.Type = "Cat"
 	fmt.Println(a)
+	an := new(Animal)
+	an.Type = "狗"
+	fmt.Println(an)
 }
 func stringtest() {
 	var str string = "0123456"
@@ -96,7 +99,38 @@ func qiepiantest() {
 }
 func maptest() {
 	mp := map[int]string{}
-	mp[1] = ""
+	mp[1] = "一"
+	mp[2] = "二"
+	mp[3] = "三"
+	mp[4] = "四"
+	fmt.Println(mp)
+}
+func bigtest() {
+	a := big.NewRat(1, 2)
+	b := big.NewRat(1, 3)
+	a.Mul(a, b)
+	fmt.Println(a)
+}
+func classifier(items ...interface{}) {
+	for i, x := range items {
+		switch x.(type) {
+		case bool:
+			fmt.Printf("Param #%d is a bool\n", i)
+		case float64:
+			fmt.Printf("Param #%d is a float64\n", i)
+		case int, int64:
+			fmt.Printf("Param #%d is a int\n", i)
+		case nil:
+			fmt.Printf("Param #%d is a nil\n", i)
+		case string:
+			fmt.Printf("Param #%d is a string\n", i)
+		default:
+			fmt.Printf("Param #%d is unknown\n", i)
+		}
+	}
+}
+func typetest() {
+	classifier(13, -14.3, "BELGIUM", complex(1, 2), nil, false)
 }
 func test() {
 	//testarr()
@@ -105,7 +139,10 @@ func test() {
 	//packagetest()
 	//labeltest()
 	//qiepiantest()
-	maptest()
+	//maptest()
+	//bigtest()
+	//structtest()
+	typetest()
 }
 func main() {
 	test()
