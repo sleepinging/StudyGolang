@@ -132,6 +132,23 @@ func classifier(items ...interface{}) {
 func typetest() {
 	classifier(13, -14.3, "BELGIUM", complex(1, 2), nil, false)
 }
+func getsum(chs chan int) {
+	s := 0
+	for i := 0; i < 100; i++ {
+		s += i;
+	}
+	time.Sleep(time.Microsecond * 1000)
+	chs <- s
+}
+func channeltest() {
+	chi := make(chan int) //不带缓冲
+
+	//chi:=make(chan int,1)//带1个缓冲
+	//chi<-1
+
+	go getsum(chi)
+	fmt.Print(<-chi)
+}
 func test() {
 	//testarr()
 	//pointarrtest()
@@ -142,7 +159,8 @@ func test() {
 	//maptest()
 	//bigtest()
 	//structtest()
-	typetest()
+	//typetest()
+	channeltest()
 }
 func main() {
 	test()
