@@ -140,6 +140,30 @@ func getsum(chs chan int) {
 	time.Sleep(time.Microsecond * 1000)
 	chs <- s
 }
+func getxiang(ch chan float64) {
+	for i := 1; i < 1000000; i += 2 {
+		ch <- 4.0 / float64(i)
+	}
+	close(ch)
+}
+func getpi() {
+	t1 := time.Now()
+	defer func() {
+		t2 := time.Now()
+		t3 := t2.Sub(t1)
+		fmt.Println(t3.Seconds() * 1000)
+	}()
+	s := float64(0.0)
+	ch := make(chan float64)
+	go getxiang(ch)
+	i := 1
+	for c := range ch {
+		s += c * float64(i)
+		i = -i
+		//fmt.Println(s)
+	}
+	fmt.Println(s)
+}
 func channeltest() {
 	chi := make(chan int) //不带缓冲
 
@@ -160,7 +184,8 @@ func test() {
 	//bigtest()
 	//structtest()
 	//typetest()
-	channeltest()
+	//channeltest()
+	getpi()
 }
 func main() {
 	test()
