@@ -259,6 +259,7 @@ func main() {
 		",否则产生一切后果与本人无关")
 	fmt.Println("本软件开源,项目地址:" +
 		"https://github.com/sleepinging/StudyGolang/tree/master/NetTest/zjxuwifi")
+	fmt.Println("请确保现在已经连上ZJXU-WLAN")
 	sglth()
 	fmt.Println("按回车键退出")
 	tmp := ""
