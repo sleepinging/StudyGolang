@@ -185,18 +185,18 @@ func splitpwd(spwd, epwd string, num int) (plist []string, err error) { //将密
 
 func inputidpwd() (id, spwd, epwd string) {
 LABEL_IPTID:
-	fmt.Println("输入账号")
+	fmt.Println("输入要测试暴破的账号")
 	fmt.Scanf("%s\n", &id)
 	if len(id) == 0 {
 		fmt.Println("账号不能为空")
 		goto LABEL_IPTID
 	}
-	fmt.Println("输入起始密码(默认000000)")
+	fmt.Println("输入暴破起始密码(默认010000)")
 	fmt.Scanf("%s\n", &spwd)
 	if len(spwd) == 0 {
-		spwd = "000000"
+		spwd = "010000"
 	}
-	fmt.Println("输入结束密码(默认319999)")
+	fmt.Println("输入暴破结束密码(默认319999)")
 	fmt.Scanf("%s\n", &epwd)
 	if len(epwd) == 0 {
 		epwd = "319999"
@@ -255,6 +255,10 @@ func getnextpwd(ch <-chan string) (pwd string) { //从密码通道中取出一�
 }
 
 func main() {
+	fmt.Println("本程序仅供交流学习Go语言使用,请勿用于任何商业以及非法用途" +
+		",否则产生一切后果与本人无关")
+	fmt.Println("本软件开源,项目地址:" +
+		"https://github.com/sleepinging/StudyGolang/tree/master/NetTest/zjxuwifi")
 	sglth()
 	fmt.Println("按回车键退出")
 	tmp := ""
