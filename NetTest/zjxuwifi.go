@@ -125,7 +125,7 @@ func baopo(userid, spwd, epwd string) (pwd string, iss bool, err error) { //暴�
 	}
 	ism := false
 	pch := make(chan string, 10)
-	go producepwd(spwd, epwd, pch)
+	go producepwd(spwd, epwd, pch) //开始生成密码
 	cpwd := getnextpwd(pch)
 	for f, _ := less(cpwd, epwd); f && !isfindpwd; cpwd = getnextpwd(pch) {
 		fmt.Println("正在测试", userid, "-", cpwd)
@@ -235,7 +235,7 @@ func mtlth() { //多线程
 	fmt.Println("耗时:", td)
 }
 
-func producepwd(spwd, epwd string, ch chan<- string) {
+func producepwd(spwd, epwd string, ch chan<- string) { //生产密码
 	f, err := less(spwd, epwd)
 	for cpwd := spwd; f; cpwd, err = addpwd(cpwd) {
 		if err != nil {
@@ -249,7 +249,7 @@ func producepwd(spwd, epwd string, ch chan<- string) {
 	}
 }
 
-func getnextpwd(ch <-chan string) (pwd string) {
+func getnextpwd(ch <-chan string) (pwd string) { //从密码通道中取出一个密码
 	pwd = <-ch
 	return
 }
