@@ -6,7 +6,7 @@ import (
 )
 
 func openbrowurl(url string) { //调用默认浏览器打开网页
-	szOperation := mystr.Str2uft16ptr("测试")
+	szOperation := mystr.Str2uft16ptr("open")
 	szAddress := mystr.Str2uft16ptr(url)
 	h, err := syscall.LoadLibrary("shell32.dll")
 	if err != nil {
