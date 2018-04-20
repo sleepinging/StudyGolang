@@ -3,6 +3,10 @@ package main
 import (
 	"twt/mystr"
 	"syscall"
+	"os/exec"
+	"os"
+	"strings"
+	"fmt"
 )
 
 func openbrowurl(url string) { //调用默认浏览器打开网页
@@ -36,10 +40,16 @@ func msgbox3(text, title string) (res int32) {
 	res = int32(r)
 	return
 }
+func GetCurrentPath() (path string, err error) {
+	s, err := exec.LookPath(os.Args[0])
+	if err != nil {
+		return
+	}
+	i := strings.LastIndex(s, "\\")
+	path = string(s[0 : i+1])
+	return
+}
 func main() {
-	//openbrowurl("www.baidu.com")
-	c, t := "你好", "提示"
-	pc, pt := mystr.Str2uft16ptr(c), mystr.Str2uft16ptr(t)
-	c, t = mystr.Utf16prt2str(pc), mystr.Utf16prt2str(pt)
-	msgbox3(c, t)
+	path, _ := GetCurrentPath()
+	fmt.Println(path)
 }
