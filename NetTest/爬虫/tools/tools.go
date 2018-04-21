@@ -10,7 +10,7 @@ import (
 
 const (
 	url    = "http://10.58.16.123/jxxycx.asp"
-	dbfile = "E:/info.db"
+	dbfile = "info.db"
 )
 
 var (
