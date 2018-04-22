@@ -5,8 +5,8 @@ package main
 int myadd(int a,int b){
 	return a+b;
 }
-void msgbox(wchar_t* c,wchar_t* t){
-	MessageBoxW(0,c,t,0);
+int msgbox(wchar_t* c,wchar_t* t){
+	return MessageBoxW(0,c,t,3);
 }
 */
 import "C"
@@ -17,12 +17,15 @@ import (
 )
 
 func msgbox(text, title string) {
-	C.msgbox((*C.wchar_t)(unsafe.Pointer(mystr.Str2uft16ptr(text))),
+	r := C.msgbox((*C.wchar_t)(unsafe.Pointer(mystr.Str2uft16ptr(text))),
 		(*C.wchar_t)(unsafe.Pointer(mystr.Str2uft16ptr(title))))
+	res := C.int(r)
+	fmt.Println(res)
 }
 
 func main() {
 	r := C.myadd(1, 2)
-	fmt.Println(r)
+	res := C.int(r)
+	fmt.Println(res)
 	msgbox("内容", "测试")
 }
