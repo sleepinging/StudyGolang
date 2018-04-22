@@ -1,15 +1,18 @@
 package main
 
 import (
-	"net"
+	"flag"
 	"fmt"
-	"time"
 	"math"
+	"net"
+	"time"
 )
 
 var (
-	timeout  = time.Millisecond * 100 //超时
-	stopflag = false                  //用于停止所有扫描线程
+	timeout   = time.Millisecond * 100 //超时
+	stopflag  = false                  //用于停止所有扫描线程
+	maxth     = 5                      //最大线程
+	completed = 0                      //已完成
 )
 
 func SplitPort(sport, eport int, num int) (plist []int) { //将端口号均匀分割
@@ -39,6 +42,8 @@ func ScanPort(ip string, sport, eport int, portch chan int) { //扫描某IP的�
 			portch <- port
 		}
 	}
+	//fmt.Println("完成一个线程")
+	completed++
 }
 
 func exportport(ip string, portch <-chan int) {
@@ -47,20 +52,30 @@ func exportport(ip string, portch <-chan int) {
 	}
 }
 
-func StartScan(ip string, sport, eport int) {
-	maxth := 50
+func StartScan(ip string, sport, eport, maxth int) {
 	plist := SplitPort(sport, eport, maxth)
 	for i := 0; i < maxth; i++ {
 		portch := make(chan int, 5)
 		go ScanPort(ip, plist[i], plist[i+1], portch)
 	}
-	fmt.Println("按回车键停止")
-	fmt.Scanf("%d\n", &maxth)
-	stopflag = true
+	//fmt.Println("按回车键停止")
+	for completed < maxth {
+		time.Sleep(time.Millisecond * 200)
+	}
+	//fmt.Scanf("%d\n", &maxth)
+	//stopflag = true
 }
 
 func main() {
-	sport, eport := 10, 500
-	ip := "115.239.210.27"
-	StartScan(ip, sport, eport)
+	ip := flag.String("ip", "127.0.0.1", "你想要扫描的IP")
+	sport := flag.Int("sp", 0, "起始端口")
+	eport := flag.Int("ep", 65535, "结束端口")
+	imaxth := flag.Int("mt", 5, "最大线程数")
+	flag.Parse()
+	maxth = *imaxth
+	fmt.Println("扫描", *ip+":", *sport, "-", *eport, "线程数:", maxth)
+	StartScan(*ip, *sport, *eport, maxth)
+	//sport, eport := 10, 500
+	//ip := "115.239.210.27"
+	//StartScan(ip, sport, eport,50)
 }
