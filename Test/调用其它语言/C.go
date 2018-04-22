@@ -22,7 +22,7 @@ func msgbox(text, title string) {
 }
 
 func main() {
-	msgbox("内容", "测试")
 	r := C.myadd(1, 2)
 	fmt.Println(r)
+	msgbox("内容", "测试")
 }
