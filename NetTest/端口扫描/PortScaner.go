@@ -8,7 +8,8 @@ import (
 )
 
 var (
-	timeout = time.Millisecond * 100 //超时
+	timeout  = time.Millisecond * 100 //超时
+	stopflag = false                  //用于停止所有扫描线程
 )
 
 func SplitPort(sport, eport int, num int) (plist []int) { //将端口号均匀分割
@@ -30,21 +31,36 @@ func IsPortOpen(ip string, port int) (isopen bool) { //检测某IP的某个端�
 	return err == nil
 }
 
-func ScanPort(ip string, sport, eport int) { //扫描某IP的一段端口是否打开
-	for port := sport; port < eport; port++ {
+func ScanPort(ip string, sport, eport int, portch chan int) { //扫描某IP的一段端口
+	go exportport(ip, portch)
+	for port := sport; port < eport && !stopflag; port++ {
 		if IsPortOpen(ip, port) {
-			fmt.Println(ip, ":", port, "Open")
+			//fmt.Println(ip, ":", port, "Open")
+			portch <- port
 		}
 	}
 }
 
-func main() {
-	sport, eport := 10, 500
+func exportport(ip string, portch <-chan int) {
+	for {
+		fmt.Println(ip+":", <-portch)
+	}
+}
+
+func StartScan(ip string, sport, eport int) {
 	maxth := 50
-	ip := "115.239.210.27"
 	plist := SplitPort(sport, eport, maxth)
 	for i := 0; i < maxth; i++ {
-		go ScanPort(ip, plist[i], plist[i+1])
+		portch := make(chan int, 5)
+		go ScanPort(ip, plist[i], plist[i+1], portch)
 	}
+	fmt.Println("按回车键停止")
 	fmt.Scanf("%d\n", &maxth)
+	stopflag = true
+}
+
+func main() {
+	sport, eport := 10, 500
+	ip := "115.239.210.27"
+	StartScan(ip, sport, eport)
 }
