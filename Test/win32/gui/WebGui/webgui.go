@@ -6,6 +6,9 @@ import (
 	"net/http"
 	"fmt"
 	"log"
+	"github.com/lxn/win"
+	"time"
+	"os"
 )
 
 func openbrowurl(url string) { //调用默认浏览器打开网页
@@ -28,13 +31,18 @@ func abort(funcname string, err error) {
 
 func LoginServer(w http.ResponseWriter, req *http.Request) {
 	fmt.Println("收到请求")
+	fmt.Println(req.PostFormValue("close"))
 	name := req.PostFormValue("name")
-	pwd := req.PostFormValue("pwd")
-	fmt.Println(name, pwd)
+	pwd := req.PostFormValue("password")
+	fmt.Println("用户名", name, "密码", pwd)
 	w.Header().Set("Content-Type", "text/html;charset=utf-8")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.WriteHeader(200) //必须在所有header之后
-	fmt.Fprintf(w, `{"res":0,"err":""}`)
+	if name == pwd {
+		fmt.Fprintf(w, `{"res":0,"err":""}`)
+	} else {
+		fmt.Fprintf(w, `{"res":-1,"err":""}`)
+	}
 }
 
 func startserver() {
@@ -46,9 +54,30 @@ func startserver() {
 	}
 }
 
+func findwindow(wname string) (f bool) {
+	r := win.FindWindow(nil, mystr.Str2ui16p(wname))
+	return r > 0
+}
+
+var isrun = false
+
+func checkstate() {
+	for !findwindow("Go界面") {
+		time.Sleep(time.Millisecond * 500)
+	}
+	fmt.Println("已经启动")
+	isrun = true
+	for findwindow("Go界面") {
+		time.Sleep(time.Millisecond * 500)
+	}
+	fmt.Println("已经关闭")
+	os.Exit(0)
+}
+
 func main() {
+	go checkstate()
 	//path,_:=mytools.GetCurrentPath()
-	path := `E:\软件\学习中\Go\Study\StudyGolang\Test\win32\gui\WebGui\`
-	openbrowurl(path + `1.html`)
+	path := `cefsimple.exe`
+	openbrowurl(path)
 	startserver()
 }

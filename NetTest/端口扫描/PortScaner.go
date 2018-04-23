@@ -10,14 +10,14 @@ import (
 )
 
 var (
-	timeout                  = time.Millisecond * 100 //超时
-	stopflag                = false                   //用于停止所有扫描线程
-	maxth                      = 5                    //最大线程
-	completedth          = 0                          //已完成
-	allportnum            = 0                         //所有要扫描的端口数
-	completeportnum  = 0                              //已完成扫描的端口
-	nummux          sync.Mutex                        //是否在读写端口数加锁
-	thmux           sync.Mutex                        //是否在读写线程数加锁
+	timeout = time.Millisecond * 100 //超时
+	//stopflag        = false                  //用于停止所有扫描线程
+	maxth           = 5        //最大线程
+	completedth     = 0        //已完成
+	allportnum      = 0        //所有要扫描的端口数
+	completeportnum = 0        //已完成扫描的端口
+	nummux          sync.Mutex //是否在读写端口数加锁
+	thmux           sync.Mutex //是否在读写线程数加锁
 )
 
 func SplitPort(sport, eport int, num int) (plist []int) { //将端口号均匀分割
@@ -41,7 +41,7 @@ func IsPortOpen(ip string, port int) (isopen bool) { //检测某IP的某个端�
 
 func ScanPort(ip string, sport, eport int, portch chan int) { //扫描某IP的一段端口
 	go exportport(ip, portch)
-	for port := sport; port < eport && !stopflag; port++ {
+	for port := sport; port < eport; /*&& !stopflag*/ port++ {
 		if IsPortOpen(ip, port) {
 			//fmt.Println(ip, ":", port, "Open")
 			portch <- port
@@ -90,7 +90,14 @@ func StartScan(ip string, sport, eport, maxth int) {
 	//stopflag = true
 }
 
+func showinfo() {
+	fmt.Println("本软件开源，项目地址：")
+	fmt.Println("https://github.com/sleepinging/StudyGolang/tree/master/NetTest/%E7%AB%AF%E5%8F%A3%E6%89%AB%E6%8F%8F")
+	fmt.Println("使用 -h命令查看帮助")
+}
+
 func main() {
+	showinfo()
 	ip := flag.String("ip", "127.0.0.1", "你想要扫描的IP")
 	sport := flag.Int("sp", 0, "起始端口")
 	eport := flag.Int("ep", 1023, "结束端口")
@@ -114,7 +121,4 @@ func main() {
 	fmt.Println("扫描", *ip+":", *sport, "-", *eport, "线程数:", maxth)
 	allportnum = *eport - *sport + 1
 	StartScan(*ip, *sport, *eport+1, maxth)
-	//sport, eport := 10, 500
-	//ip := "115.239.210.27"
-	//StartScan(ip, sport, eport,50)
 }
