@@ -1,14 +1,14 @@
 package main
 
 import (
-	"twt/mystr"
-	"syscall"
-	"net/http"
 	"fmt"
-	"log"
 	"github.com/lxn/win"
-	"time"
+	"log"
+	"net/http"
 	"os"
+	"syscall"
+	"time"
+	"twt/mystr"
 )
 
 func openbrowurl(url string) { //调用默认浏览器打开网页
@@ -39,9 +39,11 @@ func LoginServer(w http.ResponseWriter, req *http.Request) {
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	w.WriteHeader(200) //必须在所有header之后
 	if name == pwd {
-		fmt.Fprintf(w, `{"res":0,"err":""}`)
+		fmt.Fprintf(w, `{"res":0`)
+		fmt.Fprintf(w, `,"err":""}`)
 	} else {
-		fmt.Fprintf(w, `{"res":-1,"err":""}`)
+		fmt.Fprintf(w, `{"res":-1`)
+		fmt.Fprintf(w, `,"err":""}`)
 	}
 }
 
@@ -63,21 +65,32 @@ var isrun = false
 
 func checkstate() {
 	for !findwindow("Go界面") {
-		time.Sleep(time.Millisecond * 500)
+		time.Sleep(time.Millisecond * 200)
 	}
 	fmt.Println("已经启动")
+	resizewindow("Go界面", 600, 600)
 	isrun = true
 	for findwindow("Go界面") {
-		time.Sleep(time.Millisecond * 500)
+		time.Sleep(time.Millisecond * 200)
 	}
 	fmt.Println("已经关闭")
 	os.Exit(0)
 }
 
+func resizewindow(wname string, width, heigth int32) {
+	h := win.FindWindow(nil, mystr.Str2ui16p(wname))
+	if h <= 0 {
+		return
+	}
+	rect := win.RECT{}
+	win.GetWindowRect(h, &rect)
+	win.MoveWindow(h, rect.Left, rect.Top, width, heigth, false)
+}
+
 func main() {
 	go checkstate()
 	//path,_:=mytools.GetCurrentPath()
-	path := `cefsimple.exe`
+	path := `E:\temp\1\cefsimple.exe`
 	openbrowurl(path)
 	startserver()
 }

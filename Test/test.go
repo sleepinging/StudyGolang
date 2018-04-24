@@ -173,6 +173,24 @@ func channeltest() {
 	go getsum(chi)
 	fmt.Print(<-chi)
 }
+
+func channeltemp() {
+	ch := make(chan int, 1)
+	ch <- 5
+	select {
+	case i := <-ch:
+		fmt.Println(i)
+	default:
+		fmt.Println("无数据")
+	}
+	select {
+	case i := <-ch:
+		fmt.Println(i)
+	default:
+		fmt.Println("无数据")
+	}
+}
+
 func test() {
 	//testarr()
 	//pointarrtest()
@@ -185,7 +203,8 @@ func test() {
 	//structtest()
 	//typetest()
 	//channeltest()
-	getpi()
+	//getpi()
+	channeltemp()
 }
 func main() {
 	test()
