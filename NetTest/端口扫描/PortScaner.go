@@ -62,7 +62,7 @@ func updateprocess() { //更新进度
 	nummux.Lock()
 	completeportnum++
 	if completeportnum == allportnum {
-		fmt.Print("\r扫描完毕")
+		fmt.Println("\r扫描完毕")
 	} else {
 		str := fmt.Sprintf("%.1f", float64(completeportnum)/float64(allportnum)*100)
 		fmt.Print("\r" + str + "%")
