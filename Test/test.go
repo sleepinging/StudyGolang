@@ -190,7 +190,11 @@ func channeltemp() {
 		fmt.Println("无数据")
 	}
 }
-
+func arrtest() {
+	arr := []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+	arr2 := append(arr[:3], arr[4:]...)
+	fmt.Println(arr2)
+}
 func test() {
 	//testarr()
 	//pointarrtest()
@@ -204,7 +208,8 @@ func test() {
 	//typetest()
 	//channeltest()
 	//getpi()
-	channeltemp()
+	//channeltemp()
+	arrtest()
 }
 func main() {
 	test()
