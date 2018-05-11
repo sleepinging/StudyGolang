@@ -1,11 +1,11 @@
 package tools
 
 import (
+	"database/sql"
 	"fmt"
+	_ "github.com/mattn/go-sqlite3"
 	"twt/mystr"
 	"twt/nettools"
-	"database/sql"
-	_ "github.com/mattn/go-sqlite3"
 )
 
 const (

@@ -1,8 +1,8 @@
 package main
 
 import (
-	"twt/nettools"
 	"fmt"
+	"twt/nettools"
 )
 
 func main() {

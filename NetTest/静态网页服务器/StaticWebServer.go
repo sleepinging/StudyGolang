@@ -1,8 +1,8 @@
 package main
 
 import (
-	"net/http"
 	"fmt"
+	"net/http"
 )
 
 func LoginHandler(w http.ResponseWriter, r *http.Request) {
@@ -10,10 +10,12 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 	name, ok := r.Form["UserName"]
 	pwd, ok := r.Form["Password"]
 	if !ok {
-		fmt.Fprintf(w, "请先登录")
+		//fmt.Fprintf(w, "请先登录<br>")
+		http.Redirect(w, r, "/index.html", http.StatusFound)
 		return
 	}
 	fmt.Println(name, pwd)
+
 	w.WriteHeader(200)
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 	if name[0] == pwd[0] {

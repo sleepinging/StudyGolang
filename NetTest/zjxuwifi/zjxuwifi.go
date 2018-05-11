@@ -2,12 +2,12 @@ package main
 
 import (
 	"fmt"
-	"net/http"
-	"strings"
-	purl "net/url"
 	"io"
-	"strconv"
 	"math"
+	"net/http"
+	purl "net/url"
+	"strconv"
+	"strings"
 	"time"
 )
 
@@ -32,7 +32,7 @@ func HttpPost(url string, userid string, pwd string) (retstr string, merr error)
 	reqest.Header.Set("Referer", "http://172.17.0.3/eportal/index.jsp?wlanuserip=76ced83852c05fdc039ed9575376ef4f&wlanacname=284b634df60c7ef2f96af6bdf4912f7b&ssid=&nasip=31794990ed84e290fc7bd9159798b1f8&snmpagentip=&mac=79e7d5a8a43191d6d3ccb8059e604947&t=wireless-v2&url=2c0328164651e2b4f13b933ddf36628bea622dedcc302b30&apmac=&nasid=284b634df60c7ef2f96af6bdf4912f7b&vid=2045636786f020c2&port=a16fc4eb6656b1ea&nasportid=5b9da5b08a53a540806c821ff7c1438120a6ffceb7ee444db82c1c4e4a2dce28")
 	if err != nil {
 		fmt.Println("发送失败!")
-		merr = err;
+		merr = err
 		return
 		//panic(err)
 	}

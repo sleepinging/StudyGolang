@@ -1,11 +1,11 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"log"
 	"net/http"
 	"os"
-	"bufio"
-	"log"
 )
 
 var (
@@ -41,6 +41,7 @@ func readfile(filename string) (str string, err error) {
 }
 
 var cc = 0
+
 func DefaultServer(w http.ResponseWriter, req *http.Request) {
 	cc++
 	reqfile := rootpath + req.URL.Path[1:] //去除/

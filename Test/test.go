@@ -4,9 +4,10 @@ import (
 	mtols "./mytools"
 	"fmt"
 	"math"
-	"time"
 	"math/big"
+	"time"
 )
+
 func mysort(arr [5]int) { //桶排序
 	var bucket [5 + 1]int //6个桶
 	for _, v := range arr {
@@ -135,7 +136,7 @@ func typetest() {
 func getsum(chs chan int) {
 	s := 0
 	for i := 0; i < 100; i++ {
-		s += i;
+		s += i
 	}
 	time.Sleep(time.Microsecond * 1000)
 	chs <- s

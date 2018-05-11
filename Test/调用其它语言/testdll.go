@@ -2,8 +2,8 @@ package main
 
 import (
 	"syscall"
-	"unsafe"
 	"unicode/utf16"
+	"unsafe"
 )
 
 func main() {
