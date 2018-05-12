@@ -76,7 +76,7 @@ func loadcfg(filename string) (err error) {
 }
 func main() {
 	fmt.Println("本项目免费开源",
-		"地址：https://github.com/sleepinging/StudyGolang/tree/master/NetTest/%E8%8E%B7%E5%8F%96%E6%A0%A1%E5%9B%AD%E5%8D%A1%E4%BD%99%E9%A2%9D")
+		"地址：https://github.com/sleepinging/StudyGolang/tree/master/NetTest/WatchEcard")
 	err := loadcfg(`config.json`)
 	if err != nil {
 		fmt.Println(err)
