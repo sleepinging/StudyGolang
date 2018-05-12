@@ -10,12 +10,14 @@ import (
 )
 
 var (
-	lastmoney = 0.0
-	freq      = time.Second * 30 //查询间隔
+	lastmoney  = 0.0
+	freq            = time.Second * 30 //查询间隔
 	cfg       model.Config
+	minmsged  = false
 )
 
 func GetMoney() (money float64) {
+	return 15
 	//fmt.Println("查询中")
 	res, err := tool.HttpGet(
 		"http://wxschool.lsmart.cn/card/queryAcc_queryAccount.shtml?" +
@@ -30,16 +32,22 @@ func GetMoney() (money float64) {
 		panic(err)
 	}
 	money, _ = strconv.ParseFloat(smoney, 32) //转化为数字
-	if money <= float64(cfg.Limit) && math.Abs(money-lastmoney) > 0.01 {
-		go tool.SendEmailToMe("校园卡余额提醒", "只剩"+smoney+"元了,请尽快充值")
-	}
 	return
 }
 func StartWatch() {
 	lastmoney := GetMoney()
 	fmt.Println("服务启动成功,当前校园卡余额为", fmt.Sprintf("%.2f", lastmoney), "元")
 	for {
+		time.Sleep(freq)
 		cm := GetMoney()
+		if cm <= float64(cfg.Limit) && !minmsged {
+			go tool.SendEmailToMe("校园卡余额提醒",
+				"只剩" + fmt.Sprintf("%.2f", cm)+
+					"元了,请尽快充值")
+			minmsged = true //已经提醒过了
+		} else {
+			minmsged = false
+		}
 		d := cm - lastmoney
 		if math.Abs(d) > 0.01 {
 			if d > 0 {
@@ -55,7 +63,6 @@ func StartWatch() {
 			}
 		}
 		lastmoney = cm
-		time.Sleep(freq)
 	}
 }
 func loadcfg(filename string) (err error) {
