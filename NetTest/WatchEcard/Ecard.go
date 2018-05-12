@@ -17,7 +17,6 @@ var (
 )
 
 func GetMoney() (money float64) {
-	return 15
 	//fmt.Println("查询中")
 	res, err := tool.HttpGet(
 		"http://wxschool.lsmart.cn/card/queryAcc_queryAccount.shtml?" +
