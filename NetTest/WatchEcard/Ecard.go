@@ -10,10 +10,8 @@ import (
 )
 
 var (
-	lastmoney  = 0.0
-	freq            = time.Second * 30 //查询间隔
-	cfg       model.Config
-	minmsged  = false
+	freq = time.Second * 30 //查询间隔
+	cfg  model.Config
 )
 
 func GetMoney() (money float64) {
@@ -34,7 +32,7 @@ func GetMoney() (money float64) {
 	return
 }
 func StartWatch() {
-	lastmoney := GetMoney()
+	lastmoney, minmsged := GetMoney(), false
 	fmt.Println("服务启动成功,当前校园卡余额为", fmt.Sprintf("%.2f", lastmoney), "元")
 	for {
 		time.Sleep(freq)
