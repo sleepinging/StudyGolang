@@ -37,11 +37,13 @@ func StartWatch() {
 	for {
 		time.Sleep(freq)
 		cm := GetMoney()
-		if cm <= float64(cfg.Limit) && !minmsged {
-			go tool.SendEmailToMe("校园卡余额提醒",
-				"只剩" + fmt.Sprintf("%.2f", cm)+
-					"元了,请尽快充值")
-			minmsged = true //已经提醒过了
+		if cm < float64(cfg.Limit) { //小于阈值
+			if !minmsged { //如果没有提醒过
+				go tool.SendEmailToMe("校园卡余额提醒",
+					"只剩" + fmt.Sprintf("%.2f", cm)+
+						"元了,请尽快充值")
+				minmsged = true
+			}
 		} else {
 			minmsged = false
 		}
