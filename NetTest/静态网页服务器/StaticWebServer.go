@@ -26,7 +26,8 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	http.Handle("/", http.FileServer(http.Dir(`E:/临时/wwwroot/`)))
+	http.Handle("/", http.FileServer(http.Dir(`E:/developing/wwwroot/`)))
 	http.HandleFunc("/login", LoginHandler)
+	fmt.Println("服务启动...")
 	http.ListenAndServe(":80", nil)
 }
