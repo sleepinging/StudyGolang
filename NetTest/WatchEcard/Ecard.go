@@ -10,8 +10,10 @@ import (
 )
 
 var (
-	freq = time.Second * 30 //查询间隔
-	cfg  model.Config
+	freq      = time.Second * 30 //查询间隔
+	cfg       model.Config
+	lastmoney = 0.0   //上次查询出来钱
+	minmsged  = false //是否已经提醒过
 )
 
 func GetMoney() (money float64) {
@@ -21,18 +23,23 @@ func GetMoney() (money float64) {
 			"openId=" + cfg.Openid +
 			"&wxArea=10354")
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
+		money = lastmoney
+		return
+		//panic(err)
 	}
 	smoney, err := tool.GetBetween(res, `校园卡余额<strong>`, `</strong>元`)
 	if err != nil {
-		fmt.Println(res)
-		panic(err)
+		fmt.Println(res, "\n", err)
+		//panic(err)
+		money = lastmoney
+		return
 	}
 	money, _ = strconv.ParseFloat(smoney, 32) //转化为数字
 	return
 }
 func StartWatch() {
-	lastmoney, minmsged := GetMoney(), false
+	lastmoney, minmsged = GetMoney(), false
 	fmt.Println("服务启动成功,当前校园卡余额为", fmt.Sprintf("%.2f", lastmoney), "元")
 	for {
 		time.Sleep(freq)
