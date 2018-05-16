@@ -18,8 +18,8 @@ func Show(str string) {
 	fmt.Print(str)
 }
 
-//export ToNewCStr
-func ToNewCStr(str string, c **C.char) {
+//export ToNewGBKCStr
+func ToNewGBKCStr(str string, c **C.char) { //生成gbk字符串
 	enc := mahonia.NewEncoder("GBK")
 	output := enc.ConvertString(str)
 	*c = C.CString(output)

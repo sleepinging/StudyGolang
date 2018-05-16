@@ -27,19 +27,19 @@ int main(){
 	//if (!cgstr) { /* handle allocation failure */ }
 	//memcpy(cgstr, gstr.p, gstr.n);
 	//cgstr[gstr.n] = '\0';
-	//dump(cgstr,gstr.n,"1.txt");
+	//dump(cgstr,gstr.n,"1.txt");//dump出来是utf-8编码
 	//free(cgstr);
 	
 	MyPoint mp;
 	SetMyPoint((GoUintptr)&mp);
+	printf("%d,%d\n",mp.X,mp.Y);
 	
 	char* pname=nullptr;
-	ToNewCStr(mp.Name,&pname);
+	ToNewGBKCStr(mp.Name,&pname);
 	printf("%s\n",pname);
 	free(pname);
 	pname=nullptr;
 	
-	printf("%d,%d\n",mp.X,mp.Y);
 	
 	getchar();
 	return 0;
