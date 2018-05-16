@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <malloc.h>
 #include <string.h>
-#include <windows.h>
 #include "main.h"
 
 struct MyPoint{
@@ -39,7 +38,6 @@ int main(){
 	printf("%s\n",pname);
 	free(pname);
 	pname=nullptr;
-	
 	
 	getchar();
 	return 0;
