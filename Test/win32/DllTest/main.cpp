@@ -40,7 +40,7 @@ void test(){
 	pname=nullptr;
 	
 }
-void test2(){
+void testhttp(){
 	const char* str="http://www.baidu.com";
 	GoString gstr{str,(ptrdiff_t)strlen(str)};
 	char* res=nullptr;
@@ -49,10 +49,7 @@ void test2(){
 	free(res);
 	res=nullptr;
 }
-int main(){
-	test2();
-	test();
-	
+void testjson(){
 	const char* str=R"_TWT_({"name":"来自json的点","x":100,"y":200})_TWT_";//C++11中的raw string,防止转义
 	GoString gstr{str,(ptrdiff_t)strlen(str)};
 	MyPoint mp;
@@ -62,6 +59,11 @@ int main(){
 	printf("%s,%d,%d\n",pname,mp.X,mp.Y);
 	free(pname);
 	pname=nullptr;
+}
+int main(){
+	testhttp();
+	test();
+	testjson();
 	
 	getchar();
 	return 0;
