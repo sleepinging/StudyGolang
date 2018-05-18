@@ -8,10 +8,17 @@ import (
 	"github.com/lxn/win"
 	"twt/mystr"
 	"unsafe"
+	"twt/mytools"
+	"golang.org/x/image/bmp"
+	"os"
 )
 
 // 全局变量
 var (
+	bgpic           = `E:\temp\1.bmp`
+	picwidth  int32 = 0
+	picheight int32 = 0
+
 	hBitmap winapi.HBITMAP
 	button1 uintptr = 3301
 	button2 uintptr = 3302
@@ -26,6 +33,28 @@ var (
 
 func init() {
 	runtime.GOMAXPROCS(runtime.NumCPU())
+	//fmt.Println(mytools.GetCurrentPath())
+	if f, _ := mytools.PathExists(bgpic); !f {
+		pt, err := mytools.GetCurrentPath()
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		bgpic = pt + "1.bmp"
+	}
+	picfile, err := os.Open(bgpic)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	defer picfile.Close()
+	img, err := bmp.Decode(picfile)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	picheight = int32(img.Bounds().Max.Y)
+	picwidth = int32(img.Bounds().Max.X)
 }
 
 func main() {
@@ -54,7 +83,7 @@ func WinMain(Inst winapi.HINSTANCE, Cmd string, nCmdShow int32) int32 {
 	wnd, err := winapi.CreateWindow("主窗口类",
 		"golang windows 编程",
 		winapi.WS_OVERLAPPEDWINDOW, 0,
-		500, 200, 509, 588+39,
+		500, 200, picwidth, picheight+39,
 		0, 0, Inst, 0)
 	if err != nil {
 		fmt.Println("创建窗口失败")
@@ -97,7 +126,7 @@ func WndProc(hWnd winapi.HWND, message uint32, wParam uintptr, lParam uintptr) u
 			winapi.WS_VISIBLE|winapi.WS_CHILD|win.BS_PUSHBUTTON,
 			0, 35, 150, 160, 60,
 			hWnd, winapi.HMENU(button3), 0, 0)
-		hTemp, _ = winapi.LoadImageByName(0, "E:\\temp\\1.bmp",
+		hTemp, _ = winapi.LoadImageByName(0, bgpic,
 			winapi.IMAGE_BITMAP, 0, 0, winapi.LR_LOADFROMFILE)
 		hBitmap = winapi.HBITMAP(hTemp)
 	case winapi.WM_PAINT:
@@ -134,7 +163,7 @@ func OnPaint(hWnd winapi.HWND) {
 	// 这个函数的第4、5个参数分别是图片的宽、高
 	// 为了简便起见，我直接写在了这里
 	// 实际项目中当然要用过程序获取一下
-	winapi.BitBlt(hdc, 0, 0, 509, 588, mdc, 0, 0, winapi.SRCCOPY)
+	winapi.BitBlt(hdc, 0, 0, picwidth, picheight, mdc, 0, 0, winapi.SRCCOPY)
 }
 
 func OnCommand(hWnd winapi.HWND, wParam uintptr, lParam uintptr) {
