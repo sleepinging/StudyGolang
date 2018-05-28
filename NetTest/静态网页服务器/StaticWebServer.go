@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"twt/mytools"
 )
 
 func LoginHandler(w http.ResponseWriter, r *http.Request) {
@@ -26,7 +27,9 @@ func LoginHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	http.Handle("/", http.FileServer(http.Dir(`E:/developing/wwwroot/`)))
+	pt, _ := mytools.GetCurrentPath()
+	http.Handle("/", http.FileServer(http.Dir(pt)))
+	//http.Handle("/", http.FileServer(http.Dir(`E:/developing/wwwroot/`)))
 	http.HandleFunc("/login", LoginHandler)
 	fmt.Println("服务启动...")
 	http.ListenAndServe(":80", nil)
