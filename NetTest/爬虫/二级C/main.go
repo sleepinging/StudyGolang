@@ -4,6 +4,7 @@ import (
 	"twt/nettools"
 	"fmt"
 	"github.com/axgle/mahonia"
+	"twt/mystr"
 )
 
 func ConvertToString(src string, srcCode string, tagCode string) string {
@@ -27,5 +28,7 @@ func main() {
 	}
 	res = ConvertToString(res, "gbk", "utf-8")
 	fmt.Println(res)
-
+	res, err = mystr.GetBetween(res, `成绩：</td>`, `</td>`)
+	score, err := mystr.GetBetween(res, `<td>`, ` `)
+	fmt.Println(score)
 }
