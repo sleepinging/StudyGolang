@@ -33,6 +33,7 @@ func checkerr(err error) {
 	}
 }
 
+//初始化包
 func init() {
 	pt, _ := mytools.GetCurrentPath()
 	dbname = pt + dbname
@@ -42,6 +43,19 @@ func init() {
 	if !db.HasTable(&Verifyinfo{}) {
 		db.CreateTable(&Verifyinfo{})
 	}
+}
+
+//删除过期数据
+func DeletePass() {
+	db.Where("gentime < ?", time.Now().Add(-Verifytimeout)).Delete(&Verifyinfo{})
+}
+
+//使用完毕
+func Cleanup() {
+	//删除过期数据
+	DeletePass()
+	//关闭连接
+	db.Close()
 }
 
 //生成验证码

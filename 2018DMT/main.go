@@ -24,6 +24,12 @@ func test() {
 	fmt.Println(EmailVerify.CheckCode(email, code))
 }
 
+//程序结束
+func Quit() {
+	EmailVerify.Cleanup()
+}
+
 func main() {
+	defer Quit()
 	test()
 }
