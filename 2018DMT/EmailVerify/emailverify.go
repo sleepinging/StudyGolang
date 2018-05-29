@@ -6,6 +6,7 @@ import (
 	"math/rand"
 	"time"
 	"twt/mytools"
+	"strings"
 )
 
 var (
@@ -83,6 +84,7 @@ func UpdateCode(email, code string) {
 
 //验证验证码信息
 func CheckCode(email, code string) (res bool, errinfo string) {
+	code = strings.ToUpper(code)
 	errinfo = "验证码过期或错误"
 	info := Verifyinfo{
 		Email: email,

@@ -1,7 +1,6 @@
 package EmailVerify
 
 import (
-	"fmt"
 	"net/smtp"
 	"strings"
 )
@@ -35,7 +34,7 @@ func SendEmail(to, subject, text string) (err error) {
 		</body>
 		</html>
 		`
-	fmt.Println("send Email")
+	//fmt.Println("send Email")
 	err = sendToMail(user, password, host, to, subject, body, "html")
 	return
 }

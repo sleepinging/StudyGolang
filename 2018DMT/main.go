@@ -19,6 +19,7 @@ func test() {
 	code := EmailVerify.GenCode()
 	fmt.Println(code)
 	EmailVerify.UpdateCode(email, code)
+	//EmailVerify.SendCode(email)
 	fmt.Scanln(&code)
 	//fmt.Println(code)
 	fmt.Println(EmailVerify.CheckCode(email, code))
