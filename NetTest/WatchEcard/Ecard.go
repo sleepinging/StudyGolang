@@ -16,6 +16,24 @@ var (
 	minmsged  = false //是否已经提醒过
 )
 
+//func GetMoneyByBank(id, pwd string) (money float64, err error) {
+//	url := `https://web.zj.icbc.com.cn/easypay/waction.do`
+//	data := `com.icbc.marmot.core.model.modelname=WapGoodsSure&nosession=0&goodsno=15073&goodsprice=0.01&orderamt=0.01&mtype1=&paytype1=epay&ch=0&goodsct=1&paytype=epay` +
+//		`&resv1=` + id +
+//		`&resv2=` + pwd
+//	res, err := nettools.HttpPost(url, data, nil)
+//	if err != nil {
+//		panic(err)
+//	}
+//	res = tool.ConvertToString(res, "gbk", "utf-8")
+//	//fmt.Println(res)
+//	res, err = mystr.GetBetween(res, `resv4`, `>`)
+//	res, err = mystr.GetBetween(res, `value="`, `"`)
+//	//fmt.Println(res)
+//	money, err = strconv.ParseFloat(res, 64)
+//	return
+//}
+
 func GetMoney() (money float64) {
 	//fmt.Println("查询中")
 	res, err := tool.HttpGet(
