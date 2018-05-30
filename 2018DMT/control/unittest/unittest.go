@@ -9,11 +9,11 @@ import (
 )
 
 func TestEmailVerify() {
-	email := "237731947@qq.com"
+	email := "1449693643@qq.com"
 	code := EmailVerify.GenCode()
 	fmt.Println(code)
-	EmailVerify.UpdateCode(email, code)
-	//EmailVerify.SendCode(email)
+	//EmailVerify.UpdateCode(email, code)
+	EmailVerify.SendCode(email)
 	fmt.Scanln(&code)
 	//fmt.Println(code)
 	fmt.Println(EmailVerify.CheckCode(email, code))
