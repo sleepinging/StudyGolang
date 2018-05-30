@@ -4,12 +4,14 @@ import (
 	"net/http"
 	"fmt"
 	"./control/EmailVerify"
-	"./control/unittest"
 	"./service/onindex"
+	"./service/onregister"
 )
 
 func startserver() {
 	http.HandleFunc("/", onindex.GetIndex)
+	http.HandleFunc("/register", onregister.Register)
+	http.HandleFunc("/register/sendcode", onregister.SendCode)
 	fmt.Println("服务启动...")
 	http.ListenAndServe(":80", nil)
 }
@@ -21,7 +23,7 @@ func Quit() {
 
 func main() {
 	defer Quit()
-	unittest.Test()
+	//unittest.Test()
 	startserver()
 	//test()
 }

@@ -16,3 +16,9 @@ func SendRetJson(status int, msg, data string, w http.ResponseWriter) {
 	}
 	fmt.Fprintf(w, string(res))
 }
+
+func CheckErr(err error) {
+	if err != nil {
+		fmt.Println(err)
+	}
+}

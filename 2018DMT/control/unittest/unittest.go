@@ -3,9 +3,11 @@ package unittest
 import "fmt"
 import (
 	"../EmailVerify"
+	"../../control"
 	"net/http"
 	"time"
 	"twt/mytools"
+	"twt/nettools"
 )
 
 func TestEmailVerify() {
@@ -30,7 +32,16 @@ func webtest() {
 	http.HandleFunc("/", getroot)
 }
 
+func PostTest() {
+	url := "http://193.112.77.180/register/sendcode"
+	data := "Email=237731947@qq.com"
+	res, err := nettools.HttpPost(url, data, nil)
+	control.CheckErr(err)
+	fmt.Println(res)
+}
+
 func Test() {
+	PostTest()
 	//webtest()
 	//TestEmailVerify()
 }

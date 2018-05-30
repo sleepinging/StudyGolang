@@ -98,11 +98,12 @@ func CheckCode(email, code string) (res bool, errinfo string) {
 }
 
 //发送验证码到指定邮箱
-func SendCode(email string) {
-	code := GenCode()
+func SendCode(email string) (code string) {
+	code = GenCode()
 	text := `验证码是<br>` +
 		code + `<br>` +
 		`有效期10分钟`
 	SendEmail(email, "验证码", text)
 	UpdateCode(email, code)
+	return
 }
