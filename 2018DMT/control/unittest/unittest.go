@@ -1,7 +1,12 @@
 package unittest
 
 import "fmt"
-import "../EmailVerify"
+import (
+	"../EmailVerify"
+	"net/http"
+	"time"
+	"twt/mytools"
+)
 
 func TestEmailVerify() {
 	email := "237731947@qq.com"
@@ -14,6 +19,18 @@ func TestEmailVerify() {
 	fmt.Println(EmailVerify.CheckCode(email, code))
 }
 
+func getroot(w http.ResponseWriter, r *http.Request) {
+	fmt.Println(time.Now(), r.RemoteAddr, "访问")
+	pt, _ := mytools.GetCurrentPath()
+	fs := http.FileServer(http.Dir(pt + `\view\wwwroot\`))
+	fs.ServeHTTP(w, r)
+}
+
+func webtest() {
+	http.HandleFunc("/", getroot)
+}
+
 func Test() {
+	//webtest()
 	//TestEmailVerify()
 }

@@ -1,16 +1,15 @@
 package main
 
 import (
-	"twt/mytools"
 	"net/http"
 	"fmt"
 	"./control/EmailVerify"
 	"./control/unittest"
+	"./service/onindex"
 )
 
 func startserver() {
-	pt, _ := mytools.GetCurrentPath()
-	http.Handle("/", http.FileServer(http.Dir(pt+`\view\wwwroot\`)))
+	http.HandleFunc("/", onindex.GetIndex)
 	fmt.Println("服务启动...")
 	http.ListenAndServe(":80", nil)
 }
