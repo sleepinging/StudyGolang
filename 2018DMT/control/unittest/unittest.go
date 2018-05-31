@@ -1,21 +1,23 @@
 package unittest
 
-import "fmt"
 import (
+	"fmt"
 	"../EmailVerify"
-	"../../control"
+	"../../global"
+	"../../models"
+	"../../dao"
 	"net/http"
 	"time"
 	"twt/mytools"
 	"twt/nettools"
+	"encoding/json"
 )
 
 func TestEmailVerify() {
-	email := "1449693643@qq.com"
-	code := EmailVerify.GenCode()
-	fmt.Println(code)
+	email := "237731947@qq.com"
 	//EmailVerify.UpdateCode(email, code)
-	EmailVerify.SendCode(email)
+	code := EmailVerify.SendCode(email)
+	fmt.Println(code)
 	fmt.Scanln(&code)
 	//fmt.Println(code)
 	fmt.Println(EmailVerify.CheckCode(email, code))
@@ -36,12 +38,42 @@ func PostTest() {
 	url := "http://193.112.77.180/register/sendcode"
 	data := "Email=237731947@qq.com"
 	res, err := nettools.HttpPost(url, data, nil)
-	control.CheckErr(err)
+	global.CheckErr(err)
 	fmt.Println(res)
 }
 
+func LoginTest() {
+	e := dao.CheckLogin(&models.Login{Email: "237731947@qq.com", Password: "123456"})
+	fmt.Println(e)
+}
+
+func jsonTest() {
+	str := `{"email":"23@2","password":"123"}`
+	o := &models.Login{}
+	err := json.Unmarshal([]byte(str), o)
+	global.CheckErr(err)
+	fmt.Println(o)
+}
+
+func PostLoginTest() {
+	time.Sleep(time.Second * 3)
+	url := "http://127.0.0.1/login"
+	data := "Email=237731947@qq.com&Password=123456"
+	res, err := nettools.HttpPost(url, data, nil)
+	global.CheckErr(err)
+	fmt.Println(res)
+}
+
+func PostRegisterTest() {
+
+}
+
 func Test() {
-	PostTest()
+	fmt.Println(time.Now().Format("2006-01-02 15:04:05"))
+	//PostLoginTest()
+	//jsonTest()
+	//LoginTest()
+	//PostTest()
 	//webtest()
 	//TestEmailVerify()
 }

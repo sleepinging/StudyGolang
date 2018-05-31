@@ -103,7 +103,8 @@ func SendCode(email string) (code string) {
 	text := `验证码是<br>` +
 		code + `<br>` +
 		`有效期10分钟`
-	SendEmail(email, "验证码", text)
+	err := SendEmail(email, "验证码", text)
+	checkerr(err)
 	UpdateCode(email, code)
 	return
 }

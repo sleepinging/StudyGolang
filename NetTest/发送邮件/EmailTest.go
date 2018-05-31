@@ -6,8 +6,26 @@ import (
 	"strings"
 )
 
+type unencryptedAuth struct {
+	smtp.Auth
+}
+
+func (a unencryptedAuth) Start(server *smtp.ServerInfo) (string, []byte, error) {
+	s := *server
+	s.TLS = true
+	return a.Auth.Start(&s)
+}
+
 func SendToMail(user, password, host, to, subject, body, mailtype string) error {
 	hp := strings.Split(host, ":")
+	//auth := unencryptedAuth {
+	//	smtp.PlainAuth(
+	//		"",
+	//		user,
+	//		password,
+	//		hp[0],
+	//	),
+	//}
 	auth := smtp.PlainAuth("", user, password, hp[0])
 	var contentType string
 	if mailtype == "html" {
@@ -23,9 +41,9 @@ func SendToMail(user, password, host, to, subject, body, mailtype string) error 
 }
 
 func main() {
-	user := "237731947@qq.com"
-	password := "****"
-	host := "smtp.qq.com:587"
+	user := "verify@beyondsky.club"
+	password := "123456"
+	host := "smtp.ym.163.com:25"
 	to := "237731947@qq.com"
 
 	subject := "使用Golang发送邮件"
@@ -34,7 +52,7 @@ func main() {
 		<html>
 		<body>
 		<h3>
-		"Test send to email"
+		"测试"
 		</h3>
 		</body>
 		</html>

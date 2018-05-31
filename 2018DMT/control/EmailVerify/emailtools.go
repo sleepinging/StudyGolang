@@ -22,9 +22,12 @@ func sendToMail(user, password, host, to, subject, body, mailtype string) error 
 }
 
 func SendEmail(to, subject, text string) (err error) {
-	user := "237731947@qq.com"
-	password := "lnfajglgxwonbhbg"
-	host := "smtp.qq.com:587"
+	user := "verify@beyondsky.club"
+	password := "123456"
+	host := "smtp.ym.163.com:25"
+	//user := "verify@beyondsky.club"
+	//password := "123456"
+	//host := "smtp.ym.163.com:25"
 	body := `
 		<html>
 		<body>

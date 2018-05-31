@@ -5,3 +5,9 @@ type RetJson struct {
 	Msg    string `json:msg`
 	Data   string `json:data`
 }
+
+type Login struct {
+	Email    string `gorm:"primary_key" json:email`
+	Password string `json:password`
+}
+
