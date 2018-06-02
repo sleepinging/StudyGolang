@@ -100,11 +100,30 @@ func CheckCode(email, code string) (res bool, errinfo string) {
 //发送验证码到指定邮箱
 func SendCode(email string) (code string) {
 	code = GenCode()
-	text := `验证码是<br>` +
-		code + `<br>` +
-		`有效期10分钟`
-	err := SendEmail(email, "验证码", text)
+	err := SendEmail(
+		email,
+		"感谢您的使用，欢迎加入大学帮",
+		genhtml(code),
+	)
 	checkerr(err)
 	UpdateCode(email, code)
+	return
+}
+
+//生成验证码邮件的网页
+func genhtml(code string) (text string) {
+	text = `
+		<html>
+		<body>
+		<h3>
+		` +
+		`验证码是<br>` +
+		code + `<br>` +
+		`有效期10分钟，请妥善保管您的验证码，切勿告诉他人，若有打扰请谅解<br>` +
+		`来自大学帮官方的邮件（手动滑稽）` + `
+		</h3>
+		</body>
+		</html>
+		`
 	return
 }

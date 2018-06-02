@@ -1,8 +1,8 @@
 package service
 
 import (
-	"../control/EmailVerify"
 	"../control"
+	"../control/EmailVerify"
 	"../dao"
 	"../models"
 	"fmt"
@@ -12,7 +12,12 @@ import (
 
 func SendCode(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
-	email := r.Form["Email"][0]
+	emails, ok := r.PostForm["Email"]
+	if !ok {
+		control.SendRetJson(0, "缺少Email参数", "手动滑稽", w)
+		return
+	}
+	email := emails[0]
 	fmt.Println(time.Now(), r.RemoteAddr, email, "请求验证码")
 	if dao.ExistLogin(email) {
 		control.SendRetJson(0, "该邮箱已被注册", "", w)
@@ -24,10 +29,26 @@ func SendCode(w http.ResponseWriter, r *http.Request) {
 
 func Register(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
-	email := r.Form["Email"][0]
-	pwd := r.Form["Password"][0]
-	code := r.Form["VerifyCode"][0]
-	fmt.Println(time.Now(), r.RemoteAddr, "注册：", email, pwd, code)
+	emails, ok := r.PostForm["Email"]
+	if !ok {
+		control.SendRetJson(0, "缺少Email参数", "手动滑稽", w)
+		return
+	}
+	email := emails[0]
+	pwds, ok := r.PostForm["Password"]
+	if !ok {
+		control.SendRetJson(0, "缺少Password参数", "手动滑稽", w)
+		return
+	}
+	pwd := pwds[0]
+	codes, ok := r.PostForm["VerifyCode"]
+	if !ok {
+		control.SendRetJson(0, "缺少VerifyCode参数", "手动滑稽", w)
+		return
+	}
+	code := codes[0]
+	fmt.Println(time.Now().Format("2006-01-02 15:04:05"),
+		r.RemoteAddr, "注册：", email, pwd, code)
 	status, msg := EmailVerify.CheckCode(email, code)
 	if !status {
 		control.SendRetJson(0, msg, "注册失败", w)

@@ -28,16 +28,7 @@ func SendEmail(to, subject, text string) (err error) {
 	//user := "verify@beyondsky.club"
 	//password := "123456"
 	//host := "smtp.ym.163.com:25"
-	body := `
-		<html>
-		<body>
-		<h3>
-		` + text + `
-		</h3>
-		</body>
-		</html>
-		`
 	//fmt.Println("send Email")
-	err = sendToMail(user, password, host, to, subject, body, "html")
+	err = sendToMail(user, password, host, to, subject, text, "html")
 	return
 }
