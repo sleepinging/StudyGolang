@@ -41,7 +41,7 @@ func PostTest() {
 	url := "http://193.112.77.180/register/sendcode"
 	data := "Email=237731947@qq.com"
 	res, err := nettools.HttpPost(url, data, nil)
-	global.CheckErr(err)
+	tools.CheckErr(err)
 	fmt.Println(res)
 }
 
@@ -54,7 +54,7 @@ func jsonTest() {
 	str := `{"email":"23@2","password":"123"}`
 	o := &models.Login{}
 	err := json.Unmarshal([]byte(str), o)
-	global.CheckErr(err)
+	tools.CheckErr(err)
 	fmt.Println(o)
 }
 
@@ -63,7 +63,7 @@ func PostLoginTest() {
 	url := "http://127.0.0.1/login"
 	data := "Email=237731947@qq.com&Password=123456"
 	res, err := nettools.HttpPost(url, data, nil)
-	global.CheckErr(err)
+	tools.CheckErr(err)
 	fmt.Println(res)
 }
 
@@ -89,7 +89,7 @@ func CookieTest() {
 }
 
 func Test() {
-	CookieTest()
+	//CookieTest()
 	//jiamiTest()
 	//ConfigTest()
 	//PostLoginTest()

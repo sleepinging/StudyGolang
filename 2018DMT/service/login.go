@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"fmt"
 	"time"
+	"../dao"
 	"../control"
 	"../tools"
 )
@@ -28,6 +29,8 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	lr := control.CheckLogin(email, pwd)
 	if lr == 1 {
 		msg = "登录成功"
+		cookie := http.Cookie{Name: "user", MaxAge: 3600, Value: dao.GenUserCookie(email)}
+		http.SetCookie(w, &cookie)
 	}
 	tools.SendRetJson(lr, msg, "手动滑稽", w)
 }

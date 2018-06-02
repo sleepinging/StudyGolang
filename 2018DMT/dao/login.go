@@ -5,7 +5,7 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
 	"twt/mytools"
 	"../models"
-	"../global"
+	"../tools"
 )
 
 var (
@@ -18,7 +18,7 @@ func init() {
 	pt, _ := mytools.GetCurrentPath()
 	dbname = pt + dbname
 	tdb, err := gorm.Open("sqlite3", dbname)
-	global.CheckErr(err)
+	tools.CheckErr(err)
 	db = tdb
 	if !db.HasTable(&models.Login{}) {
 		db.CreateTable(&models.Login{})
