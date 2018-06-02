@@ -11,6 +11,8 @@ import (
 	"twt/mytools"
 	"twt/nettools"
 	"encoding/json"
+	"io/ioutil"
+	"os"
 )
 
 func TestEmailVerify() {
@@ -64,12 +66,16 @@ func PostLoginTest() {
 	fmt.Println(res)
 }
 
-func PostRegisterTest() {
-
+func ConfigTest() {
+	file, _ := os.OpenFile(global.CurrPath+`config.json`, os.O_RDONLY, os.ModeType)
+	bs, _ := ioutil.ReadAll(file)
+	cfg := models.Config{}
+	json.Unmarshal(bs, &cfg)
+	fmt.Println(cfg)
 }
 
 func Test() {
-	fmt.Println(time.Now().Format("2006-01-02 15:04:05"))
+	//ConfigTest()
 	//PostLoginTest()
 	//jsonTest()
 	//LoginTest()

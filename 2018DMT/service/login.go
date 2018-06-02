@@ -8,7 +8,7 @@ import (
 )
 
 func Login(w http.ResponseWriter, r *http.Request) {
-	msg := "登录失败"
+	msg := "账号与密码不匹配"
 	r.ParseForm()
 	emails, ok := r.PostForm["Email"]
 	if !ok {
