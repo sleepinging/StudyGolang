@@ -6,9 +6,10 @@ import (
 	"../../global"
 	"../../models"
 	"../../dao"
+	"../../tools"
 	"net/http"
-	"time"
 	"twt/mytools"
+	"time"
 	"twt/nettools"
 	"encoding/json"
 	"io/ioutil"
@@ -68,13 +69,28 @@ func PostLoginTest() {
 
 func ConfigTest() {
 	file, _ := os.OpenFile(global.CurrPath+`config.json`, os.O_RDONLY, os.ModeType)
+	defer file.Close()
 	bs, _ := ioutil.ReadAll(file)
 	cfg := models.Config{}
 	json.Unmarshal(bs, &cfg)
 	fmt.Println(cfg)
 }
 
+func jiamiTest() {
+	mi, err := tools.Encrypt("测试", global.MiKey)
+	fmt.Println(mi, err)
+	str, err := tools.Decrypt(mi, global.MiKey)
+	fmt.Println(str, err)
+}
+
+func CookieTest() {
+	str := dao.GenUserCookie("237731947@qq.com")
+	fmt.Println(dao.GetUserinfo(str))
+}
+
 func Test() {
+	CookieTest()
+	//jiamiTest()
 	//ConfigTest()
 	//PostLoginTest()
 	//jsonTest()

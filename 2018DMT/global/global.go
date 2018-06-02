@@ -19,6 +19,9 @@ var (
 
 	//配置信息
 	Config models.Config
+
+	//加解密的key
+	MiKey = `TWT1234567890TWT`
 )
 
 func init() {
@@ -30,6 +33,7 @@ func init() {
 func readconfig() {
 	cfgpath := CurrPath + `config.json`
 	file, err := os.OpenFile(cfgpath, os.O_RDONLY, os.ModeType)
+	defer file.Close()
 	PanicErr(err, "打开配置文件"+cfgpath)
 	bs, err := ioutil.ReadAll(file)
 	PanicErr(err, "读取配置文件"+cfgpath)

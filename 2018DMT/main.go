@@ -36,7 +36,7 @@ func Quit() {
 
 func main() {
 	defer Quit()
-	go unittest.Test()
+	unittest.Test()
 	addr := `:` + fmt.Sprintf("%d", global.Config.Port)
 	startserver(addr)
 }
