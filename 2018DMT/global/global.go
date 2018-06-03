@@ -5,11 +5,15 @@ import (
 	"../tools"
 	"net/http"
 	"twt/mytools"
+	"os"
 )
 
 var (
-	//当前程序路径
+	//当前程序所在文件夹路径
 	CurrPath string
+
+	//文件文件夹路径
+	FileDirPath string
 
 	//文件服务器
 	RootFileServer http.Handler
@@ -25,5 +29,10 @@ func init() {
 	CurrPath, _ = mytools.GetCurrentPath()
 	err := Config.Load(CurrPath + `config.json`)
 	tools.PanicErr(err, "加载配置文件")
-	RootFileServer = http.FileServer(http.Dir(CurrPath + Config.Wwwroot))
+	Config.Wwwroot = CurrPath + Config.Wwwroot
+	RootFileServer = http.FileServer(http.Dir(Config.Wwwroot))
+	FileDirPath = Config.Wwwroot + `data\file\`
+	if f, _ := tools.PathExists(FileDirPath); !f {
+		tools.CheckErr(os.MkdirAll(FileDirPath, os.ModePerm))
+	}
 }

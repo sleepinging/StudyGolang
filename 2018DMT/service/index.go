@@ -3,7 +3,6 @@ package service
 import (
 	"net/http"
 	"../global"
-	"../dao"
 	"strings"
 	"fmt"
 	"time"
@@ -15,10 +14,10 @@ func GetIndex(w http.ResponseWriter, r *http.Request) {
 			r.RemoteAddr, "访问", r.RequestURI)
 	}
 	global.RootFileServer.ServeHTTP(w, r)
-	cookie, err := r.Cookie("user")
-	if err != nil {
-		return
-	}
-	user, t, err := dao.GetUserinfo(cookie.Value)
-	fmt.Println("Cookie user:", user, t)
+	//cookie, err := r.Cookie("user")
+	//if err != nil {
+	//	return
+	//}
+	//user, t, err := dao.GetUserinfo(cookie.Value)
+	//fmt.Println("Cookie user:", user, t)
 }

@@ -11,5 +11,6 @@ type Login struct {
 	Password string `json:password`
 }
 
-type WorkInfo struct {
+type Job struct {
+
 }

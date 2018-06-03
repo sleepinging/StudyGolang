@@ -12,8 +12,8 @@ import (
 var (
 	Verifytimeout = time.Minute * 10 //过期时间
 	//infos         []Verifyinfo       //所有验证码信息
-	dbname = `data\emailverify.db` //邮箱验证数据库
-	db     *gorm.DB                //数据库连接
+	dbname = `data\db\emailverify.db` //邮箱验证数据库
+	db     *gorm.DB                   //数据库连接
 )
 
 //邮箱验证码信息结构体

@@ -9,8 +9,8 @@ import (
 )
 
 var (
-	dbname = `data\login.db` //登录数据库
-	db     *gorm.DB          //数据库连接
+	dbname = `data\db\login.db` //登录数据库
+	db     *gorm.DB             //数据库连接
 )
 
 //初始化包
