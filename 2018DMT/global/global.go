@@ -32,6 +32,6 @@ func init() {
 	RootFileServer = http.FileServer(http.Dir(Config.Wwwroot))
 	FileDirPath = Config.Wwwroot + `data\file\`
 	if f, _ := tools.PathExists(FileDirPath); !f {
-		tools.CheckErr(os.MkdirAll(FileDirPath, os.ModePerm))
+		tools.ShowErr(os.MkdirAll(FileDirPath, os.ModePerm))
 	}
 }

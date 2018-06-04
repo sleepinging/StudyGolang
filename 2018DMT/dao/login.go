@@ -17,10 +17,9 @@ var (
 
 //初始化包
 func init() {
-	pt := global.CurrPath
-	logindbname = pt + logindbname
+	logindbname = global.CurrPath + logindbname
 	tdb, err := gorm.Open(logindbtye, logindbname)
-	tools.CheckErr(err)
+	tools.PanicErr(err, "登录数据库初始化")
 	logindb = tdb
 	if !logindb.HasTable(&models.Login{}) {
 		logindb.CreateTable(&models.Login{})

@@ -16,10 +16,9 @@ var (
 )
 
 func init() {
-	pt := global.CurrPath
-	jobdbname = pt + jobdbname
+	jobdbname = global.CurrPath + jobdbname
 	tdb, err := gorm.Open(jobdbtye, jobdbname)
-	tools.CheckErr(err)
+	tools.PanicErr(err, "工作数据库初始化")
 	jobdb = tdb
 	if !jobdb.HasTable(&models.Job{}) {
 		jobdb.CreateTable(&models.Job{})
