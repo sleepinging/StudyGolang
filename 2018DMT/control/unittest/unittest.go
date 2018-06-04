@@ -162,11 +162,13 @@ func reflectTest() {
 }
 
 func UserTest() {
-	u := &models.User{
-		Email: "237731947@qq.com",
-	}
-	id, err := dao.AddUser(u)
-	fmt.Println(id, err)
+	//u := &models.User{
+	//	Email: "237731947@qq.com",
+	//}
+	//id, err := dao.AddUser(u)
+	//fmt.Println(id, err)
+	u, err := dao.GetUserByEmail("237731947@qq.com")
+	fmt.Println(u, err)
 }
 
 func Test() {

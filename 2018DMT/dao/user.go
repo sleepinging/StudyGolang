@@ -34,3 +34,16 @@ func AddUser(user *models.User) (id int, err error) {
 	id = lid.Id
 	return
 }
+
+func GetUserByEmail(email string) (user *models.User, err error) {
+	u := &models.User{
+		Email: email,
+	}
+	user = new(models.User)
+	userdb.Where(u).First(user)
+	if user.Id == 0 {
+		err = global.NoSuchUser
+		return
+	}
+	return
+}

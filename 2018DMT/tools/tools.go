@@ -1,26 +1,13 @@
 package tools
 
 import (
-	"../models"
 	"fmt"
-	"encoding/json"
-	"net/http"
 	"time"
 	"os"
 	"path"
 	"strings"
 	"os/exec"
 )
-
-func SendRetJson(status int, msg, data string, w http.ResponseWriter) {
-	retjs := models.RetJson{Status: status, Msg: msg, Data: data}
-	res, err := json.Marshal(&retjs)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	fmt.Fprintf(w, string(res))
-}
 
 func ShowErr(err error) {
 	if err != nil {
