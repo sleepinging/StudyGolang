@@ -3,8 +3,8 @@ package service
 import (
 	"../control"
 	"../models"
-	"../dao"
 	"../global"
+	"../dao"
 	"fmt"
 	"net/http"
 	"time"
@@ -36,7 +36,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		msg = "登录成功"
 		cookie := http.Cookie{
 			Name:   "user",
-			MaxAge: MaxCookieTime,
+			MaxAge: global.MaxCookieTime,
 			Value:  dao.GenUserCookie(user.ToString()),
 		}
 		http.SetCookie(w, &cookie)
@@ -52,26 +52,9 @@ func IsLogin(w http.ResponseWriter, r *http.Request) {
 	}
 	user, t, err := dao.GetUserinfo(cookie.Value)
 	dt := int(time.Now().Sub(t).Seconds())
-	if dt > MaxCookieTime {
+	if dt > global.MaxCookieTime {
 		models.SendRetJson(1, "登录过期", user, w)
 		return
 	}
 	models.SendRetJson(1, t.Format("2006-01-02/15:04:05"), user, w)
-}
-
-//用于服务器内部检查
-func Check(w http.ResponseWriter, r *http.Request) (f bool, err error) {
-	cookie, err := r.Cookie("user")
-	if err != nil {
-		return
-	}
-	user, t, _ := dao.GetUserinfo(cookie.Value)
-	dt := int(time.Now().Sub(t).Seconds())
-	if dt > MaxCookieTime {
-		err = global.LoginCookiePass
-		return
-	}
-	_ = user
-	f = true
-	return
 }
