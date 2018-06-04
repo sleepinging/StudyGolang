@@ -118,3 +118,39 @@ func QueryJob(w http.ResponseWriter, r *http.Request) {
 	tools.SendRetJson(1, "成功", string(res), w)
 	return
 }
+
+func UpdataJob(w http.ResponseWriter, r *http.Request) {
+	r.ParseForm()
+	jobs, ok := r.PostForm["Job"]
+	if !ok || len(jobs) == 0 {
+		tools.SendRetJson(0, "缺少Job参数", "手动滑稽", w)
+		return
+	}
+	ids, ok := r.PostForm["Id"]
+	if !ok || len(ids) == 0 {
+		tools.SendRetJson(0, "缺少id参数", "手动滑稽", w)
+		return
+	}
+	job := &models.Job{}
+	err := json.Unmarshal([]byte(jobs[0]), job)
+	if err != nil {
+		tools.SendRetJson(0, "Job格式错误", err.Error(), w)
+		return
+	}
+	id, err := strconv.ParseInt(ids[0], 10, 32)
+	if err != nil {
+		tools.SendRetJson(0, "Id参数需要为整数", err.Error(), w)
+		return
+	}
+	err = dao.UpdataJob(int(id), job)
+	if err != nil {
+		tools.SendRetJson(0, "修改失败", err.Error(), w)
+		return
+	}
+	tools.SendRetJson(1, "修改成功", err.Error(), w)
+	return
+}
+
+func DeleteJob(w http.ResponseWriter, r *http.Request) {
+	return
+}

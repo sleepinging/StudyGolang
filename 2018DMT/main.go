@@ -22,6 +22,8 @@ func RegisterAllRouter() {
 	http.HandleFunc("/job", service.ShowJob)
 	http.HandleFunc("/job/query", service.QueryJob)
 	http.HandleFunc("/job/querycount", service.QueryJobCount)
+	http.HandleFunc("/job/updata", service.UpdataJob)
+	http.HandleFunc("/job/delete", service.DeleteJob)
 }
 
 func startserver(addr string) {

@@ -62,3 +62,28 @@ func QueryJob(job *models.Job, limit, page int) (jobs *[]models.Job) {
 	jobdb.Where(job).Offset((page - 1) * limit).Limit(limit).Find(jobs)
 	return
 }
+
+func UpdataJob(id int, newjob *models.Job) (err error) {
+	job := new(models.Job)
+	c := 0
+	jobdb.Where(&models.Job{Id: id}).First(job).Count(&c)
+	if c == 0 {
+		err = global.NoSuchJob
+		return
+	}
+	job.CopyFormEId(newjob)
+	jobdb.Save(job)
+	return
+}
+
+func DeleteJob(id int) (err error) {
+	job := new(models.Job)
+	c := 0
+	jobdb.Where(&models.Job{Id: id}).First(job).Count(&c)
+	if c == 0 {
+		err = global.NoSuchJob
+		return
+	}
+	jobdb.Delete(job)
+	return
+}

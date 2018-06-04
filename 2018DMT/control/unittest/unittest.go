@@ -103,33 +103,38 @@ func TestStruct() {
 }
 
 func TestJob() {
-	job := &models.Job{
-		Name:        "洗碗",
-		Salary:      3000.0,
-		Time:        "每周一到周六",
-		Weekend:     0,
-		Pickup:      0,
-		Eat:         1,
-		Live:        0,
-		WuXianYiJin: 1,
-		Place:       "食堂",
-		LimPeople:   10,
-		NowPeople:   3,
-		Sex:         2,
-		Phone:       "13222222222",
-		Detail:      "不想洗碗，找几个人帮我洗",
-	}
+	//job := &models.Job{
+	//	Name:        "洗碗",
+	//	Salary:      3000.0,
+	//	Time:        "每周一到周六",
+	//	Weekend:     0,
+	//	Pickup:      0,
+	//	Eat:         1,
+	//	Live:        0,
+	//	WuXianYiJin: 1,
+	//	Place:       "食堂",
+	//	LimPeople:   10,
+	//	NowPeople:   3,
+	//	Sex:         2,
+	//	Phone:       "13222222222",
+	//	Detail:      "不想洗碗，找几个人帮我洗",
+	//}
 	//id,err:=dao.PublishJob(job)
 	//fmt.Println(id,err)
 	//jb,err:=dao.ShowJob(5)
 	//fmt.Println(jb,err)
-	c := dao.QueryJobCount(job)
-	jobs := dao.QueryJob(job, 1, 2)
-	fmt.Println(c, jobs)
+
+	//c := dao.QueryJobCount(job)
+	//jobs := dao.QueryJob(job, 1, 2)
+	//fmt.Println(c, jobs)
+
+	//err:=dao.UpdataJob(6,job)
+	err := dao.DeleteJob(5)
+	fmt.Println(err)
 }
 
 func Test() {
-	//TestJob()
+	TestJob()
 	//TestStruct()
 	//CookieTest()
 	//jiamiTest()
