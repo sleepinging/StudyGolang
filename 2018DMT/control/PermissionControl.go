@@ -26,12 +26,18 @@ func PublishJobPermission(w http.ResponseWriter, r *http.Request) (f bool, err e
 
 //修改工作权限检查
 func UpdateJobPermission(id int, w http.ResponseWriter, r *http.Request) (f bool, err error) {
-
+	f = true
 	return
 }
 
 //删除工作权限检查
 func DeleteJobPermission(id int, w http.ResponseWriter, r *http.Request) (f bool, err error) {
+	f = true
+	return
+}
 
+//查询工作权限检查
+func QueryJobPermission(w http.ResponseWriter, r *http.Request) (f bool, err error) {
+	f = true
 	return
 }
