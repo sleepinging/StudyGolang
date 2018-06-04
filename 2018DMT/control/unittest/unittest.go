@@ -172,7 +172,7 @@ func UserTest() {
 }
 
 func Test() {
-	UserTest()
+	//UserTest()
 	//reflectTest()
 	//TestJob()
 	//TestStruct()
