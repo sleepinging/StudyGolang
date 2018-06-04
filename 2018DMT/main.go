@@ -33,7 +33,7 @@ func startserver(addr string) {
 	fmt.Println("程序根目录:", global.CurrPath)
 	fmt.Println("HTTP根目录:", global.Config.Wwwroot)
 	fmt.Println("监听端口:", global.Config.Port)
-	fmt.Println(time.Now().Format("2006-01-02 15:04:05"))
+	fmt.Println("服务启动时间:", time.Now().Format("2006-01-02 15:04:05"))
 	err := http.ListenAndServe(addr, nil)
 	tools.CheckErr(err)
 }

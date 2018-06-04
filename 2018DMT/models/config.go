@@ -1,10 +1,10 @@
 package models
 
 import (
-	"os"
-	"io/ioutil"
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
+	"os"
 )
 
 //配置文件的模型
@@ -38,6 +38,11 @@ type dbinfo struct {
 	//工作的数据库类型
 	JobDbType string `json:"JobDbType"`
 
+	//用户的数据库
+	UserDb string `json:"UserDb"`
+
+	//用户的数据库类型
+	UserDbType string `json:"UserDbType"`
 }
 
 func (this *Config) Load(filename string) (err error) {

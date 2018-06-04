@@ -6,7 +6,9 @@
     "EmailVerifyDbType": "sqlite3",
     "LoginDb": "data\\db\\login.db",
     "LoginDbType": "sqlite3",
-    "JobDb": "data\\db\\Job.db",
-    "JobDbType": "sqlite3"
+    "JobDb": "data\\db\\job.db",
+    "JobDbType": "sqlite3",
+    "UserDb": "data\\db\\user.db",
+    "UserDbType": "sqlite3"
   }
 }
