@@ -7,8 +7,8 @@ import (
 	"../global"
 )
 
-//用于权限检查
-func CheckPublishJobPermission(w http.ResponseWriter, r *http.Request) (f bool, err error) {
+//用于发布工作权限检查
+func PublishJobPermission(w http.ResponseWriter, r *http.Request) (f bool, err error) {
 	cookie, err := r.Cookie("user")
 	if err != nil {
 		return
@@ -21,5 +21,17 @@ func CheckPublishJobPermission(w http.ResponseWriter, r *http.Request) (f bool, 
 	}
 	_ = user
 	f = true
+	return
+}
+
+//修改工作权限检查
+func UpdateJobPermission(id int, w http.ResponseWriter, r *http.Request) (f bool, err error) {
+
+	return
+}
+
+//删除工作权限检查
+func DeleteJobPermission(id int, w http.ResponseWriter, r *http.Request) (f bool, err error) {
+
 	return
 }
