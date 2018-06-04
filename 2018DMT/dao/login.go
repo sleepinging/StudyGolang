@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
-	"twt/mytools"
 )
 
 var (
@@ -18,7 +17,7 @@ var (
 
 //初始化包
 func init() {
-	pt, _ := mytools.GetCurrentPath()
+	pt := global.CurrPath
 	logindbname = pt + logindbname
 	tdb, err := gorm.Open(logindbtye, logindbname)
 	tools.CheckErr(err)

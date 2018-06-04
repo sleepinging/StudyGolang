@@ -9,6 +9,7 @@ import (
 	"os"
 	"path"
 	"strings"
+	"os/exec"
 )
 
 func SendRetJson(status int, msg, data string, w http.ResponseWriter) {
@@ -57,5 +58,15 @@ func GenFileName(filename string) (newname string) {
 	newname += ` ` + time.Now().String()
 	newname, _ = Encrypt(newname, "TWT1234567890TWT")
 	newname += tz
+	return
+}
+
+func GetCurrentPath() (path string, err error) {
+	s, err := exec.LookPath(os.Args[0])
+	if err != nil {
+		return
+	}
+	i := strings.LastIndex(s, "\\")
+	path = string(s[0 : i+1])
 	return
 }

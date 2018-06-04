@@ -4,7 +4,6 @@ import (
 	"../models"
 	"../tools"
 	"net/http"
-	"twt/mytools"
 	"os"
 )
 
@@ -26,7 +25,7 @@ var (
 )
 
 func init() {
-	CurrPath, _ = mytools.GetCurrentPath()
+	CurrPath, _ = tools.GetCurrentPath()
 	err := Config.Load(CurrPath + `config.json`)
 	tools.PanicErr(err, "加载配置文件")
 	Config.Wwwroot = CurrPath + Config.Wwwroot

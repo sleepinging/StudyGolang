@@ -7,7 +7,6 @@ import (
 	"math/rand"
 	"strings"
 	"time"
-	"twt/mytools"
 	"fmt"
 )
 
@@ -38,7 +37,7 @@ func checkerr(err error) {
 
 //初始化包
 func init() {
-	pt, _ := mytools.GetCurrentPath()
+	pt := global.CurrPath
 	dbname = pt + dbname
 	tdb, err := gorm.Open(dbtype, dbname)
 	checkerr(err)
@@ -116,17 +115,36 @@ func SendCode(email string) (code string) {
 //生成验证码邮件的网页
 func genhtml(code string) (text string) {
 	text = `
-		<html>
-		<body>
-		<h3>
-		` +
-		`验证码是<br>` +
-		code + `<br>` +
-		`有效期10分钟，请妥善保管您的验证码，切勿告诉他人，若有打扰请谅解<br>` +
-		`来自大学帮官方的邮件（手动滑稽）` + `
-		</h3>
-		</body>
-		</html>
+		<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	</head>
+
+	<body>
+		<div class="container">
+			<br />
+			<div class="jumbotron">
+				<h1>欢迎加入 大学帮</h1>
+				<p>你的验证码是：</p>
+				<p style="width: 100%; margin: 0 auto;">
+					<a class="btn btn-primary btn-lg btn-block" href="#" role="button" style="margin: 0 auto;">
+					` + code + `
+					</a>
+				</p>
+				<br />
+				<p style="float: right;">来自 大学帮团队</p>
+			</div>
+		</div>
+	</body>
+
+</html>
 		`
 	return
 }

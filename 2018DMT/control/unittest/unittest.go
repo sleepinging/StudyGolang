@@ -13,7 +13,6 @@ import (
 	"os"
 	"reflect"
 	"time"
-	"twt/mytools"
 	"twt/nettools"
 )
 
@@ -29,7 +28,7 @@ func TestEmailVerify() {
 
 func getroot(w http.ResponseWriter, r *http.Request) {
 	fmt.Println(time.Now(), r.RemoteAddr, "访问")
-	pt, _ := mytools.GetCurrentPath()
+	pt := global.CurrPath
 	fs := http.FileServer(http.Dir(pt + `\view\wwwroot\`))
 	fs.ServeHTTP(w, r)
 }
@@ -106,12 +105,12 @@ func TestStruct() {
 func TestJob() {
 	job := &models.Job{
 		Name:        "洗碗",
-		Salary:      3000.0,
+		//Salary:      3000.0,
 		Time:        "每周一到周六",
-		Weekend:     0,
-		Pickup:      0,
+		Weekend:     -1,
+		Pickup:      -1,
 		Eat:         1,
-		Live:        0,
+		Live:        -1,
 		WuXianYiJin: 1,
 		Place:       "食堂",
 		LimPeople:   10,
@@ -125,13 +124,13 @@ func TestJob() {
 	//jb,err:=dao.ShowJob(5)
 	//fmt.Println(jb,err)
 
-	//c := dao.QueryJobCount(job)
-	//jobs := dao.QueryJob(job, 1, 2)
-	//fmt.Println(c, jobs)
+	c := dao.QueryJobCount(job)
+	jobs := dao.QueryJob(job, 1, 0)
+	fmt.Println(c, jobs)
 
-	err := dao.UpdataJob(6, job)
+	//err := dao.UpdataJob(6, job)
 	//err := dao.DeleteJob(5)
-	fmt.Println(err)
+	//fmt.Println(err)
 }
 
 func reflectTest() {
@@ -164,7 +163,7 @@ func reflectTest() {
 
 func Test() {
 	//reflectTest()
-	TestJob()
+	//TestJob()
 	//TestStruct()
 	//CookieTest()
 	//jiamiTest()

@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
-	"twt/mytools"
 )
 
 var (
@@ -17,7 +16,7 @@ var (
 )
 
 func init() {
-	pt, _ := mytools.GetCurrentPath()
+	pt := global.CurrPath
 	jobdbname = pt + jobdbname
 	tdb, err := gorm.Open(jobdbtye, jobdbname)
 	tools.CheckErr(err)
