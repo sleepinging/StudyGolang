@@ -31,6 +31,13 @@ type dbinfo struct {
 
 	//登录的数据库类型
 	LoginDbType string `json:"LoginDbType"`
+
+	//工作的数据库
+	JobDb string `json:"JobDb"`
+
+	//工作的数据库类型
+	JobDbType string `json:"JobDbType"`
+
 }
 
 func (this *Config) Load(filename string) (err error) {

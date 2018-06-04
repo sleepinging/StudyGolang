@@ -1,13 +1,13 @@
 package main
 
 import (
-	"net/http"
-	"fmt"
 	"./control/EmailVerify"
-	"./service"
 	"./control/unittest"
 	"./global"
+	"./service"
 	"./tools"
+	"fmt"
+	"net/http"
 	"time"
 )
 
@@ -18,6 +18,10 @@ func RegisterAllRouter() {
 	http.HandleFunc("/login", service.Login)
 	http.HandleFunc("/login/islogin", service.IsLogin)
 	http.HandleFunc("/upload/file", service.GetFileUrl)
+	http.HandleFunc("/job/publish", service.PublishJob)
+	http.HandleFunc("/job", service.ShowJob)
+	http.HandleFunc("/job/query", service.QueryJob)
+	http.HandleFunc("/job/querycount", service.QueryJobCount)
 }
 
 func startserver(addr string) {

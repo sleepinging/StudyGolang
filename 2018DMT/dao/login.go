@@ -4,34 +4,34 @@ import (
 	"../global"
 	"../models"
 	"../tools"
+	"fmt"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
 	"twt/mytools"
-	"fmt"
 )
 
 var (
-	dbname = global.Config.DbInfo.LoginDb           //登录数据库
-	dbtye  = global.Config.DbInfo.EmailVerifyDbType //数据库类型
-	db     *gorm.DB                                 //数据库连接
+	logindbname = global.Config.DbInfo.LoginDb     //登录数据库
+	logindbtye  = global.Config.DbInfo.LoginDbType //数据库类型
+	logindb     *gorm.DB                           //数据库连接
 )
 
 //初始化包
 func init() {
 	pt, _ := mytools.GetCurrentPath()
-	dbname = pt + dbname
-	tdb, err := gorm.Open(dbtye, dbname)
+	logindbname = pt + logindbname
+	tdb, err := gorm.Open(logindbtye, logindbname)
 	tools.CheckErr(err)
-	db = tdb
-	if !db.HasTable(&models.Login{}) {
-		db.CreateTable(&models.Login{})
+	logindb = tdb
+	if !logindb.HasTable(&models.Login{}) {
+		logindb.CreateTable(&models.Login{})
 	}
 	fmt.Println("登录数据库初始化完成")
 }
 
 func CheckLogin(login *models.Login) (res int) {
 	lg := models.Login{}
-	db.Where(login).First(&lg)
+	logindb.Where(login).First(&lg)
 	if lg.Email != "" {
 		res = 1
 	}
@@ -40,7 +40,7 @@ func CheckLogin(login *models.Login) (res int) {
 
 func ExistLogin(email string) (res bool) {
 	lg := models.Login{}
-	db.Where(models.Login{Email: email}).First(&lg)
+	logindb.Where(models.Login{Email: email}).First(&lg)
 	if lg.Email != "" {
 		res = true
 	}
@@ -48,6 +48,6 @@ func ExistLogin(email string) (res bool) {
 }
 
 func AddLogin(login *models.Login) (res int) {
-	db.Save(&login)
+	logindb.Save(login)
 	return
 }
