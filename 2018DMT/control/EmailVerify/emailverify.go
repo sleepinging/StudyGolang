@@ -1,19 +1,21 @@
 package EmailVerify
 
 import (
+	"../../global"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
 	"math/rand"
+	"strings"
 	"time"
 	"twt/mytools"
-	"strings"
+	"fmt"
 )
 
 var (
-	Verifytimeout = time.Minute * 10 //过期时间
-	//infos         []Verifyinfo       //所有验证码信息
-	dbname = `data\db\emailverify.db` //邮箱验证数据库
-	db     *gorm.DB                   //数据库连接
+	Verifytimeout = time.Minute * 10                       //过期时间
+	dbname        = global.Config.DbInfo.EmailVerifyDb     //邮箱验证数据库
+	dbtype        = global.Config.DbInfo.EmailVerifyDbType //数据库类型
+	db            *gorm.DB                                 //数据库连接
 )
 
 //邮箱验证码信息结构体
@@ -38,12 +40,13 @@ func checkerr(err error) {
 func init() {
 	pt, _ := mytools.GetCurrentPath()
 	dbname = pt + dbname
-	tdb, err := gorm.Open("sqlite3", dbname)
+	tdb, err := gorm.Open(dbtype, dbname)
 	checkerr(err)
 	db = tdb
 	if !db.HasTable(&Verifyinfo{}) {
 		db.CreateTable(&Verifyinfo{})
 	}
+	fmt.Println("邮箱验证数据库初始化完成")
 }
 
 //删除过期数据

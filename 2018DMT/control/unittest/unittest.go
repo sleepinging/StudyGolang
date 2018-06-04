@@ -88,11 +88,26 @@ func CookieTest() {
 	fmt.Println(dao.GetUserinfo(str))
 }
 
+type TT struct {
+	A string `gorm:"123" json:"ww"`
+	B string `json:b`
+	C string `json:c`
+}
+
+func TestStruct() {
+	var t TT
+	str := `{"ww":"1","b":"2","c":"3","d":"4"}`
+	err := json.Unmarshal([]byte(str), &t)
+	fmt.Println(t, err)
+	//select last_insert_rowid();
+}
+
 func Test() {
+	//TestStruct()
 	//CookieTest()
 	//jiamiTest()
 	//ConfigTest()
-	//PostLoginTest()
+	//go PostLoginTest()
 	//jsonTest()
 	//LoginTest()
 	//PostTest()

@@ -10,10 +10,27 @@ import (
 //配置文件的模型
 type Config struct {
 	//网站根目录
-	Wwwroot string `json:wwwroot`
+	Wwwroot string `json:"Wwwroot"`
 
 	//端口
-	Port int `json:port`
+	Port int `json:"Port"`
+
+	//数据库信息
+	DbInfo dbinfo `json:"DbInfo"`
+}
+
+type dbinfo struct {
+	//邮箱验证的数据库
+	EmailVerifyDb string `json:"EmailVerifyDb"`
+
+	//邮箱验证的数据库类型
+	EmailVerifyDbType string `json:"EmailVerifyDbType"`
+
+	//登录的数据库
+	LoginDb string `json:"LoginDb"`
+
+	//登录的数据库类型
+	LoginDbType string `json:"LoginDbType"`
 }
 
 func (this *Config) Load(filename string) (err error) {

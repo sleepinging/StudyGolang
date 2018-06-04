@@ -13,9 +13,9 @@ import (
 //上传文件之后获取URL
 func GetFileUrl(w http.ResponseWriter, r *http.Request) {
 	r.ParseMultipartForm(2048)
-	fs, ok := r.MultipartForm.File["filename"]
+	fs, ok := r.MultipartForm.File["Filename"]
 	if !ok {
-		tools.SendRetJson(0, "缺少filename参数", "手动滑稽", w)
+		tools.SendRetJson(0, "缺少Filename参数", "手动滑稽", w)
 		return
 	}
 	file, err := fs[0].Open()
