@@ -1,19 +1,20 @@
 package unittest
 
 import (
-	"fmt"
-	"../EmailVerify"
+	"../../dao"
 	"../../global"
 	"../../models"
-	"../../dao"
 	"../../tools"
-	"net/http"
-	"twt/mytools"
-	"time"
-	"twt/nettools"
+	"../EmailVerify"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
+	"net/http"
 	"os"
+	"reflect"
+	"time"
+	"twt/mytools"
+	"twt/nettools"
 )
 
 func TestEmailVerify() {
@@ -103,22 +104,22 @@ func TestStruct() {
 }
 
 func TestJob() {
-	//job := &models.Job{
-	//	Name:        "洗碗",
-	//	Salary:      3000.0,
-	//	Time:        "每周一到周六",
-	//	Weekend:     0,
-	//	Pickup:      0,
-	//	Eat:         1,
-	//	Live:        0,
-	//	WuXianYiJin: 1,
-	//	Place:       "食堂",
-	//	LimPeople:   10,
-	//	NowPeople:   3,
-	//	Sex:         2,
-	//	Phone:       "13222222222",
-	//	Detail:      "不想洗碗，找几个人帮我洗",
-	//}
+	job := &models.Job{
+		Name:        "洗碗",
+		Salary:      3000.0,
+		Time:        "每周一到周六",
+		Weekend:     0,
+		Pickup:      0,
+		Eat:         1,
+		Live:        0,
+		WuXianYiJin: 1,
+		Place:       "食堂",
+		LimPeople:   10,
+		NowPeople:   3,
+		Sex:         2,
+		Phone:       "13222222222",
+		Detail:      "不想洗碗，找几个人帮我洗",
+	}
 	//id,err:=dao.PublishJob(job)
 	//fmt.Println(id,err)
 	//jb,err:=dao.ShowJob(5)
@@ -128,12 +129,41 @@ func TestJob() {
 	//jobs := dao.QueryJob(job, 1, 2)
 	//fmt.Println(c, jobs)
 
-	//err:=dao.UpdataJob(6,job)
-	err := dao.DeleteJob(5)
+	err := dao.UpdataJob(6, job)
+	//err := dao.DeleteJob(5)
 	fmt.Println(err)
 }
 
+func reflectTest() {
+	t := TT{"1", "2", "3"}
+	t2 := TT{"10", "20", "30"}
+	s1 := reflect.ValueOf(&t).Elem()
+	s2 := reflect.ValueOf(&t2).Elem()
+	typ := reflect.TypeOf(t)
+	n := typ.NumField()
+	for i := 0; i < n; i++ {
+		//name := s1.Type().Field(i).Name
+		//t := s1.Field(i).Type()
+		v := s1.Field(i).Interface()
+		switch tp := v.(type) {
+		case string:
+			s2.Field(i).SetString(v.(string))
+		case int:
+			s2.Field(i).SetInt(int64(v.(int)))
+		default:
+			fmt.Println(tp)
+		}
+		//fmt.Println(name, t, v)
+	}
+	//// 反射获取测试对象对应的struct枚举类型
+	//s := reflect.ValueOf(&t).Elem()
+	//// 内置常用类型的设值方法，利用Field序号get
+	//s.Field(0).SetString("55")
+	fmt.Println(t2)
+}
+
 func Test() {
+	//reflectTest()
 	TestJob()
 	//TestStruct()
 	//CookieTest()
