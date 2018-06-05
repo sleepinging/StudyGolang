@@ -1,6 +1,10 @@
 package models
 
 import (
+	"encoding/json"
+	"fmt"
+	"io/ioutil"
+	"os"
 	"reflect"
 )
 
@@ -57,4 +61,44 @@ func (this *Job) CopyFormEId(job *Job) {
 			s2.Field(i).SetFloat(float64(v.(float32)))
 		}
 	}
+}
+
+type JobTypeDess struct {
+	Types []JobTypeDes
+}
+
+type JobTypeDes struct {
+	Description string
+	Types       []JobType2
+}
+
+type JobType2 struct {
+	Name   string
+	TypeId string
+	Types  []JobType
+}
+
+type JobType struct {
+	JobId   int
+	JobName string
+}
+
+func (this *JobTypeDess) Load(filename string) (err error) {
+	file, err := os.OpenFile(filename, os.O_RDONLY, os.ModeType)
+	defer file.Close()
+	if err != nil {
+		err = fmt.Errorf("打开配置文件失败:" + err.Error())
+		return
+	}
+	bs, err := ioutil.ReadAll(file)
+	if err != nil {
+		err = fmt.Errorf("读取配置文件失败:" + err.Error())
+		return
+	}
+	err = json.Unmarshal(bs, this)
+	if err != nil {
+		err = fmt.Errorf("解析配置文件失败:" + err.Error())
+		return
+	}
+	return
 }

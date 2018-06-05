@@ -5,6 +5,7 @@ import (
 	"../tools"
 	"net/http"
 	"os"
+	"sync"
 )
 
 var (
@@ -24,14 +25,31 @@ var (
 	MiKey = `TWT1234567890TWT`
 )
 
+var wg *sync.WaitGroup
+
 func init() {
 	CurrPath, _ = tools.GetCurrentPath()
 	err := Config.Load(CurrPath + `config.json`)
 	tools.PanicErr(err, "加载配置文件")
+	wg = new(sync.WaitGroup)
+	wg.Add(2)
+	go SetWebConfig()
+	go LoadJobTpyes()
+	wg.Wait()
+}
+
+func SetWebConfig() {
 	Config.Wwwroot = CurrPath + Config.Wwwroot
 	RootFileServer = http.FileServer(http.Dir(Config.Wwwroot))
 	FileDirPath = Config.Wwwroot + `data\file\`
 	if f, _ := tools.PathExists(FileDirPath); !f {
 		tools.ShowErr(os.MkdirAll(FileDirPath, os.ModePerm))
 	}
+	wg.Done()
+}
+
+func LoadJobTpyes() {
+	err := Jobtypedess.Load(CurrPath + Config.JobTypeInfoFile)
+	tools.ShowErr(err)
+	wg.Done()
 }

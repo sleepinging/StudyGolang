@@ -8,7 +8,7 @@ type Blog struct {
 	UserId  int       `json:"UserId"`
 	Time    time.Time `json:"Time"`
 	Status  int       `json:"Status"`
-	Type    string    `json:"Type"`
+	Type    int       `json:"Type"`
 	Title   string    `json:"Title"`
 	Context string    `gorm:"type:varchar(10239)" json:"Context"`
 	Readed  int       `json:"Readed"`

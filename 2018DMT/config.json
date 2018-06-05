@@ -10,5 +10,6 @@
     "JobDbType": "sqlite3",
     "UserDb": "data\\db\\user.db",
     "UserDbType": "sqlite3"
-  }
+  },
+  "JobTypeInfoFile": "data\\jobtypes.js"
 }

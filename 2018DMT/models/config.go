@@ -17,6 +17,9 @@ type Config struct {
 
 	//数据库信息
 	DbInfo dbinfo `json:"DbInfo"`
+
+	//工作类型数据
+	JobTypeInfoFile string `json:"JobTypeInfoFile"`
 }
 
 type dbinfo struct {

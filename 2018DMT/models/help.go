@@ -6,7 +6,7 @@ import "time"
 type Help struct {
 	Id      int       `gorm:"primary_key" json:"Id"`
 	UserId  int       `json:"UserId"`
-	Type    string    `json:"Type"`
+	Type    int       `json:"Type"`
 	Title   string    `json:"Title"`
 	Context string    `gorm:"type:varchar(4095)" json:"Context"`
 	Gold    int       `json:"Gold"`

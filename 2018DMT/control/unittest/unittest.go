@@ -171,6 +171,17 @@ func UserTest() {
 }
 
 func Test() {
+	for _, t1 := range global.Jobtypedess.Types {
+		for _, t2 := range t1.Types {
+			for _, t3 := range t2.Types {
+				if t3.JobName == "EHS管理" {
+					fmt.Println(t3.JobName, "=>", t2.Name, "=>", t1.Description)
+					break
+				}
+				//fmt.Println(t3.JobName)
+			}
+		}
+	}
 	//UserTest()
 	//reflectTest()
 	//TestJob()
