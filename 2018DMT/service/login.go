@@ -41,7 +41,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		cookie := http.Cookie{
 			Name:   "user",
 			MaxAge: global.MaxCookieTime,
-			Value:  dao.GenUserCookie(user.ToString()),
+			Value:  dao.GenUserCookie(user.IdToString()),
 		}
 		http.SetCookie(w, &cookie)
 	}
@@ -54,11 +54,13 @@ func IsLogin(w http.ResponseWriter, r *http.Request) {
 		models.SendRetJson(0, "未登录", "", w)
 		return
 	}
-	user, t, err := dao.GetUserinfo(cookie.Value)
+	user, t, err := dao.GetUserIdFromCookie(cookie.Value)
 	dt := int(time.Now().Sub(t).Seconds())
 	if dt > global.MaxCookieTime {
-		models.SendRetJson(1, "登录过期", user, w)
+		models.SendRetJson(1, "登录过期", fmt.Sprintf("%d", user), w)
 		return
 	}
-	models.SendRetJson(1, t.Format("2006-01-02/15:04:05"), user, w)
+	models.SendRetJson(1,
+		t.Format("2006-01-02/15:04:05"),
+		fmt.Sprintf("%d", user), w)
 }

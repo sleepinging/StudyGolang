@@ -4,6 +4,7 @@ import (
 	"../tools"
 	"encoding/json"
 	"time"
+	"fmt"
 )
 
 type User struct {
@@ -28,5 +29,10 @@ func (this *User) ToString() (str string) {
 	b, err := json.Marshal(this)
 	tools.ShowErr(err)
 	str = string(b)
+	return
+}
+
+func (this *User) IdToString() (sid string) {
+	sid = fmt.Sprintf("%d", this.Id)
 	return
 }

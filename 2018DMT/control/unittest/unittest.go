@@ -13,7 +13,6 @@ import (
 	"os"
 	"reflect"
 	"time"
-	"errors"
 )
 
 func TestEmailVerify() {
@@ -85,7 +84,7 @@ func jiamiTest() {
 
 func CookieTest() {
 	str := dao.GenUserCookie("237731947@qq.com")
-	fmt.Println(dao.GetUserinfo(str))
+	fmt.Println(dao.GetUserIdFromCookie(str))
 }
 
 type TT struct {
@@ -105,7 +104,8 @@ func TestStruct() {
 func TestJob() {
 	job := &models.Job{
 		Name:        "洗碗",
-		//Salary:      3000.0,
+		PublisherId: 1,
+		Salary:      3000.0,
 		Time:        "每周一到周六",
 		Weekend:     -1,
 		Pickup:      -1,
@@ -189,7 +189,6 @@ func ColorTest() {
 }
 
 func Test() {
-	tools.ShowErr(errors.New("测试"))
 	//ColorTest()
 	//UserTest()
 	//reflectTest()

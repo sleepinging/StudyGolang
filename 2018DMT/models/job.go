@@ -10,6 +10,7 @@ import (
 
 type Job struct {
 	Id          int     `gorm:"primary_key"`
+	PublisherId int     `json:"PublisherId"`
 	Name        string  `json:"Name"`
 	Salary      float32 `json:"Salary"`
 	Time        string  `json:"Time"`

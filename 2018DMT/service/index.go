@@ -20,6 +20,6 @@ func GetIndex(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		return
 	}
-	user, t, err := dao.GetUserinfo(cookie.Value)
-	fmt.Println("Cookie user:", user, t)
+	user, t, err := dao.GetUserIdFromCookie(cookie.Value)
+	fmt.Println("Cookie userid:", user, t)
 }

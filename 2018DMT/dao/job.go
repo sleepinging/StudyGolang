@@ -85,3 +85,16 @@ func DeleteJob(id int) (err error) {
 	jobdb.Delete(job)
 	return
 }
+
+//查询发布工作的用户
+func GetJobPublisherId(jid int) (pid int, err error) {
+	qjob := &models.Job{Id: jid}
+	job := new(models.Job)
+	jobdb.Where(qjob).Find(job)
+	pid = job.PublisherId
+	if pid == 0 {
+		err = global.NoSuchJob
+		return
+	}
+	return
+}

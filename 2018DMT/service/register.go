@@ -34,12 +34,20 @@ func Register(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	email := emails[0]
+	if email == "" {
+		models.SendRetJson(0, "缺少Email参数", "手动滑稽", w)
+		return
+	}
 	pwds, ok := r.PostForm["Password"]
 	if !ok || len(pwds) == 0 {
 		models.SendRetJson(0, "缺少Password参数", "手动滑稽", w)
 		return
 	}
 	pwd := pwds[0]
+	if pwd == "" {
+		models.SendRetJson(0, "缺少Password参数", "手动滑稽", w)
+		return
+	}
 	codes, ok := r.PostForm["VerifyCode"]
 	if !ok || len(codes) == 0 {
 		models.SendRetJson(0, "缺少VerifyCode参数", "手动滑稽", w)
@@ -48,6 +56,10 @@ func Register(w http.ResponseWriter, r *http.Request) {
 	code := codes[0]
 	fmt.Println(time.Now().Format("2006-01-02 15:04:05"),
 		r.RemoteAddr, "注册：", email, pwd, code)
+	if code == "" {
+		models.SendRetJson(0, "注册失败", "请填写验证码", w)
+		return
+	}
 	status, msg := EmailVerify.CheckCode(email, code)
 	if !status {
 		models.SendRetJson(0, msg, "注册失败", w)
