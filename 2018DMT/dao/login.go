@@ -46,7 +46,11 @@ func ExistLogin(email string) (res bool) {
 	return
 }
 
-func AddLogin(login *models.Login) (res int) {
+func AddLogin(login *models.Login) (res int, err error) {
+	if login.Email == "" || login.Password == "" {
+		err = global.EmptyUserPwd
+		return
+	}
 	logindb.Save(login)
 	return
 }

@@ -12,7 +12,7 @@ import (
 func SendCode(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
 	emails, ok := r.PostForm["Email"]
-	if !ok {
+	if !ok || len(emails) == 0 {
 		models.SendRetJson(0, "缺少Email参数", "手动滑稽", w)
 		return
 	}
@@ -29,19 +29,19 @@ func SendCode(w http.ResponseWriter, r *http.Request) {
 func Register(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
 	emails, ok := r.PostForm["Email"]
-	if !ok {
+	if !ok || len(emails) == 0 {
 		models.SendRetJson(0, "缺少Email参数", "手动滑稽", w)
 		return
 	}
 	email := emails[0]
 	pwds, ok := r.PostForm["Password"]
-	if !ok {
+	if !ok || len(pwds) == 0 {
 		models.SendRetJson(0, "缺少Password参数", "手动滑稽", w)
 		return
 	}
 	pwd := pwds[0]
 	codes, ok := r.PostForm["VerifyCode"]
-	if !ok {
+	if !ok || len(codes) == 0 {
 		models.SendRetJson(0, "缺少VerifyCode参数", "手动滑稽", w)
 		return
 	}
@@ -57,6 +57,6 @@ func Register(w http.ResponseWriter, r *http.Request) {
 		models.SendRetJson(0, "该邮箱已被注册", "", w)
 		return
 	}
-	dao.AddLogin(&models.Login{Email: email, Password: pwd})
-	models.SendRetJson(1, "注册成功", "返回什么好(滑稽)", w)
+	res, err := dao.AddLogin(&models.Login{Email: email, Password: pwd})
+	models.SendRetJson(res, "提示", err.Error(), w)
 }

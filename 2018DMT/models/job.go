@@ -19,7 +19,7 @@ type Job struct {
 	NowPeople   int     `json:"NowPeople"`
 	Sex         int     `json:"Sex"`
 	Phone       string  `json:"Phone"`
-	Detail      string  `json:"Detail"`
+	Detail      string  `gorm:"size:2047" json:"Detail"`
 }
 
 //除了id全部复制

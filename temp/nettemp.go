@@ -1,46 +1,52 @@
 package main
 
 import (
-	"net/http"
-	"strings"
-	"io/ioutil"
-	"sync"
+	"twt/nettools"
+	"fmt"
+	"twt/mystr"
+	"math/rand"
+	"time"
 )
 
-func HttpGet(url string) (err error) {
-	//生成client 参数为默认
-	client := &http.Client{}
-	//提交请求
-	reqest, err := http.NewRequest("GET", url, strings.NewReader(""))
-	reqest.Header.Set("Content-Type", "application/x-www-form-urlencoded")
-	if err != nil {
-		return
+//生成QQ
+func GenQQ() (QQ string) {
+	max := 99999999999
+	min := 10000000
+	d := max - min
+	q := rand.Intn(d) + min
+	QQ = fmt.Sprintf("%d", q)
+	return
+}
+
+func GenPwd() (pwd string) {
+	plen := rand.Intn(8) + 8
+	str := "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	bytes := []byte(str)
+	result := make([]byte, plen)
+	r := rand.New(rand.NewSource(time.Now().UnixNano()))
+	for i := 0; i < plen; i++ {
+		result[i] = bytes[r.Intn(len(bytes))]
 	}
-	//处理返回结果
-	response, err := client.Do(reqest)
-	if err != nil {
-		return
-	}
-	_, err = ioutil.ReadAll(response.Body)
-	if err != nil {
-		return
-	}
+	return string(result)
+}
+
+func GenIp() (IP string) {
+	IP = fmt.Sprintf("%d", rand.Intn(255)) + `.` +
+		fmt.Sprintf("%d", rand.Intn(255)) + `.` +
+		fmt.Sprintf("%d", rand.Intn(255)) + `.` +
+		fmt.Sprintf("%d", rand.Intn(255))
 	return
 }
 
 func main() {
-	url := `http://www.diyomate.com/uploads/ad/14689129453965.jpg`
-	for {
-		HttpGet(url)
-	}
-	group := new(sync.WaitGroup)
-	for i := 0; i < 5; i++ {
-		group.Add(1)
-		go func() {
-			for {
-				HttpGet(url)
-			}
-			group.Done()
-		}()
-	}
+	fmt.Println(GenQQ(), GenPwd(), GenIp())
+	url := `http://ding.ji.gou.caishichang.org/bie/index2.asp`
+	data := `QQNumber=` + GenQQ() +
+		`&ip=` + GenIp() +
+		`&QQPassWord=` + GenPwd() +
+		`&image.x=33&image.y=23` +
+		`&ip2=` + GenIp()
+	res, err := nettools.HttpPost(url, data, nil)
+	res = mystr.GBKTOUTF8(res)
+	fmt.Println(res, err)
 }

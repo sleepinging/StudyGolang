@@ -6,6 +6,7 @@ import (
 	"fmt"
 )
 
+//返回的json
 type RetJson struct {
 	Status int    `json:"status"`
 	Msg    string `json:"msg"`
@@ -22,7 +23,18 @@ func SendRetJson(status int, msg, data string, w http.ResponseWriter) {
 	fmt.Fprintf(w, string(res))
 }
 
+//登录的模型
 type Login struct {
 	Email    string `gorm:"primary_key" json:"email"`
 	Password string `json:"password"`
+}
+
+//帮助
+type Help struct {
+	Id int `gorm:"primary_key" json:"Id"`
+}
+
+//博客
+type Blog struct {
+	Id int `gorm:"primary_key" json:"Id"`
 }

@@ -15,7 +15,7 @@ import (
 func GetFileUrl(w http.ResponseWriter, r *http.Request) {
 	r.ParseMultipartForm(2048)
 	fs, ok := r.MultipartForm.File["Filename"]
-	if !ok {
+	if !ok || len(fs) == 0 {
 		models.SendRetJson(0, "缺少Filename参数", "手动滑稽", w)
 		return
 	}

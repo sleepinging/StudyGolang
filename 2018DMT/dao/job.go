@@ -17,7 +17,6 @@ var (
 
 func init() {
 	jobdbname = global.CurrPath + jobdbname
-	//fmt.Println("工作数据库地址:",jobdbname)
 	tdb, err := gorm.Open(jobdbtye, jobdbname)
 	tools.PanicErr(err, "工作数据库初始化")
 	jobdb = tdb

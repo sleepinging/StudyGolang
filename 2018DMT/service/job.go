@@ -19,7 +19,7 @@ func PublishJob(w http.ResponseWriter, r *http.Request) {
 	}
 	r.ParseForm()
 	jobs, ok := r.PostForm["Job"]
-	if !ok {
+	if !ok || len(jobs) == 0 {
 		models.SendRetJson(0, "缺少Job参数", "手动滑稽", w)
 		return
 	}
@@ -71,7 +71,7 @@ func QueryJobCount(w http.ResponseWriter, r *http.Request) {
 	}
 	r.ParseForm()
 	jobs, ok := r.PostForm["Job"]
-	if !ok {
+	if !ok || len(jobs) == 0 {
 		models.SendRetJson(0, "缺少Job参数", "手动滑稽", w)
 		return
 	}
@@ -94,7 +94,7 @@ func QueryJob(w http.ResponseWriter, r *http.Request) {
 	}
 	r.ParseForm()
 	jobs, ok := r.PostForm["Job"]
-	if !ok {
+	if !ok || len(jobs) == 0 {
 		models.SendRetJson(0, "缺少Job参数", "手动滑稽", w)
 		return
 	}
