@@ -14,7 +14,7 @@ import (
 func PublishJob(w http.ResponseWriter, r *http.Request) {
 	f, err := control.PublishJobPermission(w, r)
 	if !f {
-		models.SendRetJson(0, "发布失败", err.Error(), w)
+		models.SendRetJson(0, err.Error(), "", w)
 		return
 	}
 	r.ParseForm()
@@ -41,7 +41,7 @@ func PublishJob(w http.ResponseWriter, r *http.Request) {
 func ShowJob(w http.ResponseWriter, r *http.Request) {
 	queryForm, err := url.ParseQuery(r.URL.RawQuery)
 	if err != nil {
-		models.SendRetJson(0, "错误", err.Error(), w)
+		models.SendRetJson(0, err.Error(), "", w)
 		return
 	}
 	if len(queryForm["id"]) == 0 {
@@ -66,7 +66,7 @@ func ShowJob(w http.ResponseWriter, r *http.Request) {
 func QueryJobCount(w http.ResponseWriter, r *http.Request) {
 	f, err := control.QueryJobPermission(w, r)
 	if !f {
-		models.SendRetJson(0, "查询失败", err.Error(), w)
+		models.SendRetJson(0, err.Error(), "", w)
 		return
 	}
 	r.ParseForm()
@@ -89,7 +89,7 @@ func QueryJobCount(w http.ResponseWriter, r *http.Request) {
 func QueryJob(w http.ResponseWriter, r *http.Request) {
 	f, err := control.QueryJobPermission(w, r)
 	if !f {
-		models.SendRetJson(0, "查询失败", err.Error(), w)
+		models.SendRetJson(0, err.Error(), "", w)
 		return
 	}
 	r.ParseForm()
@@ -164,7 +164,7 @@ func UpdataJob(w http.ResponseWriter, r *http.Request) {
 	}
 	f, err := control.UpdateJobPermission(int(id), w, r)
 	if !f {
-		models.SendRetJson(0, "修改失败", err.Error(), w)
+		models.SendRetJson(0, err.Error(), "", w)
 		return
 	}
 	models.SendRetJson(1, "修改成功", ids[0], w)
@@ -190,7 +190,7 @@ func DeleteJob(w http.ResponseWriter, r *http.Request) {
 	}
 	f, err := control.DeleteJobPermission(int(id), w, r)
 	if !f {
-		models.SendRetJson(0, "删除失败", err.Error(), w)
+		models.SendRetJson(0, err.Error(), "", w)
 		return
 	}
 	models.SendRetJson(1, "删除成功", ids[0], w)

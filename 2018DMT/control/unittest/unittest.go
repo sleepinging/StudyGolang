@@ -13,7 +13,6 @@ import (
 	"os"
 	"reflect"
 	"time"
-	"twt/nettools"
 )
 
 func TestEmailVerify() {
@@ -40,7 +39,7 @@ func webtest() {
 func PostTest() {
 	url := "http://193.112.77.180/register/sendcode"
 	data := "Email=237731947@qq.com"
-	res, err := nettools.HttpPost(url, data, nil)
+	res, err := tools.HttpPost(url, data, nil)
 	tools.ShowErr(err)
 	fmt.Println(res)
 }
@@ -62,7 +61,7 @@ func PostLoginTest() {
 	time.Sleep(time.Second * 3)
 	url := "http://127.0.0.1/login"
 	data := "Email=237731947@qq.com&Password=123456"
-	res, err := nettools.HttpPost(url, data, nil)
+	res, err := tools.HttpPost(url, data, nil)
 	tools.ShowErr(err)
 	fmt.Println(res)
 }

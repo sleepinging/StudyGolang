@@ -2,6 +2,7 @@ package EmailVerify
 
 import (
 	"../../global"
+	"../../tools"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
 	"math/rand"
@@ -29,18 +30,12 @@ type Verifyinfo struct {
 	Gentime time.Time
 }
 
-func checkerr(err error) {
-	if err != nil {
-		panic(err)
-	}
-}
-
 //初始化包
 func init() {
-	pt := global.CurrPath
-	dbname = pt + dbname
+	dbname = global.CurrPath + dbname
+	//fmt.Println("邮箱验证数据库地址:",dbname)
 	tdb, err := gorm.Open(dbtype, dbname)
-	checkerr(err)
+	tools.PanicErr(err, "邮箱验证数据库初始化")
 	db = tdb
 	if !db.HasTable(&Verifyinfo{}) {
 		db.CreateTable(&Verifyinfo{})
@@ -107,7 +102,7 @@ func SendCode(email string) (code string) {
 		"感谢您的使用，欢迎加入大学帮",
 		genhtml(code),
 	)
-	checkerr(err)
+	tools.ShowErr(err)
 	UpdateCode(email, code)
 	return
 }

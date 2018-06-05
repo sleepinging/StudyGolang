@@ -18,6 +18,7 @@ var (
 //初始化包
 func init() {
 	logindbname = global.CurrPath + logindbname
+	//fmt.Println("登录数据库地址:",logindbname)
 	tdb, err := gorm.Open(logindbtye, logindbname)
 	tools.PanicErr(err, "登录数据库初始化")
 	logindb = tdb
