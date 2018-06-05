@@ -121,12 +121,13 @@ func TestJob() {
 	}
 	//id,err:=dao.PublishJob(job)
 	//fmt.Println(id,err)
+	fmt.Println(dao.GetJobPublisherId(job.Id + 2))
 	//jb,err:=dao.ShowJob(5)
 	//fmt.Println(jb,err)
 
-	c := dao.QueryJobCount(job)
-	jobs := dao.QueryJob(job, 1, 0)
-	fmt.Println(c, jobs)
+	//c := dao.QueryJobCount(job)
+	//jobs := dao.QueryJob(job, 1, 0)
+	//fmt.Println(c, jobs)
 
 	//err := dao.UpdataJob(6, job)
 	//err := dao.DeleteJob(5)
@@ -192,7 +193,7 @@ func Test() {
 	//ColorTest()
 	//UserTest()
 	//reflectTest()
-	//TestJob()
+	TestJob()
 	//TestStruct()
 	//CookieTest()
 	//jiamiTest()

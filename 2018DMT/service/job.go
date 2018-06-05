@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"../dao"
 	"../models"
-	"../control"
+	"../control/Permission"
 	"encoding/json"
 	"fmt"
 	"net/url"
@@ -12,7 +12,7 @@ import (
 )
 
 func PublishJob(w http.ResponseWriter, r *http.Request) {
-	f, err := control.PublishJobPermission(w, r)
+	f, err := Permission.PublishJob(w, r)
 	if !f {
 		models.SendRetJson(0, err.Error(), "", w)
 		return
@@ -64,7 +64,7 @@ func ShowJob(w http.ResponseWriter, r *http.Request) {
 }
 
 func QueryJobCount(w http.ResponseWriter, r *http.Request) {
-	f, err := control.QueryJobPermission(w, r)
+	f, err := Permission.QueryJob(w, r)
 	if !f {
 		models.SendRetJson(0, err.Error(), "", w)
 		return
@@ -87,7 +87,7 @@ func QueryJobCount(w http.ResponseWriter, r *http.Request) {
 }
 
 func QueryJob(w http.ResponseWriter, r *http.Request) {
-	f, err := control.QueryJobPermission(w, r)
+	f, err := Permission.QueryJob(w, r)
 	if !f {
 		models.SendRetJson(0, err.Error(), "", w)
 		return
@@ -162,7 +162,7 @@ func UpdataJob(w http.ResponseWriter, r *http.Request) {
 		models.SendRetJson(0, "修改失败", err.Error(), w)
 		return
 	}
-	f, err := control.UpdateJobPermission(int(id), w, r)
+	f, err := Permission.UpdateJob(int(id), w, r)
 	if !f {
 		models.SendRetJson(0, err.Error(), "", w)
 		return
@@ -188,7 +188,7 @@ func DeleteJob(w http.ResponseWriter, r *http.Request) {
 		models.SendRetJson(0, "删除失败", err.Error(), w)
 		return
 	}
-	f, err := control.DeleteJobPermission(int(id), w, r)
+	f, err := Permission.DeleteJob(int(id), w, r)
 	if !f {
 		models.SendRetJson(0, err.Error(), "", w)
 		return

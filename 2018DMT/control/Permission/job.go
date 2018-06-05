@@ -1,14 +1,14 @@
-package control
+package Permission
 
 import (
-	"../dao"
-	"../global"
+	"../../dao"
+	"../../global"
 	"net/http"
 	"time"
 )
 
 //用于发布工作权限检查
-func PublishJobPermission(w http.ResponseWriter, r *http.Request) (f bool, err error) {
+func PublishJob(w http.ResponseWriter, r *http.Request) (f bool, err error) {
 	uid, err := GetUserIdByCookie(w, r)
 	if err != nil {
 		return
@@ -23,7 +23,7 @@ func PublishJobPermission(w http.ResponseWriter, r *http.Request) (f bool, err e
 }
 
 //修改工作权限检查
-func UpdateJobPermission(jid int, w http.ResponseWriter, r *http.Request) (f bool, err error) {
+func UpdateJob(jid int, w http.ResponseWriter, r *http.Request) (f bool, err error) {
 	uid, err := GetUserIdByCookie(w, r)
 	if err != nil {
 		return
@@ -45,7 +45,7 @@ func UpdateJobPermission(jid int, w http.ResponseWriter, r *http.Request) (f boo
 }
 
 //删除工作权限检查
-func DeleteJobPermission(jid int, w http.ResponseWriter, r *http.Request) (f bool, err error) {
+func DeleteJob(jid int, w http.ResponseWriter, r *http.Request) (f bool, err error) {
 	uid, err := GetUserIdByCookie(w, r)
 	if err != nil {
 		return
@@ -72,7 +72,7 @@ func DeleteJobPermission(jid int, w http.ResponseWriter, r *http.Request) (f boo
 }
 
 //查询工作权限检查
-func QueryJobPermission(w http.ResponseWriter, r *http.Request) (f bool, err error) {
+func QueryJob(w http.ResponseWriter, r *http.Request) (f bool, err error) {
 	f = true
 	return
 }
