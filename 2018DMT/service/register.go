@@ -57,6 +57,14 @@ func Register(w http.ResponseWriter, r *http.Request) {
 		models.SendRetJson(0, "该邮箱已被注册", "", w)
 		return
 	}
-	res, err := dao.AddLogin(&models.Login{Email: email, Password: pwd})
-	models.SendRetJson(res, "提示", err.Error(), w)
+	err := dao.AddLogin(&models.Login{Email: email, Password: pwd})
+	if err != nil {
+		models.SendRetJson(0, "注册失败", err.Error(), w)
+	}
+	//TODO 添加参数
+	id, err := dao.AddUser(&models.User{Email: email})
+	if err != nil {
+		models.SendRetJson(0, "注册失败", err.Error(), w)
+	}
+	models.SendRetJson(0, "注册成功", fmt.Sprintf("%d", id), w)
 }

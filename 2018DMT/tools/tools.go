@@ -13,7 +13,9 @@ import (
 
 func ShowErr(err error) {
 	if err != nil {
-		fmt.Println(err)
+		//31表示红色
+		fmt.Printf("%c[1;0;31m%s%c[0m\n", 0x1b, err.Error(), 0x1b)
+		//fmt.Println(err)
 	}
 }
 

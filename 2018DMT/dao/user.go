@@ -48,3 +48,17 @@ func GetUserByEmail(email string) (user *models.User, err error) {
 	}
 	return
 }
+
+//获取用户类型
+func GetUserType(id int) (tp int) {
+	u := &models.User{
+		Id: id,
+	}
+	user := new(models.User)
+	userdb.Where(u).First(user)
+	tp = user.Type
+	if tp == 0 {
+		tp = 1
+	}
+	return
+}
