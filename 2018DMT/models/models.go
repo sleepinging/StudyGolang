@@ -1,9 +1,9 @@
 package models
 
 import (
-	"net/http"
 	"encoding/json"
 	"fmt"
+	"net/http"
 )
 
 //返回的json
@@ -29,12 +29,14 @@ type Login struct {
 	Password string `json:"password"`
 }
 
-//帮助
-type Help struct {
-	Id int `gorm:"primary_key" json:"Id"`
+//博客点赞表
+type BlogZan struct {
+	BlogId int `gorm:"primary_key" json:"BlogId"`
+	UserId int `gorm:"primary_key" json:"UserId"`
 }
 
-//博客
-type Blog struct {
-	Id int `gorm:"primary_key" json:"Id"`
+//简历
+type CV struct {
+	UserId  int    `gorm:"primary_key" json:"UserId"`
+	Context string `gorm:"type:varchar(2047)" json:"Context"`
 }
