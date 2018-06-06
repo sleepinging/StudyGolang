@@ -11,7 +11,7 @@ import (
 )
 
 func GetUser(w http.ResponseWriter, r *http.Request) {
-	f, err := Permission.AddUser(w, r)
+	f, err := Permission.GetUser(w, r)
 	if !f {
 		models.SendRetJson(0, "失败", err.Error(), w)
 		return

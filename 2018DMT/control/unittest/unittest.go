@@ -185,23 +185,24 @@ func reflectTest() {
 }
 
 func UserTest() {
-	u := &models.User{
-		Email:    "123456@qq.com",
-		Birthday: time.Now(),
-	}
-	id, err := dao.AddUser(u)
-	fmt.Println(id, err)
-	//u, err := dao.GetUserByEmail("237731947@qq.com")
-	//fmt.Println(u, err)
-	//u2:=&models.User{Id:5}
-	//u2.CopyUserFromExpt(u,[]string{"Id",""})
-	//fmt.Println(u2)
-	u.Name = "麻花疼"
-	//u2:=new(models.User)
-	//u2.CopyUserFromExpt(u,[]string{"Id"})
-	//fmt.Println(dao.UpDateUserInfo(id,u2))
-	//tools.ShowErr(dao.UpDateUserInfo(u.Id,u))
-	tools.ShowErr(dao.DeleteUser(id))
+	//u := &models.User{
+	//	Email:    "123456@qq.com",
+	//	Birthday: time.Now(),
+	//}
+	//id, err := dao.AddUser(u)
+	//fmt.Println(id, err)
+	////u, err := dao.GetUserByEmail("237731947@qq.com")
+	////fmt.Println(u, err)
+	////u2:=&models.User{Id:5}
+	////u2.CopyUserFromExpt(u,[]string{"Id",""})
+	////fmt.Println(u2)
+	//u.Name = "麻花疼"
+	////u2:=new(models.User)
+	////u2.CopyUserFromExpt(u,[]string{"Id"})
+	////fmt.Println(dao.UpDateUserInfo(id,u2))
+	////tools.ShowErr(dao.UpDateUserInfo(u.Id,u))
+	////tools.ShowErr(dao.DeleteUser(id))
+	//fmt.Println(dao.GetUserById(id))
 }
 
 func JobTypeTest() {
@@ -223,7 +224,7 @@ func ColorTest() {
 
 func Test() {
 	//ColorTest()
-	//UserTest()
+	UserTest()
 	//reflectTest()
 	//JobTest()
 	//TestStruct()

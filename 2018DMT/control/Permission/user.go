@@ -6,6 +6,12 @@ import (
 	"../../global"
 )
 
+//查看用户的权限
+func GetUser(w http.ResponseWriter, r *http.Request) (f bool, err error) {
+	f = true
+	return
+}
+
 //添加用户的权限检查
 func AddUser(w http.ResponseWriter, r *http.Request) (f bool, err error) {
 	uid, err := GetUserIdByCookie(w, r)

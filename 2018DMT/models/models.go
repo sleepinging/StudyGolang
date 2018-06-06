@@ -37,7 +37,13 @@ type BlogZan struct {
 
 //简历
 type CV struct {
-	Id      int    `gorm:"primary_key"`
+	Id      int    `gorm:"primary_key" gorm:"AUTO_INCREMENT" json:"Id"`
 	UserId  int    `json:"UserId"`
 	Context string `gorm:"type:varchar(2047)" json:"Context"`
+}
+
+//金币
+type Gold struct {
+	Userid int `gorm:"primary_key" json:"Userid"`
+	Gold   int `json:"Gold"`
 }
