@@ -37,6 +37,7 @@ func RegisterAllRouter() {
 
 func init() {
 	//在main启动之前肯定都已经add了
+	//等待数据库都加载完毕
 	global.WgDb.Wait()
 }
 

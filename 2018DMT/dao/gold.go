@@ -19,6 +19,7 @@ func init() {
 	go GoldDbInit()
 }
 
+//初始化
 func GoldDbInit() {
 	golddbname = global.CurrPath + golddbname
 	//fmt.Println("用户数据库地址:",logindbname)
@@ -30,4 +31,48 @@ func GoldDbInit() {
 	}
 	fmt.Println("用户数据库初始化完成")
 	global.WgDb.Done()
+}
+
+//获取用户金币
+func GetUserGold(uid int) (g int, err error) {
+	gr := &models.Gold{Userid: uid}
+	fg := new(models.Gold)
+	err = golddb.Where(gr).First(fg).Error
+	if err != nil {
+		return
+	}
+	if fg.Userid == 0 {
+		err = global.NoSuchUser
+		return
+	}
+	g = fg.Gold
+	return
+}
+
+//修改用户金币,会添加用户
+func SetUserGold(uid, g int) (err error) {
+	gr := &models.Gold{Userid: uid}
+	fg := new(models.Gold)
+	golddb.Where(gr).First(fg)
+	fg.Userid = uid
+	fg.Gold = g
+	err = golddb.Save(fg).Error
+	return
+}
+
+//添加用户金币
+func AddUserGold(uid, g int) (err error) {
+	gr := &models.Gold{Userid: uid}
+	fg := new(models.Gold)
+	err = golddb.Where(gr).First(fg).Error
+	if err != nil {
+		return
+	}
+	if fg.Userid == 0 {
+		err = global.NoSuchUser
+		return
+	}
+	fg.Gold += g
+	err = golddb.Save(fg).Error
+	return
 }

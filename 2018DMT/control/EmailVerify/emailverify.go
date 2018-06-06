@@ -32,6 +32,11 @@ type Verifyinfo struct {
 
 //初始化包
 func init() {
+	global.WgDb.Add(1)
+	go emaildbinit()
+}
+
+func emaildbinit() {
 	dbname = global.CurrPath + dbname
 	//fmt.Println("邮箱验证数据库地址:",dbname)
 	tdb, err := gorm.Open(dbtype, dbname)
@@ -41,6 +46,7 @@ func init() {
 		db.CreateTable(&Verifyinfo{})
 	}
 	fmt.Println("邮箱验证数据库初始化完成")
+	global.WgDb.Done()
 }
 
 //删除过期数据

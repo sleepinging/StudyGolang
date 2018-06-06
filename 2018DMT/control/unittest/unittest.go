@@ -224,7 +224,14 @@ func ColorTest() {
 	}
 }
 
+func GoldTest() {
+	fmt.Println(dao.SetUserGold(5, 8))
+	fmt.Println(dao.AddUserGold(5, 10))
+	fmt.Println(dao.GetUserGold(5))
+}
+
 func Test() {
+	//GoldTest()
 	//ColorTest()
 	//go UserTest()
 	//reflectTest()
