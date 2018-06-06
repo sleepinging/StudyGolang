@@ -15,15 +15,23 @@ func RegisterAllRouter() {
 	http.HandleFunc("/", service.GetIndex)
 	http.HandleFunc("/register", service.Register)
 	http.HandleFunc("/register/sendcode", service.SendCode)
+
 	http.HandleFunc("/login", service.Login)
 	http.HandleFunc("/login/islogin", service.IsLogin)
+
 	http.HandleFunc("/upload/file", service.GetFileUrl)
+
 	http.HandleFunc("/job/publish", service.PublishJob)
 	http.HandleFunc("/job", service.ShowJob)
 	http.HandleFunc("/job/query", service.QueryJob)
 	http.HandleFunc("/job/querycount", service.QueryJobCount)
 	http.HandleFunc("/job/updata", service.UpdataJob)
 	http.HandleFunc("/job/delete", service.DeleteJob)
+
+	http.HandleFunc("/user", service.GetUser)
+	http.HandleFunc("/user/add", service.AddUser)
+	http.HandleFunc("/user/updata", service.UpdateUser)
+	http.HandleFunc("/user/delete", service.DeleteUser)
 }
 
 func startserver(addr string) {

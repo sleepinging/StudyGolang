@@ -186,7 +186,7 @@ func reflectTest() {
 
 func UserTest() {
 	u := &models.User{
-		Email:    "237731947@qq.com",
+		Email:    "123456@qq.com",
 		Birthday: time.Now(),
 	}
 	id, err := dao.AddUser(u)
@@ -197,7 +197,11 @@ func UserTest() {
 	//u2.CopyUserFromExpt(u,[]string{"Id",""})
 	//fmt.Println(u2)
 	u.Name = "麻花疼"
+	//u2:=new(models.User)
+	//u2.CopyUserFromExpt(u,[]string{"Id"})
+	//fmt.Println(dao.UpDateUserInfo(id,u2))
 	//tools.ShowErr(dao.UpDateUserInfo(u.Id,u))
+	tools.ShowErr(dao.DeleteUser(id))
 }
 
 func JobTypeTest() {

@@ -88,3 +88,15 @@ func UpDateUserInfo(id int, user *models.User) (err error) {
 	userdb.Save(u)
 	return
 }
+
+//删除用户信息
+func DeleteUser(id int) (err error) {
+	user := new(models.User)
+	userdb.Where(&models.User{Id: id}).First(user)
+	if user.Id == 0 {
+		err = global.NoSuchUser
+		return
+	}
+	userdb.Delete(user)
+	return
+}

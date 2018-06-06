@@ -41,7 +41,7 @@ func UpDateUser(id int, w http.ResponseWriter, r *http.Request) (f bool, err err
 }
 
 //删除用户的权限检查
-func DeleteUser(id int, w http.ResponseWriter, r *http.Request) (f bool, err error) {
+func DeleteUser(w http.ResponseWriter, r *http.Request) (f bool, err error) {
 	uid, err := GetUserIdByCookie(w, r)
 	if err != nil {
 		return

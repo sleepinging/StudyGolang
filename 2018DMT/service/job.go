@@ -44,11 +44,11 @@ func ShowJob(w http.ResponseWriter, r *http.Request) {
 		models.SendRetJson(0, err.Error(), "", w)
 		return
 	}
-	if len(queryForm["id"]) == 0 {
-		models.SendRetJson(0, "缺少id参数", "手动滑稽", w)
+	if len(queryForm["Id"]) == 0 {
+		models.SendRetJson(0, "缺少Id参数", "手动滑稽", w)
 		return
 	}
-	id, err := strconv.ParseInt(queryForm["id"][0], 10, 32)
+	id, err := strconv.ParseInt(queryForm["Id"][0], 10, 32)
 	if err != nil {
 		models.SendRetJson(0, "id参数需要为整数", "手动滑稽", w)
 		return
@@ -106,7 +106,7 @@ func QueryJob(w http.ResponseWriter, r *http.Request) {
 	}
 	limits, ok := r.PostForm["Limit"]
 	if !ok || len(limits) == 0 {
-		models.SendRetJson(0, "缺少limit参数", "手动滑稽", w)
+		models.SendRetJson(0, "缺少Limit参数", "手动滑稽", w)
 		return
 	}
 	Pages, ok := r.PostForm["Page"]
@@ -143,7 +143,7 @@ func UpdataJob(w http.ResponseWriter, r *http.Request) {
 	}
 	ids, ok := r.PostForm["Id"]
 	if !ok || len(ids) == 0 {
-		models.SendRetJson(0, "缺少id参数", "手动滑稽", w)
+		models.SendRetJson(0, "缺少Id参数", "手动滑稽", w)
 		return
 	}
 	job := &models.Job{}
