@@ -168,7 +168,7 @@ func UpdataJob(w http.ResponseWriter, r *http.Request) {
 	}
 	f, err := Permission.UpdateJob(int(id), w, r)
 	if !f {
-		models.SendRetJson(0, err.Error(), "", w)
+		models.SendRetJson(0, "", err.Error(), w)
 		return
 	}
 	models.SendRetJson(1, "修改成功", ids[0], w)

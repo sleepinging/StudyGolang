@@ -44,6 +44,6 @@ type CV struct {
 
 //金币
 type Gold struct {
-	Userid int `gorm:"primary_key" json:"Userid"`
+	UserId int `gorm:"primary_key" json:"UserId"`
 	Gold   int `json:"Gold"`
 }

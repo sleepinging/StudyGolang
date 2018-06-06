@@ -80,6 +80,9 @@ func QueryJob(w http.ResponseWriter, r *http.Request) (f bool, err error) {
 func GetUserIdByCookie(w http.ResponseWriter, r *http.Request) (id int, err error) {
 	cookie, err := r.Cookie("user")
 	if err != nil {
+		if err == http.ErrNoCookie {
+			err = global.NotLogin
+		}
 		return
 	}
 	id, t, _ := dao.GetUserIdFromCookie(cookie.Value)

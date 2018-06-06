@@ -130,8 +130,10 @@ func JobTest() {
 	//fmt.Println(jb,err)
 
 	c := dao.QueryJobCount(job)
-	jobs := dao.QueryJob(job, 1, 1)
+	jobs := dao.QueryJob(job, 2, 1)
 	fmt.Println(c, jobs)
+	//bs,err:=json.Marshal(jobs)
+	//fmt.Println(err,string(bs))
 
 	//err := dao.UpdataJob(6, job)
 	//err := dao.DeleteJob(5)
@@ -225,13 +227,17 @@ func ColorTest() {
 }
 
 func GoldTest() {
-	fmt.Println(dao.SetUserGold(5, 8))
-	fmt.Println(dao.AddUserGold(5, 10))
-	fmt.Println(dao.GetUserGold(5))
+	//fmt.Println(dao.SetUserGold(5, 88))
+	//fmt.Println(dao.AddUserGold(5, -10))
+	//fmt.Println(dao.GetUserGold(5))
+	time.Sleep(time.Second * 2)
+	url := "http://127.0.0.1/gold/show"
+	data := `Id=1`
+	fmt.Println(tools.HttpPost(url, data, nil))
 }
 
 func Test() {
-	//GoldTest()
+	//go GoldTest()
 	//ColorTest()
 	//go UserTest()
 	//reflectTest()

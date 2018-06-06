@@ -24,24 +24,24 @@ func GoldDbInit() {
 	golddbname = global.CurrPath + golddbname
 	//fmt.Println("用户数据库地址:",logindbname)
 	tdb, err := gorm.Open(golddbtye, golddbname)
-	tools.PanicErr(err, "用户数据库初始化")
+	tools.PanicErr(err, "金币数据库初始化")
 	golddb = tdb
 	if !golddb.HasTable(&models.Gold{}) {
 		golddb.CreateTable(&models.Gold{})
 	}
-	fmt.Println("用户数据库初始化完成")
+	fmt.Println("金币数据库初始化完成")
 	global.WgDb.Done()
 }
 
 //获取用户金币
 func GetUserGold(uid int) (g int, err error) {
-	gr := &models.Gold{Userid: uid}
+	gr := &models.Gold{UserId: uid}
 	fg := new(models.Gold)
 	err = golddb.Where(gr).First(fg).Error
 	if err != nil {
 		return
 	}
-	if fg.Userid == 0 {
+	if fg.UserId == 0 {
 		err = global.NoSuchUser
 		return
 	}
@@ -51,10 +51,10 @@ func GetUserGold(uid int) (g int, err error) {
 
 //修改用户金币,会添加用户
 func SetUserGold(uid, g int) (err error) {
-	gr := &models.Gold{Userid: uid}
+	gr := &models.Gold{UserId: uid}
 	fg := new(models.Gold)
 	golddb.Where(gr).First(fg)
-	fg.Userid = uid
+	fg.UserId = uid
 	fg.Gold = g
 	err = golddb.Save(fg).Error
 	return
@@ -62,13 +62,13 @@ func SetUserGold(uid, g int) (err error) {
 
 //添加用户金币
 func AddUserGold(uid, g int) (err error) {
-	gr := &models.Gold{Userid: uid}
+	gr := &models.Gold{UserId: uid}
 	fg := new(models.Gold)
 	err = golddb.Where(gr).First(fg).Error
 	if err != nil {
 		return
 	}
-	if fg.Userid == 0 {
+	if fg.UserId == 0 {
 		err = global.NoSuchUser
 		return
 	}
