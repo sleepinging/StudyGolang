@@ -69,7 +69,7 @@ func UpdataJob(id int, newjob *models.Job) (err error) {
 		err = global.NoSuchJob
 		return
 	}
-	job.CopyFormEId(newjob)
+	job.CopyJobFromEId(newjob)
 	jobdb.Save(job)
 	return
 }
@@ -86,13 +86,12 @@ func DeleteJob(id int) (err error) {
 	return
 }
 
-//查询发布工作的用户
-func GetJobPublisherId(jid int) (pid int, err error) {
+//根据ID查询工作
+func GetJobById(jid int) (job *models.Job, err error) {
 	qjob := &models.Job{Id: jid}
-	job := new(models.Job)
+	job = new(models.Job)
 	jobdb.Where(qjob).Find(job)
-	pid = job.PublisherId
-	if pid == 0 {
+	if job.PublisherId == 0 {
 		err = global.NoSuchJob
 		return
 	}

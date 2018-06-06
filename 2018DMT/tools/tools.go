@@ -84,3 +84,14 @@ func HttpPost(url string, data string, headers map[string]string) (retstr string
 	retstr = string(buf)
 	return
 }
+
+func StrInArray(arr []string, e string) (f bool, index int) {
+	v := e
+	for index, v = range arr {
+		if v == e {
+			f = true
+			return
+		}
+	}
+	return
+}

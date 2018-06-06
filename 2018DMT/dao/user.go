@@ -49,6 +49,19 @@ func GetUserByEmail(email string) (user *models.User, err error) {
 	return
 }
 
+func GetUserById(id int) (user *models.User, err error) {
+	u := &models.User{
+		Id: id,
+	}
+	user = new(models.User)
+	userdb.Where(u).First(user)
+	if user.Id == 0 {
+		err = global.NoSuchUser
+		return
+	}
+	return
+}
+
 //获取用户类型
 func GetUserType(id int) (tp int) {
 	u := &models.User{
@@ -60,5 +73,18 @@ func GetUserType(id int) (tp int) {
 	if tp == 0 {
 		tp = 1
 	}
+	return
+}
+
+//修改用户信息
+func UpDateUserInfo(id int, user *models.User) (err error) {
+	u := new(models.User)
+	userdb.Where(&models.User{Id: id}).First(u)
+	if u.Id == 0 {
+		err = global.NoSuchUser
+		return
+	}
+	u.CopyUserFromExpt(user, []string{"Id"})
+	userdb.Save(u)
 	return
 }

@@ -33,11 +33,11 @@ func UpdateJob(jid int, w http.ResponseWriter, r *http.Request) (f bool, err err
 		return
 	}
 	//这个工作是自己发布的
-	pid, err := dao.GetJobPublisherId(jid)
+	jb, err := dao.GetJobById(jid)
 	if err != nil {
 		return
 	}
-	if pid == uid {
+	if jb.Id == uid {
 		f = true
 		return
 	}
@@ -60,11 +60,11 @@ func DeleteJob(jid int, w http.ResponseWriter, r *http.Request) (f bool, err err
 		return
 	}
 	//这个工作是自己发布的
-	pid, err := dao.GetJobPublisherId(jid)
+	jb, err := dao.GetJobById(jid)
 	if err != nil {
 		return
 	}
-	if pid == uid {
+	if jb.Id == uid {
 		f = true
 		return
 	}

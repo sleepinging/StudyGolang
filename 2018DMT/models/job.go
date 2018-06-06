@@ -28,7 +28,7 @@ type Job struct {
 }
 
 //除了id全部复制
-func (this *Job) CopyFormEId(job *Job) {
+func (this *Job) CopyJobFromEId(job *Job) {
 	//this.Name = job.Name
 	//this.Salary = job.Salary
 	//this.Time = job.Time
@@ -53,14 +53,15 @@ func (this *Job) CopyFormEId(job *Job) {
 			continue
 		}
 		v := s1.Field(i).Interface()
-		switch v.(type) {
-		case string:
-			s2.Field(i).SetString(v.(string))
-		case int:
-			s2.Field(i).SetInt(int64(v.(int)))
-		case float32:
-			s2.Field(i).SetFloat(float64(v.(float32)))
-		}
+		s2.Field(i).Set(reflect.ValueOf(v))
+		//switch v.(type) {
+		//case string:
+		//	s2.Field(i).SetString(v.(string))
+		//case int:
+		//	s2.Field(i).SetInt(int64(v.(int)))
+		//case float32:
+		//	s2.Field(i).SetFloat(float64(v.(float32)))
+		//}
 	}
 }
 

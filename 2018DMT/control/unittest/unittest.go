@@ -121,7 +121,7 @@ func TestJob() {
 	}
 	//id,err:=dao.PublishJob(job)
 	//fmt.Println(id,err)
-	fmt.Println(dao.GetJobPublisherId(job.Id + 2))
+	fmt.Println(dao.GetJobById(job.Id + 2))
 	//jb,err:=dao.ShowJob(5)
 	//fmt.Println(jb,err)
 
@@ -170,6 +170,11 @@ func UserTest() {
 	//fmt.Println(id, err)
 	u, err := dao.GetUserByEmail("237731947@qq.com")
 	fmt.Println(u, err)
+	//u2:=&models.User{Id:5}
+	//u2.CopyUserFromExpt(u,[]string{"Id",""})
+	//fmt.Println(u2)
+	u.Name = "麻花疼"
+	//tools.ShowErr(dao.UpDateUserInfo(u.Id,u))
 }
 
 func JobTypeTest() {
@@ -191,9 +196,9 @@ func ColorTest() {
 
 func Test() {
 	//ColorTest()
-	//UserTest()
+	UserTest()
 	//reflectTest()
-	TestJob()
+	//TestJob()
 	//TestStruct()
 	//CookieTest()
 	//jiamiTest()

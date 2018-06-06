@@ -44,6 +44,8 @@ func Login(w http.ResponseWriter, r *http.Request) {
 			Value:  dao.GenUserCookie(user.IdToString()),
 		}
 		http.SetCookie(w, &cookie)
+		models.SendRetJson(lr, msg, user.ToString(), w)
+		return
 	}
 	models.SendRetJson(lr, msg, "手动滑稽", w)
 }
@@ -54,13 +56,19 @@ func IsLogin(w http.ResponseWriter, r *http.Request) {
 		models.SendRetJson(0, "未登录", "", w)
 		return
 	}
-	user, t, err := dao.GetUserIdFromCookie(cookie.Value)
+	uid, t, err := dao.GetUserIdFromCookie(cookie.Value)
 	dt := int(time.Now().Sub(t).Seconds())
 	if dt > global.MaxCookieTime {
-		models.SendRetJson(1, "登录过期", fmt.Sprintf("%d", user), w)
+		models.SendRetJson(1, "登录过期", fmt.Sprintf("%d", uid), w)
+		return
+	}
+	user, err := dao.GetUserById(uid)
+	if err != nil {
+		models.SendRetJson(1, global.NoSuchUser.Error(),
+			fmt.Sprintf("%d", uid), w)
 		return
 	}
 	models.SendRetJson(1,
 		t.Format("2006-01-02/15:04:05"),
-		fmt.Sprintf("%d", user), w)
+		user.ToString(), w)
 }
