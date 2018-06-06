@@ -46,6 +46,48 @@ type dbinfo struct {
 
 	//用户的数据库类型
 	UserDbType string `json:"UserDbType"`
+
+	//金币的数据库
+	GoldDb string `json:"GoldDb"`
+
+	//金币的数据库类型
+	GoldDbType string `json:"GoldDbType"`
+
+	//简历的数据库
+	CVDb string `json:"CVDb"`
+
+	//简历的数据库类型
+	CVDbType string `json:"CVDbType"`
+
+	//博客的数据库
+	BlogDb string `json:"BlogDb"`
+
+	//博客的数据库类型
+	BlogDbType string `json:"BlogDbType"`
+
+	//帮助的数据库
+	HelpDb string `json:"HelpDb"`
+
+	//帮助的数据库类型
+	HelpDbType string `json:"HelpDbType"`
+
+	//消息的数据库
+	MessageDb string `json:"MessageDb"`
+
+	//消息的数据库类型
+	MessageDbType string `json:"MessageDbType"`
+
+	//博客回复的数据库
+	BlogReplyDb string `json:"BlogReplyDb"`
+
+	//博客回复的数据库类型
+	BlogReplyDbType string `json:"BlogReplyDbType"`
+
+	//帮助回复的数据库
+	HelpReplyDb string `json:"HelpReplyDb"`
+
+	//帮助回复的数据库类型
+	HelpReplyDbType string `json:"HelpReplyDbType"`
 }
 
 func (this *Config) Load(filename string) (err error) {

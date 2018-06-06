@@ -35,6 +35,11 @@ func RegisterAllRouter() {
 	http.HandleFunc("/user/delete", service.DeleteUser)
 }
 
+func init() {
+	//在main启动之前肯定都已经add了
+	global.WgDb.Wait()
+}
+
 func startserver(addr string) {
 	fmt.Println("添加路由规则中...")
 	RegisterAllRouter()

@@ -15,8 +15,13 @@ var (
 	logindb     *gorm.DB                           //数据库连接
 )
 
-//初始化包
 func init() {
+	global.WgDb.Add(1)
+	go LoginDbInit()
+}
+
+//初始化包
+func LoginDbInit() {
 	logindbname = global.CurrPath + logindbname
 	//fmt.Println("登录数据库地址:",logindbname)
 	tdb, err := gorm.Open(logindbtye, logindbname)
@@ -26,6 +31,7 @@ func init() {
 		logindb.CreateTable(&models.Login{})
 	}
 	fmt.Println("登录数据库初始化完成")
+	global.WgDb.Done()
 }
 
 func CheckLogin(login *models.Login) (res int) {

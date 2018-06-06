@@ -25,7 +25,10 @@ var (
 	MiKey = `TWT1234567890TWT`
 )
 
-var wg *sync.WaitGroup
+var (
+	wg   *sync.WaitGroup //多线程加载配置文件
+	WgDb *sync.WaitGroup //多线程初始化数据库
+)
 
 func init() {
 	CurrPath, _ = tools.GetCurrentPath()
@@ -36,6 +39,7 @@ func init() {
 	go SetWebConfig()
 	go LoadJobTpyes()
 	wg.Wait()
+	WgDb = new(sync.WaitGroup)
 }
 
 func SetWebConfig() {

@@ -16,6 +16,11 @@ var (
 )
 
 func init() {
+	global.WgDb.Add(1)
+	go UserDbInit()
+}
+
+func UserDbInit() {
 	userdbname = global.CurrPath + userdbname
 	//fmt.Println("用户数据库地址:",logindbname)
 	tdb, err := gorm.Open(userdbtye, userdbname)
@@ -25,6 +30,7 @@ func init() {
 		userdb.CreateTable(&models.User{})
 	}
 	fmt.Println("用户数据库初始化完成")
+	global.WgDb.Done()
 }
 
 func AddUser(user *models.User) (id int, err error) {

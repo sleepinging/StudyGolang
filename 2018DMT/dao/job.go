@@ -22,6 +22,11 @@ var (
 )
 
 func init() {
+	global.WgDb.Add(1)
+	go JobDbInit()
+}
+
+func JobDbInit() {
 	jobdbname = global.CurrPath + jobdbname
 	tdb, err := gorm.Open(jobdbtye, jobdbname)
 	tools.PanicErr(err, "工作数据库初始化")
@@ -34,6 +39,7 @@ func init() {
 	wgjobop = new(sync.WaitGroup)
 	go StartAutoJobCommit()
 	fmt.Println("工作数据库初始化完成")
+	global.WgDb.Done()
 }
 
 type tid struct {
