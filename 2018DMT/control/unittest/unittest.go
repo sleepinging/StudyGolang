@@ -203,6 +203,8 @@ func UserTest() {
 	////tools.ShowErr(dao.UpDateUserInfo(u.Id,u))
 	////tools.ShowErr(dao.DeleteUser(id))
 	//fmt.Println(dao.GetUserById(id))
+	time.Sleep(time.Second * 2)
+	fmt.Println(tools.HttpGet("http://193.112.77.180/user?Id=1"))
 }
 
 func JobTypeTest() {
@@ -224,7 +226,7 @@ func ColorTest() {
 
 func Test() {
 	//ColorTest()
-	UserTest()
+	//go UserTest()
 	//reflectTest()
 	//JobTest()
 	//TestStruct()

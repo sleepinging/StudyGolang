@@ -72,3 +72,14 @@ func IsLogin(w http.ResponseWriter, r *http.Request) {
 		t.Format("2006-01-02/15:04:05"),
 		user.ToString(), w)
 }
+
+func Logout(w http.ResponseWriter, r *http.Request) {
+	cookie, err := r.Cookie("user")
+	if err != nil {
+		models.SendRetJson(0, "未登录", "", w)
+		return
+	}
+	cookie.MaxAge = -1
+	http.SetCookie(w, cookie)
+	models.SendRetJson(1, "退出成功", "(●'◡'●)", w)
+}

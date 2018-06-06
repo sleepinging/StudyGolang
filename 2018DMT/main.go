@@ -18,6 +18,7 @@ func RegisterAllRouter() {
 
 	http.HandleFunc("/login", service.Login)
 	http.HandleFunc("/login/islogin", service.IsLogin)
+	http.HandleFunc("/login/logout", service.Logout)
 
 	http.HandleFunc("/upload/file", service.GetFileUrl)
 

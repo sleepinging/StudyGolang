@@ -54,6 +54,10 @@ func ShowJob(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	job, err := dao.ShowJob(int(id))
+	if err != nil {
+		models.SendRetJson(0, "错误", err.Error(), w)
+		return
+	}
 	jb, err := json.Marshal(job)
 	if err != nil {
 		models.SendRetJson(0, "服务器错误", err.Error(), w)
