@@ -13,6 +13,7 @@ import (
 	"os"
 	"reflect"
 	"time"
+	"sync"
 )
 
 func TestEmailVerify() {
@@ -101,11 +102,12 @@ func TestStruct() {
 	//select last_insert_rowid();
 }
 
-func TestJob() {
+func JobTest() {
 	job := &models.Job{
 		Name:        "洗碗",
 		PublisherId: 1,
 		Salary:      3000.0,
+		//PublishTime: time.Now(),
 		Time:        "每周一到周六",
 		Weekend:     -1,
 		Pickup:      -1,
@@ -121,17 +123,38 @@ func TestJob() {
 	}
 	//id,err:=dao.PublishJob(job)
 	//fmt.Println(id,err)
-	fmt.Println(dao.GetJobById(job.Id + 2))
+	//t1:=time.Now()
+	//fmt.Println(dao.GetJobById(job.Id+78))
+	//t2:=time.Now()
+	//fmt.Println(t2.Sub(t1))
 	//jb,err:=dao.ShowJob(5)
 	//fmt.Println(jb,err)
 
 	//c := dao.QueryJobCount(job)
-	//jobs := dao.QueryJob(job, 1, 0)
+	//jobs := dao.QueryJob(job, 1, 1)
 	//fmt.Println(c, jobs)
 
 	//err := dao.UpdataJob(6, job)
 	//err := dao.DeleteJob(5)
 	//fmt.Println(err)
+
+	////事务
+	//wg:=new(sync.WaitGroup)
+	//t1:=time.Now()
+	//for i:=0;i<10;i++{
+	//	wg.Add(1)
+	//	go func(){
+	//		j:=new(models.Job)
+	//		j.CopyJobFromEId(job)
+	//		fmt.Println(dao.DeleteJob(i+250))
+	//		//fmt.Println(dao.PublishJob(j))
+	//		wg.Done()
+	//	}()
+	//	time.Sleep(time.Millisecond*1)
+	//}
+	//wg.Wait()
+	//t2:=time.Now()
+	//fmt.Println(t2.Sub(t1))
 }
 
 func reflectTest() {
@@ -163,13 +186,14 @@ func reflectTest() {
 }
 
 func UserTest() {
-	//u := &models.User{
-	//	Email: "237731947@qq.com",
-	//}
-	//id, err := dao.AddUser(u)
-	//fmt.Println(id, err)
-	u, err := dao.GetUserByEmail("237731947@qq.com")
-	fmt.Println(u, err)
+	u := &models.User{
+		Email:    "237731947@qq.com",
+		Birthday: time.Now(),
+	}
+	id, err := dao.AddUser(u)
+	fmt.Println(id, err)
+	//u, err := dao.GetUserByEmail("237731947@qq.com")
+	//fmt.Println(u, err)
 	//u2:=&models.User{Id:5}
 	//u2.CopyUserFromExpt(u,[]string{"Id",""})
 	//fmt.Println(u2)
@@ -196,9 +220,9 @@ func ColorTest() {
 
 func Test() {
 	//ColorTest()
-	UserTest()
+	//UserTest()
 	//reflectTest()
-	//TestJob()
+	JobTest()
 	//TestStruct()
 	//CookieTest()
 	//jiamiTest()

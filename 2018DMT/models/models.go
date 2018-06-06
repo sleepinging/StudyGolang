@@ -37,6 +37,7 @@ type BlogZan struct {
 
 //简历
 type CV struct {
-	UserId  int    `gorm:"primary_key" json:"UserId"`
+	Id      int    `gorm:"primary_key"`
+	UserId  int    `json:"UserId"`
 	Context string `gorm:"type:varchar(2047)" json:"Context"`
 }

@@ -17,6 +17,10 @@ func GetIndex(w http.ResponseWriter, r *http.Request) {
 	global.RootFileServer.ServeHTTP(w, r)
 
 	cookie, err := r.Cookie("user")
+	go showinfo(cookie, err)
+}
+
+func showinfo(cookie *http.Cookie, err error) {
 	if err != nil {
 		return
 	}

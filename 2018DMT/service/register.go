@@ -73,7 +73,6 @@ func Register(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		models.SendRetJson(0, "注册失败", err.Error(), w)
 	}
-	//TODO 添加参数
 	id, err := dao.AddUser(&models.User{Email: email})
 	if err != nil {
 		models.SendRetJson(0, "注册失败", err.Error(), w)

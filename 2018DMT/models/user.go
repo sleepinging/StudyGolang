@@ -23,7 +23,6 @@ type User struct {
 	WeiXin     string    `json:"WeiXin"`
 	School     string    `json:"School"`
 	Major      string    `json:"Major"`
-	Gold       int       `json:"Gold"`
 	Type       int       `json:"Type"`
 }
 

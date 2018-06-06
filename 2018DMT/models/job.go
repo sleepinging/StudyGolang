@@ -6,25 +6,27 @@ import (
 	"io/ioutil"
 	"os"
 	"reflect"
+	"time"
 )
 
 type Job struct {
-	Id          int     `gorm:"primary_key"`
-	PublisherId int     `json:"PublisherId"`
-	Name        string  `json:"Name"`
-	Salary      float32 `json:"Salary"`
-	Time        string  `json:"Time"`
-	Weekend     int     `json:"Weekend"`
-	Pickup      int     `json:"Pickup"`
-	Eat         int     `json:"Eat"`
-	Live        int     `json:"Live"`
-	WuXianYiJin int     `json:"WuXianYiJin"`
-	Place       string  `json:"Place"`
-	LimPeople   int     `json:"LimPeople"`
-	NowPeople   int     `json:"NowPeople"`
-	Sex         int     `json:"Sex"`
-	Phone       string  `json:"Phone"`
-	Detail      string  `gorm:"type:varchar(2047)" json:"Detail"`
+	Id          int       `gorm:"primary_key" gorm:"AUTO_INCREMENT"`
+	PublisherId int       `json:"PublisherId"`
+	PublishTime time.Time `josn:"PublishTime"`
+	Name        string    `json:"Name"`
+	Salary      float32   `json:"Salary"`
+	Time        string    `json:"Time"`
+	Weekend     int       `json:"Weekend"`
+	Pickup      int       `json:"Pickup"`
+	Eat         int       `json:"Eat"`
+	Live        int       `json:"Live"`
+	WuXianYiJin int       `json:"WuXianYiJin"`
+	Place       string    `json:"Place"`
+	LimPeople   int       `json:"LimPeople"`
+	NowPeople   int       `json:"NowPeople"`
+	Sex         int       `json:"Sex"`
+	Phone       string    `json:"Phone"`
+	Detail      string    `gorm:"type:varchar(2047)" json:"Detail"`
 }
 
 //除了id全部复制
