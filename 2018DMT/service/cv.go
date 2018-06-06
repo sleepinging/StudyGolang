@@ -109,12 +109,7 @@ func GetUserCV(w http.ResponseWriter, r *http.Request) {
 		models.SendRetJson2(0, "错误", err.Error(), w)
 		return
 	}
-	bs, err := json.Marshal(cvs)
-	if err != nil {
-		models.SendRetJson2(0, "错误", err.Error(), w)
-		return
-	}
-	models.SendRetJson2(1, "成功", string(bs), w)
+	models.SendRetJson2(1, "成功", cvs, w)
 	return
 }
 
@@ -136,11 +131,6 @@ func GetCV(w http.ResponseWriter, r *http.Request) {
 		models.SendRetJson2(0, "错误", err.Error(), w)
 		return
 	}
-	bs, err := json.Marshal(cv)
-	if err != nil {
-		models.SendRetJson2(0, "错误", err.Error(), w)
-		return
-	}
-	models.SendRetJson2(1, "成功", string(bs), w)
+	models.SendRetJson2(1, "成功", cv, w)
 	return
 }

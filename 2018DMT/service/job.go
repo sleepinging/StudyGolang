@@ -59,12 +59,7 @@ func ShowJob(w http.ResponseWriter, r *http.Request) {
 		models.SendRetJson2(0, "错误", err.Error(), w)
 		return
 	}
-	jb, err := json.Marshal(job)
-	if err != nil {
-		models.SendRetJson2(0, "服务器错误", err.Error(), w)
-		return
-	}
-	models.SendRetJson2(1, "成功", string(jb), w)
+	models.SendRetJson2(1, "成功", job, w)
 	return
 }
 
@@ -130,12 +125,7 @@ func QueryJob(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	qjobs := dao.QueryJob(job, int(limit), int(page))
-	res, err := json.Marshal(qjobs)
-	if err != nil {
-		models.SendRetJson2(0, "服务器错误", err.Error(), w)
-		return
-	}
-	models.SendRetJson2(1, "成功", string(res), w)
+	models.SendRetJson2(1, "成功", qjobs, w)
 	return
 }
 
