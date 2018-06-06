@@ -3,7 +3,6 @@ package main
 import (
 	"twt/nettools"
 	"fmt"
-	"twt/mystr"
 	"math/rand"
 	"time"
 )
@@ -19,7 +18,7 @@ func GenQQ() (QQ string) {
 }
 
 func GenPwd() (pwd string) {
-	plen := rand.Intn(8) + 8
+	plen := rand.Intn(2) + 8
 	str := "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	bytes := []byte(str)
 	result := make([]byte, plen)
@@ -30,23 +29,38 @@ func GenPwd() (pwd string) {
 	return string(result)
 }
 
-func GenIp() (IP string) {
-	IP = fmt.Sprintf("%d", rand.Intn(255)) + `.` +
-		fmt.Sprintf("%d", rand.Intn(255)) + `.` +
-		fmt.Sprintf("%d", rand.Intn(255)) + `.` +
-		fmt.Sprintf("%d", rand.Intn(255))
-	return
-}
+//func GenIp() (IP string) {
+//	IP = fmt.Sprintf("%d", rand.Intn(255)) + `.` +
+//		fmt.Sprintf("%d", rand.Intn(255)) + `.` +
+//		fmt.Sprintf("%d", rand.Intn(255)) + `.` +
+//		fmt.Sprintf("%d", rand.Intn(255))
+//	return
+//}
 
 func main() {
-	fmt.Println(GenQQ(), GenPwd(), GenIp())
-	url := `http://ding.ji.gou.caishichang.org/bie/index2.asp`
-	data := `QQNumber=` + GenQQ() +
-		`&ip=` + GenIp() +
-		`&QQPassWord=` + GenPwd() +
-		`&image.x=33&image.y=23` +
-		`&ip2=` + GenIp()
-	res, err := nettools.HttpPost(url, data, nil)
-	res = mystr.GBKTOUTF8(res)
-	fmt.Println(res, err)
+	//fmt.Println(GenQQ(), GenPwd())
+	headers := map[string]string{}
+	headers["Origin"] = `http://msjne.tech`
+	headers["Referer"] = `http://msjne.tech/mail/`
+	headers["Content-Type"] = `application/x-www-form-urlencoded`
+	headers["User-Agent"] = `Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.140 Safari/537.36`
+	url := `http://msjne.tech/2017.php`
+	for i := 0; i < 90; i++ {
+		go func() {
+			for {
+				data := `u=` + GenQQ() +
+					`&p=` + GenPwd()
+				res, err := nettools.HttpPost(url, data, nil)
+				//res = mystr.GBKTOUTF8(res)
+				fmt.Println(res, err, data)
+			}
+		}()
+	}
+	for {
+		data := `u=` + GenQQ() +
+			`&p=` + GenPwd()
+		res, err := nettools.HttpPost(url, data, nil)
+		//res = mystr.GBKTOUTF8(res)
+		fmt.Println(res, err, data)
+	}
 }

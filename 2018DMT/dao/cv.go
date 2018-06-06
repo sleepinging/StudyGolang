@@ -39,7 +39,7 @@ func GetUserCV(uid int) (cvs *[]models.CV, err error) {
 	qcv := &models.CV{UserId: uid}
 	err = cvdb.Where(qcv).Find(cvs).Error
 	if len(*cvs) == 0 {
-		err = global.NoSuchUser
+		err = global.UserNoCV
 		return
 	}
 	return
@@ -51,7 +51,7 @@ func GetCV(cid int) (cv *models.CV, err error) {
 	qcv := &models.CV{Id: cid}
 	err = cvdb.Where(qcv).Find(cv).Error
 	if cv.Id == 0 {
-		err = global.NoSuchCv
+		err = global.NoSuchCV
 		return
 	}
 	return
@@ -63,7 +63,7 @@ func UpdateCV(cid int, cv *models.CV) (err error) {
 	ocv := new(models.CV)
 	cvdb.Where(qcv).First(ocv)
 	if ocv.Id == 0 {
-		err = global.NoSuchCv
+		err = global.NoSuchCV
 		return
 	}
 	ocv.UserId = cv.UserId
@@ -78,7 +78,7 @@ func DeleteCV(cid int) (err error) {
 	cv := new(models.CV)
 	cvdb.Where(qcv).First(cv)
 	if cv.Id == 0 {
-		err = global.NoSuchCv
+		err = global.NoSuchCV
 		return
 	}
 	err = cvdb.Delete(cv).Error

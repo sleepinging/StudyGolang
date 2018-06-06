@@ -9,12 +9,13 @@ import (
 	"fmt"
 	"net/url"
 	"strconv"
+	"time"
 )
 
 func PublishJob(w http.ResponseWriter, r *http.Request) {
 	f, err := Permission.PublishJob(w, r)
 	if !f {
-		models.SendRetJson(0, err.Error(), "", w)
+		models.SendRetJson(0, "错误", err.Error(), w)
 		return
 	}
 	r.ParseForm()
@@ -29,6 +30,7 @@ func PublishJob(w http.ResponseWriter, r *http.Request) {
 		models.SendRetJson(0, "Job格式错误", err.Error(), w)
 		return
 	}
+	job.PublishTime = time.Now()
 	id, err := dao.PublishJob(job)
 	if err != nil {
 		models.SendRetJson(0, "发布失败", err.Error(), w)

@@ -14,7 +14,7 @@ func PublishJob(w http.ResponseWriter, r *http.Request) (f bool, err error) {
 		return
 	}
 	tp := dao.GetUserType(uid)
-	if tp == 3 || tp == 4 {
+	if tp >= 3 {
 		f = true
 		return
 	}

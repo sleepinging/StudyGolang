@@ -236,7 +236,22 @@ func GoldTest() {
 	fmt.Println(tools.HttpPost(url, data, nil))
 }
 
+func CVTest() {
+	cv := &models.CV{
+		UserId:  1,
+		Context: "精通C++",
+	}
+	//fmt.Println(dao.AddCV(cv))
+	//fmt.Println(dao.DeleteCV(2))
+	cv.Context = "精通Golang"
+	//tools.ShowErr(dao.UpdateCV(2,cv))
+	fmt.Println(dao.GetUserCV(1))
+	fmt.Println(dao.GetCV(1))
+	os.Exit(0)
+}
+
 func Test() {
+	//CVTest()
 	//go GoldTest()
 	//ColorTest()
 	//go UserTest()

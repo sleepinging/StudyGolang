@@ -35,6 +35,12 @@ func RegisterAllRouter() {
 	http.HandleFunc("/user/delete", service.DeleteUser)
 	http.HandleFunc("/gold/show", service.GetUserGold)
 	http.HandleFunc("/gold/set", service.SetUserGold)
+
+	http.HandleFunc("/cv/user", service.GetUserCV)
+	http.HandleFunc("/cv", service.GetCV)
+	http.HandleFunc("/cv/update", service.UpDateCV)
+	http.HandleFunc("/cv/delete", service.DeleteCV)
+	http.HandleFunc("/cv/add", service.AddCV)
 }
 
 func init() {
