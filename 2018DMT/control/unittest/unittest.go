@@ -13,7 +13,6 @@ import (
 	"os"
 	"reflect"
 	"time"
-	"sync"
 )
 
 func TestEmailVerify() {
@@ -130,9 +129,9 @@ func JobTest() {
 	//jb,err:=dao.ShowJob(5)
 	//fmt.Println(jb,err)
 
-	//c := dao.QueryJobCount(job)
-	//jobs := dao.QueryJob(job, 1, 1)
-	//fmt.Println(c, jobs)
+	c := dao.QueryJobCount(job)
+	jobs := dao.QueryJob(job, 1, 1)
+	fmt.Println(c, jobs)
 
 	//err := dao.UpdataJob(6, job)
 	//err := dao.DeleteJob(5)
@@ -222,7 +221,7 @@ func Test() {
 	//ColorTest()
 	//UserTest()
 	//reflectTest()
-	JobTest()
+	//JobTest()
 	//TestStruct()
 	//CookieTest()
 	//jiamiTest()

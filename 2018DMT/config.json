@@ -8,8 +8,26 @@
     "LoginDbType": "sqlite3",
     "JobDb": "data\\db\\job.db",
     "JobDbType": "sqlite3",
+    "BlogDb": "data\\db\\blog.db",
+    "BlogDbType": "sqlite3",
+    "HelpDb": "data\\db\\help.db",
+    "HelpDbType": "sqlite3",
+    "BlogReplyDb": "data\\db\\blogreply.db",
+    "BlogReplyDbType": "sqlite3",
+    "CVDb": "data\\db\\cv.db",
+    "CVDbType": "sqlite3",
+    "MessageDb": "data\\db\\message.db",
+    "MessageDbType": "sqlite3",
+    
     "UserDb": "data\\db\\user.db",
-    "UserDbType": "sqlite3"
+    "UserDbType": "sqlite3",
+    "HelpReplyDb": "data\\db\\helpreply.db",
+    "HelpReplyDbType": "sqlite3",
+    "BlogZanDb": "data\\db\\blogzan.db",
+    "BlogZanDbType": "sqlite3",
+    "GoldDb": "data\\db\\gold.db",
+    "GoldDbType": "sqlite3"
+    
   },
   "JobTypeInfoFile": "data\\jobtypes.js"
 }
