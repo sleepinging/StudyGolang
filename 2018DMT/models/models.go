@@ -7,14 +7,14 @@ import (
 )
 
 //返回的json
-type RetJson struct {
-	Status int    `json:"status"`
-	Msg    string `json:"msg"`
-	Data   string `json:"data"`
+type RetJson2 struct {
+	Status int         `json:"status"`
+	Msg    string      `json:"msg"`
+	Data   interface{} `json:"data"`
 }
 
-func SendRetJson(status int, msg, data string, w http.ResponseWriter) {
-	retjs := RetJson{Status: status, Msg: msg, Data: data}
+func SendRetJson2(status int, msg string, data interface{}, w http.ResponseWriter) {
+	retjs := RetJson2{Status: status, Msg: msg, Data: data}
 	res, err := json.Marshal(&retjs)
 	if err != nil {
 		fmt.Println(err)
