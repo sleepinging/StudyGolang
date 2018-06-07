@@ -20,7 +20,7 @@ var (
 	wgjobop     *sync.WaitGroup                  //正在操作数据库
 	wgjobcommit *sync.WaitGroup                  //正在提交事务
 )
-
+//TODO 后期加入回滚
 func init() {
 	global.WgDb.Add(1)
 	go JobDbInit()
@@ -42,21 +42,14 @@ func JobDbInit() {
 	global.WgDb.Done()
 }
 
-type tid struct {
-	Id int
-}
-
 func PublishJob(job *models.Job) (id int, err error) {
 	//如果需要提交的话先等待提交
 	wgjobcommit.Wait()
 	//正在操作
 	wgjobop.Add(1)
 
-	jobtx.Create(job)
-	sql := `SELECT last_insert_rowid() as id;`
-	var lid tid
-	jobtx.Raw(sql).Select("id").Scan(&lid)
-	id = lid.Id
+	err = jobtx.Create(job).Error
+	id = job.Id
 
 	jobmodified = true
 	//完成本次操作
@@ -142,7 +135,7 @@ func GetJobById(jid int) (job *models.Job, err error) {
 
 func StartAutoJobCommit() {
 	for {
-		time.Sleep(500)
+		time.Sleep(global.Config.DbTransCommitTime)
 		if jobmodified {
 			//先表示需要提交事务
 			wgjobcommit.Add(1)

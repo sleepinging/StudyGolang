@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+	"time"
 )
 
 //配置文件的模型
@@ -20,6 +21,9 @@ type Config struct {
 
 	//工作类型数据
 	JobTypeInfoFile string `json:"JobTypeInfoFile"`
+
+	//数据库事务提交间隔(毫秒)
+	DbTransCommitTime time.Duration `json:"DbTransCommitTime"`
 }
 
 type dbinfo struct {

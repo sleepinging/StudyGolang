@@ -25,6 +25,7 @@ func GetFileUrl(w http.ResponseWriter, r *http.Request) {
 		models.SendRetJson2(0, "上传失败", "服务器出错", w)
 		return
 	}
+	//TODO 分类
 	savename := global.FileDirPath + tools.GenFileName(fs[0].Filename)
 	f, err := os.OpenFile(savename, os.O_WRONLY|os.O_CREATE, 0666)
 	defer f.Close()

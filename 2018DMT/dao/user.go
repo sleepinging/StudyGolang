@@ -38,13 +38,7 @@ func AddUser(user *models.User, pwd string) (id int, err error) {
 	if err != nil {
 		return
 	}
-	sql := `SELECT last_insert_rowid() as id;`
-	var lid tid
-	err = userdb.Raw(sql).Select("id").Scan(&lid).Error
-	if err != nil {
-		return
-	}
-	id = lid.Id
+	id = user.Id
 
 	//登录表添加
 	err = AddLogin(&models.Login{Email: user.Email, Password: pwd})

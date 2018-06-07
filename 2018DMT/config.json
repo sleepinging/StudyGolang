@@ -29,5 +29,6 @@
     "GoldDbType": "sqlite3"
     
   },
-  "JobTypeInfoFile": "data\\jobtypes.js"
+  "JobTypeInfoFile": "data\\jobtypes.js",
+  "DbTransCommitTime": 500
 }

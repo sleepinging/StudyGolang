@@ -3,6 +3,7 @@ package service
 import (
 	"net/http"
 	"../global"
+	"../tools"
 	"../dao"
 	"strings"
 	"fmt"
@@ -25,5 +26,5 @@ func showinfo(cookie *http.Cookie, err error) {
 		return
 	}
 	user, t, err := dao.GetUserIdFromCookie(cookie.Value)
-	fmt.Println("Cookie userid:", user, t)
+	fmt.Println(tools.FmtTime(), "Cookie userid:", user, t)
 }

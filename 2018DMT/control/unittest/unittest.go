@@ -13,6 +13,7 @@ import (
 	"os"
 	"reflect"
 	"time"
+	"sync"
 )
 
 func TestEmailVerify() {
@@ -129,9 +130,9 @@ func JobTest() {
 	//jb,err:=dao.ShowJob(5)
 	//fmt.Println(jb,err)
 
-	c := dao.QueryJobCount(job)
-	jobs := dao.QueryJob(job, 2, 1)
-	fmt.Println(c, jobs)
+	//c := dao.QueryJobCount(job)
+	//jobs := dao.QueryJob(job, 2, 1)
+	//fmt.Println(c, jobs)
 	//bs,err:=json.Marshal(jobs)
 	//fmt.Println(err,string(bs))
 
@@ -139,23 +140,24 @@ func JobTest() {
 	//err := dao.DeleteJob(5)
 	//fmt.Println(err)
 
-	////事务
-	//wg:=new(sync.WaitGroup)
-	//t1:=time.Now()
-	//for i:=0;i<10;i++{
-	//	wg.Add(1)
-	//	go func(){
-	//		j:=new(models.Job)
-	//		j.CopyJobFromEId(job)
-	//		fmt.Println(dao.DeleteJob(i+250))
-	//		//fmt.Println(dao.PublishJob(j))
-	//		wg.Done()
-	//	}()
-	//	time.Sleep(time.Millisecond*1)
-	//}
-	//wg.Wait()
-	//t2:=time.Now()
-	//fmt.Println(t2.Sub(t1))
+	//事务
+	wg := new(sync.WaitGroup)
+	t1 := time.Now()
+	for i := 0; i < 8; i++ {
+		wg.Add(1)
+		go func(i int) {
+			j := new(models.Job)
+			j.CopyJobFromEId(job)
+			//jid,err:=dao.PublishJob(j)
+			//fmt.Println("发布",jid,err)
+			fmt.Println("删除", dao.DeleteJob(272+i))
+			wg.Done()
+		}(i)
+	}
+	wg.Wait()
+	t2 := time.Now()
+	fmt.Println(t2.Sub(t1))
+	//os.Exit(0)
 }
 
 func reflectTest() {
@@ -239,19 +241,31 @@ func GoldTest() {
 func CVTest() {
 	cv := &models.CV{
 		UserId:  1,
-		Context: "精通C++",
+		Context: "精通易语言",
 	}
 	//fmt.Println(dao.AddCV(cv))
-	//fmt.Println(dao.DeleteCV(2))
+	//fmt.Println(dao.DeleteCV(5))
 	cv.Context = "精通Golang"
 	//tools.ShowErr(dao.UpdateCV(2,cv))
 	fmt.Println(dao.GetUserCV(1))
 	fmt.Println(dao.GetCV(1))
+	time.Sleep(500)
 	os.Exit(0)
 }
 
+func MsgTest() {
+	msg := &models.Message{
+		Type:    1,
+		Title:   "问候",
+		Context: "来自golang的问候",
+		Readed:  -1,
+	}
+	fmt.Println(dao.SendMsg(msg))
+}
+
 func Test() {
-	//CVTest()
+	//MsgTest()
+	CVTest()
 	//go GoldTest()
 	//ColorTest()
 	//go UserTest()
