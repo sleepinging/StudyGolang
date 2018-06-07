@@ -26,12 +26,12 @@ func MsgDbInit() {
 	msgdbname = global.CurrPath + msgdbname
 	//fmt.Println("用户数据库地址:",logindbname)
 	tdb, err := gorm.Open(msgdbtye, msgdbname)
-	tools.PanicErr(err, "简历数据库初始化")
+	tools.PanicErr(err, "消息数据库初始化")
 	msgdb = tdb
 	if !msgdb.HasTable(&models.Message{}) {
 		msgdb.CreateTable(&models.Message{})
 	}
-	fmt.Println("简历数据库初始化完成")
+	fmt.Println("消息数据库初始化完成")
 	global.WgDb.Done()
 }
 

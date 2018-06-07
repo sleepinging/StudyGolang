@@ -10,7 +10,7 @@ import (
 )
 
 type Job struct {
-	Id          int       `gorm:"primary_key" gorm:"AUTO_INCREMENT"`
+	Id          int       `gorm:"primary_key" gorm:"AUTO_INCREMENT" json:"Id"`
 	PublisherId int       `json:"PublisherId"`
 	PublishTime time.Time `josn:"PublishTime"`
 	Name        string    `json:"Name"`
