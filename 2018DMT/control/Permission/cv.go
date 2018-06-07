@@ -78,8 +78,8 @@ func DeleteCV(id int, w http.ResponseWriter, r *http.Request) (err error) {
 }
 
 //添加简历
-func AddCV(w http.ResponseWriter, r *http.Request) (err error) {
-	uid, err := GetUserIdByCookie(w, r)
+func AddCV(w http.ResponseWriter, r *http.Request) (uid int, err error) {
+	uid, err = GetUserIdByCookie(w, r)
 	if err != nil {
 		return
 	}

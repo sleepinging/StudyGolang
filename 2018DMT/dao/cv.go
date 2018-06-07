@@ -120,6 +120,11 @@ func AddCV(cv *models.CV) (cid int, err error) {
 	//正在操作
 	wgcvop.Add(1)
 
+	u, err := GetUserById(cv.UserId)
+	if err != nil {
+		return
+	}
+	cv.UserName = u.Name
 	err = cvtx.Create(cv).Error
 	cid = cv.Id
 

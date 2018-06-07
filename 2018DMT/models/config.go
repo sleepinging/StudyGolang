@@ -69,6 +69,12 @@ type dbinfo struct {
 	//博客的数据库类型
 	BlogDbType string `json:"BlogDbType"`
 
+	//求助的数据库
+	SeekHelpDb string `json:"SeekHelpDb"`
+
+	//求助的数据库类型
+	SeekHelpDbType string `json:"SeekHelpDbType"`
+
 	//帮助的数据库
 	HelpDb string `json:"HelpDb"`
 

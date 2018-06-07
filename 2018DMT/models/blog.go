@@ -1,21 +1,24 @@
 package models
 
 import (
-	"time"
 	"../tools"
 	"reflect"
+	"time"
 )
 
 //博客
 type Blog struct {
-	Id          int       `gorm:"primary_key" gorm:"AUTO_INCREMENT" json:"Id"`
-	PublisherId int       `json:"PublisherId"`
-	Time        time.Time `json:"Time"`
-	Status      int       `json:"Status"`
-	Type        int       `json:"Type"`
-	Title       string    `json:"Title"`
-	Context     string    `gorm:"type:varchar(10239)" json:"Context"`
-	Readed      int       `json:"Readed"`
+	Id            int       `gorm:"primary_key" gorm:"AUTO_INCREMENT" json:"Id"`
+	PublisherId   int       `json:"PublisherId"`
+	PublisherName string    `json:"PublisherName"` //+
+	PublisherHead string    `json:"PublisherHead"` //+
+	Time          time.Time `json:"Time"`
+	Status        int       `json:"Status"`
+	Type          int       `json:"Type"`
+	Title         string    `json:"Title"`
+	Context       string    `gorm:"type:varchar(10239)" json:"Context"`
+	Readed        int       `json:"Readed"`
+	Reply         int       `json:"Reply"` //+
 }
 
 //除了某些字段全部复制

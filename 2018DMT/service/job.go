@@ -8,12 +8,11 @@ import (
 	"encoding/json"
 	"net/url"
 	"strconv"
-	"time"
 )
 
 func PublishJob(w http.ResponseWriter, r *http.Request) {
-	f, err := Permission.PublishJob(w, r)
-	if !f {
+	uid, err := Permission.PublishJob(w, r)
+	if err != nil {
 		models.SendRetJson2(0, "错误", err.Error(), w)
 		return
 	}
@@ -29,7 +28,7 @@ func PublishJob(w http.ResponseWriter, r *http.Request) {
 		models.SendRetJson2(0, "Job格式错误", err.Error(), w)
 		return
 	}
-	job.PublishTime = time.Now()
+	job.PublisherId = uid
 	id, err := dao.PublishJob(job)
 	if err != nil {
 		models.SendRetJson2(0, "发布失败", err.Error(), w)
@@ -42,7 +41,7 @@ func PublishJob(w http.ResponseWriter, r *http.Request) {
 func ShowJob(w http.ResponseWriter, r *http.Request) {
 	queryForm, err := url.ParseQuery(r.URL.RawQuery)
 	if err != nil {
-		models.SendRetJson2(0, err.Error(), "", w)
+		models.SendRetJson2(0, "失败", err.Error(), w)
 		return
 	}
 	if len(queryForm["Id"]) == 0 {

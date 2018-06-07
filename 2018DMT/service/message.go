@@ -7,6 +7,7 @@ import (
 	"../dao"
 	"../control/Permission"
 	"encoding/json"
+	"net/url"
 )
 
 //发送消息
@@ -144,6 +145,22 @@ func GetSendedMsg(w http.ResponseWriter, r *http.Request) {
 	}
 	models.SendRetJson2(1, "成功", msgs, w)
 	return
+}
+
+//显示某条消息
+func GetMsg(w http.ResponseWriter, r *http.Request) {
+	queryForm, err := url.ParseQuery(r.URL.RawQuery)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	id, err := GetGetInt("Id", queryForm)
+	msg, err := Permission.GetMsg(id, w, r)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	models.SendRetJson2(1, "成功", msg, w)
 }
 
 //标为已读

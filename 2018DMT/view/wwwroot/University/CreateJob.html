@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<link rel="stylesheet" href="css/bootstrap.css" />
+		<title></title>
+		<style>
+			.item {
+				margin: 10px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container">
+			<div>
+				<div class="input-group item">
+					<span class="input-group-addon" id="basic-addon1">工作名称：</span>
+					<input id="gzmc" type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+				</div>
+				<div class="input-group item">
+					<span class="input-group-addon" id="basic-addon1">薪资</span>
+					<input id="xz" type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+				</div>
+				<div class="input-group item">
+					<span class="input-group-addon" id="basic-addon1">工作时间</span>
+					<input id="gzsj" type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+				</div>
+				<div class="input-group item">
+					<span class="input-group-addon" id="basic-addon1">有无双休</span>
+					<select id="sx" class="form-control">
+						<option value="1">有</option>
+						<option value="-1">无</option>
+					</select>
+				</div>
+				<div class="input-group item">
+					<span class="input-group-addon" id="basic-addon1">是否接送</span>
+					<select id="js" class="form-control">
+						<option value="1">有</option>
+						<option value="-1">无</option>
+					</select>
+				</div>
+				<div class="input-group item">
+					<span class="input-group-addon" id="basic-addon1">是否包吃</span>
+					<select id="bc" class="form-control">
+						<option value="1">有</option>
+						<option value="-1">无</option>
+					</select>
+				</div>
+				<div class="input-group item">
+					<span class="input-group-addon" id="basic-addon1">是否包住</span>
+					<select id="bz" class="form-control">
+						<option value="1">有</option>
+						<option value="-1">无</option>
+					</select>
+				</div>
+				<div class="input-group item">
+					<span class="input-group-addon" id="basic-addon1">五险一金</span>
+					<select id="wxyj" class="form-control">
+						<option value="1">有</option>
+						<option value="-1">无</option>
+					</select>
+				</div>
+				<div class="input-group item">
+					<span class="input-group-addon" id="basic-addon1">工作地点</span>
+					<input id="gzdd" type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+				</div>
+				<div class="input-group item">
+					<span class="input-group-addon" id="basic-addon1">招聘人数</span>
+					<input id="zprs" type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+				</div>
+				<div class="input-group item">
+					<span class="input-group-addon" id="basic-addon1">性别要求</span>
+					<select id="xbyq" class="form-control">
+						<option value="1">无</option>
+						<option value="1">女</option>
+						<option value="-1">男</option>
+					</select>	
+				</div>
+				<div class="input-group item">
+					<span class="input-group-addon" id="basic-addon1">电话</span>
+					<input id="sj" type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+				</div>
+			</div>
+			<div class="form-group item">
+				<label for="jobDetail">工作详情</label>
+				<textarea id="gzxq" class="form-control" id="jobDetail" rows="3"></textarea>
+			</div>
+			<div style="width: 80%;margin: 0 auto;">
+				<button id="btn_fbgz" class="btn btn-success btn-block" style="margin: 0 auto;">发布工作</button>
+			</div>
+			<br />
+			<div style="width: 80%;margin: 0 auto;">
+				<button class="btn btn-danger btn-block" style="margin: 0 auto;">取消发布</button>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/API.js"></script>
+		<script type="text/javascript" src="js/jquery.min3.3.1.js"></script>
+		<script type="text/javascript" src="js/bootstrap.js"></script>
+		<script>
+			$('#btn_fbgz').click(function() {
+				var param = "Job="+JSON.stringify(
+						{ 
+						Name: $('#gzmc').val(),
+						Salary:parseInt($('#gzsj').val()) ,
+						Time: $('#sj').val(),
+						Weekend:parseInt($('#sx').val()),
+						Pickup: parseInt($('#js').val()),
+						Eat: parseInt($('#bc').val()),
+						Live: parseInt($('#bz').val()),
+						WuXianYiJin:parseInt($('#wxyj').val()),
+						Place:$('#gzdd').val(),
+						LimPeople:parseInt($('#zprs').val()),
+						Sex:parseInt($('#xbyq').val()),
+						Phone:$('#sj').val(),
+						Detail:$('#gzxq').val()
+					}
+				)
+				$.ajax({
+					type: "post",
+					url: API_PUBLISHJOB,
+					dataType: 'json', 
+					async: true,
+					data:param,
+					success: function(result) {
+						console.log(result)
+					}
+
+				});
+			})
+		</script>
+	</body>
+
+</html>

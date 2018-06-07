@@ -10,6 +10,8 @@
     "JobDbType": "sqlite3",
     "BlogDb": "data\\db\\blog.db",
     "BlogDbType": "sqlite3",
+    "SeekHelpDb": "data\\db\\seekhelp.db",
+    "SeekHelpDbType": "sqlite3",
     "HelpDb": "data\\db\\help.db",
     "HelpDbType": "sqlite3",
     "BlogReplyDb": "data\\db\\blogreply.db",

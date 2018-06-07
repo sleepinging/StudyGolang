@@ -37,6 +37,16 @@ func MsgDbInit() {
 //发送消息
 func SendMsg(msg *models.Message) (mid int, err error) {
 	msg.Time = time.Now()
+	u, err := GetUserById(msg.RecverId)
+	if err != nil {
+		return
+	}
+	msg.RecverName = u.Name
+	u, err = GetUserById(msg.SenderId)
+	if err != nil {
+		return
+	}
+	msg.SenderName = u.Name
 	err = msgdb.Create(msg).Error
 	if err != nil {
 		return

@@ -31,15 +31,17 @@ type Login struct {
 
 //博客点赞表
 type BlogZan struct {
-	BlogId int `gorm:"primary_key" json:"BlogId"`
-	UserId int `gorm:"primary_key" json:"UserId"`
+	BlogId    int    `gorm:"primary_key" json:"BlogId"`
+	ZanerId   int    `gorm:"primary_key" json:"ZanerId"`
+	ZanerName string `json:"ZanerName"`
 }
 
 //简历
 type CV struct {
-	Id      int    `gorm:"primary_key" gorm:"AUTO_INCREMENT" json:"Id"`
-	UserId  int    `json:"UserId"`
-	Context string `gorm:"type:varchar(2047)" json:"Context"`
+	Id       int    `gorm:"primary_key" gorm:"AUTO_INCREMENT" json:"Id"`
+	UserId   int    `json:"UserId"`
+	UserName string `json:"UserName"` //+
+	Context  string `gorm:"type:varchar(2047)" json:"Context"`
 }
 
 //金币

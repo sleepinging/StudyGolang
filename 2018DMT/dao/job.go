@@ -47,6 +47,12 @@ func PublishJob(job *models.Job) (id int, err error) {
 	//正在操作
 	wgjobop.Add(1)
 
+	job.PublishTime = time.Now()
+	u, err := GetUserById(job.PublisherId)
+	if err != nil {
+		return
+	}
+	job.PublisherName = u.Name
 	err = jobtx.Create(job).Error
 	id = job.Id
 
@@ -59,7 +65,7 @@ func PublishJob(job *models.Job) (id int, err error) {
 func ShowJob(id int) (job *models.Job, err error) {
 	job = new(models.Job)
 	jobdb.Where(&models.Job{Id: id}).First(job)
-	if job.Name == "" {
+	if job.Id == 0 {
 		err = global.NoSuchJob
 		return
 	}

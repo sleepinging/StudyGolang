@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<title></title>
+		<link rel="stylesheet" href="css/bootstrap.css" />
+		<script type="text/javascript" src="js/jquery.min3.3.1.js"></script>
+		<script type="text/javascript" src="js/bootstrap.js"></script>
+		<style>
+			.item{
+				margin: 20px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="input-group item">
+				<span class="input-group-addon" id="sizing-addon2">标题</span>
+				<input id="title" type="text" class="form-control" placeholder="请输入标题" aria-describedby="sizing-addon2">
+			</div>
+			<div class="input-group item">
+				<span class="input-group-addon" id="sizing-addon2">内容</span>
+				<input id="content" type="text" class="form-control" placeholder="请输入内容" aria-describedby="sizing-addon2">
+			</div>
+			<div class="input-group item">
+				<span class="input-group-addon" id="sizing-addon2">类型</span>
+				<select id="wxyj" class="form-control">
+						<option>有</option>
+						<option>无</option>
+					</select>
+			</div>
+			<div class="input-group item">
+				<span class="input-group-addon" id="sizing-addon2">金币</span>
+				<input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon2">
+			</div>
+			<div style="width: 80%;margin: 0 auto;">
+				<button id="btn_qqbz" class="btn btn-success" style="margin: 0 auto;">请求帮助</button>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/API.js" ></script>
+		<script>
+			$('#btn_qqbz').click(function(){
+				$.ajax({
+					type:"post",
+					url:API_REQUESTHELP,
+					async:true,
+					data:{UserId:1,Type:1001,Title:$('#title').val(),Context:$('#content').val(),Gold:5,},
+					success:function(result){
+						console.log(result)
+					}
+				});
+			})
+		</script>
+	</body>
+
+</html>

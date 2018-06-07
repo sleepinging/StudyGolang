@@ -98,6 +98,30 @@ func GetSendedMsg(w http.ResponseWriter, r *http.Request) (uid int, err error) {
 	return
 }
 
+//显示某条消息
+func GetMsg(mid int, w http.ResponseWriter, r *http.Request) (msg *models.Message, err error) {
+	uid, err := GetUserIdByCookie(w, r)
+	if err != nil {
+		return
+	}
+	tp := dao.GetUserType(uid)
+	if tp >= 5 {
+		return
+	}
+	if tp <= 1 {
+		err = global.NoPermission
+		return
+	}
+	msg, err = dao.GetMsgById(mid)
+	if err != nil {
+		return
+	}
+	if msg.SenderId == uid || msg.RecverId == uid {
+		return
+	}
+	return
+}
+
 //标为已读
 func MarkMsgRead(mid int, w http.ResponseWriter, r *http.Request) (err error) {
 	uid, err := GetUserIdByCookie(w, r)

@@ -44,6 +44,7 @@ func RegisterAllRouter() {
 	http.HandleFunc("/cv/delete", service.DeleteCV)
 	http.HandleFunc("/cv/add", service.AddCV)
 
+	http.HandleFunc("/message", service.GetMsg)
 	http.HandleFunc("/message/send", service.SendMsg)
 	http.HandleFunc("/message/recved/count", service.RecvMsgCount)
 	http.HandleFunc("/message/sended/count", service.SendMsgCount)

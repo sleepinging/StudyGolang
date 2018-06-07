@@ -11,7 +11,7 @@ import (
 
 //添加简历
 func AddCV(w http.ResponseWriter, r *http.Request) {
-	err := Permission.AddCV(w, r)
+	uid, err := Permission.AddCV(w, r)
 	if err != nil {
 		models.SendRetJson2(0, "错误", err.Error(), w)
 		return
@@ -28,6 +28,7 @@ func AddCV(w http.ResponseWriter, r *http.Request) {
 		models.SendRetJson2(0, "错误", err.Error(), w)
 		return
 	}
+	cv.UserId = uid
 	id, err := dao.AddCV(cv)
 	if err != nil {
 		models.SendRetJson2(0, "错误", err.Error(), w)
