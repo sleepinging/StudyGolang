@@ -267,6 +267,7 @@ func MsgTest() {
 	os.Exit(0)
 }
 
+//测试
 func Test() {
 	//MsgTest()
 	//CVTest()

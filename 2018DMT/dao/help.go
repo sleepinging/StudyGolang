@@ -35,5 +35,6 @@ func SeekHelpDbInit() {
 
 //发布求助
 func PublishSeekHelp()(sid int,err error){
+
 	return
 }
