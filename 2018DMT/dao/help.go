@@ -33,4 +33,7 @@ func SeekHelpDbInit() {
 	global.WgDb.Done()
 }
 
-//发布帮助
+//发布求助
+func PublishSeekHelp()(sid int,err error){
+	return
+}
