@@ -13,6 +13,7 @@ import (
 
 func RegisterAllRouter() {
 	http.HandleFunc("/", service.GetIndex)
+
 	http.HandleFunc("/register", service.Register)
 	http.HandleFunc("/register/sendcode", service.SendCode)
 
@@ -33,6 +34,7 @@ func RegisterAllRouter() {
 	http.HandleFunc("/user/add", service.AddUser)
 	http.HandleFunc("/user/updata", service.UpdateUser)
 	http.HandleFunc("/user/delete", service.DeleteUser)
+
 	http.HandleFunc("/gold/show", service.GetUserGold)
 	http.HandleFunc("/gold/set", service.SetUserGold)
 
@@ -41,6 +43,14 @@ func RegisterAllRouter() {
 	http.HandleFunc("/cv/update", service.UpDateCV)
 	http.HandleFunc("/cv/delete", service.DeleteCV)
 	http.HandleFunc("/cv/add", service.AddCV)
+
+	http.HandleFunc("/message/send", service.SendMsg)
+	http.HandleFunc("/message/recved/count", service.GetRecvedMsg)
+	http.HandleFunc("/message/sended/count", service.GetSendedMsg)
+	http.HandleFunc("/message/sended", service.GetSendedMsg)
+	http.HandleFunc("/message/recved", service.GetRecvedMsg)
+	http.HandleFunc("/message/mark", service.MarkMsgRead)
+	http.HandleFunc("/message/delete", service.DeleteMsg)
 }
 
 func init() {

@@ -12,8 +12,8 @@ import (
 	"net/http"
 	"os"
 	"reflect"
-	"time"
 	"sync"
+	"time"
 )
 
 func TestEmailVerify() {
@@ -255,17 +255,21 @@ func CVTest() {
 
 func MsgTest() {
 	msg := &models.Message{
-		Type:    1,
-		Title:   "问候",
-		Context: "来自golang的问候",
-		Readed:  -1,
+		SenderId: 1,
+		RecverId: 2,
+		Type:     1,
+		Title:    "问候",
+		Context:  "来自golang的问候",
+		Readed:   -1,
 	}
 	fmt.Println(dao.SendMsg(msg))
+	fmt.Println(dao.MsgCount(&models.Message{RecverId: 2}))
+	os.Exit(0)
 }
 
 func Test() {
 	//MsgTest()
-	CVTest()
+	//CVTest()
 	//go GoldTest()
 	//ColorTest()
 	//go UserTest()

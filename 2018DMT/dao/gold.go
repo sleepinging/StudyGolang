@@ -2,6 +2,7 @@ package dao
 
 import (
 	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/sqlite"
 	"../global"
 	"../models"
 	"../tools"

@@ -69,7 +69,8 @@ func ShowJob(id int) (job *models.Job, err error) {
 
 func QueryJobCount(job *models.Job) (count int) {
 	jobs := new([]models.Job)
-	jobdb.Where(job).Find(jobs).Count(&count)
+	jobdb.Where(job).Find(jobs)
+	count = len(*jobs)
 	return
 }
 

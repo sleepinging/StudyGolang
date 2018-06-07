@@ -6,6 +6,7 @@ import (
 	"../tools"
 	"fmt"
 	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/sqlite"
 	"sync"
 	"time"
 )

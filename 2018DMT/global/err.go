@@ -14,4 +14,5 @@ var (
 	EmptyUserPwd    = errors.New("用户名或密码不能为空")
 	NotLogin        = errors.New("用户未登录")
 	NoPermission    = errors.New("没有权限")
+	NotYourMsg      = errors.New("不是你的消息")
 )

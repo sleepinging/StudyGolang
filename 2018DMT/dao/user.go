@@ -57,7 +57,10 @@ func GetUserByEmail(email string) (user *models.User, err error) {
 		Email: email,
 	}
 	user = new(models.User)
-	userdb.Where(u).First(user)
+	err = userdb.Where(u).First(user).Error
+	if err != nil {
+		return
+	}
 	if user.Id == 0 {
 		err = global.NoSuchUser
 		return
@@ -70,7 +73,10 @@ func GetUserById(id int) (user *models.User, err error) {
 		Id: id,
 	}
 	user = new(models.User)
-	userdb.Where(u).First(user)
+	err = userdb.Where(u).First(user).Error
+	if err != nil {
+		return
+	}
 	if user.Id == 0 {
 		err = global.NoSuchUser
 		return
@@ -84,7 +90,10 @@ func GetUserType(id int) (tp int) {
 		Id: id,
 	}
 	user := new(models.User)
-	userdb.Where(u).First(user)
+	err := userdb.Where(u).First(user).Error
+	if err != nil {
+		return
+	}
 	tp = user.Type
 	if tp == 0 {
 		tp = 1
@@ -95,7 +104,10 @@ func GetUserType(id int) (tp int) {
 //修改用户信息
 func UpDateUserInfo(id int, user *models.User) (err error) {
 	u := new(models.User)
-	userdb.Where(&models.User{Id: id}).First(u)
+	err = userdb.Where(&models.User{Id: id}).First(u).Error
+	if err != nil {
+		return
+	}
 	if u.Id == 0 {
 		err = global.NoSuchUser
 		return
@@ -108,7 +120,10 @@ func UpDateUserInfo(id int, user *models.User) (err error) {
 //删除用户信息
 func DeleteUser(id int) (err error) {
 	user := new(models.User)
-	userdb.Where(&models.User{Id: id}).First(user)
+	err = userdb.Where(&models.User{Id: id}).First(user).Error
+	if err != nil {
+		return
+	}
 	if user.Id == 0 {
 		err = global.NoSuchUser
 		return
