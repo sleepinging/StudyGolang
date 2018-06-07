@@ -267,8 +267,13 @@ func MsgTest() {
 	os.Exit(0)
 }
 
+func SeekHelpTest(){
+
+}
+
 //测试
 func Test() {
+	SeekHelpTest()
 	//MsgTest()
 	//CVTest()
 	//go GoldTest()
