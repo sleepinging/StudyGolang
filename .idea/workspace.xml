@@ -2,31 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6b356682-8037-4ddb-b8ee-647ca6e12be6" name="Default" comment="修改帮助">
-      <change afterPath="$PROJECT_DIR$/2018DMT/dao/help.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2018DMT/global/msgtype/type.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2018DMT/models/seekhelp.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018DMT/Data/db/emailverify.db" beforeDir="false" afterPath="$PROJECT_DIR$/2018DMT/Data/db/emailverify.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018DMT/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/2018DMT/config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018DMT/control/Permission/cv.go" beforeDir="false" afterPath="$PROJECT_DIR$/2018DMT/control/Permission/cv.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018DMT/control/Permission/job.go" beforeDir="false" afterPath="$PROJECT_DIR$/2018DMT/control/Permission/job.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018DMT/control/Permission/message.go" beforeDir="false" afterPath="$PROJECT_DIR$/2018DMT/control/Permission/message.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018DMT/dao/cv.go" beforeDir="false" afterPath="$PROJECT_DIR$/2018DMT/dao/cv.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018DMT/dao/job.go" beforeDir="false" afterPath="$PROJECT_DIR$/2018DMT/dao/job.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018DMT/dao/message.go" beforeDir="false" afterPath="$PROJECT_DIR$/2018DMT/dao/message.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018DMT/go_build_main_go.exe" beforeDir="false" afterPath="$PROJECT_DIR$/2018DMT/go_build_main_go.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018DMT/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/2018DMT/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018DMT/models/blog.go" beforeDir="false" afterPath="$PROJECT_DIR$/2018DMT/models/blog.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018DMT/models/blogreply.go" beforeDir="false" afterPath="$PROJECT_DIR$/2018DMT/models/blogreply.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018DMT/models/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/2018DMT/models/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018DMT/models/help.go" beforeDir="false" afterPath="$PROJECT_DIR$/2018DMT/models/help.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018DMT/models/helpreply.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018DMT/models/job.go" beforeDir="false" afterPath="$PROJECT_DIR$/2018DMT/models/job.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018DMT/models/message.go" beforeDir="false" afterPath="$PROJECT_DIR$/2018DMT/models/message.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018DMT/models/models.go" beforeDir="false" afterPath="$PROJECT_DIR$/2018DMT/models/models.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018DMT/service/cv.go" beforeDir="false" afterPath="$PROJECT_DIR$/2018DMT/service/cv.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018DMT/service/job.go" beforeDir="false" afterPath="$PROJECT_DIR$/2018DMT/service/job.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018DMT/service/message.go" beforeDir="false" afterPath="$PROJECT_DIR$/2018DMT/service/message.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2018DMT/service/tools.go" beforeDir="false" afterPath="$PROJECT_DIR$/2018DMT/service/tools.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -79,7 +55,7 @@
         <entry file="file://$PROJECT_DIR$/2018DMT/dao/help.go">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="418">
-              <caret line="24" column="41" selection-start-line="24" selection-start-column="41" selection-end-line="24" selection-end-column="41" />
+              <caret line="31" column="31" lean-forward="true" selection-start-line="31" selection-start-column="31" selection-end-line="31" selection-end-column="31" />
               <folding>
                 <element signature="e#13#131#0" expanded="true" />
               </folding>
@@ -237,8 +213,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="247" />
-    <option name="y" value="8" />
+    <option name="x" value="336" />
+    <option name="y" value="54" />
     <option name="width" value="1361" />
     <option name="height" value="1003" />
   </component>
@@ -433,7 +409,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="247" y="8" width="1361" height="1003" extended-state="0" />
+    <frame x="336" y="54" width="1361" height="1003" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49776453" visible="true" weight="0.16602613" />
@@ -918,7 +894,7 @@
     <entry file="file://$PROJECT_DIR$/2018DMT/dao/help.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
-          <caret line="24" column="41" selection-start-line="24" selection-start-column="41" selection-end-line="24" selection-end-column="41" />
+          <caret line="31" column="31" lean-forward="true" selection-start-line="31" selection-start-column="31" selection-end-line="31" selection-end-column="31" />
           <folding>
             <element signature="e#13#131#0" expanded="true" />
           </folding>
