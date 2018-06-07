@@ -6,7 +6,6 @@ import (
 	"../models"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
-	"fmt"
 	"time"
 )
 
@@ -31,7 +30,7 @@ func MsgDbInit() {
 	if !msgdb.HasTable(&models.Message{}) {
 		msgdb.CreateTable(&models.Message{})
 	}
-	fmt.Println("消息数据库初始化完成")
+	//fmt.Println("消息数据库初始化完成")
 	global.WgDb.Done()
 }
 

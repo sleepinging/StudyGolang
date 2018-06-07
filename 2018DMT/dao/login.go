@@ -4,7 +4,6 @@ import (
 	"../global"
 	"../models"
 	"../tools"
-	"fmt"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
 )
@@ -30,7 +29,7 @@ func LoginDbInit() {
 	if !logindb.HasTable(&models.Login{}) {
 		logindb.CreateTable(&models.Login{})
 	}
-	fmt.Println("登录数据库初始化完成")
+	//fmt.Println("登录数据库初始化完成")
 	global.WgDb.Done()
 }
 

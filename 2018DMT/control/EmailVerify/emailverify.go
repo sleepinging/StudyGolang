@@ -8,7 +8,6 @@ import (
 	"math/rand"
 	"strings"
 	"time"
-	"fmt"
 )
 
 var (
@@ -45,7 +44,7 @@ func emaildbinit() {
 	if !db.HasTable(&Verifyinfo{}) {
 		db.CreateTable(&Verifyinfo{})
 	}
-	fmt.Println("邮箱验证数据库初始化完成")
+	//fmt.Println("邮箱验证数据库初始化完成")
 	global.WgDb.Done()
 }
 

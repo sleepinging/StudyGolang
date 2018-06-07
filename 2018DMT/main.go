@@ -45,8 +45,8 @@ func RegisterAllRouter() {
 	http.HandleFunc("/cv/add", service.AddCV)
 
 	http.HandleFunc("/message/send", service.SendMsg)
-	http.HandleFunc("/message/recved/count", service.GetRecvedMsg)
-	http.HandleFunc("/message/sended/count", service.GetSendedMsg)
+	http.HandleFunc("/message/recved/count", service.RecvMsgCount)
+	http.HandleFunc("/message/sended/count", service.SendMsgCount)
 	http.HandleFunc("/message/sended", service.GetSendedMsg)
 	http.HandleFunc("/message/recved", service.GetRecvedMsg)
 	http.HandleFunc("/message/mark", service.MarkMsgRead)
@@ -57,13 +57,14 @@ func init() {
 	//在main启动之前肯定都已经add了
 	//等待数据库都加载完毕
 	global.WgDb.Wait()
+	fmt.Println("数据库初始化完成")
 }
 
 func startserver(addr string) {
 	fmt.Println("添加路由规则中...")
 	RegisterAllRouter()
 	fmt.Println("服务启动中...")
-	fmt.Println("程序根目录:", global.CurrPath)
+	//fmt.Println("程序根目录:", global.CurrPath)
 	fmt.Println("HTTP根目录:", global.Config.Wwwroot)
 	fmt.Println("监听端口:", global.Config.Port)
 	fmt.Println("服务启动时间:", time.Now().Format("2006-01-02 15:04:05"))

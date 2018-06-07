@@ -6,7 +6,6 @@ import (
 	"../global"
 	"../models"
 	"../tools"
-	"fmt"
 )
 
 var (
@@ -30,7 +29,7 @@ func GoldDbInit() {
 	if !golddb.HasTable(&models.Gold{}) {
 		golddb.CreateTable(&models.Gold{})
 	}
-	fmt.Println("金币数据库初始化完成")
+	//fmt.Println("金币数据库初始化完成")
 	global.WgDb.Done()
 }
 

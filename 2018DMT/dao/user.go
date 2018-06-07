@@ -6,7 +6,6 @@ import (
 	"../tools"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
-	"fmt"
 )
 
 var (
@@ -29,7 +28,7 @@ func UserDbInit() {
 	if !userdb.HasTable(&models.User{}) {
 		userdb.CreateTable(&models.User{})
 	}
-	fmt.Println("用户数据库初始化完成")
+	//fmt.Println("用户数据库初始化完成")
 	global.WgDb.Done()
 }
 

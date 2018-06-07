@@ -4,7 +4,6 @@ import (
 	"../global"
 	"../models"
 	"../tools"
-	"fmt"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
 	"sync"
@@ -40,7 +39,7 @@ func CVDbInit() {
 	wgcvcommit = new(sync.WaitGroup)
 	wgcvop = new(sync.WaitGroup)
 	go StartAutoCVCommit()
-	fmt.Println("简历数据库初始化完成")
+	//fmt.Println("简历数据库初始化完成")
 	global.WgDb.Done()
 }
 

@@ -4,7 +4,6 @@ import (
 	"../global"
 	"../models"
 	"../tools"
-	"fmt"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
 	"sync"
@@ -38,7 +37,7 @@ func JobDbInit() {
 	wgjobcommit = new(sync.WaitGroup)
 	wgjobop = new(sync.WaitGroup)
 	go StartAutoJobCommit()
-	fmt.Println("工作数据库初始化完成")
+	//fmt.Println("工作数据库初始化完成")
 	global.WgDb.Done()
 }
 
