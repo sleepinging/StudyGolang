@@ -99,6 +99,7 @@ func UpdataJob(id int, newjob *models.Job) (err error) {
 		return
 	}
 	job.CopyJobFromEId(newjob)
+	//job.PublishTime=time.Now()
 	jobtx.Save(job)
 
 	jobmodified = true

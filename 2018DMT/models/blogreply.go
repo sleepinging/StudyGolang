@@ -11,5 +11,5 @@ type BlogReply struct {
 	AtId        int       `json:"AtId"`
 	AtName      string    `json:"AtName"` //+
 	Time        time.Time `json:"Time"`
-	Context     string    `gorm:"type:varchar(1023)" json:"Context"`
+	Content     string    `gorm:"type:varchar(1023)" json:"Content"`
 }

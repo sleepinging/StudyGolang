@@ -53,3 +53,9 @@ func PublishSeekHelp(w http.ResponseWriter, r *http.Request)  {
 	models.SendRetJson2(1, "成功", sh.Id, w)
 	return
 }
+
+//搜索求助
+
+//删除求助
+
+//修改求助

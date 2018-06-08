@@ -32,3 +32,12 @@ func GetSeekHelp(sid int,w http.ResponseWriter, r *http.Request) (uid int, err e
 	err=nil
 	return
 }
+
+//搜索求助
+func SearchSeekHelp(sh *models.SeekHelp,w http.ResponseWriter, r *http.Request)(uid int,err error){
+	return
+}
+
+//删除求助
+
+//修改求助

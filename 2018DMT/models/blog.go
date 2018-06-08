@@ -16,7 +16,7 @@ type Blog struct {
 	Status        int       `json:"Status"`
 	Type          int       `json:"Type"`
 	Title         string    `json:"Title"`
-	Context       string    `gorm:"type:varchar(10239)" json:"Context"`
+	Content       string    `gorm:"type:varchar(10239)" json:"Content"`
 	Readed        int       `json:"Readed"`
 	Reply         int       `json:"Reply"` //+
 }

@@ -9,6 +9,6 @@ type Help struct {
 	HelperName string    `json:"HelperName"` //+
 	HelperHead string    `json:"HelperHead"` //+
 	Time       time.Time `json:"Time"`
-	Context    string    `gorm:"type:varchar(1023)" json:"Context"`
+	Content    string    `gorm:"type:varchar(1023)" json:"Content"`
 	Accept     int       `json:"Accept"`
 }

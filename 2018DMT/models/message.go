@@ -11,6 +11,6 @@ type Message struct {
 	Time       time.Time `json:"Time"`
 	Type       int       `json:"Type"`
 	Title      string    `json:"Title"`
-	Context    string    `gorm:"type:varchar(2047)" json:"Context"`
+	Content    string    `gorm:"type:varchar(2047)" json:"Content"`
 	Readed     int       `json:"Readed"`
 }

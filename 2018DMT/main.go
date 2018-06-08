@@ -40,7 +40,7 @@ func RegisterAllRouter() {
 
 	http.HandleFunc("/cv/user", service.GetUserCV)
 	http.HandleFunc("/cv", service.GetCV)
-	http.HandleFunc("/cv/update", service.UpDateCV)
+	http.HandleFunc("/cv/updata", service.UpDataCV)
 	http.HandleFunc("/cv/delete", service.DeleteCV)
 	http.HandleFunc("/cv/add", service.AddCV)
 

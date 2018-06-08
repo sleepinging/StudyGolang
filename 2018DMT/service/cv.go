@@ -38,14 +38,14 @@ func AddCV(w http.ResponseWriter, r *http.Request) {
 }
 
 //修改简历
-func UpDateCV(w http.ResponseWriter, r *http.Request) {
+func UpDataCV(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
 	cid, err := GetPostInt("Id", w, r)
 	if err != nil {
 		models.SendRetJson2(0, "错误", err.Error(), w)
 		return
 	}
-	err = Permission.UpdateCV(cid, w, r)
+	err = Permission.UpdataCV(cid, w, r)
 	if err != nil {
 		models.SendRetJson2(0, "错误", err.Error(), w)
 		return
@@ -61,7 +61,7 @@ func UpDateCV(w http.ResponseWriter, r *http.Request) {
 		models.SendRetJson2(0, "错误", err.Error(), w)
 		return
 	}
-	err = dao.UpdateCV(cid, cv)
+	err = dao.UpdataCV(cid, cv)
 	if err != nil {
 		models.SendRetJson2(0, "错误", err.Error(), w)
 		return

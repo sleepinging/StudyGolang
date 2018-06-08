@@ -40,7 +40,7 @@ func GetCV(id int, w http.ResponseWriter, r *http.Request) (err error) {
 }
 
 //修改简历
-func UpdateCV(id int, w http.ResponseWriter, r *http.Request) (err error) {
+func UpdataCV(id int, w http.ResponseWriter, r *http.Request) (err error) {
 	uid, err := GetUserIdByCookie(w, r)
 	if err != nil {
 		return

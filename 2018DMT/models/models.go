@@ -41,7 +41,7 @@ type CV struct {
 	Id       int    `gorm:"primary_key" gorm:"AUTO_INCREMENT" json:"Id"`
 	UserId   int    `json:"UserId"`
 	UserName string `json:"UserName"` //+
-	Context  string `gorm:"type:varchar(2047)" json:"Context"`
+	Content  string `gorm:"type:varchar(2047)" json:"Content"`
 }
 
 //金币

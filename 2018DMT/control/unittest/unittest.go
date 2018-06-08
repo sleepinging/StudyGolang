@@ -241,12 +241,12 @@ func GoldTest() {
 func CVTest() {
 	cv := &models.CV{
 		UserId:  1,
-		Context: "精通易语言",
+		Content: "精通易语言",
 	}
 	//fmt.Println(dao.AddCV(cv))
 	//fmt.Println(dao.DeleteCV(5))
-	cv.Context = "精通Golang"
-	//tools.ShowErr(dao.UpdateCV(2,cv))
+	cv.Content = "精通Golang"
+	//tools.ShowErr(dao.UpdataCV(2,cv))
 	fmt.Println(dao.GetUserCV(1))
 	fmt.Println(dao.GetCV(1))
 	time.Sleep(500)
@@ -259,7 +259,7 @@ func MsgTest() {
 		RecverId: 2,
 		Type:     1,
 		Title:    "问候",
-		Context:  "来自golang的问候",
+		Content:  "来自golang的问候",
 		Readed:   -1,
 	}
 	fmt.Println(dao.SendMsg(msg))
@@ -268,15 +268,21 @@ func MsgTest() {
 }
 
 func SeekHelpTest(){
-	//sh:=&models.SeekHelp{
-	//	PublisherId:1,
-	//	Gold:100,
-	//	Title:"这题怎么做",
-	//	Context:"1+1=稽",
-	//}
+	sh:=&models.SeekHelp{
+		PublisherId:1,
+		Gold:10,
+		Title:"这题怎么做",
+		Content:"1+1=稽",
+	}
 	//fmt.Println(dao.PublishSeekHelp(sh))
 	//fmt.Println(dao.GetSeekHelp(2))
-	//os.Exit(0)
+	//dao.QueryTest()
+	//sh.Context="99*99=?"
+	sh.Gold=10
+	//tools.ShowErr(dao.UpdataSeekHelp(1,sh))
+	//tools.ShowErr(dao.DeleteSeekHelp(2))
+	fmt.Println(dao.SearchSeekHelp(sh,1,1))
+	os.Exit(0)
 }
 
 //测试

@@ -68,7 +68,7 @@ func GetCV(cid int) (cv *models.CV, err error) {
 }
 
 //修改简历
-func UpdateCV(cid int, cv *models.CV) (err error) {
+func UpdataCV(cid int, cv *models.CV) (err error) {
 	//如果需要提交的话先等待提交
 	wgcvcommit.Wait()
 	//正在操作
@@ -82,7 +82,7 @@ func UpdateCV(cid int, cv *models.CV) (err error) {
 		return
 	}
 	ocv.UserId = cv.UserId
-	ocv.Context = cv.Context
+	ocv.Content = cv.Content
 	err = cvtx.Save(ocv).Error
 
 	cvmodified = true
