@@ -268,7 +268,15 @@ func MsgTest() {
 }
 
 func SeekHelpTest(){
-
+	//sh:=&models.SeekHelp{
+	//	PublisherId:1,
+	//	Gold:100,
+	//	Title:"这题怎么做",
+	//	Context:"1+1=稽",
+	//}
+	//fmt.Println(dao.PublishSeekHelp(sh))
+	//fmt.Println(dao.GetSeekHelp(2))
+	//os.Exit(0)
 }
 
 //测试

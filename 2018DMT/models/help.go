@@ -2,7 +2,7 @@ package models
 
 import "time"
 
-type HelpReply struct {
+type Help struct {
 	Id         int       `gorm:"primary_key" gorm:"AUTO_INCREMENT" json:"Id"`
 	SeekHelpId int       `json:"SeekHelpId"`
 	HelperId   int       `json:"HelperId"`

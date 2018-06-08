@@ -52,6 +52,9 @@ func RegisterAllRouter() {
 	http.HandleFunc("/message/recved", service.GetRecvedMsg)
 	http.HandleFunc("/message/mark", service.MarkMsgRead)
 	http.HandleFunc("/message/delete", service.DeleteMsg)
+
+	http.HandleFunc("/seekhelp",service.GetSeekHelp)
+	http.HandleFunc("/seekhelp/publish",service.PublishSeekHelp)
 }
 
 func init() {

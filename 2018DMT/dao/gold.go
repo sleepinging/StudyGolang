@@ -72,6 +72,9 @@ func AddUserGold(uid, g int) (err error) {
 		err = global.NoSuchUser
 		return
 	}
+	if -g>fg.Gold{
+		return global.GoldNotEnough
+	}
 	fg.Gold += g
 	err = golddb.Save(fg).Error
 	return

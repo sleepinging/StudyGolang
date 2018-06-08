@@ -4,6 +4,7 @@ import (
 	"../tools"
 	"reflect"
 	"time"
+	"encoding/json"
 )
 
 //帮助
@@ -34,4 +35,11 @@ func (this *SeekHelp) CopyHelpFromExpt(help *SeekHelp, except []string) {
 		v := s1.Field(i).Interface()
 		s2.Field(i).Set(reflect.ValueOf(v))
 	}
+}
+
+//从字符串加载
+func LoadSeekHelp(str string)(sh *SeekHelp,err error){
+	sh=new(SeekHelp)
+	err=json.Unmarshal([]byte(str),sh)
+	return
 }
