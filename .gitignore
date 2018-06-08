@@ -1,3 +1,9 @@
 
 .idea/workspace.xml
 .idea/workspace.xml
+.idea/workspace.xml
+*.exe
+2018DMT/go_build_main_go.exe
+*.db
+*.db
+2018DMT/data/db/cv.db

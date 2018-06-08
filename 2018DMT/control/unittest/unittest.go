@@ -271,23 +271,24 @@ func SeekHelpTest(){
 	sh:=&models.SeekHelp{
 		PublisherId:1,
 		Gold:10,
-		Title:"这题怎么做",
-		Content:"1+1=稽",
+		Title:"C++11问题",
+		Content:"auto 是什么意思，求大佬指点",
 	}
 	//fmt.Println(dao.PublishSeekHelp(sh))
 	//fmt.Println(dao.GetSeekHelp(2))
 	//dao.QueryTest()
 	//sh.Context="99*99=?"
-	sh.Gold=10
+	sh.Title="auto"
+	//sh.Gold=10
 	//tools.ShowErr(dao.UpdataSeekHelp(1,sh))
 	//tools.ShowErr(dao.DeleteSeekHelp(2))
-	fmt.Println(dao.SearchSeekHelp(sh,1,1))
+	fmt.Println(dao.SearchSeekHelp(sh,10,1))
 	os.Exit(0)
 }
 
 //测试
 func Test() {
-	SeekHelpTest()
+	//SeekHelpTest()
 	//MsgTest()
 	//CVTest()
 	//go GoldTest()

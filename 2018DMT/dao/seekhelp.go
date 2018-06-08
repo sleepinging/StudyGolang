@@ -80,11 +80,11 @@ func SearchSeekHelp(sh *models.SeekHelp, limit, page int) (count int, shs *[]mod
 	//	Count(&count).
 	//	Error
 	err = shdb.
-		Where("type = ? and gold >= ? and time >= ? and (title like ? or content like ? )",
-			sh.Type, sh.Gold, sh.Time,`%`+sh.Title+`%`,`%`+sh.Title+`%`).
+		Where("type = ? and status = ? and gold >= ? and time >= ? and (title like ? or content like ? )",
+			sh.Type,sh.Status, sh.Gold, sh.Time,`%`+sh.Title+`%`,`%`+sh.Title+`%`).
 		Offset((page - 1) * limit).Limit(limit).
+		Order("time desc").
 		Find(shs).
-		Count(&count).
 		Error
 	return
 }
