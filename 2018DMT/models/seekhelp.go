@@ -53,7 +53,7 @@ func (this *SeekHelp) CopySeekHelpFrom(seekHelp *SeekHelp, except []string) {
 }
 
 //从字符串加载
-func LoadSeekHelp(str string)(sh *SeekHelp,err error){
+func LoadSeekHelpFromStr(str string)(sh *SeekHelp,err error){
 	sh=new(SeekHelp)
 	err=json.Unmarshal([]byte(str),sh)
 	return

@@ -39,7 +39,7 @@ func PublishSeekHelp(w http.ResponseWriter, r *http.Request)  {
 		models.SendRetJson2(0, "失败", err.Error(), w)
 		return
 	}
-	sh,err:=models.LoadSeekHelp(shs)
+	sh,err:=models.LoadSeekHelpFromStr(shs)
 	if err != nil {
 		models.SendRetJson2(0, "失败", err.Error(), w)
 		return
@@ -50,7 +50,12 @@ func PublishSeekHelp(w http.ResponseWriter, r *http.Request)  {
 		return
 	}
 	_=uid
-	models.SendRetJson2(1, "成功", sh.Id, w)
+	sid,err:=dao.PublishSeekHelp(sh)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	models.SendRetJson2(1, "成功", sid, w)
 	return
 }
 
@@ -72,7 +77,7 @@ func SearchSeekHelp(w http.ResponseWriter, r *http.Request){
 		models.SendRetJson2(0, "失败", err.Error(), w)
 		return
 	}
-	sh,err:=models.LoadSeekHelp(shs)
+	sh,err:=models.LoadSeekHelpFromStr(shs)
 	if err != nil {
 		models.SendRetJson2(0, "失败", err.Error(), w)
 		return
@@ -133,7 +138,7 @@ func UpdataSeekHelp(w http.ResponseWriter, r *http.Request){
 		models.SendRetJson2(0, "失败", err.Error(), w)
 		return
 	}
-	sh,err:=models.LoadSeekHelp(shs)
+	sh,err:=models.LoadSeekHelpFromStr(shs)
 	if err != nil {
 		models.SendRetJson2(0, "失败", err.Error(), w)
 		return

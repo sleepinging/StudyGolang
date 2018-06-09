@@ -260,7 +260,6 @@ func MsgTest() {
 		Type:     1,
 		Title:    "问候",
 		Content:  "来自golang的问候",
-		Readed:   -1,
 	}
 	fmt.Println(dao.SendMsg(msg))
 	fmt.Println(dao.MsgCount(&models.Message{RecverId: 2}))
@@ -286,8 +285,21 @@ func SeekHelpTest(){
 	os.Exit(0)
 }
 
+func HelpTest(){
+	help:=&models.Help{
+		HelperId:1,
+		SeekHelpId:1,
+		Content:"这么简单都不会",
+	}
+	//fmt.Println(dao.PublishHelp(help),help)
+	tools.ShowErr(dao.AcceptHelp(help.Id+3))
+	fmt.Println(dao.GetHelpCount(1))
+	os.Exit(0)
+}
+
 //测试
 func Test() {
+	//HelpTest()
 	//SeekHelpTest()
 	//MsgTest()
 	//CVTest()

@@ -127,3 +127,13 @@ func UpdataSeekHelp(sid int, nsh *models.SeekHelp) (err error) {
 	}
 	return
 }
+
+//解决求助
+func SolveSeekHelp(sid int)(err error){
+	sh,err:=GetSeekHelp(sid)
+	if err != nil {
+		return
+	}
+	err=shdb.Model(sh).Update("status",1).Error
+	return
+}

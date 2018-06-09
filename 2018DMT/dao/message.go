@@ -2,6 +2,7 @@ package dao
 
 import (
 	"../global"
+	"../global/msgtype"
 	"../tools"
 	"../models"
 	"github.com/jinzhu/gorm"
@@ -37,6 +38,7 @@ func MsgDbInit() {
 //发送消息
 func SendMsg(msg *models.Message) (mid int, err error) {
 	msg.Time = time.Now()
+	msg.Readed=-1
 	u, err := GetUserById(msg.RecverId)
 	if err != nil {
 		return
@@ -105,5 +107,18 @@ func MsgCount(msg *models.Message) (c int, err error) {
 func GetMsgById(mid int) (msg *models.Message, err error) {
 	msg = new(models.Message)
 	err = msgdb.Where(&models.Message{Id: mid}).First(msg).Error
+	return
+}
+
+//帮助被接受
+func SendHelpAcceptMsg(sh *models.SeekHelp,help *models.Help)(err error){
+	msg:=&models.Message{
+		SenderId:9,
+		RecverId:help.HelperId,
+		Title:"你的帮助被接受啦",
+		Content:`你在帮助：`+sh.Title+`被接受`,
+		Type:msgtype.HelpAccept,
+	}
+	_,err=SendMsg(msg)
 	return
 }

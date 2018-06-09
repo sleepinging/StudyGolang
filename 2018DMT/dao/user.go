@@ -68,15 +68,9 @@ func GetUserByEmail(email string) (user *models.User, err error) {
 }
 
 func GetUserById(id int) (user *models.User, err error) {
-	u := &models.User{
-		Id: id,
-	}
 	user = new(models.User)
-	err = userdb.Where(u).First(user).Error
+	err = userdb.First(user,id).Error
 	if err != nil {
-		return
-	}
-	if user.Id == 0 {
 		err = global.NoSuchUser
 		return
 	}
@@ -85,12 +79,10 @@ func GetUserById(id int) (user *models.User, err error) {
 
 //获取用户类型
 func GetUserType(id int) (tp int) {
-	u := &models.User{
-		Id: id,
-	}
 	user := new(models.User)
-	err := userdb.Where(u).First(user).Error
+	err := userdb.First(user,id).Error
 	if err != nil {
+		err = global.NoSuchUser
 		return
 	}
 	tp = user.Type

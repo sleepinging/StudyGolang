@@ -1,6 +1,9 @@
 package models
 
-import "time"
+import (
+	"time"
+	"encoding/json"
+)
 
 type Help struct {
 	Id         int       `gorm:"primary_key" gorm:"AUTO_INCREMENT" json:"Id"`
@@ -11,4 +14,11 @@ type Help struct {
 	Time       time.Time `json:"Time"`
 	Content    string    `gorm:"type:varchar(1023)" json:"Content"`
 	Accept     int       `json:"Accept"`
+}
+
+//从字符串加载
+func LoadHelpFromStr(str string)(help *Help,err error){
+	help =new(Help)
+	err=json.Unmarshal([]byte(str), help)
+	return
 }

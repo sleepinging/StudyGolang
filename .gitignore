@@ -7,3 +7,6 @@
 *.db
 *.db
 2018DMT/data/db/cv.db
+*.xml
+*.exe
+*.db
