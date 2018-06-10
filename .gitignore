@@ -10,3 +10,9 @@
 *.xml
 *.exe
 *.db
+*.xml___jb_tmp___
+*.xml
+*.xml
+.idea/workspace.xml
+2018DMT/go_build_main_go.exe
+*.exe

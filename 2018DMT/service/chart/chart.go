@@ -1,15 +1,15 @@
 package chart
 
 import (
-	"net/http"
-
+	"../../tools"
+	"fmt"
 	"github.com/gorilla/websocket"
 	"log"
-	"fmt"
+	"net/http"
 )
 
 var clients = make(map[*websocket.Conn]bool) // connected clients
-var broadcast = make(chan Message)           // broadcast channel
+var broadcast = make(chan Message,10)           // broadcast channel
 
 // Configure the upgrader
 var upgrader = websocket.Upgrader{
@@ -25,9 +25,14 @@ type Message struct {
 	Message  string `json:"message"`
 }
 
-var persons=0
+var persons = 0
 
 func OnChartConnections(w http.ResponseWriter, r *http.Request) {
+	defer func() {
+		if err := recover(); err != nil {
+			fmt.Println(err)
+		}
+	}()
 	// Upgrade initial GET request to a websocket
 	ws, err := upgrader.Upgrade(w, r, nil)
 	if err != nil {
@@ -39,7 +44,7 @@ func OnChartConnections(w http.ResponseWriter, r *http.Request) {
 	// Register our new client
 	clients[ws] = true
 	persons++
-	broadmsg(fmt.Sprintf("有人进入房间，%d人在线",persons))
+	broadmsg(fmt.Sprintf("有人进入房间，当前%d人在线", persons))
 	for {
 		var msg Message
 		// Read in a new message as JSON and map it to a Message object
@@ -47,7 +52,7 @@ func OnChartConnections(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			//log.Printf("error: %v", err)
 			persons--
-			broadmsg(fmt.Sprintf("有人离开房间，当前%d人在线",persons))
+			broadmsg(fmt.Sprintf("有人离开房间，当前%d人在线", persons))
 			delete(clients, ws)
 			break
 		}
@@ -56,15 +61,21 @@ func OnChartConnections(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func broadmsg(msg string){
-	m:=Message{
-		Username:"系统消息",
-		Message:msg,
+func broadmsg(msg string) {
+	m := Message{
+		Username: "系统消息",
+		Message:  msg,
 	}
+	fmt.Println(tools.FmtTime(), msg)
 	broadcast <- m
 }
 
 func OnChartMessages() {
+	defer func() {
+		if err := recover(); err != nil {
+			fmt.Println(err)
+		}
+	}()
 	for {
 		// Grab the next message from the broadcast channel
 		msg := <-broadcast
@@ -74,7 +85,7 @@ func OnChartMessages() {
 			if err != nil {
 				//log.Printf("error: %v", err)
 				persons--
-				broadmsg(fmt.Sprintf("有人离开房间，当前%d人在线",persons))
+				broadmsg(fmt.Sprintf("有人离开房间，当前%d人在线", persons))
 				client.Close()
 				delete(clients, client)
 			}
