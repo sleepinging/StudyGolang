@@ -60,14 +60,21 @@ func ReplyHelp(hr *models.HelpReply)(err error){
 }
 
 //获取某帮助的回复数量
-func CountHelpReply()(count int,err error){
-	
+func CountHelpReply(hid int)(count int,err error){
+	err=hrdb.Model(&models.HelpReply{}).Where("help_id =?",hid).Count(&count).Error
+	if err != nil {
+		return
+	}
 	return
 }
 
 //获取某帮助的回复
-func GetHelpReply(hid int)(hrs *[]models.HelpReply,err error){
-
+func GetHelpReply(hid int, limit, page int)(hrs *[]models.HelpReply,err error){
+	hrs=new([]models.HelpReply)
+	err=hrdb.Model(&models.HelpReply{}).Where("help_id =?",hid).
+		Offset((page - 1) * limit).Limit(limit).
+		Order("time desc").
+		Find(hrs).Error
 	return
 }
 

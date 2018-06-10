@@ -66,8 +66,17 @@ func GetSeekHelp(sid int) (sh *models.SeekHelp, err error) {
 	return
 }
 
+//搜索求助的数量
+func CountSearcSeekhHelp(sh *models.SeekHelp, limit, page int)(count int,err error){
+	err=shdb.Model(&models.SeekHelp{}).
+		Where("type = ? and status = ? and gold >= ? and time >= ? and (title like ? or content like ? )",
+		sh.Type,sh.Status, sh.Gold, sh.Time,`%`+sh.Title+`%`,`%`+sh.Title+`%`).
+		Count(&count).Error
+	return
+}
+
 //搜索求助
-func SearchSeekHelp(sh *models.SeekHelp, limit, page int) (count int, shs *[]models.SeekHelp, err error) {
+func SearchSeekHelp(sh *models.SeekHelp, limit, page int) (shs *[]models.SeekHelp, err error) {
 	shs = new([]models.SeekHelp)
 	//err = shdb.
 	//	Where("type = ?", sh.Type).

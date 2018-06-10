@@ -52,6 +52,7 @@ func addSeekHelpRouter() {
 	http.HandleFunc("/seekhelp/search", service.SearchSeekHelp)
 	http.HandleFunc("/seekhelp/updata", service.UpdataSeekHelp)
 	http.HandleFunc("/seekhelp/delete", service.DeleteSeekHelp)
+	http.HandleFunc("seekhelp/search/count",service.CountSearcSeekhHelp)
 }
 
 func addOtherRouter() {
@@ -69,11 +70,15 @@ func helpRouter() {
 	//获取某求助的帮助数
 	http.HandleFunc("/seekhelp/help/count", service.GetHelpCount)
 	//查看某求助的帮助
-	http.HandleFunc("/seekhelp/watchhelp", service.WatchSeekHelpHelps)
+	http.HandleFunc("/seekhelp/gethelp", service.GetSeekHelpHelps)
 	//接受帮助
 	http.HandleFunc("/seekhelp/accept", service.AcceptHelp)
 	//回复帮助
 	http.HandleFunc("/seekhelp/help/reply", service.ReplyHelp)
+	//获取某帮助的回复数量
+	http.HandleFunc("/seekhelp/help/reply/count", service.CountHelpReply)
+	//获取某帮助的回复
+	http.HandleFunc("/seekhelp/help/getreply", service.GetHelpReply)
 }
 
 func RegisterAllRouter() {

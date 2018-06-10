@@ -304,13 +304,15 @@ func HelpReplyTest(){
 		ReplyerId:1,
 		Content:"感谢",
 	}
-	fmt.Println(hr,dao.ReplyHelp(hr))
+	//fmt.Println(hr,dao.ReplyHelp(hr))
+	fmt.Println(dao.CountHelpReply(3))
+	fmt.Println(dao.GetHelpReply(hr.Id+3,10,1))
 	os.Exit(0)
 }
 
 //测试
 func Test() {
-	HelpReplyTest()
+	//HelpReplyTest()
 	//HelpTest()
 	//SeekHelpTest()
 	//MsgTest()

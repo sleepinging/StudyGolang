@@ -53,7 +53,7 @@ func GetHelpCount(w http.ResponseWriter, r *http.Request){
 }
 
 //查看某求助的帮助
-func WatchSeekHelpHelps(w http.ResponseWriter, r *http.Request){
+func GetSeekHelpHelps(w http.ResponseWriter, r *http.Request){
 	r.ParseForm()
 	id,err:=GetPostInt("Id",w,r)
 	if err != nil {
@@ -103,5 +103,66 @@ func AcceptHelp(w http.ResponseWriter, r *http.Request){
 //回复帮助
 func ReplyHelp(w http.ResponseWriter, r *http.Request){
 	r.ParseForm()
-	models.SendRetJson2(0, "滑稽", `最帅的开发者还没写到这里`, w)
+	hrs,err:=GetPostString("HelpReply",w,r)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	hr,err:=models.LoadHelpReplyFromStr(hrs)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	uid,err:=Permission.ReplyHelp(hr,w,r)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	_=uid
+	err=dao.ReplyHelp(hr)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	models.SendRetJson2(1, "成功", hr, w)
+}
+
+//获取某帮助的回复数量
+func CountHelpReply(w http.ResponseWriter, r *http.Request){
+	id,err:=GetPostInt("Id",w,r)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	c,err:=dao.CountHelpReply(id)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	models.SendRetJson2(1, "成功", c, w)
+}
+
+//获取某帮助的回复
+func GetHelpReply(w http.ResponseWriter, r *http.Request){
+	id,err:=GetPostInt("Id",w,r)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	limit,err:=GetPostInt("Limit",w,r)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	page,err:=GetPostInt("Page",w,r)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	hrs,err:=dao.GetHelpReply(id,limit,page)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	models.SendRetJson2(1, "成功",hrs, w)
 }
