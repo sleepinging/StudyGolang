@@ -5,6 +5,7 @@ import (
 
 	"github.com/gorilla/websocket"
 	"log"
+	"fmt"
 )
 
 var clients = make(map[*websocket.Conn]bool) // connected clients
@@ -24,6 +25,8 @@ type Message struct {
 	Message  string `json:"message"`
 }
 
+var persons=0
+
 func OnChartConnections(w http.ResponseWriter, r *http.Request) {
 	// Upgrade initial GET request to a websocket
 	ws, err := upgrader.Upgrade(w, r, nil)
@@ -35,19 +38,30 @@ func OnChartConnections(w http.ResponseWriter, r *http.Request) {
 
 	// Register our new client
 	clients[ws] = true
-
+	persons++
+	broadmsg(fmt.Sprintf("有人进入房间，%d人在线",persons))
 	for {
 		var msg Message
 		// Read in a new message as JSON and map it to a Message object
 		err := ws.ReadJSON(&msg)
 		if err != nil {
 			//log.Printf("error: %v", err)
+			persons--
+			broadmsg(fmt.Sprintf("有人离开房间，当前%d人在线",persons))
 			delete(clients, ws)
 			break
 		}
 		// Send the newly received message to the broadcast channel
 		broadcast <- msg
 	}
+}
+
+func broadmsg(msg string){
+	m:=Message{
+		Username:"系统消息",
+		Message:msg,
+	}
+	broadcast <- m
 }
 
 func OnChartMessages() {
@@ -59,6 +73,8 @@ func OnChartMessages() {
 			err := client.WriteJSON(msg)
 			if err != nil {
 				//log.Printf("error: %v", err)
+				persons--
+				broadmsg(fmt.Sprintf("有人离开房间，当前%d人在线",persons))
 				client.Close()
 				delete(clients, client)
 			}
