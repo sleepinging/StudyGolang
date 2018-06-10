@@ -297,8 +297,20 @@ func HelpTest(){
 	os.Exit(0)
 }
 
+func HelpReplyTest(){
+	hr:=&models.HelpReply{
+		HelpId:3,
+		AtId:1,
+		ReplyerId:1,
+		Content:"感谢",
+	}
+	fmt.Println(hr,dao.ReplyHelp(hr))
+	os.Exit(0)
+}
+
 //测试
 func Test() {
+	HelpReplyTest()
 	//HelpTest()
 	//SeekHelpTest()
 	//MsgTest()

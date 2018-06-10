@@ -6,6 +6,7 @@ import (
 	"../global"
 	"../models"
 	"../tools"
+	"time"
 )
 
 var (
@@ -34,6 +35,39 @@ func HelpReplyDbInit() {
 }
 
 //回复帮助
-func ReplyHelp(){
-	
+func ReplyHelp(hr *models.HelpReply)(err error){
+	help,err:=GetHelpById(hr.HelpId)
+	if err != nil {
+		return
+	}
+	_=help
+	u,err:=GetUserById(hr.ReplyerId)
+	if err != nil {
+		return
+	}
+	hr.ReplyerName=u.Name
+	u,err=GetUserById(hr.AtId)
+	if err != nil {
+		return
+	}
+	hr.AtName=u.Name
+	hr.Time=time.Now()
+	err=hrdb.Create(hr).Error
+	if err != nil {
+		return
+	}
+	return
 }
+
+//获取某帮助的回复数量
+func CountHelpReply()(count int,err error){
+	
+	return
+}
+
+//获取某帮助的回复
+func GetHelpReply(hid int)(hrs *[]models.HelpReply,err error){
+
+	return
+}
+
