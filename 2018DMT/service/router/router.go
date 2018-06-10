@@ -2,6 +2,7 @@ package router
 
 import (
 	"../../service"
+	"../chart"
 	"net/http"
 )
 
@@ -81,6 +82,12 @@ func helpRouter() {
 	http.HandleFunc("/seekhelp/help/getreply", service.GetHelpReply)
 }
 
+func chartrouter(){
+	http.HandleFunc("/chart", chart.OnChartConnections)
+	// Start listening for incoming chat messages
+	go chart.OnChartMessages()
+}
+
 func RegisterAllRouter() {
 	addLoginRouter()
 	addJobRouter()
@@ -89,5 +96,6 @@ func RegisterAllRouter() {
 	addMsgRouter()
 	addSeekHelpRouter()
 	helpRouter()
+	chartrouter()
 	addOtherRouter()
 }
