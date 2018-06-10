@@ -47,5 +47,6 @@ func AcceptHelp(hid int,w http.ResponseWriter, r *http.Request)(uid int,err erro
 
 //回复帮助
 func ReplyHelp(w http.ResponseWriter, r *http.Request)(uid int,err error){
+
 	return
 }
