@@ -7,6 +7,7 @@ import (
 	"../global"
 	"../models"
 	"../tools"
+	"time"
 )
 
 var (
@@ -35,6 +36,16 @@ func BlogDbInit() {
 }
 
 //发布博客
+func PublishBlog(blog *models.Blog)(err error){
+	u,err:=GetUserById(blog.PublisherId)
+	if err != nil {
+		return
+	}
+	blog.PublisherName=u.Name
+	blog.PublisherHead=u.Head
+	blog.Time=time.Now()
+	return
+}
 
 //删除博客
 
@@ -45,3 +56,7 @@ func BlogDbInit() {
 //搜索博客
 
 //点赞
+
+//取消点赞
+
+//是否已赞

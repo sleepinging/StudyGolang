@@ -17,8 +17,9 @@ type Blog struct {
 	Type          int       `json:"Type"`
 	Title         string    `json:"Title"`
 	Content       string    `gorm:"type:varchar(10239)" json:"Content"`
-	Readed        int       `json:"Readed"`
-	Reply         int       `json:"Reply"` //+
+	ReadNum       int       `json:"ReadNum"`
+	ZanNum        int       `json:"ZanNum"`   //+
+	ReplyNum      int       `json:"ReplyNum"` //+
 }
 
 //除了某些字段全部复制
