@@ -73,15 +73,44 @@ func ShowJob(id int) (job *models.Job, err error) {
 }
 
 func QueryJobCount(job *models.Job) (count int) {
-	jobs := new([]models.Job)
-	jobdb.Where(job).Find(jobs)
-	count = len(*jobs)
+	j:=&models.Job{
+		Type:job.Type,
+		Weekend:job.Weekend,
+		Pickup:job.Pickup,
+		Eat:job.Eat,
+		Live:job.Live,
+		WuXianYiJin:job.WuXianYiJin,
+	}
+	err := jobdb.Model(j).
+		Where("salary >= ? and place like ?",
+		job.Salary,`%`+job.Place+`%`).Where(j).
+		Count(&count).Error
+	if err != nil {
+		return
+	}
 	return
 }
 
 func QueryJob(job *models.Job, limit, page int) (jobs *[]models.Job) {
 	jobs = new([]models.Job)
-	jobdb.Where(job).Offset((page - 1) * limit).Limit(limit).Find(jobs)
+	j:=&models.Job{
+		Type:job.Type,
+		Weekend:job.Weekend,
+		Pickup:job.Pickup,
+		Eat:job.Eat,
+		Live:job.Live,
+		WuXianYiJin:job.WuXianYiJin,
+	}
+	err := jobdb.Model(j).
+		Where("salary >= ? and place like ?",
+		job.Salary,`%`+job.Place+`%`).Where(j).
+		Offset((page - 1) * limit).Limit(limit).
+		Order("publish_time desc").
+		Find(jobs).
+		Error
+	if err != nil {
+		return
+	}
 	return
 }
 

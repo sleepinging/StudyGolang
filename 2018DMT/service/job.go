@@ -68,14 +68,14 @@ func QueryJobCount(w http.ResponseWriter, r *http.Request) {
 		models.SendRetJson2(0, "失败", err.Error(), w)
 		return
 	}
-	r.ParseForm()
-	jobs, ok := r.PostForm["Job"]
-	if !ok || len(jobs) == 0 {
-		models.SendRetJson2(0, "缺少Job参数", "手动滑稽", w)
+	queryForm, err := url.ParseQuery(r.URL.RawQuery)
+	jobs,err:=GetGetString("Job",queryForm)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
 		return
 	}
 	job := &models.Job{}
-	err = json.Unmarshal([]byte(jobs[0]), job)
+	err = json.Unmarshal([]byte(jobs), job)
 	if err != nil {
 		models.SendRetJson2(0, "Job格式错误", err.Error(), w)
 		return
@@ -91,36 +91,22 @@ func QueryJob(w http.ResponseWriter, r *http.Request) {
 		models.SendRetJson2(0, "失败", err.Error(), w)
 		return
 	}
-	r.ParseForm()
-	jobs, ok := r.PostForm["Job"]
-	if !ok || len(jobs) == 0 {
-		models.SendRetJson2(0, "缺少Job参数", "手动滑稽", w)
+	queryForm, err := url.ParseQuery(r.URL.RawQuery)
+	limit,err:=GetGetInt("Limit",queryForm)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	page,err:=GetGetInt("Page",queryForm)
+	jobs,err:=GetGetString("Job",queryForm)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
 		return
 	}
 	job := &models.Job{}
-	err = json.Unmarshal([]byte(jobs[0]), job)
+	err = json.Unmarshal([]byte(jobs), job)
 	if err != nil {
 		models.SendRetJson2(0, "Job格式错误", err.Error(), w)
-		return
-	}
-	limits, ok := r.PostForm["Limit"]
-	if !ok || len(limits) == 0 {
-		models.SendRetJson2(0, "缺少Limit参数", "手动滑稽", w)
-		return
-	}
-	Pages, ok := r.PostForm["Page"]
-	if !ok || len(Pages) == 0 {
-		models.SendRetJson2(0, "缺少Page参数", "手动滑稽", w)
-		return
-	}
-	limit, err := strconv.ParseInt(limits[0], 10, 32)
-	if err != nil {
-		models.SendRetJson2(0, "Limit参数需要为整数", err.Error(), w)
-		return
-	}
-	page, err := strconv.ParseInt(Pages[0], 10, 32)
-	if err != nil {
-		models.SendRetJson2(0, "Page参数需要为整数", err.Error(), w)
 		return
 	}
 	qjobs := dao.QueryJob(job, int(limit), int(page))

@@ -15,6 +15,7 @@ type Job struct {
 	PublisherName string    `json:"PublisherName"` //+
 	PublishTime   time.Time `josn:"PublishTime"`
 	Name          string    `json:"Name"`
+	Type          int       `json:"Type"`
 	Salary        float32   `json:"Salary"`
 	Time          string    `json:"Time"`
 	Weekend       int       `json:"Weekend"`

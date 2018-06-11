@@ -68,9 +68,13 @@ func GetSeekHelp(sid int) (sh *models.SeekHelp, err error) {
 
 //搜索求助的数量
 func CountSearcSeekhHelp(sh *models.SeekHelp, limit, page int)(count int,err error){
-	err=shdb.Model(&models.SeekHelp{}).
-		Where("type = ? and status = ? and gold >= ? and time >= ? and (title like ? or content like ? )",
-		sh.Type,sh.Status, sh.Gold, sh.Time,`%`+sh.Title+`%`,`%`+sh.Title+`%`).
+	q:=&models.SeekHelp{
+		Type:sh.Type,
+		Status:sh.Status,
+	}
+	err=shdb.Model(q).
+		Where("gold >= ? and (title like ? or content like ? )",
+		sh.Gold,`%`+sh.Title+`%`,`%`+sh.Title+`%`).Where(q).
 		Count(&count).Error
 	return
 }
@@ -78,19 +82,13 @@ func CountSearcSeekhHelp(sh *models.SeekHelp, limit, page int)(count int,err err
 //搜索求助
 func SearchSeekHelp(sh *models.SeekHelp, limit, page int) (shs *[]models.SeekHelp, err error) {
 	shs = new([]models.SeekHelp)
-	//err = shdb.
-	//	Where("type = ?", sh.Type).
-	//	Where("gold > ? and time > ?", sh.Gold, sh.Time).
-	//	Find(shs).
-	//	Where("title like ?", `%`+sh.Title+`%`).
-	//	Or("content like ?", `%`+sh.Title+`%`).
-	//	Offset((page - 1) * limit).Limit(limit).
-	//	Find(shs).
-	//	Count(&count).
-	//	Error
-	err = shdb.
-		Where("type = ? and status = ? and gold >= ? and time >= ? and (title like ? or content like ? )",
-			sh.Type,sh.Status, sh.Gold, sh.Time,`%`+sh.Title+`%`,`%`+sh.Title+`%`).
+	q:=&models.SeekHelp{
+		Type:sh.Type,
+		Status:sh.Status,
+	}
+	err=shdb.Model(q).
+		Where("gold >= ? and (title like ? or content like ? )",
+		sh.Gold,`%`+sh.Title+`%`,`%`+sh.Title+`%`).Where(q).
 		Offset((page - 1) * limit).Limit(limit).
 		Order("time desc").
 		Find(shs).

@@ -12,7 +12,6 @@ import (
 	"net/http"
 	"os"
 	"reflect"
-	"sync"
 	"time"
 )
 
@@ -104,25 +103,20 @@ func TestStruct() {
 
 func JobTest() {
 	job := &models.Job{
-		Name:        "洗碗",
+		Name:        "开发",
 		PublisherId: 1,
 		Salary:      3000.0,
+		Type:1,
 		//PublishTime: time.Now(),
 		Time:        "每周一到周六",
-		Weekend:     -1,
-		Pickup:      -1,
-		Eat:         1,
-		Live:        -1,
-		WuXianYiJin: 1,
-		Place:       "食堂",
+		Place:       "杭州",
 		LimPeople:   10,
 		NowPeople:   3,
-		Sex:         2,
 		Phone:       "13222222222",
 		Detail:      "不想洗碗，找几个人帮我洗",
 	}
-	//id,err:=dao.PublishJob(job)
-	//fmt.Println(id,err)
+	_=job
+	//fmt.Println(dao.PublishJob(job))
 	//t1:=time.Now()
 	//fmt.Println(dao.GetJobById(job.Id+78))
 	//t2:=time.Now()
@@ -140,23 +134,23 @@ func JobTest() {
 	//err := dao.DeleteJob(5)
 	//fmt.Println(err)
 
-	//事务
-	wg := new(sync.WaitGroup)
-	t1 := time.Now()
-	for i := 0; i < 8; i++ {
-		wg.Add(1)
-		go func(i int) {
-			j := new(models.Job)
-			j.CopyJobFromEId(job)
-			//jid,err:=dao.PublishJob(j)
-			//fmt.Println("发布",jid,err)
-			fmt.Println("删除", dao.DeleteJob(272+i))
-			wg.Done()
-		}(i)
-	}
-	wg.Wait()
-	t2 := time.Now()
-	fmt.Println(t2.Sub(t1))
+	////事务
+	//wg := new(sync.WaitGroup)
+	//t1 := time.Now()
+	//for i := 0; i < 8; i++ {
+	//	wg.Add(1)
+	//	go func(i int) {
+	//		j := new(models.Job)
+	//		j.CopyJobFromEId(job)
+	//		//jid,err:=dao.PublishJob(j)
+	//		//fmt.Println("发布",jid,err)
+	//		fmt.Println("删除", dao.DeleteJob(272+i))
+	//		wg.Done()
+	//	}(i)
+	//}
+	//wg.Wait()
+	//t2 := time.Now()
+	//fmt.Println(t2.Sub(t1))
 	//os.Exit(0)
 }
 
@@ -326,7 +320,7 @@ func BlogTest() {
 
 //测试
 func Test() {
-	BlogTest()
+	//BlogTest()
 	//HelpReplyTest()
 	//HelpTest()
 	//SeekHelpTest()
@@ -336,7 +330,7 @@ func Test() {
 	//ColorTest()
 	//go UserTest()
 	//reflectTest()
-	//JobTest()
+	JobTest()
 	//TestStruct()
 	//CookieTest()
 	//jiamiTest()
