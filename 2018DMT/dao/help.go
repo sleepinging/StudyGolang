@@ -75,7 +75,7 @@ func AcceptHelp(hid int)(err error){
 		return
 	}
 	if sh.Status==1{
-		err=global.SeekHelpSolved
+		err=global.AlreadyAccept
 		return
 	}
 	//将求助修改为解决

@@ -44,16 +44,58 @@ func PublishBlog(blog *models.Blog)(err error){
 	blog.PublisherName=u.Name
 	blog.PublisherHead=u.Head
 	blog.Time=time.Now()
+	err=blogdb.Create(blog).Error
+	if err != nil {
+		return
+	}
 	return
 }
 
 //删除博客
+func DeleteBlog(bid int)(err error){
+	blog:=new(models.Blog)
+	err=blogdb.First(blog,bid).Error
+	if err != nil {
+		err=global.NoSuchBlog
+		return
+	}
+	err=blogdb.Delete(blog).Error
+	if err != nil {
+		return
+	}
+	return
+}
 
 //修改博客
+func UpdateBlog(bid int,blog *models.Blog)(err error){
+	oblog:=new(models.Blog)
+	err=blogdb.First(oblog,bid).Error
+	if err != nil {
+		return
+	}
+	oblog.CopyFrom(blog,[]string{"Content","Title","Type","Status"})
+	oblog.Time=time.Now()
+	err=blogdb.Save(oblog).Error
+	if err != nil {
+		return
+	}
+	return
+}
 
 //查找博客
+func GetBlogById(bid int)(blog *models.Blog,err error){
+	blog=new(models.Blog)
+	err=blogdb.First(blog,bid).Error
+	if err != nil {
+		err=global.NoSuchBlog
+		return
+	}
+	return
+}
 
 //搜索博客
+
+//搜索博客的数量
 
 //点赞
 

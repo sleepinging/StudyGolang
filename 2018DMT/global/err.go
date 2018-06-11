@@ -11,7 +11,6 @@ var (
 	NoSuchBlog       = errors.New("没有这个博客")
 	NoSuchSeekHelp   = errors.New("没有这个求助")
 	NoSuchHelp       = errors.New("没有这个帮助")
-	SeekHelpSolved   = errors.New("求助已经解决")
 	GoldNotEnough    = errors.New("金币不足")
 	GoldMustPositive = errors.New("金币必须大于0")
 	AlreadyZan       = errors.New("已经赞过")

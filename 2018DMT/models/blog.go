@@ -22,8 +22,20 @@ type Blog struct {
 	ReplyNum      int       `json:"ReplyNum"` //+
 }
 
+//创建博客
+func NewBlog(pid,tp int,title,content string,status int)(blog *Blog){
+	blog=&Blog{
+		PublisherId:pid,
+		Type:tp,
+		Title:title,
+		Content:content,
+		Status:status,
+	}
+	return
+}
+
 //除了某些字段全部复制
-func (this *Blog) CopyBlogFromExpt(blog *Blog, except []string) {
+func (this *Blog) CopyFromExpt(blog *Blog, except []string) {
 	s1 := reflect.ValueOf(blog).Elem()
 	s2 := reflect.ValueOf(this).Elem()
 	typ := reflect.TypeOf(*blog)
@@ -35,5 +47,20 @@ func (this *Blog) CopyBlogFromExpt(blog *Blog, except []string) {
 		}
 		v := s1.Field(i).Interface()
 		s2.Field(i).Set(reflect.ValueOf(v))
+	}
+}
+
+//只复制某些字段
+func (this *Blog) CopyFrom(blog *Blog, except []string) {
+	s1 := reflect.ValueOf(blog).Elem()
+	s2 := reflect.ValueOf(this).Elem()
+	typ := reflect.TypeOf(*blog)
+	n := typ.NumField()
+	for i := 0; i < n; i++ {
+		name := s1.Type().Field(i).Name
+		if f, _ := tools.StrInArray(except, name); f {
+			v := s1.Field(i).Interface()
+			s2.Field(i).Set(reflect.ValueOf(v))
+		}
 	}
 }

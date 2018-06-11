@@ -266,52 +266,67 @@ func MsgTest() {
 	os.Exit(0)
 }
 
-func SeekHelpTest(){
-	sh:=&models.SeekHelp{
-		PublisherId:1,
-		Gold:10,
-		Title:"C++11问题",
-		Content:"auto 是什么意思，求大佬指点",
+func SeekHelpTest() {
+	sh := &models.SeekHelp{
+		PublisherId: 1,
+		Gold:        10,
+		Title:       "C++11问题",
+		Content:     "auto 是什么意思，求大佬指点",
 	}
 	//fmt.Println(dao.PublishSeekHelp(sh))
 	//fmt.Println(dao.GetSeekHelp(2))
 	//dao.QueryTest()
 	//sh.Context="99*99=?"
-	sh.Title="auto"
+	sh.Title = "auto"
 	//sh.Gold=10
 	//tools.ShowErr(dao.UpdataSeekHelp(1,sh))
 	//tools.ShowErr(dao.DeleteSeekHelp(2))
-	fmt.Println(dao.SearchSeekHelp(sh,10,1))
+	fmt.Println(dao.SearchSeekHelp(sh, 10, 1))
 	os.Exit(0)
 }
 
-func HelpTest(){
-	help:=&models.Help{
-		HelperId:1,
-		SeekHelpId:1,
-		Content:"这么简单都不会",
+func HelpTest() {
+	help := &models.Help{
+		HelperId:   1,
+		SeekHelpId: 1,
+		Content:    "这么简单都不会",
 	}
 	//fmt.Println(dao.PublishHelp(help),help)
-	tools.ShowErr(dao.AcceptHelp(help.Id+3))
+	tools.ShowErr(dao.AcceptHelp(help.Id + 3))
 	fmt.Println(dao.GetHelpCount(1))
 	os.Exit(0)
 }
 
-func HelpReplyTest(){
-	hr:=&models.HelpReply{
-		HelpId:3,
-		AtId:1,
-		ReplyerId:1,
-		Content:"感谢",
+func HelpReplyTest() {
+	hr := &models.HelpReply{
+		HelpId:    3,
+		AtId:      1,
+		ReplyerId: 1,
+		Content:   "感谢",
 	}
 	//fmt.Println(hr,dao.ReplyHelp(hr))
 	fmt.Println(dao.CountHelpReply(3))
-	fmt.Println(dao.GetHelpReply(hr.Id+3,10,1))
+	fmt.Println(dao.GetHelpReply(hr.Id+3, 10, 1))
+	os.Exit(0)
+}
+
+func BlogTest() {
+	blog := models.NewBlog(1,
+		1,
+		"如何学习",
+		"楼主不想学习了",
+		1,
+	)
+	fmt.Println(dao.PublishBlog(blog), blog)
+	fmt.Println(dao.GetBlogById(blog.Id))
+	//tools.ShowErr(dao.UpdateBlog(4,blog))
+	//tools.ShowErr(dao.DeleteBlog(blog.Id+4))
 	os.Exit(0)
 }
 
 //测试
 func Test() {
+	BlogTest()
 	//HelpReplyTest()
 	//HelpTest()
 	//SeekHelpTest()
