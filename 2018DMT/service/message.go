@@ -40,18 +40,22 @@ func SendMsg(w http.ResponseWriter, r *http.Request) {
 
 //查询收到的消息
 func GetRecvedMsg(w http.ResponseWriter, r *http.Request) {
-	r.ParseForm()
+	queryForm, err := url.ParseQuery(r.URL.RawQuery)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
 	uid, err := Permission.GetRecvedMsg(w, r)
 	if err != nil {
 		models.SendRetJson2(0, "失败", err.Error(), w)
 		return
 	}
-	limit, err := GetPostInt("Limit", w, r)
+	limit, err := GetGetInt("Limit", queryForm)
 	if err != nil {
 		models.SendRetJson2(0, "失败", err.Error(), w)
 		return
 	}
-	page, err := GetPostInt("Page", w, r)
+	page, err := GetGetInt("Page",queryForm)
 	if err != nil {
 		models.SendRetJson2(0, "失败", err.Error(), w)
 		return
@@ -67,13 +71,17 @@ func GetRecvedMsg(w http.ResponseWriter, r *http.Request) {
 
 //查询发送的消息条数
 func SendMsgCount(w http.ResponseWriter, r *http.Request) {
-	r.ParseForm()
+	queryForm, err := url.ParseQuery(r.URL.RawQuery)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
 	uid, err := Permission.SendMsgCount(w, r)
 	if err != nil {
 		models.SendRetJson2(0, "查询失败", err.Error(), w)
 		return
 	}
-	msgs, err := GetPostString("Message", w, r)
+	msgs, err := GetGetString("Message", queryForm)
 	if err != nil {
 		models.SendRetJson2(0, "查询失败", err.Error(), w)
 		return
@@ -94,14 +102,17 @@ func SendMsgCount(w http.ResponseWriter, r *http.Request) {
 
 //显示收到的消息条数
 func RecvMsgCount(w http.ResponseWriter, r *http.Request) {
-	r.ParseForm()
-	r.ParseForm()
+	queryForm, err := url.ParseQuery(r.URL.RawQuery)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
 	uid, err := Permission.RecvMsgCount(w, r)
 	if err != nil {
 		models.SendRetJson2(0, "查询失败", err.Error(), w)
 		return
 	}
-	msgs, err := GetPostString("Message", w, r)
+	msgs, err := GetGetString("Message", queryForm)
 	if err != nil {
 		models.SendRetJson2(0, "查询失败", err.Error(), w)
 		return
@@ -122,18 +133,22 @@ func RecvMsgCount(w http.ResponseWriter, r *http.Request) {
 
 //显示发送的消息
 func GetSendedMsg(w http.ResponseWriter, r *http.Request) {
-	r.ParseForm()
+	queryForm, err := url.ParseQuery(r.URL.RawQuery)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
 	uid, err := Permission.GetSendedMsg(w, r)
 	if err != nil {
 		models.SendRetJson2(0, "失败", err.Error(), w)
 		return
 	}
-	limit, err := GetPostInt("Limit", w, r)
+	limit, err := GetGetInt("Limit", queryForm)
 	if err != nil {
 		models.SendRetJson2(0, "失败", err.Error(), w)
 		return
 	}
-	page, err := GetPostInt("Page", w, r)
+	page, err := GetGetInt("Page", queryForm)
 	if err != nil {
 		models.SendRetJson2(0, "失败", err.Error(), w)
 		return

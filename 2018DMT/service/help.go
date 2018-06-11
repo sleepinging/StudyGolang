@@ -5,6 +5,7 @@ import (
 	"../models"
 	"../dao"
 	"../control/Permission"
+	"net/url"
 )
 
 //发布帮助
@@ -129,7 +130,12 @@ func ReplyHelp(w http.ResponseWriter, r *http.Request){
 
 //获取某帮助的回复数量
 func CountHelpReply(w http.ResponseWriter, r *http.Request){
-	id,err:=GetPostInt("Id",w,r)
+	queryForm, err := url.ParseQuery(r.URL.RawQuery)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	id,err:=GetGetInt("Id",queryForm)
 	if err != nil {
 		models.SendRetJson2(0, "失败", err.Error(), w)
 		return
@@ -144,7 +150,12 @@ func CountHelpReply(w http.ResponseWriter, r *http.Request){
 
 //获取某帮助的回复
 func GetHelpReply(w http.ResponseWriter, r *http.Request){
-	id,err:=GetPostInt("Id",w,r)
+	queryForm, err := url.ParseQuery(r.URL.RawQuery)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	id,err:=GetGetInt("Id",queryForm)
 	if err != nil {
 		models.SendRetJson2(0, "失败", err.Error(), w)
 		return

@@ -5,20 +5,25 @@ import (
 	"../models"
 	"../dao"
 	"../control/Permission"
+	"net/url"
 )
 
 func GetUserGold(w http.ResponseWriter, r *http.Request) {
-	r.ParseForm()
-	id, err := GetPostInt("Id", w, r)
+	queryForm, err := url.ParseQuery(r.URL.RawQuery)
 	if err != nil {
 		models.SendRetJson2(0, "失败", err.Error(), w)
 		return
 	}
-	f, err := Permission.GetUserGold(id, w, r)
-	if !f {
+	id, err := GetGetInt("Id", queryForm)
+	if err != nil {
 		models.SendRetJson2(0, "失败", err.Error(), w)
 		return
 	}
+	uid, err := Permission.GetUserGold(id, w, r)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+	}
+	_=uid
 	g, err := dao.GetUserGold(id)
 	if err != nil {
 		models.SendRetJson2(0, "失败", err.Error(), w)

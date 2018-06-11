@@ -61,18 +61,12 @@ func PublishSeekHelp(w http.ResponseWriter, r *http.Request)  {
 
 //搜索求助的数量
 func CountSearcSeekhHelp(w http.ResponseWriter, r *http.Request){
-	r.ParseForm()
-	limit,err:=GetPostInt("Limit",w,r)
+	queryForm, err := url.ParseQuery(r.URL.RawQuery)
 	if err != nil {
 		models.SendRetJson2(0, "失败", err.Error(), w)
 		return
 	}
-	page,err:=GetPostInt("Page",w,r)
-	if err != nil {
-		models.SendRetJson2(0, "失败", err.Error(), w)
-		return
-	}
-	shs,err:=GetPostString("SeekHelp",w,r)
+	shs,err:=GetGetString("SeekHelp",queryForm)
 	if err != nil {
 		models.SendRetJson2(0, "失败", err.Error(), w)
 		return
@@ -88,7 +82,7 @@ func CountSearcSeekhHelp(w http.ResponseWriter, r *http.Request){
 		return
 	}
 	_=uid
-	count,err:=dao.CountSearcSeekhHelp(sh,limit,page)
+	count,err:=dao.CountSearcSeekhHelp(sh)
 	if err != nil {
 		models.SendRetJson2(0, "失败", err.Error(), w)
 		return
@@ -98,18 +92,22 @@ func CountSearcSeekhHelp(w http.ResponseWriter, r *http.Request){
 
 //搜索求助
 func SearchSeekHelp(w http.ResponseWriter, r *http.Request){
-	r.ParseForm()
-	limit,err:=GetPostInt("Limit",w,r)
+	queryForm, err := url.ParseQuery(r.URL.RawQuery)
 	if err != nil {
 		models.SendRetJson2(0, "失败", err.Error(), w)
 		return
 	}
-	page,err:=GetPostInt("Page",w,r)
+	limit,err:=GetGetInt("Limit",queryForm)
 	if err != nil {
 		models.SendRetJson2(0, "失败", err.Error(), w)
 		return
 	}
-	shs,err:=GetPostString("SeekHelp",w,r)
+	page,err:=GetGetInt("Page",queryForm)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	shs,err:=GetGetString("SeekHelp",queryForm)
 	if err != nil {
 		models.SendRetJson2(0, "失败", err.Error(), w)
 		return

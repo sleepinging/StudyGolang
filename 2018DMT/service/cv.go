@@ -7,6 +7,7 @@ import (
 	"../models"
 	"encoding/json"
 	"fmt"
+	"net/url"
 )
 
 //添加简历
@@ -94,8 +95,12 @@ func DeleteCV(w http.ResponseWriter, r *http.Request) {
 
 //查看用户简历
 func GetUserCV(w http.ResponseWriter, r *http.Request) {
-	r.ParseForm()
-	uid, err := GetPostInt("UserId", w, r)
+	queryForm, err := url.ParseQuery(r.URL.RawQuery)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	uid, err := GetGetInt("UserId",queryForm)
 	if err != nil {
 		models.SendRetJson2(0, "错误", err.Error(), w)
 		return
@@ -116,8 +121,12 @@ func GetUserCV(w http.ResponseWriter, r *http.Request) {
 
 //查看简历
 func GetCV(w http.ResponseWriter, r *http.Request) {
-	r.ParseForm()
-	cid, err := GetPostInt("UserId", w, r)
+	queryForm, err := url.ParseQuery(r.URL.RawQuery)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	cid, err := GetGetInt("Id", queryForm)
 	if err != nil {
 		models.SendRetJson2(0, "错误", err.Error(), w)
 		return

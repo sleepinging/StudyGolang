@@ -6,17 +6,16 @@ import (
 	"../../global"
 )
 
-func GetUserGold(id int, w http.ResponseWriter, r *http.Request) (f bool, err error) {
-	uid, err := GetUserIdByCookie(w, r)
+func GetUserGold(id int, w http.ResponseWriter, r *http.Request) (uid int,err error) {
+	uid, err = GetUserIdByCookie(w, r)
 	if err != nil {
 		return
 	}
-	tp := dao.GetUserType(uid)
-	if tp == 5 || uid == id {
-		f = true
-		return
-	}
-	err = global.NoPermission
+	//tp := dao.GetUserType(uid)
+	//if tp == 5 || uid == id {
+	//	return
+	//}
+	//err = global.NoPermission
 	return
 }
 

@@ -69,6 +69,10 @@ func QueryJobCount(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	queryForm, err := url.ParseQuery(r.URL.RawQuery)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
 	jobs,err:=GetGetString("Job",queryForm)
 	if err != nil {
 		models.SendRetJson2(0, "失败", err.Error(), w)
@@ -92,6 +96,10 @@ func QueryJob(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	queryForm, err := url.ParseQuery(r.URL.RawQuery)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
 	limit,err:=GetGetInt("Limit",queryForm)
 	if err != nil {
 		models.SendRetJson2(0, "失败", err.Error(), w)
