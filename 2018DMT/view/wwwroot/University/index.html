@@ -6,12 +6,18 @@
 		<title></title>
 		<link rel="stylesheet" href="css/bootstrap.css" />
 		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<script type="text/javascript" src="js/jquery.min3.3.1.js"></script>
+		<script type="text/javascript" src="js/js.cookie.min.js"></script>
+		<style>
+			.item {
+				margin: 20px;
+			}
+		</style>
 	</head>
 
 	<body class="bg-info">
 		<nav class="navbar navbar-default">
 			<div class="container-fluid">
-				<!-- Brand and toggle get grouped for better mobile display -->
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
@@ -19,76 +25,64 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-					<a class="navbar-brand" href="#">大学帮</a>
+					<a class="navbar-brand" href="index.html">大学帮</a>
 				</div>
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
 						<li class="active">
-							<a href="#">Link <span class="sr-only">(current)</span></a>
+							<a href="index.html">大学圈子 <span class="sr-only">(current)</span></a>
 						</li>
 						<li>
-							<a href="#">Link</a>
+							<a href="#">互帮互助 <span class="sr-only">(current)</span></a>
 						</li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li>
-									<a href="#">Action</a>
-								</li>
-								<li>
-									<a href="#">Another action</a>
-								</li>
-								<li>
-									<a href="#">Something else here</a>
-								</li>
-								<li role="separator" class="divider"></li>
-								<li>
-									<a href="#">Separated link</a>
-								</li>
-								<li role="separator" class="divider"></li>
-								<li>
-									<a href="#">One more separated link</a>
-								</li>
-							</ul>
+						<li>
+							<a href="#">工作资讯</a>
 						</li>
 					</ul>
-					<form class="navbar-form navbar-left">
-						<div class="form-group">
-							<input type="text" class="form-control" placeholder="Search">
-						</div>
-						<button type="submit" class="btn btn-default">Submit</button>
-					</form>
 					<ul class="nav navbar-nav navbar-right">
 						<li>
-							<a data-toggle="modal" data-target="#myModal">登录</a>
+							<a id="btn_nlogin" data-toggle="modal" data-target="#myModal">登录</a>
 						</li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">登录 <span class="caret"></span></a>
+
+						<li>
+							<a id="btn_register" href="register.html">注册</a>
+						</li>
+						<li id="userinfo" class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span id="username"></span> <span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li>
-									<a>登录</a>
-								</li>
-								<li>
-									<a href="#">Another action</a>
+									<a href="UserInfo.html">个人信息</a>
 								</li>
 								<li>
 									<a href="#">Something else here</a>
 								</li>
 								<li role="separator" class="divider"></li>
 								<li>
-									<a href="#">Separated link</a>
+									<a id="btn_loginout">退出登录</a>
 								</li>
 							</ul>
 						</li>
 					</ul>
 				</div>
-				<!-- /.navbar-collapse -->
 			</div>
-			<!-- /.container-fluid -->
 		</nav>
-
+		<script>
+			var user = Cookies.get('user')
+			if(user == null) {
+				$('#userinfo').hide()
+			} else {
+				$('#btn_nlogin').hide()
+				$('#username').text(Cookies.getJSON('userinfo').Email)
+				$('#btn_register').hide()
+			}
+			$('#btn_loginout').click(function(){
+				Cookies.remove('user')
+				Cookies.remove('userinfo')
+				window.location.reload()
+			})
+		</script>
 		<div class="container">
 			<!--左边内容区-->
 			<div class="col-lg-8 col-md-8">
@@ -218,25 +212,25 @@
 				<!--按钮面板-->
 				<div class="panel">
 					<div class="row">
-						<div class="col-lg-4 col-sm-4 col-xs-4">
-							<img src="img/testicon.jpg" class="img-circle" alt="" style="width: 80px;height: 80px;" />
+						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+							<a href="CreateJob.html"><img src="img/testicon.jpg" class="img-circle" alt="" style="width: 80px;height: 80px;" /></a>
 						</div>
-						<div class="col-lg-4 col-sm-4 col-xs-4">
-							<img src="img/testicon.jpg" class="img-circle" style="width: 80px;height: 80px;" />
+						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+							<a data-toggle="modal" data-target="#helpContent"><img src="img/testicon.jpg" class="img-circle" style="width: 80px;height: 80px;" /></a>
 						</div>
-						<div class="col-lg-4 col-sm-4 col-xs-4">
+						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 							<img src="img/testicon.jpg" class="img-circle" style="width: 80px;height: 80px;" />
 						</div>
 					</div>
 					<hr />
 					<div class="row">
-						<div class="col-lg-4 col-sm-4 col-xs-4">
+						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 							<img src="img/testicon.jpg" class="img-circle" alt="" style="width: 80px;height: 80px;" />
 						</div>
-						<div class="col-lg-4 col-sm-4 col-xs-4">
+						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 							<img src="img/testicon.jpg" class="img-circle" style="width: 80px;height: 80px;" />
 						</div>
-						<div class="col-lg-4 col-sm-4 col-xs-4">
+						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 							<img src="img/testicon.jpg" class="img-circle" style="width: 80px;height: 80px;" />
 						</div>
 					</div>
@@ -301,28 +295,28 @@
 				<!--招聘信息-->
 				<div>
 					<div class="row">
-						<div class="col-sm-6 col-md-4 col-lg-6">
+						<div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
 							<div class="thumbnail">
 								<img src="img/testicon.jpg" alt="...">
 								<div class="caption">
 									<h3>家教老师</h3>
 									<p>...</p>
-									<p class="row" style="margin-left: 10px;margin-right: 10px;">
-										<a href="#" class="btn btn-primary col-sm-6 col-xs-6" role="button">应聘</a>
-										<a href="#" class="btn btn-default col-sm-6 col-xs-6" role="button">咨询</a>
+									<p class="row" style="padding: 10px;">										
+										<a href="#" class="btn btn-primary col-sm-12 col-xs-12 col-md-12 col-lg-6" role="button">应聘</a>
+										<a href="#" class="btn btn-default col-sm-12 col-xs-12 col-md-12 col-lg-6" role="button">咨询</a>
 									</p>
 								</div>
 							</div>
 						</div>
-						<div class="col-sm-6 col-md-4 col-lg-6">
+						<div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
 							<div class="thumbnail">
 								<img src="img/testicon.jpg" alt="...">
 								<div class="caption">
 									<h3>家教老师</h3>
 									<p>...</p>
-									<p class="row" style="margin-left: 10px;margin-right: 10px;">
-										<a href="#" class="btn btn-primary col-sm-6 col-xs-6" role="button">应聘</a>
-										<a href="#" class="btn btn-default col-sm-6 col-xs-6" role="button">咨询</a>
+									<p class="row" style="padding: 10px;">
+										<a href="#" class="btn btn-primary col-sm-12 col-xs-12 col-md-12 col-lg-6" role="button">应聘</a>
+										<a href="#" class="btn btn-default col-sm-12 col-xs-12 col-md-12 col-lg-6" role="button">咨询</a>
 									</p>
 								</div>
 							</div>
@@ -330,28 +324,28 @@
 
 					</div>
 					<div class="row">
-						<div class="col-sm-6 col-md-4 col-lg-6">
+						<div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
 							<div class="thumbnail">
 								<img src="img/testicon.jpg" alt="...">
 								<div class="caption">
 									<h3>家教老师</h3>
 									<p>...</p>
-									<p class="row" style="margin-left: 10px;margin-right: 10px;">
-										<a href="#" class="btn btn-primary col-sm-6 col-xs-6" role="button">应聘</a>
-										<a href="#" class="btn btn-default col-sm-6 col-xs-6" role="button">咨询</a>
+									<p class="row" style="padding: 10px;">
+										<a href="#" class="btn btn-primary col-sm-12 col-xs-12 col-md-12 col-lg-6" role="button">应聘</a>
+										<a href="#" class="btn btn-default col-sm-12 col-xs-12 col-md-12 col-lg-6" role="button">咨询</a>
 									</p>
 								</div>
 							</div>
 						</div>
-						<div class="col-sm-6 col-md-4 col-lg-6">
+						<div class="col-sm-6 col-md-6 col-xs-6 col-lg-6">
 							<div class="thumbnail">
 								<img src="img/testicon.jpg" alt="...">
 								<div class="caption">
 									<h3>家教老师</h3>
 									<p>...</p>
-									<p class="row" style="margin-left: 10px;margin-right: 10px;">
-										<a href="#" class="btn btn-primary col-sm-6 col-xs-6" role="button">应聘</a>
-										<a href="#" class="btn btn-default col-sm-6 col-xs-6" role="button">咨询</a>
+									<p class="row" style="padding: 10px;">
+										<a href="#" class="btn btn-primary col-sm-12 col-xs-12 col-md-12 col-lg-6" role="button">应聘</a>
+										<a href="#" class="btn btn-default col-sm-12 col-xs-12 col-md-12 col-lg-6" role="button">咨询</a>
 									</p>
 								</div>
 							</div>
@@ -390,35 +384,72 @@
 				</div>
 			</div>
 		</div>
-		<script type="text/javascript" src="js/jquery.min3.3.1.js" ></script>
-		<script type="text/javascript" src="js/bootstrap.js" ></script>
-		<script type="text/javascript" src="js/API.js" ></script>
-		<script type="text/javascript" src="js/md5.js" ></script>
+		<!--发布帮助-->
+		<div class="modal fade" id="helpContent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                	</button>
+						<h4 class="modal-title" id="myModalLabel">发布帮助</h4>
+					</div>
+					<div class="modal-body">
+						<div class="input-group item">
+							<span class="input-group-addon" id="sizing-addon2">标题</span>
+							<input id="title" type="text" class="form-control" placeholder="请输入标题" aria-describedby="sizing-addon2">
+						</div>
+						<div class="input-group item">
+							<span class="input-group-addon" id="sizing-addon2">内容</span>
+							<input id="content" type="text" class="form-control" placeholder="请输入内容" aria-describedby="sizing-addon2">
+						</div>
+						<div class="input-group item">
+							<span class="input-group-addon" id="sizing-addon2">类型</span>
+							<select id="wxyj" class="form-control">
+								<option>有</option>
+								<option>无</option>
+							</select>
+						</div>
+						<div class="input-group item">
+							<span class="input-group-addon" id="sizing-addon2">金币</span>
+						<input type="number" class="form-control" placeholder="帮助你可获得的金币数量" aria-describedby="sizing-addon2">
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+						<button type="button" class="btn btn-primary">发布</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/bootstrap.js"></script>
+		<script type="text/javascript" src="js/API.js"></script>
+		<script type="text/javascript" src="js/md5.js"></script>
 		<script>
 			//登录监听
 			$('#btn_login').click(function() {
 				var email = $('#email').val()
 				var password = $('#password').val()
-				
-				if (email=="" || password=="") {
+
+				if(email == "" || password == "") {
 					alert("请正确填写信息")
-				} else{
-					console.table([email,password])
+				} else {
+					console.table([email, password])
 					$.ajax({
-					type:"post",
-					url:API_LOGIN,
-					async:true,
-					data:{
-						Email:email,
-						Password:password},
-					success:function(result)
-					{
-						console.log(result)
-						alert(result)
-					}
-				});
+						type: "post",
+						url: API_LOGIN,
+						async: true,
+						data: {
+							Email: email,
+							Password: password
+						},
+						success: function(result) {
+							var juser = JSON.parse(result).data
+							Cookies.set("userinfo",juser)
+							window.location.reload()
+						}
+					});
 				}
-				
+
 			})
 		</script>
 	</body>

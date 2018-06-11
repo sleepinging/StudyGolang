@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>用户信息 | 大学帮</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" href="css/bootstrap.min.css" />		
+		<script type="text/javascript" src="js/js.cookie.min.js" ></script>		
+		<script type="text/javascript" src="js/jquery.min3.3.1.js" ></script>
+		<script type="text/javascript" src="js/bootstrap.min.js" ></script>
+		<style>
+			.item{
+				margin: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+					<a class="navbar-brand" href="index.html">大学帮</a>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li class="active">
+							<a href="index.html">大学圈子 <span class="sr-only">(current)</span></a>
+						</li>
+						<li>
+							<a href="#">互帮互助 <span class="sr-only">(current)</span></a>
+						</li>
+						<li>
+							<a href="#">工作资讯</a>
+						</li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<a id="btn_nlogin" data-toggle="modal" data-target="#myModal">登录</a>
+						</li>
+
+						<li>
+							<a id="btn_register" href="register.html">注册</a>
+						</li>
+						<li id="userinfo" class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span id="username"></span> <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li>
+									<a href="UserInfo.html">个人信息</a>
+								</li>
+								<li>
+									<a href="#">Something else here</a>
+								</li>
+								<li role="separator" class="divider"></li>
+								<li>
+									<a id="btn_loginout">退出登录</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<script>
+			var user = Cookies.get('user')
+			if(user == null) {
+				$('#userinfo').hide()
+			} else {
+				$('#btn_nlogin').hide()
+				$('#username').text(Cookies.getJSON('userinfo').Email)
+				$('#btn_register').hide()
+			}
+			$('#btn_loginout').click(function(){
+				Cookies.remove('user')
+				Cookies.remove('userinfo')
+				window.location.reload()
+			})
+		</script>
+	
+		
+		<div class="container">
+			<div class="input-group item">
+				<span class="input-group-addon" >用户姓名：</span>
+				<input  id="Name" type="text" class="form-control" placeholder="请输入你的真实姓名" aria-describedby="sizing-addon2">
+			</div>
+			<div class="input-group item">
+				<span class="input-group-addon" >性别</span>
+				<select id="Sex" class="form-control">
+						<option>男</option>
+						<option>女</option>
+					</select>
+			</div>
+			<div class="input-group item">
+				<span class="input-group-addon" >生日</span>
+				<input id="Birthday"  type="text" class="form-control" placeholder="请输入标题" aria-describedby="sizing-addon2">
+			</div>
+			<div class="input-group item">
+				<span class="input-group-addon" >家乡</span>
+				<input id="Hometown" type="text" class="form-control" placeholder="请选择你的家乡" aria-describedby="sizing-addon2">
+			</div>
+			<div class="input-group item">
+				<span class="input-group-addon" >爱好</span>
+				<input id="Hobby" type="text" class="form-control" placeholder="请输入标题" aria-describedby="sizing-addon2">
+			</div>
+			<div class="input-group item">
+				<span class="input-group-addon" >特长</span>
+				<input id="Speciality" type="text" class="form-control" placeholder="请输入标题" aria-describedby="sizing-addon2">
+			</div>
+			<div class="input-group item">
+				<span class="input-group-addon" >电话</span>
+				<input id="Phone" type="text" class="form-control" placeholder="请输入标题" aria-describedby="sizing-addon2">
+			</div>
+			<div class="input-group item">
+				<span class="input-group-addon" >QQ</span>
+				<input id="QQ" type="text" class="form-control" placeholder="请输入标题" aria-describedby="sizing-addon2">
+			</div>
+			<div class="input-group item">
+				<span class="input-group-addon" >微信</span>
+				<input id="WeiXin" type="text" class="form-control" placeholder="请输入标题" aria-describedby="sizing-addon2">
+			</div>
+			<div class="input-group item">
+				<span class="input-group-addon" >学校</span>
+				<input id="School" type="text" class="form-control" placeholder="请输入标题" aria-describedby="sizing-addon2">
+			</div>
+			<div class="input-group item">
+				<span class="input-group-addon" >专业</span>
+				<input id="Major" type="text" class="form-control" placeholder="请输入标题" aria-describedby="sizing-addon2">
+			</div>
+			<button class="btn btn-success btn-block item">保存</button>
+		</div>
+		<script>
+			var userinfo = Cookies.getJSON('userinfo')
+			if(userinfo == null)
+			{
+				alert("请你先登录哦")
+				window.location = "index.html"
+			}else{
+				$('#Name').val(userinfo.Name)
+				$('#Sex').val(userinfo.Sex)
+				$('#Birthday').val(userinfo.Birthday)
+				$('#Hometown').val(userinfo.Hometown)
+				$('#Speciality').val(userinfo.Speciality)
+				$('#Phone').val(userinfo.School)
+				$("#QQ").val(userinfo.QQ)
+				$('#WeiXin').val(userinfo.WeiXin)
+				$('#School').val(userinfo.School)
+				$('#Major').val(userinfo.Major)
+				
+				
+			}
+		</script>
+	</body>
+</html>

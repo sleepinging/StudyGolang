@@ -94,8 +94,35 @@ func GetBlogById(bid int)(blog *models.Blog,err error){
 }
 
 //搜索博客
+func SearchBlog(blog *models.Blog, limit, page int)(blogs *[]models.Blog,err error){
+	blogs=new([]models.Blog)
+	b:=&models.Blog{
+		Type:blog.Type,
+	}
+	err=blogdb.Model(b).Where("title like ? or content like ?",
+		`%`+blog.Title+`%`,`%`+blog.Title+`%`).Where(b).
+		Offset((page - 1) * limit).Limit(limit).
+		Order("time desc").
+		Find(blogs).Error
+	if err != nil {
+		return
+	}
+	return
+}
 
 //搜索博客的数量
+func CountSearchBlog(blog *models.Blog)(count int,err error){
+	b:=&models.Blog{
+		Type:blog.Type,
+	}
+	err=blogdb.Model(b).Where("title like ? or content like ?",
+		`%`+blog.Title+`%`,`%`+blog.Title+`%`).Where(b).
+		Count(&count).Error
+	if err != nil {
+		return
+	}
+	return
+}
 
 //点赞
 

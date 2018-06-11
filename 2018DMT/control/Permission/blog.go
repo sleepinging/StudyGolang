@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-//添加博客的权限检查
+//发布博客的权限检查
 func PublishBlog(blog *models.Blog,w http.ResponseWriter, r *http.Request) (uid int,err error) {
 	uid, err = GetUserIdByCookie(w, r)
 	if err != nil {
@@ -22,8 +22,16 @@ func PublishBlog(blog *models.Blog,w http.ResponseWriter, r *http.Request) (uid 
 }
 
 //修改博客的权限检查
-func UpDateBlog(blog *models.Blog, w http.ResponseWriter, r *http.Request) (uid int,err error) {
+func UpDateBlog(bid int, w http.ResponseWriter, r *http.Request) (uid int,err error) {
 	uid, err = GetUserIdByCookie(w, r)
+	if err != nil {
+		return
+	}
+	//tp := dao.GetUserType(uid)
+	//if tp>=5{
+	//	return
+	//}
+	blog,err:=dao.GetBlogById(bid)
 	if err != nil {
 		return
 	}
@@ -35,13 +43,17 @@ func UpDateBlog(blog *models.Blog, w http.ResponseWriter, r *http.Request) (uid 
 }
 
 //删除博客的权限检查
-func DeleteBlog(blog *models.Blog, w http.ResponseWriter, r *http.Request) (uid int,err error) {
+func DeleteBlog(bid int, w http.ResponseWriter, r *http.Request) (uid int,err error) {
 	uid, err = GetUserIdByCookie(w, r)
 	if err != nil {
 		return
 	}
 	tp := dao.GetUserType(uid)
 	if tp == 5 {
+		return
+	}
+	blog,err:=dao.GetBlogById(bid)
+	if err != nil {
 		return
 	}
 	if uid != blog.PublisherId {

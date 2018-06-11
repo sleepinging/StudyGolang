@@ -4,6 +4,7 @@ import (
 	"../tools"
 	"reflect"
 	"time"
+	"encoding/json"
 )
 
 //博客
@@ -63,4 +64,11 @@ func (this *Blog) CopyFrom(blog *Blog, except []string) {
 			s2.Field(i).Set(reflect.ValueOf(v))
 		}
 	}
+}
+
+//从字符串加载博客
+func LoadBlogFromStr(str string) (blog *Blog, err error) {
+	blog = new(Blog)
+	err = json.Unmarshal([]byte(str), blog)
+	return
 }

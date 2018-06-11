@@ -82,10 +82,34 @@ func helpRouter() {
 	http.HandleFunc("/seekhelp/help/getreply", service.GetHelpReply)
 }
 
-func chartrouter(){
+func chartRouter(){
 	http.HandleFunc("/chart", chart.OnChartConnections)
 	// Start listening for incoming chat messages
 	go chart.OnChartMessages()
+}
+
+func blogRouter()  {
+	//发布博客
+	http.HandleFunc("/blog/pulish",service.PublishBlog)
+	//显示博客
+	http.HandleFunc("/blog",service.GetBlog)
+	//搜索博客
+	http.HandleFunc("/blog/search",service.SearchBlog)
+	//搜索博客的数量
+	http.HandleFunc("/blog/search/count",service.CountSearchBlog)
+	//修改博客
+	http.HandleFunc("/blog/updata",service.UpdateBlog)
+	//删除博客
+	http.HandleFunc("/blog/delete",service.DeleteBlog)
+	//回复博客
+	///blog/reply
+
+	//点赞博客
+	//blog/zan
+
+	//取消赞
+	//blog/zan/cancel
+	
 }
 
 func RegisterAllRouter() {
@@ -96,6 +120,7 @@ func RegisterAllRouter() {
 	addMsgRouter()
 	addSeekHelpRouter()
 	helpRouter()
-	chartrouter()
+	chartRouter()
+	blogRouter()
 	addOtherRouter()
 }
