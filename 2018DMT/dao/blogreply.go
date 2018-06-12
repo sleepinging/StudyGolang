@@ -6,6 +6,7 @@ import (
 	"../global"
 	"../models"
 	"../tools"
+	"time"
 )
 
 var (
@@ -36,18 +37,48 @@ func BlogReplyDbInit() {
 //回复博客
 func ReplyBlog(br *models.BlogReply)(err error){
 	b,err:=GetBlogById(br.BlogId)
-
+	if err != nil {
+		return
+	}
+	ru,err:=GetUserById(br.ReplyerId)
+	if err != nil {
+		return
+	}
+	br.ReplyerName=ru.Name
+	br.ReplyerHead=ru.Head
+	au,err:=GetUserById(br.AtId)
+	if err != nil {
+		return
+	}
+	br.AtName=au.Name
+	br.Time=time.Now()
+	err=brdb.Create(br).Error
+	if err != nil {
+		return
+	}
 	b.ReplyNum++
+	err=blogdb.Save(b).Error
+	if err != nil {
+		return
+	}
 	return
 }
 
 //获取博客回复数量
 func CountBlogReply(bid int)(count int,err error){
-
+	err=brdb.Model(&models.BlogReply{}).
+		Where("blog_id =?",bid).
+		Count(&count).Error
 	return
 }
 
 //获取博客的回复
-func GetBlogReply(bid int)(brs *models.BlogReply,err error){
+func GetBlogReply(bid int, limit, page int)(brs *[]models.BlogReply,err error){
+	brs=new([]models.BlogReply)
+	err=brdb.Model(&models.BlogReply{}).Where("blog_id =?",
+		bid).
+		Offset((page - 1) * limit).Limit(limit).
+		Order("time desc").
+		Find(brs).Error
 	return
 }

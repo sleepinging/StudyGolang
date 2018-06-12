@@ -290,7 +290,17 @@ func GetBlogReply(w http.ResponseWriter, r *http.Request) {
 		models.SendRetJson2(0, "失败", err.Error(), w)
 		return
 	}
-	brs,err:=dao.GetBlogReply(bid)
+	limit,err:=GetGetInt("Limit",queryForm)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	page,err:=GetGetInt("Page",queryForm)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	brs,err:=dao.GetBlogReply(bid,limit,page)
 	if err != nil {
 		models.SendRetJson2(0, "失败", err.Error(), w)
 		return

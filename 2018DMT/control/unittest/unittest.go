@@ -331,16 +331,21 @@ func ZanTest(){
 }
 
 func BlogReplyTest(){
-	br:=&models.BlogReply{
-
-	}
-	fmt.Println(dao.ReplyBlog(br))
+	//br:=&models.BlogReply{
+	//	ReplyerId:5,
+	//	BlogId:5,
+	//	AtId:1,
+	//	Content:"支持楼主",
+	//}
+	//fmt.Println(dao.ReplyBlog(br))
+	fmt.Println(dao.CountBlogReply(5))
+	fmt.Println(dao.GetBlogReply(5,10,1))
 	os.Exit(0)
 }
 
 //测试
 func Test() {
-	BlogReplyTest()
+	//BlogReplyTest()
 	//ZanTest()
 	//BlogTest()
 	//HelpReplyTest()
