@@ -122,7 +122,62 @@ func ReplyBlog(w http.ResponseWriter, r *http.Request){
 
 //点赞博客
 func ZanBlog(w http.ResponseWriter, r *http.Request){
+	uid,err:=Permission.Zan(w,r)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	r.ParseForm()
+	bid,err:=GetPostInt("BlogId",w,r)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	err=dao.ZanBlog(bid,uid)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	models.SendRetJson2(1, "成功", err.Error(), w)
+}
 
+//取消赞
+func CancelZanBlog(w http.ResponseWriter, r *http.Request){
+	uid,err:=Permission.Zan(w,r)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	r.ParseForm()
+	bid,err:=GetPostInt("BlogId",w,r)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	err=dao.CancelZanBlog(bid,uid)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	models.SendRetJson2(1, "成功", err.Error(), w)
+}
+
+//是否赞过
+func CheckZanBlog(w http.ResponseWriter, r *http.Request){
+	//这里不需要判断了
+	uid,err:=Permission.Zan(w,r)
+	r.ParseForm()
+	bid,err:=GetPostInt("BlogId",w,r)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	f,err:=dao.IsZanBlog(bid,uid)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	models.SendRetJson2(1, "成功", f, w)
 }
 
 //修改博客

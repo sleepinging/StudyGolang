@@ -182,11 +182,9 @@ func CancelZanBlog(bid,uid int)(err error){
 }
 
 //是否已赞
-func IsZanBlog(bid,uid int)(f bool,err error){
-	c:=0
+func IsZanBlog(bid,uid int)(c int,err error){
 	err=blogdb.Model(&models.BlogZan{}).Where("blog_id = ? and zaner_id =?",
 		bid,uid).
 		Count(&c).Error
-	f=c!=0
 	return
 }

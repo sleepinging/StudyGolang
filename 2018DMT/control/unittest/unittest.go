@@ -319,15 +319,20 @@ func BlogTest() {
 }
 
 func ZanTest(){
-	//fmt.Println(dao.ZanBlog(5,1))
-	fmt.Println(dao.CancelZanBlog(5,1))
+	t1:=time.Now()
+
+	fmt.Println(dao.ZanBlog(5,1))
+	//fmt.Println(dao.CancelZanBlog(5,1))
 	fmt.Println(dao.IsZanBlog(5,1))
+
+	t2:=time.Now().Sub(t1)
+	fmt.Println(t2)
 	os.Exit(0)
 }
 
 //测试
 func Test() {
-	ZanTest()
+	//ZanTest()
 	//BlogTest()
 	//HelpReplyTest()
 	//HelpTest()

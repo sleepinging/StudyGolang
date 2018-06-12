@@ -101,14 +101,14 @@ func blogRouter()  {
 	http.HandleFunc("/blog/updata",service.UpdateBlog)
 	//删除博客
 	http.HandleFunc("/blog/delete",service.DeleteBlog)
+	//点赞博客
+	http.HandleFunc("/blog/zan",service.ZanBlog)
+	//取消赞
+	http.HandleFunc("/blog/zan/cancel",service.CancelZanBlog)
+	//是否已赞
+	http.HandleFunc("/blog/zan/check",service.CheckZanBlog)
 	//回复博客
 	///blog/reply
-
-	//点赞博客
-	//blog/zan
-
-	//取消赞
-	//blog/zan/cancel
 
 }
 
