@@ -52,6 +52,7 @@ func GetBlog(w http.ResponseWriter, r *http.Request){
 		models.SendRetJson2(0, "失败", err.Error(), w)
 		return
 	}
+	go dao.AddBlogReadedNum(id)
 	models.SendRetJson2(1, "成功", blog, w)
 }
 
@@ -117,7 +118,29 @@ func CountSearchBlog(w http.ResponseWriter, r *http.Request){
 
 //回复博客
 func ReplyBlog(w http.ResponseWriter, r *http.Request){
-
+	r.ParseForm()
+	brs,err:=GetPostString("BlogReply",w,r)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	br,err:=models.LoadBlogReplyFromStr(brs)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	uid,err:=Permission.ReplyBlog(br,w,r)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	_=uid
+	err=dao.ReplyBlog(br)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	models.SendRetJson2(1, "成功", br, w)
 }
 
 //点赞博客
@@ -232,4 +255,46 @@ func DeleteBlog(w http.ResponseWriter, r *http.Request){
 		return
 	}
 	models.SendRetJson2(1, "成功", "(⊙o⊙)？", w)
+}
+
+//获取博客回复的数量
+func CountBlogReply(w http.ResponseWriter, r *http.Request){
+	queryForm, err := url.ParseQuery(r.URL.RawQuery)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	bid,err:=GetGetInt("BlogId",queryForm)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	c,err:=dao.CountBlogReply(bid)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	models.SendRetJson2(1, "成功", c, w)
+	return
+}
+
+//获取博客回复
+func GetBlogReply(w http.ResponseWriter, r *http.Request) {
+	queryForm, err := url.ParseQuery(r.URL.RawQuery)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	bid,err:=GetGetInt("BlogId",queryForm)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	brs,err:=dao.GetBlogReply(bid)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	models.SendRetJson2(1, "成功", brs, w)
+	return
 }

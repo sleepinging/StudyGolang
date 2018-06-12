@@ -3,6 +3,7 @@ package Permission
 import (
 	"../../dao"
 	"../../global"
+	"../../models"
 	"net/http"
 )
 
@@ -73,5 +74,23 @@ func Zan(w http.ResponseWriter, r *http.Request)(uid int,err error){
 		err=global.NoPermission
 		return
 	}
+	return
+}
+
+//回复博客
+func ReplyBlog(br *models.BlogReply,w http.ResponseWriter, r *http.Request)(uid int,err error){
+	uid, err = GetUserIdByCookie(w, r)
+	if err != nil {
+		return
+	}
+	tp := dao.GetUserType(uid)
+	if tp<1{
+		err=global.NoPermission
+		return
+	}
+	//if tp>=5{
+	//	return
+	//}
+	br.ReplyerId=uid
 	return
 }

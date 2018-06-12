@@ -1,6 +1,9 @@
 package models
 
-import "time"
+import (
+	"time"
+	"encoding/json"
+)
 
 type BlogReply struct {
 	Id          int       `gorm:"primary_key" gorm:"AUTO_INCREMENT" json:"Id"`
@@ -12,4 +15,10 @@ type BlogReply struct {
 	AtName      string    `json:"AtName"` //+
 	Time        time.Time `json:"Time"`
 	Content     string    `gorm:"type:varchar(1023)" json:"Content"`
+}
+
+func LoadBlogReplyFromStr(str string) (reply *BlogReply, err error) {
+	reply = new(BlogReply)
+	err = json.Unmarshal([]byte(str), reply)
+	return
 }

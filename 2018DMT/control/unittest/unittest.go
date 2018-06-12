@@ -330,8 +330,17 @@ func ZanTest(){
 	os.Exit(0)
 }
 
+func BlogReplyTest(){
+	br:=&models.BlogReply{
+
+	}
+	fmt.Println(dao.ReplyBlog(br))
+	os.Exit(0)
+}
+
 //测试
 func Test() {
+	BlogReplyTest()
 	//ZanTest()
 	//BlogTest()
 	//HelpReplyTest()

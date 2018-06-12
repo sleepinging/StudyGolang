@@ -1,6 +1,5 @@
 package dao
 
-
 import (
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
@@ -187,4 +186,12 @@ func IsZanBlog(bid,uid int)(c int,err error){
 		bid,uid).
 		Count(&c).Error
 	return
+}
+
+//添加阅读数
+func AddBlogReadedNum(bid int){
+	b:=new(models.Blog)
+	blogdb.Select("read_num").First(b,bid)
+	b.ReadNum++
+	blogdb.Model(b).Where("id =?",bid).Updates(b)
 }

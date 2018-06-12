@@ -108,7 +108,11 @@ func blogRouter()  {
 	//是否已赞
 	http.HandleFunc("/blog/zan/check",service.CheckZanBlog)
 	//回复博客
-	///blog/reply
+	http.HandleFunc("/blog/reply",service.ReplyBlog)
+	//获取博客回复的数量
+	http.HandleFunc("/blog/reply/count",service.CountBlogReply)
+	//获取博客回复
+	http.HandleFunc("/blog/reply/get",service.GetBlogReply)
 
 }
 
