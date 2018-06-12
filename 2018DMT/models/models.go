@@ -31,8 +31,8 @@ type Login struct {
 
 //博客点赞表
 type BlogZan struct {
-	BlogId    int    `gorm:"primary_key" json:"BlogId"`
-	ZanerId   int    `gorm:"primary_key" json:"ZanerId"`
+	BlogId    int    `gorm:"primary_key;AUTO_INCREMENT:false" json:"BlogId"`
+	ZanerId   int    `gorm:"primary_key;AUTO_INCREMENT:false" json:"ZanerId"`
 	ZanerName string `json:"ZanerName"`
 }
 

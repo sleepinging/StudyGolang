@@ -3,12 +3,11 @@ package Permission
 import (
 	"../../dao"
 	"../../global"
-	"../../models"
 	"net/http"
 )
 
 //发布博客的权限检查
-func PublishBlog(blog *models.Blog,w http.ResponseWriter, r *http.Request) (uid int,err error) {
+func PublishBlog(w http.ResponseWriter, r *http.Request) (uid int,err error) {
 	uid, err = GetUserIdByCookie(w, r)
 	if err != nil {
 		return

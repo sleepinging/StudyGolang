@@ -318,8 +318,16 @@ func BlogTest() {
 	os.Exit(0)
 }
 
+func ZanTest(){
+	//fmt.Println(dao.ZanBlog(5,1))
+	fmt.Println(dao.CancelZanBlog(5,1))
+	fmt.Println(dao.IsZanBlog(5,1))
+	os.Exit(0)
+}
+
 //测试
 func Test() {
+	ZanTest()
 	//BlogTest()
 	//HelpReplyTest()
 	//HelpTest()
@@ -330,7 +338,7 @@ func Test() {
 	//ColorTest()
 	//go UserTest()
 	//reflectTest()
-	JobTest()
+	//JobTest()
 	//TestStruct()
 	//CookieTest()
 	//jiamiTest()

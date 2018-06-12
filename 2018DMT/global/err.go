@@ -14,6 +14,7 @@ var (
 	GoldNotEnough    = errors.New("金币不足")
 	GoldMustPositive = errors.New("金币必须大于0")
 	AlreadyZan       = errors.New("已经赞过")
+	HaventZan        = errors.New("未赞过")
 	AlreadyAccept    = errors.New("已经接受过")
 	NoSuchMsg        = errors.New("没有这个消息")
 	EmptyUserPwd     = errors.New("用户名或密码不能为空")

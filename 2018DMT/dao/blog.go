@@ -31,6 +31,9 @@ func BlogDbInit() {
 	if !blogdb.HasTable(&models.Blog{}) {
 		blogdb.CreateTable(&models.Blog{})
 	}
+	if !blogdb.HasTable(&models.BlogZan{}) {
+		blogdb.CreateTable(&models.BlogZan{})
+	}
 	//fmt.Println("博客数据库初始化完成")
 	global.WgDb.Done()
 }
@@ -44,6 +47,8 @@ func PublishBlog(blog *models.Blog)(err error){
 	blog.PublisherName=u.Name
 	blog.PublisherHead=u.Head
 	blog.Time=time.Now()
+	blog.ZanNum=0
+	blog.ReadNum=0
 	err=blogdb.Create(blog).Error
 	if err != nil {
 		return
@@ -125,7 +130,63 @@ func CountSearchBlog(blog *models.Blog)(count int,err error){
 }
 
 //点赞
+func ZanBlog(bid,uid int)(err error){
+	u,err:=GetUserById(uid)
+	if err != nil {
+		return
+	}
+	b,err:=GetBlogById(bid)
+	if err != nil {
+		return
+	}
+	zb:=&models.BlogZan{
+		BlogId:bid,
+		ZanerId:uid,
+		ZanerName:u.Name,
+	}
+	err=blogdb.Create(zb).Error
+	if err != nil {
+		err=global.AlreadyZan
+		return
+	}
+	b.ZanNum++
+	err=blogdb.Save(b).Error
+	if err != nil {
+		return
+	}
+	return
+}
 
 //取消点赞
+func CancelZanBlog(bid,uid int)(err error){
+	b,err:=GetBlogById(bid)
+	if err != nil {
+		return
+	}
+	zb:=&models.BlogZan{
+		BlogId:bid,
+		ZanerId:uid,
+	}
+	tb:=zb
+	err=blogdb.Where(zb).Find(tb).Error
+	if err != nil {
+		return global.HaventZan
+	}
+	blogdb.Delete(tb)
+	b.ZanNum--
+	err=blogdb.Save(b).Error
+	if err != nil {
+		return
+	}
+	return
+}
 
 //是否已赞
+func IsZanBlog(bid,uid int)(f bool,err error){
+	c:=0
+	err=blogdb.Model(&models.BlogZan{}).Where("blog_id = ? and zaner_id =?",
+		bid,uid).
+		Count(&c).Error
+	f=c!=0
+	return
+}

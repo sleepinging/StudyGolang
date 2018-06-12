@@ -35,7 +35,6 @@ func SeekHelpDbInit() {
 
 //发布求助
 func PublishSeekHelp(sh *models.SeekHelp) (sid int, err error) {
-	sh.Time = time.Now()
 	u, err := GetUserById(sh.PublisherId)
 	if err != nil {
 		return
@@ -49,7 +48,7 @@ func PublishSeekHelp(sh *models.SeekHelp) (sid int, err error) {
 			return
 		}
 	}
-
+	sh.Time = time.Now()
 	err = shdb.Create(sh).Error
 	sid = sh.Id
 	return

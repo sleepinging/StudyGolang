@@ -16,7 +16,6 @@ func PublishHelp(w http.ResponseWriter, r *http.Request){
 		return
 	}
 	r.ParseForm()
-	_=uid
 	hs,err:=GetPostString("Help",w,r)
 	if err != nil {
 		models.SendRetJson2(0, "失败", err.Error(), w)
@@ -27,6 +26,7 @@ func PublishHelp(w http.ResponseWriter, r *http.Request){
 		models.SendRetJson2(0, "失败", err.Error(), w)
 		return
 	}
+	help.HelperId=uid
 	err=dao.PublishHelp(help)
 	if err != nil {
 		models.SendRetJson2(0, "失败", err.Error(), w)

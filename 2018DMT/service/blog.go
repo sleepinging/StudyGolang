@@ -10,12 +10,11 @@ import (
 
 //发布博客
 func PublishBlog(w http.ResponseWriter, r *http.Request){
-	uid, err := Permission.AddCV(w, r)
+	uid, err := Permission.PublishBlog(w, r)
 	if err != nil {
 		models.SendRetJson2(0, "错误", err.Error(), w)
 		return
 	}
-	_=uid
 	r.ParseForm()
 	blogs,err:=GetPostString("Blog",w,r)
 	if err != nil {
@@ -27,6 +26,7 @@ func PublishBlog(w http.ResponseWriter, r *http.Request){
 		models.SendRetJson2(0, "错误", err.Error(), w)
 		return
 	}
+	blog.PublisherId=uid
 	err=dao.PublishBlog(blog)
 	if err != nil {
 		models.SendRetJson2(0, "错误", err.Error(), w)

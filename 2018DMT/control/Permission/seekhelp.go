@@ -19,7 +19,6 @@ func PublishSeekHelp(sh *models.SeekHelp, w http.ResponseWriter, r *http.Request
 		return
 	}
 	sh.Id = 0
-	sh.Status = -1
 	if sh.Gold < 0 {
 		err = global.GoldMustPositive
 		return
