@@ -6,6 +6,7 @@ import (
 	"../../models"
 	"../../tools"
 	"../EmailVerify"
+	te "github.com/sleepinging/TEvent"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -58,8 +59,8 @@ func jsonTest() {
 }
 
 func PostLoginTest() {
-	time.Sleep(time.Second * 3)
-	url := "http://127.0.0.1/login"
+	time.Sleep(time.Second * 1)
+	url := "http://193.112.77.180/login"
 	data := "Email=237731947@qq.com&Password=123456"
 	res, err := tools.HttpPost(url, data, nil)
 	tools.ShowErr(err)
@@ -343,8 +344,14 @@ func BlogReplyTest(){
 	os.Exit(0)
 }
 
+func eventtest(){
+	e:=te.NewEvent()
+	e.AddEventHandler(1,1)
+}
+
 //测试
 func Test() {
+	//eventtest()
 	//BlogReplyTest()
 	//ZanTest()
 	//BlogTest()

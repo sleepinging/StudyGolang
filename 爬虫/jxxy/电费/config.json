@@ -1,0 +1,10 @@
+{
+    "openid": "oujX2wzzv2kQImD20rDhTcTn7vtc",
+    "limit": 10.00,
+    "smtp": {
+        "sender": "verify@beyondsky.club",
+        "to": "237731947@qq.com",
+        "pwd": "123456",
+        "host": "smtp.ym.163.com:25"
+    }
+}
