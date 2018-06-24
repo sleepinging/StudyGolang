@@ -113,6 +113,8 @@ func blogRouter()  {
 	http.HandleFunc("/blog/reply/count",service.CountBlogReply)
 	//获取博客回复
 	http.HandleFunc("/blog/reply/get",service.GetBlogReply)
+	//查找某人发布的博客
+	http.HandleFunc("/blog/search/user",service.GetUserBlogs)
 
 }
 

@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"time"
 )
 
 //返回的json
@@ -48,4 +49,11 @@ type CV struct {
 type Gold struct {
 	UserId int `gorm:"primary_key" json:"UserId"`
 	Gold   int `json:"Gold"`
+}
+
+//注册
+type RegisterRecord struct {
+	UserId int
+	Time   time.Time
+	IP     string
 }

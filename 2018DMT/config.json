@@ -20,7 +20,6 @@
     "CVDbType": "sqlite3",
     "MessageDb": "data\\db\\message.db",
     "MessageDbType": "sqlite3",
-    
     "UserDb": "data\\db\\user.db",
     "UserDbType": "sqlite3",
     "HelpReplyDb": "data\\db\\helpreply.db",
@@ -28,7 +27,9 @@
     "BlogZanDb": "data\\db\\blogzan.db",
     "BlogZanDbType": "sqlite3",
     "GoldDb": "data\\db\\gold.db",
-    "GoldDbType": "sqlite3"
+    "GoldDbType": "sqlite3",
+    "StatisticsDb":"data\\db\\statistics.db",
+    "statisticsDbType":"sqlite3"
     
   },
   "JobTypeInfoFile": "data\\jobtypes.js",

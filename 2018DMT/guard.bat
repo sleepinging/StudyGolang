@@ -5,7 +5,6 @@ Set pn=go_build_main_go.exe
 echo ¼ì²â½ø³Ì%pn%ÖÐ
 
 :LOOP
-ping 127.0.0.1 -n 2 >nul
 tasklist /nh|find /i "%pn%">nul
 if ERRORLEVEL 1 (
     echo %date:~0,10% %time:~0,8%
@@ -14,6 +13,7 @@ if ERRORLEVEL 1 (
 ) else (
     Set temp=1
 )
+ping 127.0.0.1 -n 6 >nul
 goto LOOP
 
 :NOPROCESS

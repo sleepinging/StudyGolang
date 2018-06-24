@@ -195,3 +195,16 @@ func AddBlogReadedNum(bid int){
 	b.ReadNum++
 	blogdb.Model(b).Where("id =?",bid).Updates(b)
 }
+
+//查找某人发布的博客
+func GetUserBlog(uid int)(bs *[]models.Blog,err error){
+	bs=new([]models.Blog)
+	err=blogdb.Model(&models.Blog{}).
+		Where("publisher_id =?",uid).
+		Select([]string{"id", "title"}).
+		Find(bs).Error
+	if err != nil {
+		return
+	}
+	return
+}

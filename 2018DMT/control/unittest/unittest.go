@@ -6,7 +6,6 @@ import (
 	"../../models"
 	"../../tools"
 	"../EmailVerify"
-	te "github.com/sleepinging/TEvent"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -312,8 +311,9 @@ func BlogTest() {
 		"楼主不想学习了",
 		1,
 	)
-	fmt.Println(dao.PublishBlog(blog), blog)
+	//fmt.Println(dao.PublishBlog(blog), blog)
 	fmt.Println(dao.GetBlogById(blog.Id))
+	fmt.Println(dao.GetUserBlog(2))
 	//tools.ShowErr(dao.UpdateBlog(4,blog))
 	//tools.ShowErr(dao.DeleteBlog(blog.Id+4))
 	os.Exit(0)
@@ -345,12 +345,19 @@ func BlogReplyTest(){
 }
 
 func eventtest(){
-	e:=te.NewEvent()
-	e.AddEventHandler(1,1)
+	//e:=te.NewEvent()
+	//e.AddEventHandler(1,1)
+}
+
+func StatisticsTest(){
+	//tools.ShowErr(dao.AddVisitRecord(time.Now(),"0.0.0.0","/job.html"))
+	fmt.Println(dao.VisitRecordCount(32))
+	os.Exit(0)
 }
 
 //测试
 func Test() {
+	//StatisticsTest()
 	//eventtest()
 	//BlogReplyTest()
 	//ZanTest()

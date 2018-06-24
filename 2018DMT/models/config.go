@@ -98,6 +98,12 @@ type dbinfo struct {
 
 	//帮助回复的数据库类型
 	HelpReplyDbType string `json:"HelpReplyDbType"`
+
+	//统计数据的数据库
+	StatisticsDb string `json:"StatisticsDb"`
+
+	//统计数据的数据库类型
+	StatisticsDbType string `json:"StatisticsDbType"`
 }
 
 func (this *Config) Load(filename string) (err error) {

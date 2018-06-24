@@ -45,9 +45,11 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		}
 		http.SetCookie(w, &cookie)
 		models.SendRetJson2(lr, msg, user, w)
+		go dao.AddLoginRecord(user.Id,lr,time.Now(),r.RemoteAddr)
 		return
 	}
 	models.SendRetJson2(lr, msg, "手动滑稽", w)
+	go dao.AddLoginRecord(-1,lr,time.Now(),r.RemoteAddr)
 }
 
 func IsLogin(w http.ResponseWriter, r *http.Request) {

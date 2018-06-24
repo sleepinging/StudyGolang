@@ -72,6 +72,8 @@ func Register(w http.ResponseWriter, r *http.Request) {
 	id, err := dao.AddUser(&models.User{Email: email}, pwd)
 	if err != nil {
 		models.SendRetJson2(0, "注册失败", err.Error(), w)
+		return
 	}
-	models.SendRetJson2(0, "注册成功", id, w)
+	go dao.AddRegisterRecord(id,time.Now(),r.RemoteAddr)
+	models.SendRetJson2(1, "注册成功", id, w)
 }
