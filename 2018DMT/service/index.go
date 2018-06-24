@@ -2,12 +2,14 @@ package service
 
 import (
 	"net/http"
+	"../models"
 	"../global"
 	"../tools"
 	"../dao"
 	"fmt"
 	"strings"
 	"time"
+	"net/url"
 )
 
 func GetIndex(w http.ResponseWriter, r *http.Request) {
@@ -31,4 +33,23 @@ func showinfo(cookie *http.Cookie,ip string, err error) {
 	}
 	user, t, err := dao.GetUserIdFromCookie(cookie.Value)
 	fmt.Println(tools.FmtTime(), "Cookie userid:", user, t)
+}
+
+func VisitRecordCount(w http.ResponseWriter, r *http.Request){
+	queryForm, err := url.ParseQuery(r.URL.RawQuery)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	d,err:=GetGetInt("Day",queryForm)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	c,err:=dao.VisitRecordCount(d)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	models.SendRetJson2(1, "成功", c, w)
 }

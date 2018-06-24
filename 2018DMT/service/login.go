@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"net/http"
 	"time"
+	"net/url"
 )
 
 func Login(w http.ResponseWriter, r *http.Request) {
@@ -84,4 +85,24 @@ func Logout(w http.ResponseWriter, r *http.Request) {
 	cookie.MaxAge = -1
 	http.SetCookie(w, cookie)
 	models.SendRetJson2(1, "退出成功", "(●'◡'●)", w)
+}
+
+//登录数量
+func LoginRecordCount(w http.ResponseWriter, r *http.Request)  {
+	queryForm, err := url.ParseQuery(r.URL.RawQuery)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	d,err:=GetGetInt("Day",queryForm)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	c,err:=dao.LoginRecordCount(d)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	models.SendRetJson2(1, "成功", c, w)
 }

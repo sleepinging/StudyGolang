@@ -169,6 +169,13 @@ func GetJobById(jid int) (job *models.Job, err error) {
 	return
 }
 
+//工作发布量
+func JobPublishCount(d int)(c int,err error){
+	qt:=time.Now().AddDate(0,0,-d)
+	err=jobdb.Model(&models.Job{}).Where("publish_time >= ?",qt).Count(&c).Error
+	return
+}
+
 func StartAutoJobCommit() {
 	for {
 		time.Sleep(global.Config.DbTransCommitTime)

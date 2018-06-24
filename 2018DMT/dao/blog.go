@@ -208,3 +208,10 @@ func GetUserBlog(uid int)(bs *[]models.Blog,err error){
 	}
 	return
 }
+
+//博客发布量
+func BlogPublishCount(d int)(c int,err error){
+	qt:=time.Now().AddDate(0,0,-d)
+	err=blogdb.Model(&models.Blog{}).Where("time >= ?",qt).Count(&c).Error
+	return
+}

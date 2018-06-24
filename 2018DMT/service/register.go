@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"net/http"
 	"time"
+	"net/url"
 )
 
 func SendCode(w http.ResponseWriter, r *http.Request) {
@@ -76,4 +77,24 @@ func Register(w http.ResponseWriter, r *http.Request) {
 	}
 	go dao.AddRegisterRecord(id,time.Now(),r.RemoteAddr)
 	models.SendRetJson2(1, "注册成功", id, w)
+}
+
+//注册数量
+func RegisterRecordCount(w http.ResponseWriter, r *http.Request)  {
+	queryForm, err := url.ParseQuery(r.URL.RawQuery)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	d,err:=GetGetInt("Day",queryForm)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	c,err:=dao.RegisterRecordCount(d)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	models.SendRetJson2(1, "成功", c, w)
 }

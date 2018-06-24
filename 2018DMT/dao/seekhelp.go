@@ -143,3 +143,10 @@ func SolveSeekHelp(sid int)(err error){
 	err=shdb.Model(sh).Update("status",1).Error
 	return
 }
+
+//求助发布量
+func SeekHelpPublishCount(d int)(c int,err error){
+	qt:=time.Now().AddDate(0,0,-d)
+	err=shdb.Model(&models.SeekHelp{}).Where("time >= ?",qt).Count(&c).Error
+	return
+}

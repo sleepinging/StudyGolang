@@ -184,3 +184,23 @@ func DeleteJob(w http.ResponseWriter, r *http.Request) {
 	models.SendRetJson2(1, "删除成功", ids[0], w)
 	return
 }
+
+//工作发布量
+func JobPublishCount(w http.ResponseWriter, r *http.Request)  {
+	queryForm, err := url.ParseQuery(r.URL.RawQuery)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	d,err:=GetGetInt("Day",queryForm)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	c,err:=dao.JobPublishCount(d)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	models.SendRetJson2(1, "成功", c, w)
+}

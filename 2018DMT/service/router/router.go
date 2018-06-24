@@ -53,7 +53,7 @@ func addSeekHelpRouter() {
 	http.HandleFunc("/seekhelp/search", service.SearchSeekHelp)
 	http.HandleFunc("/seekhelp/updata", service.UpdataSeekHelp)
 	http.HandleFunc("/seekhelp/delete", service.DeleteSeekHelp)
-	http.HandleFunc("seekhelp/search/count",service.CountSearcSeekhHelp)
+	http.HandleFunc("seekhelp/search/count", service.CountSearcSeekhHelp)
 }
 
 func addOtherRouter() {
@@ -82,39 +82,60 @@ func helpRouter() {
 	http.HandleFunc("/seekhelp/help/getreply", service.GetHelpReply)
 }
 
-func chartRouter(){
+func chartRouter() {
 	http.HandleFunc("/chart", chart.OnChartConnections)
 	// Start listening for incoming chat messages
 	go chart.OnChartMessages()
 }
 
-func blogRouter()  {
+func blogRouter() {
 	//发布博客
-	http.HandleFunc("/blog/pulish",service.PublishBlog)
+	http.HandleFunc("/blog/pulish", service.PublishBlog)
 	//显示博客
-	http.HandleFunc("/blog",service.GetBlog)
+	http.HandleFunc("/blog", service.GetBlog)
 	//搜索博客
-	http.HandleFunc("/blog/search",service.SearchBlog)
+	http.HandleFunc("/blog/search", service.SearchBlog)
 	//搜索博客的数量
-	http.HandleFunc("/blog/search/count",service.CountSearchBlog)
+	http.HandleFunc("/blog/search/count", service.CountSearchBlog)
 	//修改博客
-	http.HandleFunc("/blog/updata",service.UpdateBlog)
+	http.HandleFunc("/blog/updata", service.UpdateBlog)
 	//删除博客
-	http.HandleFunc("/blog/delete",service.DeleteBlog)
+	http.HandleFunc("/blog/delete", service.DeleteBlog)
 	//点赞博客
-	http.HandleFunc("/blog/zan",service.ZanBlog)
+	http.HandleFunc("/blog/zan", service.ZanBlog)
 	//取消赞
-	http.HandleFunc("/blog/zan/cancel",service.CancelZanBlog)
+	http.HandleFunc("/blog/zan/cancel", service.CancelZanBlog)
 	//是否已赞
-	http.HandleFunc("/blog/zan/check",service.CheckZanBlog)
+	http.HandleFunc("/blog/zan/check", service.CheckZanBlog)
 	//回复博客
-	http.HandleFunc("/blog/reply",service.ReplyBlog)
+	http.HandleFunc("/blog/reply", service.ReplyBlog)
 	//获取博客回复的数量
-	http.HandleFunc("/blog/reply/count",service.CountBlogReply)
+	http.HandleFunc("/blog/reply/count", service.CountBlogReply)
 	//获取博客回复
-	http.HandleFunc("/blog/reply/get",service.GetBlogReply)
+	http.HandleFunc("/blog/reply/get", service.GetBlogReply)
 	//查找某人发布的博客
-	http.HandleFunc("/blog/search/user",service.GetUserBlogs)
+	http.HandleFunc("/blog/search/user", service.GetUserBlogs)
+
+}
+
+func statisticsRouter() {
+	//访问量
+	http.HandleFunc("/statistics/visit", service.VisitRecordCount)
+
+	//注册量/用户数量
+	http.HandleFunc("/statistics/register", service.RegisterRecordCount)
+
+	//登录数量
+	http.HandleFunc("/statistics/login", service.LoginRecordCount)
+
+	//博客发布量
+	http.HandleFunc("/statistics/blog/publish", service.BlogPublishCount)
+
+	//求助发布量
+	http.HandleFunc("/statistics/seekhelp/publish", service.SeekHelpPublishCount)
+
+	//工作发布量
+	http.HandleFunc("/statistics/job/publish", service.JobPublishCount)
 
 }
 
@@ -128,5 +149,6 @@ func RegisterAllRouter() {
 	helpRouter()
 	chartRouter()
 	blogRouter()
+	statisticsRouter()
 	addOtherRouter()
 }

@@ -329,3 +329,23 @@ func GetUserBlogs(w http.ResponseWriter, r *http.Request){
 	models.SendRetJson2(1, "cg", bs, w)
 	return
 }
+
+//博客发布量
+func BlogPublishCount(w http.ResponseWriter, r *http.Request)  {
+	queryForm, err := url.ParseQuery(r.URL.RawQuery)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	d,err:=GetGetInt("Day",queryForm)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	c,err:=dao.BlogPublishCount(d)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	models.SendRetJson2(1, "成功", c, w)
+}

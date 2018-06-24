@@ -351,7 +351,8 @@ func eventtest(){
 
 func StatisticsTest(){
 	//tools.ShowErr(dao.AddVisitRecord(time.Now(),"0.0.0.0","/job.html"))
-	fmt.Println(dao.VisitRecordCount(32))
+	//fmt.Println(dao.VisitRecordCount(32))
+	fmt.Println(dao.BlogPublishCount(19))
 	os.Exit(0)
 }
 
