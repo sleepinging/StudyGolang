@@ -12,7 +12,7 @@ type User struct {
 	Id         int       `gorm:"primary_key" gorm:"AUTO_INCREMENT" json:"Id"`
 	Email      string    `json:"Email"`
 	Name       string    `json:"Name"`
-	Head       string    `json:"Head"`
+	Head       string    `gorm:"default:'/data/pic/userhead/default.png'" json:"Head"`
 	Sex        int       `json:"Sex"`
 	Birthday   time.Time `json:"Birthday"`
 	Hometown   string    `json:"Hometown"`
@@ -23,7 +23,7 @@ type User struct {
 	WeiXin     string    `json:"WeiXin"`
 	School     string    `json:"School"`
 	Major      string    `json:"Major"`
-	Type       int       `json:"Type"`
+	Type       int       `gorm:"default:2" json:"Type"`
 }
 
 func (this *User) ToString() (str string) {

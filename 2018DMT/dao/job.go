@@ -53,6 +53,7 @@ func PublishJob(job *models.Job) (id int, err error) {
 		return
 	}
 	job.PublisherName = u.Name
+	job.PublisherHead=u.Head
 	err = jobtx.Create(job).Error
 	id = job.Id
 

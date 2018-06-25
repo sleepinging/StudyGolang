@@ -116,6 +116,12 @@ func blogRouter() {
 	//查找某人发布的博客
 	http.HandleFunc("/blog/search/user", service.GetUserBlogs)
 
+	//查看某用户赞过的博客数
+	http.HandleFunc("/user/zan/blog/count", service.CountUserZanBlogs)
+
+	//查看某用户赞过的博客
+	http.HandleFunc("/user/zan/blog", service.GetUserZanBlogs)
+
 }
 
 func statisticsRouter() {

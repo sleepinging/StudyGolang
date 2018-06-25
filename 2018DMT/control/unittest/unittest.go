@@ -311,9 +311,9 @@ func BlogTest() {
 		"楼主不想学习了",
 		1,
 	)
-	//fmt.Println(dao.PublishBlog(blog), blog)
-	fmt.Println(dao.GetBlogById(blog.Id))
-	fmt.Println(dao.GetUserBlog(2))
+	fmt.Println(dao.PublishBlog(blog), blog)
+	//fmt.Println(dao.GetBlogById(blog.Id))
+	//fmt.Println(dao.GetUserBlog(2))
 	//tools.ShowErr(dao.UpdateBlog(4,blog))
 	//tools.ShowErr(dao.DeleteBlog(blog.Id+4))
 	os.Exit(0)
@@ -322,9 +322,11 @@ func BlogTest() {
 func ZanTest(){
 	t1:=time.Now()
 
-	fmt.Println(dao.ZanBlog(5,1))
+	//fmt.Println(dao.ZanBlog(3,1))
 	//fmt.Println(dao.CancelZanBlog(5,1))
-	fmt.Println(dao.IsZanBlog(5,1))
+	//fmt.Println(dao.IsZanBlog(3,1))
+	fmt.Println(dao.CountUserZanBlogs(1))
+	fmt.Println(dao.GetUserZanBlogs(1,10,1))
 
 	t2:=time.Now().Sub(t1)
 	fmt.Println(t2)
@@ -361,8 +363,8 @@ func Test() {
 	//StatisticsTest()
 	//eventtest()
 	//BlogReplyTest()
-	//ZanTest()
 	//BlogTest()
+	//ZanTest()
 	//HelpReplyTest()
 	//HelpTest()
 	//SeekHelpTest()

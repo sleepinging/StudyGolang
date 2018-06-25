@@ -1,11 +1,11 @@
 package dao
 
 import (
-	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/sqlite"
 	"../global"
 	"../models"
 	"../tools"
+	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/sqlite"
 	"time"
 )
 
@@ -38,17 +38,17 @@ func BlogDbInit() {
 }
 
 //发布博客
-func PublishBlog(blog *models.Blog)(err error){
-	u,err:=GetUserById(blog.PublisherId)
+func PublishBlog(blog *models.Blog) (err error) {
+	u, err := GetUserById(blog.PublisherId)
 	if err != nil {
 		return
 	}
-	blog.PublisherName=u.Name
-	blog.PublisherHead=u.Head
-	blog.Time=time.Now()
-	blog.ZanNum=0
-	blog.ReadNum=0
-	err=blogdb.Create(blog).Error
+	blog.PublisherName = u.Name
+	blog.PublisherHead = u.Head
+	blog.Time = time.Now()
+	blog.ZanNum = 0
+	blog.ReadNum = 0
+	err = blogdb.Create(blog).Error
 	if err != nil {
 		return
 	}
@@ -56,14 +56,14 @@ func PublishBlog(blog *models.Blog)(err error){
 }
 
 //删除博客
-func DeleteBlog(bid int)(err error){
-	blog:=new(models.Blog)
-	err=blogdb.First(blog,bid).Error
+func DeleteBlog(bid int) (err error) {
+	blog := new(models.Blog)
+	err = blogdb.First(blog, bid).Error
 	if err != nil {
-		err=global.NoSuchBlog
+		err = global.NoSuchBlog
 		return
 	}
-	err=blogdb.Delete(blog).Error
+	err = blogdb.Delete(blog).Error
 	if err != nil {
 		return
 	}
@@ -71,15 +71,15 @@ func DeleteBlog(bid int)(err error){
 }
 
 //修改博客
-func UpdateBlog(bid int,blog *models.Blog)(err error){
-	oblog:=new(models.Blog)
-	err=blogdb.First(oblog,bid).Error
+func UpdateBlog(bid int, blog *models.Blog) (err error) {
+	oblog := new(models.Blog)
+	err = blogdb.First(oblog, bid).Error
 	if err != nil {
 		return
 	}
-	oblog.CopyFrom(blog,[]string{"Content","Title","Type","Status"})
-	oblog.Time=time.Now()
-	err=blogdb.Save(oblog).Error
+	oblog.CopyFrom(blog, []string{"Content", "Title", "Type", "Status"})
+	oblog.Time = time.Now()
+	err = blogdb.Save(oblog).Error
 	if err != nil {
 		return
 	}
@@ -87,24 +87,24 @@ func UpdateBlog(bid int,blog *models.Blog)(err error){
 }
 
 //查找博客
-func GetBlogById(bid int)(blog *models.Blog,err error){
-	blog=new(models.Blog)
-	err=blogdb.First(blog,bid).Error
+func GetBlogById(bid int) (blog *models.Blog, err error) {
+	blog = new(models.Blog)
+	err = blogdb.First(blog, bid).Error
 	if err != nil {
-		err=global.NoSuchBlog
+		err = global.NoSuchBlog
 		return
 	}
 	return
 }
 
 //搜索博客
-func SearchBlog(blog *models.Blog, limit, page int)(blogs *[]models.Blog,err error){
-	blogs=new([]models.Blog)
-	b:=&models.Blog{
-		Type:blog.Type,
+func SearchBlog(blog *models.Blog, limit, page int) (blogs *[]models.Blog, err error) {
+	blogs = new([]models.Blog)
+	b := &models.Blog{
+		Type: blog.Type,
 	}
-	err=blogdb.Model(b).Where("title like ? or content like ?",
-		`%`+blog.Title+`%`,`%`+blog.Title+`%`).Where(b).
+	err = blogdb.Model(b).Where("title like ? or content like ?",
+		`%`+blog.Title+`%`, `%`+blog.Title+`%`).Where(b).
 		Offset((page - 1) * limit).Limit(limit).
 		Order("time desc").
 		Find(blogs).Error
@@ -115,12 +115,12 @@ func SearchBlog(blog *models.Blog, limit, page int)(blogs *[]models.Blog,err err
 }
 
 //搜索博客的数量
-func CountSearchBlog(blog *models.Blog)(count int,err error){
-	b:=&models.Blog{
-		Type:blog.Type,
+func CountSearchBlog(blog *models.Blog) (count int, err error) {
+	b := &models.Blog{
+		Type: blog.Type,
 	}
-	err=blogdb.Model(b).Where("title like ? or content like ?",
-		`%`+blog.Title+`%`,`%`+blog.Title+`%`).Where(b).
+	err = blogdb.Model(b).Where("title like ? or content like ?",
+		`%`+blog.Title+`%`, `%`+blog.Title+`%`).Where(b).
 		Count(&count).Error
 	if err != nil {
 		return
@@ -129,27 +129,29 @@ func CountSearchBlog(blog *models.Blog)(count int,err error){
 }
 
 //点赞
-func ZanBlog(bid,uid int)(err error){
-	u,err:=GetUserById(uid)
+func ZanBlog(bid, uid int) (err error) {
+	u, err := GetUserById(uid)
 	if err != nil {
 		return
 	}
-	b,err:=GetBlogById(bid)
+	b, err := GetBlogById(bid)
 	if err != nil {
 		return
 	}
-	zb:=&models.BlogZan{
-		BlogId:bid,
-		ZanerId:uid,
-		ZanerName:u.Name,
+	zb := &models.BlogZan{
+		BlogId:    bid,
+		BlogTitle: b.Title,
+		ZanerId:   uid,
+		ZanerName: u.Name,
+		Time:      time.Now(),
 	}
-	err=blogdb.Create(zb).Error
+	err = blogdb.Create(zb).Error
 	if err != nil {
-		err=global.AlreadyZan
+		err = global.AlreadyZan
 		return
 	}
 	b.ZanNum++
-	err=blogdb.Save(b).Error
+	err = blogdb.Save(b).Error
 	if err != nil {
 		return
 	}
@@ -157,23 +159,23 @@ func ZanBlog(bid,uid int)(err error){
 }
 
 //取消点赞
-func CancelZanBlog(bid,uid int)(err error){
-	b,err:=GetBlogById(bid)
+func CancelZanBlog(bid, uid int) (err error) {
+	b, err := GetBlogById(bid)
 	if err != nil {
 		return
 	}
-	zb:=&models.BlogZan{
-		BlogId:bid,
-		ZanerId:uid,
+	zb := &models.BlogZan{
+		BlogId:  bid,
+		ZanerId: uid,
 	}
-	tb:=zb
-	err=blogdb.Where(zb).Find(tb).Error
+	tb := zb
+	err = blogdb.Where(zb).Find(tb).Error
 	if err != nil {
 		return global.HaventZan
 	}
 	blogdb.Delete(tb)
 	b.ZanNum--
-	err=blogdb.Save(b).Error
+	err = blogdb.Save(b).Error
 	if err != nil {
 		return
 	}
@@ -181,26 +183,26 @@ func CancelZanBlog(bid,uid int)(err error){
 }
 
 //是否已赞
-func IsZanBlog(bid,uid int)(c int,err error){
-	err=blogdb.Model(&models.BlogZan{}).Where("blog_id = ? and zaner_id =?",
-		bid,uid).
+func IsZanBlog(bid, uid int) (c int, err error) {
+	err = blogdb.Model(&models.BlogZan{}).Where("blog_id = ? and zaner_id =?",
+		bid, uid).
 		Count(&c).Error
 	return
 }
 
 //添加阅读数
-func AddBlogReadedNum(bid int){
-	b:=new(models.Blog)
-	blogdb.Select("read_num").First(b,bid)
+func AddBlogReadedNum(bid int) {
+	b := new(models.Blog)
+	blogdb.Select("read_num").First(b, bid)
 	b.ReadNum++
-	blogdb.Model(b).Where("id =?",bid).Updates(b)
+	blogdb.Model(b).Where("id =?", bid).Updates(b)
 }
 
 //查找某人发布的博客
-func GetUserBlog(uid int)(bs *[]models.Blog,err error){
-	bs=new([]models.Blog)
-	err=blogdb.Model(&models.Blog{}).
-		Where("publisher_id =?",uid).
+func GetUserBlog(uid int) (bs *[]models.Blog, err error) {
+	bs = new([]models.Blog)
+	err = blogdb.Model(&models.Blog{}).
+		Where("publisher_id =?", uid).
 		Select([]string{"id", "title"}).
 		Find(bs).Error
 	if err != nil {
@@ -209,9 +211,31 @@ func GetUserBlog(uid int)(bs *[]models.Blog,err error){
 	return
 }
 
+//查看某用户赞过的博客数
+func CountUserZanBlogs(uid int) (c int, err error) {
+	err = blogdb.Model(&models.BlogZan{}).Where("zaner_id = ?", uid).Count(&c).Error
+	return
+}
+
+//查看某用户赞过的博客
+func GetUserZanBlogs(uid, limit, page int) (zans *[]models.BlogZan, err error) {
+	zans=new([]models.BlogZan)
+	err = blogdb.Model(&models.BlogZan{}).
+		Where("zaner_id = ?", uid).
+		Select([]string{"blog_id","blog_title"}).
+		Offset((page - 1) * limit).Limit(limit).
+		Find(zans).
+		Error
+	if err != nil {
+		return
+	}
+
+	return
+}
+
 //博客发布量
-func BlogPublishCount(d int)(c int,err error){
-	qt:=time.Now().AddDate(0,0,-d)
-	err=blogdb.Model(&models.Blog{}).Where("time >= ?",qt).Count(&c).Error
+func BlogPublishCount(d int) (c int, err error) {
+	qt := time.Now().AddDate(0, 0, -d)
+	err = blogdb.Model(&models.Blog{}).Where("time >= ?", qt).Count(&c).Error
 	return
 }

@@ -13,6 +13,7 @@ type Job struct {
 	Id            int       `gorm:"primary_key" gorm:"AUTO_INCREMENT" json:"Id"`
 	PublisherId   int       `json:"PublisherId"`
 	PublisherName string    `json:"PublisherName"` //+
+	PublisherHead string    `json:"PublisherHead"` //+
 	PublishTime   time.Time `josn:"PublishTime"`
 	Name          string    `json:"Name"`
 	Type          int       `json:"Type"`

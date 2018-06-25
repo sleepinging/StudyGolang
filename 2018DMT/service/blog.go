@@ -349,3 +349,53 @@ func BlogPublishCount(w http.ResponseWriter, r *http.Request)  {
 	}
 	models.SendRetJson2(1, "成功", c, w)
 }
+
+//查看某用户赞过的博客
+func GetUserZanBlogs(w http.ResponseWriter, r *http.Request){
+	queryForm, err := url.ParseQuery(r.URL.RawQuery)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	uid,err:=GetGetInt("UserId",queryForm)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	limit,err:=GetGetInt("Limit",queryForm)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	page,err:=GetGetInt("Page",queryForm)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	res,err:=dao.GetUserZanBlogs(uid,limit,page)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	models.SendRetJson2(1, "成功", res, w)
+}
+
+//查看某用户赞过的博客数
+func CountUserZanBlogs(w http.ResponseWriter, r *http.Request){
+	queryForm, err := url.ParseQuery(r.URL.RawQuery)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	uid,err:=GetGetInt("UserId",queryForm)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	res,err:=dao.CountUserZanBlogs(uid)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	models.SendRetJson2(1, "成功", res, w)
+}
