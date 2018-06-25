@@ -116,7 +116,9 @@ func GetSeekHelpHelps(sid int, limit, page int)(hs *[]models.Help,err error){
 		SeekHelpId:sid,
 	}
 	hs=new([]models.Help)
-	err=helpdb.Where(h).Offset((page - 1) * limit).Limit(limit).Find(hs).Error
+	err=helpdb.Where(h).Offset((page - 1) * limit).Limit(limit).
+		Order("time asc").
+		Find(hs).Error
 	if err != nil {
 		return
 	}

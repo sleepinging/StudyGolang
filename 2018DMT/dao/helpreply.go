@@ -73,7 +73,7 @@ func GetHelpReply(hid int, limit, page int)(hrs *[]models.HelpReply,err error){
 	hrs=new([]models.HelpReply)
 	err=hrdb.Model(&models.HelpReply{}).Where("help_id =?",hid).
 		Offset((page - 1) * limit).Limit(limit).
-		Order("time desc").
+		Order("time asc").
 		Find(hrs).Error
 	return
 }

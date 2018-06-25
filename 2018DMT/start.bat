@@ -1,6 +1,6 @@
 @echo off
 
-Set pn=go_build_main_go.exe
+Set pn=dmt2018_t.exe
 
 echo ¼ì²â½ø³Ì%pn%ÖÐ
 

@@ -96,6 +96,10 @@ func CheckCode(email, code string) (res bool, errinfo string) {
 	if time.Now().Sub(info.Gentime) < Verifytimeout {
 		res, errinfo = true, "验证码正确"
 	}
+
+	//TODO 目前先去掉
+	res, errinfo = true, "验证码正确"
+
 	return
 }
 
