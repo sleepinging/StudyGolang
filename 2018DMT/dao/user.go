@@ -131,3 +131,18 @@ func DeleteUser(id int) (err error) {
 	userdb.Delete(user)
 	return
 }
+
+//搜索用户
+func SearchUser(user *models.User, limit, page int)(users *[]models.User,err error){
+	users=new([]models.User)
+	u:=&models.User{}
+	u.CopyUserFromExpt(user,[]string{"Name","Id"})
+	err = userdb.Model(u).Where("name like ?",
+		`%`+user.Name+`%`).Where(u).
+		Offset((page - 1) * limit).Limit(limit).
+		Find(users).Error
+	if err != nil {
+		return
+	}
+	return
+}

@@ -26,6 +26,10 @@ func addUserRouter() {
 	http.HandleFunc("/user/add", service.AddUser)
 	http.HandleFunc("/user/updata", service.UpdateUser)
 	http.HandleFunc("/user/delete", service.DeleteUser)
+
+	//搜索用户
+	http.HandleFunc("/user/search", service.SearchUser)
+
 }
 
 func addCVRouter() {
@@ -53,7 +57,7 @@ func addSeekHelpRouter() {
 	http.HandleFunc("/seekhelp/search", service.SearchSeekHelp)
 	http.HandleFunc("/seekhelp/updata", service.UpdataSeekHelp)
 	http.HandleFunc("/seekhelp/delete", service.DeleteSeekHelp)
-	http.HandleFunc("seekhelp/search/count", service.CountSearcSeekhHelp)
+	http.HandleFunc("/seekhelp/search/count", service.CountSearchSeekhHelp)
 }
 
 func addOtherRouter() {

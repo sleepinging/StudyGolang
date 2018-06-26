@@ -106,16 +106,16 @@ func JobTest() {
 		Name:        "开发",
 		PublisherId: 1,
 		Salary:      3000.0,
-		Type:1,
+		Type:        1,
 		//PublishTime: time.Now(),
-		Time:        "每周一到周六",
-		Place:       "杭州",
-		LimPeople:   10,
-		NowPeople:   3,
-		Phone:       "13222222222",
-		Detail:      "不想洗碗，找几个人帮我洗",
+		Time:      "每周一到周六",
+		Place:     "杭州",
+		LimPeople: 10,
+		NowPeople: 3,
+		Phone:     "13222222222",
+		Detail:    "不想洗碗，找几个人帮我洗",
 	}
-	_=job
+	_ = job
 	//fmt.Println(dao.PublishJob(job))
 	//t1:=time.Now()
 	//fmt.Println(dao.GetJobById(job.Id+78))
@@ -201,8 +201,10 @@ func UserTest() {
 	////tools.ShowErr(dao.UpDateUserInfo(u.Id,u))
 	////tools.ShowErr(dao.DeleteUser(id))
 	//fmt.Println(dao.GetUserById(id))
-	time.Sleep(time.Second * 2)
-	fmt.Println(tools.HttpGet("http://193.112.77.180/user?Id=1"))
+	time.Sleep(time.Second * 1)
+	//fmt.Println(tools.HttpGet("http://193.112.77.180/user?Id=1"))
+	fmt.Println(tools.HttpGet(`http://127.0.0.1/user/search?User={"Name":"测"}&Limit=10&Page=1`))
+	//os.Exit(0)
 }
 
 func JobTypeTest() {
@@ -319,21 +321,21 @@ func BlogTest() {
 	os.Exit(0)
 }
 
-func ZanTest(){
-	t1:=time.Now()
+func ZanTest() {
+	t1 := time.Now()
 
 	//fmt.Println(dao.ZanBlog(3,1))
 	//fmt.Println(dao.CancelZanBlog(5,1))
 	//fmt.Println(dao.IsZanBlog(3,1))
 	fmt.Println(dao.CountUserZanBlogs(1))
-	fmt.Println(dao.GetUserZanBlogs(1,10,1))
+	fmt.Println(dao.GetUserZanBlogs(1, 10, 1))
 
-	t2:=time.Now().Sub(t1)
+	t2 := time.Now().Sub(t1)
 	fmt.Println(t2)
 	os.Exit(0)
 }
 
-func BlogReplyTest(){
+func BlogReplyTest() {
 	//br:=&models.BlogReply{
 	//	ReplyerId:5,
 	//	BlogId:5,
@@ -342,16 +344,16 @@ func BlogReplyTest(){
 	//}
 	//fmt.Println(dao.ReplyBlog(br))
 	fmt.Println(dao.CountBlogReply(5))
-	fmt.Println(dao.GetBlogReply(5,10,1))
+	fmt.Println(dao.GetBlogReply(5, 10, 1))
 	os.Exit(0)
 }
 
-func eventtest(){
+func eventtest() {
 	//e:=te.NewEvent()
 	//e.AddEventHandler(1,1)
 }
 
-func StatisticsTest(){
+func StatisticsTest() {
 	//tools.ShowErr(dao.AddVisitRecord(time.Now(),"0.0.0.0","/job.html"))
 	//fmt.Println(dao.VisitRecordCount(32))
 	fmt.Println(dao.BlogPublishCount(19))

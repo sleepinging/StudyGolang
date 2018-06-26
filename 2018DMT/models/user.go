@@ -53,3 +53,10 @@ func (this *User) CopyUserFromExpt(user *User, except []string) {
 		s2.Field(i).Set(reflect.ValueOf(v))
 	}
 }
+
+//从字符串加载用户
+func LoadUserFromStr(str string) (user *User, err error) {
+	user = new(User)
+	err = json.Unmarshal([]byte(str), user)
+	return
+}

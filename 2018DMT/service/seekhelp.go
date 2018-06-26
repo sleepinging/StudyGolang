@@ -60,7 +60,7 @@ func PublishSeekHelp(w http.ResponseWriter, r *http.Request)  {
 }
 
 //搜索求助的数量
-func CountSearcSeekhHelp(w http.ResponseWriter, r *http.Request){
+func CountSearchSeekhHelp(w http.ResponseWriter, r *http.Request){
 	queryForm, err := url.ParseQuery(r.URL.RawQuery)
 	if err != nil {
 		models.SendRetJson2(0, "失败", err.Error(), w)
@@ -82,7 +82,7 @@ func CountSearcSeekhHelp(w http.ResponseWriter, r *http.Request){
 		return
 	}
 	_=uid
-	count,err:=dao.CountSearcSeekhHelp(sh)
+	count,err:=dao.CountSearchSeekhHelp(sh)
 	if err != nil {
 		models.SendRetJson2(0, "失败", err.Error(), w)
 		return

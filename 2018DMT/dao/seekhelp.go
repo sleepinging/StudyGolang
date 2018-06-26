@@ -66,7 +66,7 @@ func GetSeekHelp(sid int) (sh *models.SeekHelp, err error) {
 }
 
 //搜索求助的数量
-func CountSearcSeekhHelp(sh *models.SeekHelp)(count int,err error){
+func CountSearchSeekhHelp(sh *models.SeekHelp)(count int,err error){
 	q:=&models.SeekHelp{
 		Type:sh.Type,
 		Status:sh.Status,

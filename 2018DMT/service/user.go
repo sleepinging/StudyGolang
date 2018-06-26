@@ -110,3 +110,38 @@ func DeleteUser(w http.ResponseWriter, r *http.Request) {
 	models.SendRetJson2(1, "删除成功", ids[0], w)
 	return
 }
+
+//搜索用户
+func SearchUser(w http.ResponseWriter, r *http.Request) {
+	queryForm, err := url.ParseQuery(r.URL.RawQuery)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	us,err:=GetGetString("User",queryForm)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	u,err:=models.LoadUserFromStr(us)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	limit,err:=GetGetInt("Limit",queryForm)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	page,err:=GetGetInt("Page",queryForm)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	res,err:=dao.SearchUser(u,limit,page)
+	if err != nil {
+		models.SendRetJson2(0, "失败", err.Error(), w)
+		return
+	}
+	models.SendRetJson2(1, "成功", res, w)
+}
