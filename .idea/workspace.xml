@@ -2,9 +2,53 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6b356682-8037-4ddb-b8ee-647ca6e12be6" name="Default" comment="修改帮助">
-      <change afterPath="$PROJECT_DIR$/2018DMT/dao/blog.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FIle/des/fdes.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/FIle/temp/delstr.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GUI/go-sciter/dati/dati.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NetTest/icbc/config.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NetTest/icbc/icbc.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NetTest/icbc/model/model.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NetTest/icbc/tool/tool.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NetTest/mqtt/mqtttest.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NetTest/sms/sms.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NetTest/socket/us.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NetTest/socket/wacapturetemp/wact.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NetTest/抓包/capture.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NetTest/自动任务/autoqd.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SQLTest/pheisql/pheisql.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Test/pipe/pp.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Text/xml/xml.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Text/正则/zz.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/crypto/test/mycrypto.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/temp/openwrt/so.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/爬虫/jxxy/竞赛/dao/save.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/爬虫/jxxy/竞赛/js.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/爬虫/wanfang/wf.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2018DMT/config.json" beforeDir="false" afterPath="$PROJECT_DIR$/2018DMT/config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2018DMT/dao/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/2018DMT/dao/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2018DMT/data/db/gold.db" beforeDir="false" afterPath="$PROJECT_DIR$/2018DMT/data/db/gold.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2018DMT/data/db/job.db" beforeDir="false" afterPath="$PROJECT_DIR$/2018DMT/data/db/job.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2018DMT/data/db/login.db" beforeDir="false" afterPath="$PROJECT_DIR$/2018DMT/data/db/login.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2018DMT/data/db/seekhelp.db" beforeDir="false" afterPath="$PROJECT_DIR$/2018DMT/data/db/seekhelp.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2018DMT/data/db/user.db" beforeDir="false" afterPath="$PROJECT_DIR$/2018DMT/data/db/user.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2018DMT/go_build_main_go.exe" beforeDir="false" afterPath="$PROJECT_DIR$/2018DMT/go_build_main_go.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2018DMT/service/blog.go" beforeDir="false" afterPath="$PROJECT_DIR$/2018DMT/service/blog.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2018DMT/service/chart/chart.go" beforeDir="false" afterPath="$PROJECT_DIR$/2018DMT/service/chart/chart.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2018DMT/service/index.go" beforeDir="false" afterPath="$PROJECT_DIR$/2018DMT/service/index.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2018DMT/service/seekhelp.go" beforeDir="false" afterPath="$PROJECT_DIR$/2018DMT/service/seekhelp.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2018DMT/view/wwwroot/University/CreateJob.html" beforeDir="false" afterPath="$PROJECT_DIR$/2018DMT/view/wwwroot/University/CreateJob.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2018DMT/view/wwwroot/University/UserInfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/2018DMT/view/wwwroot/University/UserInfo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2018DMT/view/wwwroot/University/chart/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/2018DMT/view/wwwroot/University/chart/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2018DMT/view/wwwroot/University/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/2018DMT/view/wwwroot/University/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2018DMT/view/wwwroot/University/js/API.js" beforeDir="false" afterPath="$PROJECT_DIR$/2018DMT/view/wwwroot/University/js/API.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FIle/blappend.go" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/FIle/bldel.go.bak" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/go-sciter/test/sciter.go" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/go-sciter/test/sciter.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/go-sciter/test/view/mylogin/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/go-sciter/test/view/mylogin/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NetTest/WatchEcard/Ecard.go" beforeDir="false" afterPath="$PROJECT_DIR$/NetTest/WatchEcard/Ecard.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/temp/nettemp.go" beforeDir="false" afterPath="$PROJECT_DIR$/temp/fuckfish.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/temp/temp.go" beforeDir="false" afterPath="$PROJECT_DIR$/temp/temp.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -32,38 +76,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="unittest.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/2018DMT/control/unittest/unittest.go">
+      <file leaf-file-name="fdes.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/FIle/des/fdes.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="236">
-              <caret line="314" column="6" selection-start-line="314" selection-start-column="6" selection-end-line="314" selection-end-column="6" />
-              <folding>
-                <element signature="e#18#188#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="169">
+              <caret line="79" selection-start-line="79" selection-end-line="79" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="blog.go" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/2018DMT/dao/blog.go">
+      <file leaf-file-name="mqtttest.go" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/NetTest/mqtt/mqtttest.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="580">
-              <caret line="44" column="6" selection-start-line="44" selection-start-column="6" selection-end-line="44" selection-end-column="6" />
-              <folding>
-                <element signature="e#14#140#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="489">
+              <caret line="66" column="9" lean-forward="true" selection-start-line="66" selection-start-column="9" selection-end-line="66" selection-end-column="9" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="help.go" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/2018DMT/dao/help.go">
+      <file leaf-file-name="mycrypto.go" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/crypto/test/mycrypto.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="22">
-              <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="34" selection-end-column="1" />
-              <folding>
-                <element signature="e#13#139#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="462">
+              <caret line="27" column="13" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -73,24 +108,13 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="NewLua" />
         <option value="Go File" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>mac</find>
-      <find>sxh</find>
-      <find>__RequestVerificationToken</find>
-      <find>bf</find>
-      <find>bi</find>
-      <find>rgb</find>
-      <find>globalStore.Get</find>
-      <find>CreateWindow</find>
-      <find>winapi.init</find>
-      <find>r.Form[&quot;</find>
-      <find />
-      <find>control.SendRetJson</find>
       <find>fy.db</find>
       <find>login</find>
       <find>tools.SendRetJson</find>
@@ -109,9 +133,20 @@
       <find>Context</find>
       <find>Gold</find>
       <find>Help</find>
+      <find>Blog</find>
+      <find>self.html</find>
+      <find>fmt</find>
+      <find>go</find>
+      <find>blog</find>
+      <find>vip</find>
+      <find>237731947</find>
+      <find>lxKkO07Q8-</find>
+      <find>url.</find>
+      <find>校园</find>
+      <find>-20</find>
+      <find>MQTT</find>
     </findStrings>
     <replaceStrings>
-      <replace>Bf</replace>
       <replace>Bi</replace>
       <replace>RGB</replace>
       <replace>r.PostForm[&quot;</replace>
@@ -135,6 +170,13 @@
       <replace>HelpReply</replace>
       <replace>blog</replace>
       <replace>Blog</replace>
+      <replace>br</replace>
+      <replace>BlogReply</replace>
+      <replace>self.Html</replace>
+      <replace>sits</replace>
+      <replace>银行</replace>
+      <replace>-020</replace>
+      <replace>mqtt</replace>
     </replaceStrings>
   </component>
   <component name="GOROOT" path="E:\developing\go" />
@@ -144,57 +186,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/2018DMT/service/file.go" />
-        <option value="$PROJECT_DIR$/2018DMT/view/wwwroot/University/js/bootstrap.js" />
-        <option value="$PROJECT_DIR$/2018DMT/control/message.go" />
-        <option value="$PROJECT_DIR$/2018DMT/models/user.go" />
-        <option value="$PROJECT_DIR$/2018DMT/dao/login.go" />
-        <option value="$PROJECT_DIR$/2018DMT/control/EmailVerify/emailverify.go" />
-        <option value="$PROJECT_DIR$/2018DMT/global/message.go" />
-        <option value="$PROJECT_DIR$/2018DMT/global/msgtype/type.go" />
-        <option value="$PROJECT_DIR$/2018DMT/control/Permission/message.go" />
-        <option value="$PROJECT_DIR$/2018DMT/service/tools.go" />
-        <option value="$PROJECT_DIR$/2018DMT/service/message.go" />
-        <option value="$PROJECT_DIR$/2018DMT/control/Permission/job.go" />
-        <option value="$PROJECT_DIR$/2018DMT/service/job.go" />
-        <option value="$PROJECT_DIR$/2018DMT/models/job.go" />
-        <option value="$PROJECT_DIR$/2018DMT/models/helpreply.go" />
-        <option value="$PROJECT_DIR$/2018DMT/models/config.go" />
-        <option value="$PROJECT_DIR$/2018DMT/dao/db_test.go" />
-        <option value="$PROJECT_DIR$/2018DMT/dao/gold.go" />
-        <option value="$PROJECT_DIR$/2018DMT/global/Service.go" />
-        <option value="$PROJECT_DIR$/2018DMT/dao/dbtest.go" />
-        <option value="$PROJECT_DIR$/2018DMT/control/Permission/cv.go" />
-        <option value="$PROJECT_DIR$/2018DMT/service/cv.go" />
-        <option value="$PROJECT_DIR$/2018DMT/dao/job.go" />
-        <option value="$PROJECT_DIR$/2018DMT/models/blog.go" />
-        <option value="$PROJECT_DIR$/2018DMT/models/blogreply.go" />
-        <option value="$PROJECT_DIR$/2018DMT/models/message.go" />
-        <option value="$PROJECT_DIR$/2018DMT/models/models.go" />
-        <option value="$PROJECT_DIR$/2018DMT/dao/cv.go" />
-        <option value="$PROJECT_DIR$/2018DMT/control/Permission/blog.go" />
-        <option value="$PROJECT_DIR$/2018DMT/control/Permission/seekhelp.go" />
-        <option value="$PROJECT_DIR$/2018DMT/main.go" />
-        <option value="$PROJECT_DIR$/2018DMT/global/err.go" />
-        <option value="$PROJECT_DIR$/2018DMT/dao/help.go" />
-        <option value="$PROJECT_DIR$/2018DMT/dao/message.go" />
-        <option value="$PROJECT_DIR$/2018DMT/models/seekhelp.go" />
-        <option value="$PROJECT_DIR$/2018DMT/models/help.go" />
-        <option value="$PROJECT_DIR$/2018DMT/dao/user.go" />
-        <option value="$PROJECT_DIR$/2018DMT/dao/seekhelp.go" />
         <option value="$PROJECT_DIR$/2018DMT/dao/helpreply.go" />
-        <option value="$PROJECT_DIR$/2018DMT/service/seekhelp.go" />
-        <option value="$PROJECT_DIR$/2018DMT/control/Permission/helpreply.go" />
-        <option value="$PROJECT_DIR$/2018DMT/control/Permission/help.go" />
-        <option value="$PROJECT_DIR$/2018DMT/service/help.go" />
-        <option value="$PROJECT_DIR$/2018DMT/control/unittest/unittest.go" />
-        <option value="$PROJECT_DIR$/2018DMT/service/index.go" />
-        <option value="$PROJECT_DIR$/2018DMT/service/router/router.go" />
-        <option value="$PROJECT_DIR$/2018DMT/view/wwwroot/University/chart/index.html" />
-        <option value="$PROJECT_DIR$/2018DMT/service/chart/chart.go" />
-        <option value="$PROJECT_DIR$/temp/nettemp.go" />
-        <option value="$PROJECT_DIR$/temp/temp.go" />
+        <option value="$PROJECT_DIR$/2018DMT/dao/statistics.go" />
+        <option value="$PROJECT_DIR$/2018DMT/control/EmailVerify/emailverify.go" />
+        <option value="$PROJECT_DIR$/2018DMT/models/job.go" />
+        <option value="$PROJECT_DIR$/2018DMT/dao/job.go" />
+        <option value="$PROJECT_DIR$/2018DMT/service/register.go" />
+        <option value="$PROJECT_DIR$/2018DMT/models/models.go" />
         <option value="$PROJECT_DIR$/2018DMT/dao/blog.go" />
+        <option value="$PROJECT_DIR$/爬虫/sfz/sfz.go" />
+        <option value="$PROJECT_DIR$/2018DMT/models/user.go" />
+        <option value="$PROJECT_DIR$/2018DMT/service/user.go" />
+        <option value="$PROJECT_DIR$/2018DMT/control/unittest/unittest.go" />
+        <option value="$PROJECT_DIR$/2018DMT/service/router/router.go" />
+        <option value="$PROJECT_DIR$/2018DMT/dao/seekhelp.go" />
+        <option value="$PROJECT_DIR$/FIle/temp/delstr.go" />
+        <option value="$PROJECT_DIR$/FIle/blappend.go" />
+        <option value="$PROJECT_DIR$/FIle/bldel.go" />
+        <option value="$PROJECT_DIR$/2018DMT/service/seekhelp.go" />
+        <option value="$PROJECT_DIR$/2018DMT/dao/user.go" />
+        <option value="$PROJECT_DIR$/2018DMT/service/blog.go" />
+        <option value="$PROJECT_DIR$/爬虫/jxxy/竞赛/js.go" />
+        <option value="$PROJECT_DIR$/爬虫/jxxy/竞赛/dao/save.go" />
+        <option value="$PROJECT_DIR$/2018DMT/service/index.go" />
+        <option value="$PROJECT_DIR$/NetTest/sms/sms.go" />
+        <option value="$PROJECT_DIR$/Test/luatest.lua" />
+        <option value="$PROJECT_DIR$/Text/xml/1.xml" />
+        <option value="$PROJECT_DIR$/Text/xml/xml.go" />
+        <option value="$PROJECT_DIR$/NetTest/自动任务/autoqd.go" />
+        <option value="$PROJECT_DIR$/NetTest/抓包/capture.go" />
+        <option value="E:/developing/go/src/compress/gzip/gunzip.go" />
+        <option value="$PROJECT_DIR$/Test/pipe/pp.go" />
+        <option value="$PROJECT_DIR$/NetTest/socket/us.go" />
+        <option value="$PROJECT_DIR$/Text/正则/zz.go" />
+        <option value="$PROJECT_DIR$/temp/nettemp.go" />
+        <option value="$PROJECT_DIR$/temp/openwrt/so.go" />
+        <option value="$PROJECT_DIR$/NetTest/icbc/model/model.go" />
+        <option value="$PROJECT_DIR$/NetTest/icbc/icbc.go" />
+        <option value="$PROJECT_DIR$/NetTest/WatchEcard/Ecard.go" />
+        <option value="$PROJECT_DIR$/NetTest/socket/wacapturetemp/wact.go" />
+        <option value="E:/developing/mycode/go/src/twt/nettools/httptools.go" />
+        <option value="$PROJECT_DIR$/爬虫/wanfang/wf.go" />
+        <option value="$PROJECT_DIR$/GUI/go-sciter/test/sciter.go" />
+        <option value="$PROJECT_DIR$/GUI/go-sciter/dati/dati.go" />
+        <option value="$PROJECT_DIR$/temp/fuckfish.go" />
+        <option value="$PROJECT_DIR$/crypto/test/mycrypto.go" />
+        <option value="$PROJECT_DIR$/NetTest/mqtt/1/fk.go" />
+        <option value="$PROJECT_DIR$/SQLTest/pheisql/pheisql.go" />
+        <option value="$PROJECT_DIR$/temp/temp.go" />
+        <option value="$PROJECT_DIR$/NetTest/mqtt/mqtttest.go" />
+        <option value="$PROJECT_DIR$/FIle/des/fdes.go" />
+        <option value="$PROJECT_DIR$/NetTest/爬虫/hhh/1373.go" />
       </list>
     </option>
   </component>
@@ -204,11 +246,11 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="241" />
-    <option name="y" value="42" />
-    <option name="width" value="1424" />
-    <option name="height" value="1018" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="226" />
+    <option name="y" value="40" />
+    <option name="width" value="1609" />
+    <option name="height" value="981" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -237,7 +279,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -248,63 +289,25 @@
             <path>
               <item name="StudyGolang" type="b2602c69:ProjectViewProjectNode" />
               <item name="StudyGolang" type="462c0819:PsiDirectoryNode" />
-              <item name="2018DMT" type="462c0819:PsiDirectoryNode" />
+              <item name="NetTest" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="StudyGolang" type="b2602c69:ProjectViewProjectNode" />
               <item name="StudyGolang" type="462c0819:PsiDirectoryNode" />
-              <item name="2018DMT" type="462c0819:PsiDirectoryNode" />
-              <item name="control" type="462c0819:PsiDirectoryNode" />
+              <item name="NetTest" type="462c0819:PsiDirectoryNode" />
+              <item name="mqtt" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="StudyGolang" type="b2602c69:ProjectViewProjectNode" />
               <item name="StudyGolang" type="462c0819:PsiDirectoryNode" />
-              <item name="2018DMT" type="462c0819:PsiDirectoryNode" />
-              <item name="control" type="462c0819:PsiDirectoryNode" />
-              <item name="Permission" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="StudyGolang" type="b2602c69:ProjectViewProjectNode" />
-              <item name="StudyGolang" type="462c0819:PsiDirectoryNode" />
-              <item name="2018DMT" type="462c0819:PsiDirectoryNode" />
-              <item name="dao" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="StudyGolang" type="b2602c69:ProjectViewProjectNode" />
-              <item name="StudyGolang" type="462c0819:PsiDirectoryNode" />
-              <item name="2018DMT" type="462c0819:PsiDirectoryNode" />
-              <item name="global" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="StudyGolang" type="b2602c69:ProjectViewProjectNode" />
-              <item name="StudyGolang" type="462c0819:PsiDirectoryNode" />
-              <item name="2018DMT" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="StudyGolang" type="b2602c69:ProjectViewProjectNode" />
-              <item name="StudyGolang" type="462c0819:PsiDirectoryNode" />
-              <item name="2018DMT" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="StudyGolang" type="b2602c69:ProjectViewProjectNode" />
-              <item name="StudyGolang" type="462c0819:PsiDirectoryNode" />
-              <item name="2018DMT" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-              <item name="chart" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="StudyGolang" type="b2602c69:ProjectViewProjectNode" />
-              <item name="StudyGolang" type="462c0819:PsiDirectoryNode" />
-              <item name="2018DMT" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-              <item name="router" type="462c0819:PsiDirectoryNode" />
+              <item name="NetTest" type="462c0819:PsiDirectoryNode" />
+              <item name="爬虫" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -317,21 +320,25 @@
     <property name="configurable.Project.GOPATH.is.expanded" value="true" />
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$" />
+    <property name="go.vendoring.notification.had.been.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../../？？？/文档等/陶文涛的文件/霏云/vpnserver" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Go" />
+    <property name="settings.editor.selected.configurable" value="go.sdk" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\软件\学习中\Go\Study\StudyGolang\2018DMT\EmailVerify" />
-      <recent name="E:\软件\学习中\Go\Study\StudyGolang\NetTest\静态网页服务器" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\软件\学习中\Go\Study\StudyGolang\GUI\go-sciter\test\view" />
       <recent name="E:\软件\学习中\Go\Study\StudyGolang\2018DMT\tools\clcolor" />
       <recent name="E:\软件\学习中\Go\Study\StudyGolang\2018DMT\Data\db" />
       <recent name="E:\软件\学习中\Go\Study\StudyGolang\2018DMT\mytools" />
       <recent name="E:\软件\学习中\Go\Study\StudyGolang\2018DMT" />
-      <recent name="E:\软件\学习中\Go\Study\StudyGolang\2018DMT\service" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\软件\学习中\Go\Study\StudyGolang" />
+      <recent name="E:\软件\学习中\Go\Study\StudyGolang\NetTest\icbc" />
+      <recent name="E:\软件\学习中\Go\Study\StudyGolang\Text\xml" />
+      <recent name="E:\软件\学习中\Go\Study\StudyGolang\爬虫\jxxy\电费" />
+      <recent name="E:\软件\学习中\Go\Study\StudyGolang\2018DMT\EmailVerify" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -346,47 +353,38 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Go Build.go build main.go">
-    <configuration name="go build EmailTest.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Go Build.go build mqtttest.go">
+    <configuration name="go build 1373.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="StudyGolang" />
       <working_directory value="$PROJECT_DIR$/" />
       <go_parameters value="-i" />
       <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/NetTest/发送邮件/EmailTest.go" />
+      <filePath value="$PROJECT_DIR$/NetTest/爬虫/hhh/1373.go" />
       <directory value="$PROJECT_DIR$/" />
     </configuration>
-    <configuration name="go build StaticWebServer.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+    <configuration name="go build fdes.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="StudyGolang" />
       <working_directory value="$PROJECT_DIR$/" />
       <go_parameters value="-i" />
       <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/NetTest/静态网页服务器/StaticWebServer.go" />
+      <filePath value="$PROJECT_DIR$/FIle/des/fdes.go" />
       <directory value="$PROJECT_DIR$/" />
     </configuration>
-    <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+    <configuration name="go build mqtttest.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="StudyGolang" />
       <working_directory value="$PROJECT_DIR$/" />
       <go_parameters value="-i" />
       <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/2018DMT/main.go" />
+      <filePath value="$PROJECT_DIR$/NetTest/mqtt/mqtttest.go" />
       <directory value="$PROJECT_DIR$/" />
-      <output_directory value="$PROJECT_DIR$/2018DMT/" />
+      <output_directory value="$PROJECT_DIR$/NetTest/mqtt" />
     </configuration>
-    <configuration name="go build main.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
+    <configuration name="go build pheisql.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
       <module name="StudyGolang" />
       <working_directory value="$PROJECT_DIR$/" />
       <go_parameters value="-i" />
       <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/2018DMT/main.go" />
-      <directory value="$PROJECT_DIR$/" />
-      <output_directory value="$PROJECT_DIR$/2018DMT" />
-    </configuration>
-    <configuration name="go build nettemp.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
-      <module name="StudyGolang" />
-      <working_directory value="$PROJECT_DIR$/" />
-      <go_parameters value="-i" />
-      <kind value="FILE" />
-      <filePath value="$PROJECT_DIR$/temp/nettemp.go" />
+      <filePath value="$PROJECT_DIR$/SQLTest/pheisql/pheisql.go" />
       <directory value="$PROJECT_DIR$/" />
     </configuration>
     <configuration name="go build temp.go" type="GoApplicationRunConfiguration" factoryName="Go Application" temporary="true" nameIsGenerated="true">
@@ -398,19 +396,19 @@
       <directory value="$PROJECT_DIR$/" />
     </configuration>
     <list>
-      <item itemvalue="Go Build.go build main.go" />
-      <item itemvalue="Go Build.go build EmailTest.go" />
-      <item itemvalue="Go Build.go build nettemp.go" />
-      <item itemvalue="Go Build.go build StaticWebServer.go" />
       <item itemvalue="Go Build.go build temp.go" />
+      <item itemvalue="Go Build.go build mqtttest.go" />
+      <item itemvalue="Go Build.go build pheisql.go" />
+      <item itemvalue="Go Build.go build fdes.go" />
+      <item itemvalue="Go Build.go build 1373.go" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Go Build.go build main.go" />
+        <item itemvalue="Go Build.go build mqtttest.go" />
+        <item itemvalue="Go Build.go build 1373.go" />
+        <item itemvalue="Go Build.go build fdes.go" />
         <item itemvalue="Go Build.go build temp.go" />
-        <item itemvalue="Go Build.go build nettemp.go" />
-        <item itemvalue="Go Build.go build StaticWebServer.go" />
-        <item itemvalue="Go Build.go build EmailTest.go" />
+        <item itemvalue="Go Build.go build pheisql.go" />
       </list>
     </recent_temporary>
   </component>
@@ -424,29 +422,30 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="463" y="62" width="1424" height="1018" extended-state="0" />
+    <frame x="66" y="-8" width="1862" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49554896" visible="true" weight="0.16495602" />
-      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49887976" weight="0.3287037" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5057648" side_tool="true" weight="0.22337963" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49406528" visible="true" weight="0.10432852" />
+      <window_info anchor="bottom" id="TODO" order="7" sideWeight="0.49887976" weight="0.32779098" />
+      <window_info anchor="bottom" id="Event Log" order="6" sideWeight="0.5057648" side_tool="true" weight="0.22337963" />
       <window_info anchor="right" id="Database" order="3" weight="0.32974634" />
-      <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
+      <window_info anchor="bottom" x="381" y="544" width="1364" height="183" id="Run" order="2" sideWeight="0.49423522" weight="0.24242425" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.20601852" />
-      <window_info anchor="bottom" x="381" y="544" width="1364" height="183" id="Run" order="2" sideWeight="0.49423522" visible="true" weight="0.23321956" />
-      <window_info id="Structure" order="2" sideWeight="0.50445104" side_tool="true" weight="0.16055718" />
-      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32906976" />
+      <window_info id="Structure" order="2" sideWeight="0.5059347" side_tool="true" weight="0.16495602" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32810867" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49819234" weight="0.3197492" />
       <window_info id="Favorites" order="1" sideWeight="0.5022355" side_tool="true" weight="0.19369715" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49819234" weight="0.3217993" />
+      <window_info anchor="bottom" id="LuaCheck" order="9" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" x="0" y="0" width="306" height="806" id="Documentation" order="4" side_tool="true" weight="0.32991204" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.32964602" />
+      <window_info anchor="right" x="0" y="0" width="306" height="781" id="Documentation" order="4" side_tool="true" weight="0.29051" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.32964602" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Database Console" order="12" weight="0.33023256" />
+      <window_info anchor="bottom" id="Database Console" order="13" weight="0.33023256" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32756633" />
     </layout>
   </component>
@@ -535,373 +534,346 @@
           <option name="timeStamp" value="76" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="104" />
+      <option name="time" value="283" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/2018DMT/global/message.go" />
-    <entry file="file://$PROJECT_DIR$/2018DMT/global/msgtype/type.go">
+    <entry file="file://E:/developing/go/src/os/file_windows.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="309" selection-start-line="309" selection-end-line="309" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Test/pipe/pp.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="13" column="22" lean-forward="true" selection-start-line="13" selection-start-column="4" selection-end-line="13" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://E:/developing/go/src/runtime/panic.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="587" selection-start-line="587" selection-end-line="587" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://E:/developing/go/src/os/exec/exec.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1216">
+          <caret line="51" column="5" selection-start-line="51" selection-start-column="5" selection-end-line="51" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NetTest/socket/us.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="849">
+          <caret line="112" column="28" selection-start-line="112" selection-start-column="28" selection-end-line="112" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://E:/developing/go/src/syscall/dll_windows.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://E:/developing/go/src/syscall/zsyscall_windows.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="212" column="20" lean-forward="true" selection-start-line="212" selection-start-column="20" selection-end-line="212" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Test/调用其它语言/testdll.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="17" column="5" lean-forward="true" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Text/正则/zz.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="868" column="17" lean-forward="true" selection-start-line="868" selection-start-column="17" selection-end-line="868" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://E:/developing/go/src/net/mac.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
-          <caret line="9" column="1" lean-forward="true" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+          <caret line="9" column="5" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://E:/developing/go/src/builtin/builtin.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="154" column="5" selection-start-line="154" selection-start-column="5" selection-end-line="154" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://E:/developing/mycode/go/src/github.com/google/gopacket/examples/util/util.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="237">
+          <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NetTest/自动任务/autoqd.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="5" column="1" selection-start-line="2" selection-start-column="7" selection-end-line="5" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NetTest/icbc/model/model.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="13" column="18" lean-forward="true" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NetTest/icbc/tool/tool.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1276">
+          <caret line="16" column="23" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/爬虫/jxxy/电费/elec.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="101" column="5" lean-forward="true" selection-start-line="95" selection-start-column="4" selection-end-line="101" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NetTest/WatchEcard/tool/tool.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-528" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NetTest/WatchEcard/Ecard.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="89" column="51" lean-forward="true" selection-start-line="89" selection-start-column="51" selection-end-line="89" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NetTest/icbc/icbc.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="102" column="48" selection-start-line="102" selection-start-column="48" selection-end-line="102" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://E:/developing/go/src/net/dial.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="318">
+          <caret line="567" column="51" selection-start-line="567" selection-start-column="47" selection-end-line="567" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NetTest/socket/wacapturetemp/wact.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="21" column="24" selection-start-line="21" selection-start-column="24" selection-end-line="21" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/爬虫/笔趣看/bqk.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1584" />
+      </provider>
+    </entry>
+    <entry file="file://E:/developing/go/src/regexp/regexp.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="332">
+          <caret line="1121" column="18" selection-start-line="1121" selection-start-column="18" selection-end-line="1121" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://E:/developing/go/src/time/zoneinfo.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="278" column="17" selection-start-line="278" selection-start-column="5" selection-end-line="278" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://E:/developing/go/src/time/time.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="1310" column="72" selection-start-line="1310" selection-start-column="72" selection-end-line="1310" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/爬虫/4399/4399.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="30" column="38" lean-forward="true" selection-start-line="30" selection-start-column="38" selection-end-line="30" selection-end-column="38" />
         </state>
       </provider>
     </entry>
     <entry file="file://E:/developing/go/src/net/url/url.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="835" column="5" selection-start-line="835" selection-start-column="5" selection-end-line="835" selection-end-column="5" />
+        <state relative-caret-position="22">
+          <caret line="741" selection-start-line="741" selection-end-line="741" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/2018DMT/control/Permission/job.go">
+    <entry file="file://E:/developing/go/src/net/http/client.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="16" column="16" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
+        <state relative-caret-position="563">
+          <caret line="75" column="4" selection-start-line="75" selection-start-column="4" selection-end-line="75" selection-end-column="4" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/2018DMT/models/config.go">
+    <entry file="file://E:/developing/go/src/net/http/response.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="78" column="33" lean-forward="true" selection-start-line="78" selection-start-column="33" selection-end-line="78" selection-end-column="33" />
+        <state relative-caret-position="233">
+          <caret line="130" column="19" selection-start-line="130" selection-start-column="19" selection-end-line="130" selection-end-column="19" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/2018DMT/service/user.go">
+    <entry file="file://E:/developing/mycode/go/src/twt/mytools/filetools.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="22" column="5" lean-forward="true" selection-start-line="18" selection-start-column="4" selection-end-line="22" selection-end-column="5" />
+        <state relative-caret-position="66">
+          <caret line="7" column="5" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/2018DMT/global/Service.go">
+    <entry file="file://$PROJECT_DIR$/爬虫/wanfang/wf.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4510">
+          <caret line="217" column="17" selection-start-line="217" selection-start-column="17" selection-end-line="217" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GUI/go-sciter/test/sciter.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="88">
-          <caret line="4" column="5" lean-forward="true" selection-start-line="4" selection-start-column="5" selection-end-line="4" selection-end-column="5" />
+          <caret line="9" selection-start-line="9" selection-end-line="53" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/2018DMT/dao/dbtest.go">
+    <entry file="file://$PROJECT_DIR$/GUI/go-sciter/dati/dati.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="15" column="26" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
+        <state relative-caret-position="380">
+          <caret line="38" column="33" selection-start-line="38" selection-start-column="33" selection-end-line="38" selection-end-column="33" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/2018DMT/models/blogreply.go">
+    <entry file="file://E:/developing/mycode/go/src/twt/nettools/httptools.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="13" column="66" selection-start-line="13" selection-start-column="59" selection-end-line="13" selection-end-column="66" />
+        <state relative-caret-position="660">
+          <caret line="38" selection-start-line="38" selection-end-line="38" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/2018DMT/models/blog.go">
+    <entry file="file://$PROJECT_DIR$/temp/openwrt/so.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="22" lean-forward="true" selection-start-line="22" selection-end-line="22" />
+        <state relative-caret-position="242">
+          <caret line="11" column="12" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/2018DMT/models/user.go">
+    <entry file="file://E:/developing/go/src/math/floor.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="45" column="23" lean-forward="true" selection-start-line="45" selection-start-column="23" selection-end-line="45" selection-end-column="23" />
+        <state relative-caret-position="299">
+          <caret line="35" column="5" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/2018DMT/models/models.go">
+    <entry file="file://E:/developing/go/src/crypto/des/block.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="43" column="60" selection-start-line="43" selection-start-column="60" selection-end-line="43" selection-end-column="60" />
+        <state relative-caret-position="233">
+          <caret line="220" column="20" selection-start-line="220" selection-start-column="20" selection-end-line="220" selection-end-column="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/2018DMT/models/message.go">
+    <entry file="file://E:/developing/go/src/crypto/des/cipher.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="13" column="65" selection-start-line="13" selection-start-column="65" selection-end-line="13" selection-end-column="65" />
+        <state relative-caret-position="233">
+          <caret line="27" column="5" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://E:/developing/go/src/crypto/cipher/cipher.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="44" column="5" selection-start-line="44" selection-start-column="5" selection-end-line="44" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/2018DMT/dao/cv.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="84" column="20" selection-start-line="84" selection-start-column="20" selection-end-line="84" selection-end-column="20" />
+        <state relative-caret-position="-264" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/NetTest/mqtt/1/fk.go" />
+    <entry file="file://$PROJECT_DIR$/SQLTest/pheisql/pheisql.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="26" column="34" selection-start-line="26" selection-start-column="34" selection-end-line="26" selection-end-column="34" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/2018DMT/control/Permission/user.go">
+    <entry file="file://$PROJECT_DIR$/SQLTest/MySQLTest/MySQLTest.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-784" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/2018DMT/control/Permission/blog.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="32" column="5" lean-forward="true" selection-start-line="25" selection-start-column="4" selection-end-line="32" selection-end-column="5" />
+        <state relative-caret-position="863">
+          <caret line="51" column="17" selection-start-line="51" selection-start-column="17" selection-end-line="51" selection-end-column="17" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/2018DMT/service/job.go">
+    <entry file="file://E:/developing/go/src/net/ip.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-66">
-          <caret line="55" column="24" selection-start-line="55" selection-start-column="24" selection-end-line="55" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/2018DMT/service/file.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="32" column="48" lean-forward="true" selection-start-line="32" selection-start-column="48" selection-end-line="32" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/2018DMT/control/Permission/cv.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="61" column="5" selection-start-line="61" selection-start-column="5" selection-end-line="61" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/2018DMT/service/cv.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="80" column="25" selection-start-line="80" selection-start-column="25" selection-end-line="80" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/2018DMT/main.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="395">
-          <caret line="23" column="19" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="19" />
-          <folding>
-            <element signature="e#14#134#0" expanded="true" />
-            <element signature="n#!!block;n#init#0" />
-            <element signature="n#!!block;n#Quit#0" />
-            <element signature="n#!!block;n#main#1" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/2018DMT/dao/gold.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" selection-start-line="2" selection-end-line="8" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/2018DMT/service/register.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-767">
-          <caret line="11" column="52" lean-forward="true" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/2018DMT/global/err.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="505">
-          <caret line="23" column="19" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/2018DMT/dao/job.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="81" column="46" selection-start-line="81" selection-start-column="29" selection-end-line="81" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/2018DMT/control/Permission/message.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2269">
-          <caret line="2" selection-start-line="2" selection-end-line="7" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/2018DMT/dao/message.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="115" column="19" lean-forward="true" selection-start-line="115" selection-start-column="19" selection-end-line="115" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/2018DMT/models/seekhelp.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="489">
-          <caret line="55" column="24" selection-start-line="55" selection-start-column="24" selection-end-line="55" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/2018DMT/models/help.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="335">
-          <caret line="25" column="10" selection-start-line="25" selection-start-column="10" selection-end-line="25" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/2018DMT/models/job.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-308">
-          <caret line="14" column="54" selection-start-line="14" selection-start-column="54" selection-end-line="14" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/2018DMT/dao/user.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="59" column="19" lean-forward="true" selection-start-line="59" selection-start-column="19" selection-end-line="59" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/2018DMT/dao/seekhelp.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="94" column="26" lean-forward="true" selection-start-line="93" selection-start-column="8" selection-end-line="94" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/2018DMT/service/seekhelp.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="127" column="4" selection-start-line="127" selection-start-column="4" selection-end-line="127" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/2018DMT/control/Permission/seekhelp.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="10" column="103" selection-start-line="10" selection-start-column="42" selection-end-line="10" selection-end-column="103" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/2018DMT/control/Permission/helpreply.go" />
-    <entry file="file://$PROJECT_DIR$/2018DMT/control/Permission/help.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="404">
-          <caret line="61" column="15" selection-start-line="61" selection-start-column="15" selection-end-line="61" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/2018DMT/dao/helpreply.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="70" selection-start-line="70" selection-end-line="71" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/2018DMT/service/index.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="20" column="36" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/2018DMT/view/wwwroot/University/chart/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="704">
-          <caret line="50" column="18" selection-start-line="50" selection-start-column="18" selection-end-line="50" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/2018DMT/service/router/router.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="85" column="45" selection-start-line="85" selection-start-column="45" selection-end-line="85" selection-end-column="45" />
-          <folding>
-            <element signature="e#16#55#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Test/win32/gui/testgui.go">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/temp/nettemp.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="580">
-          <caret line="38" lean-forward="true" selection-start-line="9" selection-end-line="38" />
-          <folding>
-            <element signature="e#14#68#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="858">
+          <caret line="39" column="11" selection-start-line="39" selection-start-column="11" selection-end-line="39" selection-end-column="11" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/temp/temp.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="16" column="44" selection-start-line="16" selection-start-column="44" selection-end-line="16" selection-end-column="44" />
-          <folding>
-            <element signature="e#14#74#0" expanded="true" />
-          </folding>
+        <state>
+          <caret selection-end-line="13" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Test/win32/gui/WebGui/webgui.go">
+    <entry file="file://$PROJECT_DIR$/temp/fuckfish.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="58" selection-start-line="58" selection-end-line="61" selection-end-column="1" />
+        <state relative-caret-position="550">
+          <caret line="31" column="25" selection-start-line="31" selection-start-column="25" selection-end-line="31" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/2018DMT/service/chart/chart.go">
+    <entry file="file://E:/developing/go/src/crypto/cipher/cbc.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="61" column="1" lean-forward="true" selection-start-line="61" selection-start-column="1" selection-end-line="61" selection-end-column="1" />
-          <folding>
-            <element signature="e#15#106#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="233">
+          <caret line="118" selection-start-line="118" selection-end-line="118" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/2018DMT/service/message.go">
+    <entry file="file://$PROJECT_DIR$/crypto/test/mycrypto.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="156" column="15" selection-start-line="156" selection-start-column="15" selection-end-line="156" selection-end-column="15" />
+        <state relative-caret-position="462">
+          <caret line="27" column="13" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/2018DMT/service/tools.go">
+    <entry file="file://$PROJECT_DIR$/NetTest/爬虫/hhh/1373.go" />
+    <entry file="file://$PROJECT_DIR$/FIle/des/fdes.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="34" column="11" selection-start-line="34" selection-start-column="11" selection-end-line="34" selection-end-column="11" />
+        <state relative-caret-position="169">
+          <caret line="79" selection-start-line="79" selection-end-line="79" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/2018DMT/service/help.go">
+    <entry file="file://$PROJECT_DIR$/NetTest/mqtt/mqtttest.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="151" column="21" lean-forward="true" selection-start-line="151" selection-start-column="21" selection-end-line="151" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/2018DMT/control/unittest/unittest.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="314" column="6" selection-start-line="314" selection-start-column="6" selection-end-line="314" selection-end-column="6" />
-          <folding>
-            <element signature="e#18#188#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/2018DMT/dao/help.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="34" selection-end-column="1" />
-          <folding>
-            <element signature="e#13#139#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/2018DMT/dao/blog.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="580">
-          <caret line="44" column="6" selection-start-line="44" selection-start-column="6" selection-end-line="44" selection-end-column="6" />
-          <folding>
-            <element signature="e#14#140#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="489">
+          <caret line="66" column="9" lean-forward="true" selection-start-line="66" selection-start-column="9" selection-end-line="66" selection-end-column="9" />
         </state>
       </provider>
     </entry>

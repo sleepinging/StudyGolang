@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> 查询工作 | 大学帮</title>
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <style>
+            .item {
+                margin: 40px;
+            }
+    </style>
+    <script type="text/javascript" src="js/jquery.min3.3.1.js"></script>
+    <script type="text/javascript" src="js/js.cookie.min.js"></script>
+    <script language="JavaScript" src="js/bootstrap.js"></script>
+</head>
+
+<body class="bg-info">
+	<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">大学帮</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="index.html">大学圈子
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="HelpCircle.html">互帮互助
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="ChooseJob.html" >工作资讯</a>
+                </li>
+                <li>
+                    <a href="BlogList.html">博客列表</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a id="btn_nlogin" data-toggle="modal" data-target="#myModal">登录</a>
+                </li>
+
+                <li>
+                    <a id="btn_register" href="register.html">注册</a>
+                </li>
+                <li id="userinfo" class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <span id="username"></span>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="UserInfo.html">个人信息</a>
+                        </li>
+                        <li>
+                            <a href="#">Something else here</a>
+                        </li>
+                        <li role="separator" class="divider"></li>
+                        <li>
+                            <a id="btn_loginout">退出登录</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    </nav>
+    <script>
+        var user = Cookies.get('user')
+        if (user == null) {
+            $('#userinfo').hide()
+        } else {
+            $('#btn_nlogin').hide()
+            $('#username').text(Cookies.getJSON('userinfo').Email)
+            $('#btn_register').hide()
+        }
+        $('#btn_loginout').click(function () {
+            Cookies.remove('user')
+            Cookies.remove('userinfo')
+            window.location.reload()
+        })
+    </script>
+
+    <div class="container">
+        <div>
+            <div class="input-group item">
+                <span class="input-group-addon">有无双休</span>
+                <select id="sx" class="form-control">
+                    <option value="1">有</option>
+                    <option value="-1">无</option>
+                </select>
+            </div>
+            <div class="input-group item">
+                <span class="input-group-addon">是否接送</span>
+                <select id="js" class="form-control">
+                    <option value="1">有</option>
+                    <option value="-1">无</option>
+                </select>
+            </div>
+            <div class="input-group item">
+                <span class="input-group-addon">是否包吃</span>
+                <select id="bc" class="form-control">
+                    <option value="1">有</option>
+                    <option value="-1">无</option>
+                </select>
+            </div>
+            <div class="input-group item">
+                <span class="input-group-addon">是否包住</span>
+                <select id="bz" class="form-control">
+                    <option value="1">有</option>
+                    <option value="-1">无</option>
+                </select>
+            </div>
+            <div class="input-group item">
+                <span class="input-group-addon">五险一金</span>
+                <select id="wxyj" class="form-control">
+                    <option value="1">有</option>
+                    <option value="-1">无</option>
+                </select>
+            </div>
+            <div class="input-group item">
+                <span class="input-group-addon">工作地点</span>
+                <input id="gzdd" type="text" class="form-control" placeholder="工作地点" aria-describedby="basic-addon1">
+            </div>
+            <button class="btn btn-success btn-block">筛选</button>
+
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="thumbnail">
+                            <img src="img/testicon.jpg" alt="...">
+                            <div class="caption">
+                                <h3>C++工程师</h3>
+                                <p>3~5W/年</p>
+                                <p>
+                                    <a href="#" class="btn btn-primary" role="button">应聘</a>
+                                    <a href="#" class="btn btn-default" role="button">咨询</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="thumbnail">
+                            <img src="img/testicon.jpg" alt="...">
+                            <div class="caption">
+                                <h3>传销头目</h3>
+                                <p>200w/天</p>
+                                <p>
+                                    <a href="#" class="btn btn-primary" role="button">应聘</a>
+                                    <a href="#" class="btn btn-default" role="button">咨询</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div style="background: #00789D; height: 200px;"></div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

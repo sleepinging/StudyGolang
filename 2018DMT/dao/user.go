@@ -33,17 +33,17 @@ func UserDbInit() {
 }
 
 func AddUser(user *models.User, pwd string) (id int, err error) {
-	err = userdb.Create(user).Error
-	if err != nil {
-		return
-	}
-	id = user.Id
 	if user.Type<=1||user.Type>=5{
 		user.Type=2
 	}
 	if user.Head==""{
 		user.Head="/data/pic/userhead/default.png"
 	}
+	err = userdb.Create(user).Error
+	if err != nil {
+		return
+	}
+	id = user.Id
 	//登录表添加
 	err = AddLogin(&models.Login{Email: user.Email, Password: pwd})
 	if err != nil {

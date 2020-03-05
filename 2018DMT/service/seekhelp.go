@@ -49,7 +49,7 @@ func PublishSeekHelp(w http.ResponseWriter, r *http.Request)  {
 		models.SendRetJson2(0, "失败", err.Error(), w)
 		return
 	}
-	_=uid
+	sh.PublisherId=uid
 	sid,err:=dao.PublishSeekHelp(sh)
 	if err != nil {
 		models.SendRetJson2(0, "失败", err.Error(), w)

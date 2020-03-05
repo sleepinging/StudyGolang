@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>大学帮管理平台 | 用户管理</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="bower_components/jvectormap/jquery-jvectormap.css">
+  <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" type="text/css" href="static/css/alert.css"/>
+  <!-- <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"> -->
+  <style>
+    .info-box-icon{
+      width: 70px;
+    }
+    .info-box-content{
+      margin-left: 70px;
+    }
+    td,th{
+      text-align: center;
+    }
+  </style>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+  <header class="main-header">
+  </header>
+  <!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        用户管理
+        <small>详细信息</small>
+      </h1>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+
+      <div class="row">
+        <div class="col-md-3">
+
+          <!-- Profile Image -->
+          <div class="box box-primary">
+            <div class="box-body box-profile">
+              <img class="profile-user-img img-responsive img-circle Head" src="">
+
+              <h3 class="profile-username text-center Email"></h3>
+
+              <p class="text-muted text-center Name"></p>
+
+              <ul class="list-group list-group-unbordered">
+                <li class="list-group-item">
+                  <b>性别</b> <a class="pull-right Sex"></a>
+                </li>
+                <li class="list-group-item">
+                  <b>生日</b> <a class="pull-right Birthday"></a>
+                </li>
+                <li class="list-group-item">
+                  <b>家乡</b> <a class="pull-right Hometown"></a>
+                </li>
+                <li class="list-group-item">
+                  <b>爱好</b> <a class="pull-right Hobby"></a>
+                </li>
+                <li class="list-group-item">
+                  <b>特长</b> <a class="pull-right Speciality"></a>
+                </li>
+                <li class="list-group-item">
+                  <b>用户类型</b> <a class="pull-right Type"></a>
+                </li>
+              </ul>
+              <div class="row">
+                <div class="col-md-6">
+                  <a href="javascript:void(0);" class="btn btn-primary btn-block del"><b>删除</b></a>
+                </div>
+                <div class="col-md-6">
+                  <button href="javascript:void(0);" class="btn btn-success btn-block" onclick="history.back()"><b>返回</b></button>
+                </div>
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-9">
+                    <!-- About Me Box -->
+          <div class="box box-primary">
+            <div class="box-header with-border">
+              <h3 class="box-title">联系信息及简历</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <strong><i class="fa fa-book margin-r-5"></i> 电话</strong>
+
+              <p class="text-muted Phone">
+              </p>
+
+              <hr>
+
+              <strong><i class="fa fa-map-marker margin-r-5"></i> QQ号</strong>
+
+              <p class="text-muted QQ">
+                
+              </p>
+
+              <hr>
+
+              <strong><i class="fa fa-pencil margin-r-5"></i> 微信</strong>
+              <p class="text-muted WeiXin"></p>
+              <hr>
+              <strong><i class="fa fa-pencil margin-r-5"></i> 学校</strong>
+              <p class="text-muted School"></p>
+              <hr>
+              <strong><i class="fa fa-pencil margin-r-5"></i> 专业</strong>
+              <p class="text-muted Major"></p>
+              <hr>
+              <strong><i class="fa fa-pencil margin-r-5"></i> 简历</strong>
+              <p class="JlContent"></p>
+
+              <!-- <p>
+                <span class="label label-danger">UI Design</span>
+                <span class="label label-success">Coding</span>
+                <span class="label label-info">Javascript</span>
+                <span class="label label-warning">PHP</span>
+                <span class="label label-primary">Node.js</span>
+              </p> -->
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+    </section>
+    
+    <!-- /.content -->
+
+  </div>
+  <!-- /.content-wrapper -->
+
+  <footer class="main-footer"></footer>
+
+
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 3 -->
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="static/js/jquery.session.js"></script>
+<!-- load -->
+<script>
+  if (!$.session.get('username')) {
+    $(location).attr('href','index.html')
+  }
+  $(".main-header").load("pageload/title.html");
+  $(".main-sidebar").load("pageload/leftlist.html");
+  $(".main-footer").load("pageload/foot.html");
+</script>
+<!-- 弹出框js -->
+<script src="static/js/alert.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="bower_components/fastclick/lib/fastclick.js"></script>
+<script src="dist/js/adminlte.min.js"></script>
+<script src="bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+<script src="plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+<script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="bower_components/chart.js/Chart.js"></script>
+<script src="dist/js/demo.js"></script>
+
+</body>
+<script>
+$(function(){
+  function GetRequest() {   
+    var url = location.search; //获取url中"?"符后的字串   
+    var theRequest = new Object();   
+    if (url.indexOf("?") != -1) {   
+      var str = url.substr(1);   
+      strs = str.split("&");   
+      for(var i = 0; i < strs.length; i ++) {   
+         theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);   
+      }   
+     }   
+     return theRequest;   
+  }
+  var request=GetRequest()
+  // 搜索博客
+  $.ajax({
+    type:"GET",
+    url:'/user?Id='+request.id,
+    // data:param,
+    success:function(jsonResult){
+      console.log(jsonResult)
+      var result=JSON.parse(jsonResult)
+      result=result.data
+      var type = new Array()
+      type['1']='访客'
+      type['2']='学生'
+      type['3']='企业'
+      type['4']='HR'
+      type['5']='管理员'
+      var sex = new Array()
+      sex['1']='男'
+      sex['0']='女'
+      $(".Head").attr("src",result.Head)
+      $(".Email").text(result.Email)
+      $(".Name").text(result.Name)
+      $(".Birthday").text(result.Birthday.substring(0,10))
+      $(".Hometown").text(result.Hometown)
+      $(".Hobby").text(result.Hobby)
+      $(".Speciality").text(result.Speciality)
+      $(".Phone").text(result.Phone)
+      $(".QQ").text(result.QQ)
+      $(".WeiXin").text(result.WeiXin)
+      $(".School").text(result.School)
+      $(".Major").text(result.Major)
+      $(".Type").text(type[result.Type])
+      $(".Sex").text(sex[result.Sex])
+      $.ajax({
+        type:"GET",
+        url:'/cv/user?UserId='+request.id,
+        // data:param,
+        success:function(jsonResult){
+          console.log(jsonResult)
+          var result=JSON.parse(jsonResult)
+          // result=result.data
+          if (result.msg=='错误') {
+            $(".JlContent").text(result.data)
+          }else{
+            $(".JlContent").text(result.data.Content)
+          }
+        },
+        error:function(){
+          jqueryAlert({
+            'icon'    : 'static/img/error.png',
+            'content' : '网络出现问题了！',
+          })
+        }
+      })
+    },
+    error:function(){
+      jqueryAlert({
+        'icon'    : 'static/img/error.png',
+        'content' : '网络出现问题了！',
+      })
+    }
+  })
+  $(".del").click(function(){
+    M={}
+    M.dialog3=jqueryAlert({
+      'title'   : '提示',
+      'content' : '确定要删除吗',
+      'modal'   : true,
+      'buttons' :{
+        '取消' : function(){
+          M.dialog3.close();
+        },
+        '确定' : function(){
+          var param = "Id="+request.id
+          $.ajax({
+            type:"POST",
+            url:'/user/delete',
+            data:param,
+            success:function(jsonResult){
+              console.log(jsonResult)
+              jqueryAlert({
+                'icon'    : 'static/img/right.png',
+                'content' : '操作成功',
+                'closeTime' : 2000,
+              })
+              window.location.href='user.html'
+              // history.go(0)
+            },
+            error:function(){
+              jqueryAlert({
+                'icon'    : 'static/img/error.png',
+                'content' : '网络出现问题了！',
+              })
+            }
+          })
+        }
+      }
+    })
+  })
+  // console.log(request)
+});
+</script>
+</html>

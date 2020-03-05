@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<script src="js/jquery.min3.3.1.js"></script>
+	<link rel="stylesheet" href="css/bootstrap.css" />
+	<link rel="stylesheet" href="css/write.css">
+	<link rel="stylesheet" href="css/fileinput.min.css">
+	<link rel="stylesheet" href="css/alert.css">
+	<script language="JavaScript" src="js/alert.js"></script>
+	<script language="JavaScript" src="js/fileinput.min.js"></script>
+	<script language="JavaScript" src="js/zh.js"></script>
+	<script language="JavaScript" src="js/bootstrap.js"></script>
+	<script src="js/markdown.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>大学帮 | MarkDown编辑器</title>
+</head>
+<body>
+	<div class="row">
+		<div class="col-xs-12 col-sm-6 box">
+			<input type="text" class="title" value="">
+			<ol class="breadcrumb">
+				<li>
+					<a href="javascript:void(0);">
+						<span id="img_up" class="glyphicon glyphicon-picture" data-toggle="modal" data-target="#myModal">
+							<p>图片</p>
+						</span>
+					</a>
+				</li>
+				<li>
+					<a href="javascript:void(0);">
+						<span class="glyphicon glyphicon-save" id="save-text" data-toggle="modal" data-target="#myModal1">
+							<p>保存</p>
+						</span>
+					</a>
+				</li>
+				<li>
+					<a href="javascript:void(0);">
+						<span class="glyphicon glyphicon-upload putout-text"  id="add-text">
+							<p>发布</p>
+						</span>
+					</a>
+				</li>
+				<div class="select">
+					<select class="form-control" name="kind" id="kind_2">
+					</select>	
+				</div>
+				<div class="select">
+					<select class="form-control" name="kind" id="kind_1">
+						<option value ="1">学习</option>
+						<option value ="2">生活</option>
+						<option value="3">工作</option>
+						<option value="4">其它</option>
+					</select>	
+				</div>
+			</ol>
+			<textarea class="textinput" id="textinput"></textarea>
+		</div>
+		<div class="col-xs-12 col-sm-6 box-show">
+			<h1 class="titleshow">(标题)</h1>
+			<hr>
+			<div class="show"></div>
+		</div>
+	</div>	
+	<!-- 上传图片弹出窗口 -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+            	</button>
+					<h4 class="modal-title" id="myModalLabel">登录</h4>
+				</div>
+				<div class="modal-body">
+					<input id="fileinput" name="Filename" type="file">
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 保存提示弹出窗口 -->
+	<!-- <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+            	</button>
+					<h4 class="modal-title" id="myModalLabel">保存提示</h4>
+				</div>
+				<div class="modal-body">
+					<h1>如果您为已发布，则将变回草稿</h1>
+				</div>
+				<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+						<button id="save-text" type="button" class="btn btn-primary">确定</button>
+					</div>
+			</div>
+		</div>
+	</div> -->
+</body>
+<script>
+	var blogId='';
+	function GetRequest() {   
+    var url = location.search; //获取url中"?"符后的字串   
+    var theRequest = new Object();   
+    if (url.indexOf("?") != -1) {   
+      var str = url.substr(1);   
+      strs = str.split("&");   
+      for(var i = 0; i < strs.length; i ++) {   
+         theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);   
+      }   
+     }   
+     return theRequest;   
+	}
+	var request=GetRequest()
+	if (request.blogId) {
+		blogId=request.blogId
+	}
+	/*  在textarea处插入文本--Start */
+    (function($) {
+        $.fn.extend({
+            insertContent : function(myValue, t) {
+                var $t = $(this)[0];
+                if (document.selection) { // ie
+                    this.focus();
+                    var sel = document.selection.createRange();
+                    sel.text = myValue;
+                    this.focus();
+                    sel.moveStart('character', -l);
+                    var wee = sel.text.length;
+                    if (arguments.length == 2) {
+                        var l = $t.value.length;
+                        sel.moveEnd("character", wee + t);
+                        t <= 0 ? sel.moveStart("character", wee - 2 * t
+                                - myValue.length) : sel.moveStart(
+                                "character", wee - t - myValue.length);
+                        sel.select();
+                    }
+                } else if ($t.selectionStart
+                        || $t.selectionStart == '0') {
+                    var startPos = $t.selectionStart;
+                    var endPos = $t.selectionEnd;
+                    var scrollTop = $t.scrollTop;
+                    $t.value = $t.value.substring(0, startPos)
+                            + myValue
+                            + $t.value.substring(endPos,
+                                    $t.value.length);
+                    this.focus();
+                    $t.selectionStart = startPos + myValue.length;
+                    $t.selectionEnd = startPos + myValue.length;
+                    $t.scrollTop = scrollTop;
+                    if (arguments.length == 2) {
+                        $t.setSelectionRange(startPos - t,
+                                $t.selectionEnd + t);
+                        this.focus();
+                    }
+                } else {
+                    this.value += myValue;
+                    this.focus();
+                }
+            }
+        })
+    })(jQuery);
+	$('#textinput').bind("input propertychange change",function(){
+		var text=$("#textinput").val()
+		var html=markdown.toHTML(text)
+		$(".show").html(markdown.toHTML(text))
+	})
+	$('.title').bind("input propertychange change",function(){
+		var text=$(".title").val()
+		$('.titleshow').text(text)
+	})
+	$("#fileinput").fileinput({
+		title: "请上传图片",
+		language:'zh',
+		uploadUrl:'/upload/file',
+		allowedFileExtensions : ['jpg', 'png','gif','ico','jpeg'],//允许的文件类型
+	　　overwriteInitial: false,
+	　　maxFileSize: 1500,//文件的最大大小 单位是k
+	　　maxFilesNum: 1,//最多文件数量 
+	　　// allowedFileTypes: ['image', 'video', 'flash'],
+	　　slugCallback: function(filename) {
+	　　　　return filename;
+	　　}
+	})
+	$("#fileinput").on("fileuploaded", function (event, data, previewId, index) {  
+        var text='!['+data.files[0]['name']+']('+data.response.data+')';
+        // $("#textinput").text(text);
+        $("#textinput").insertContent(text);
+        var html=markdown.toHTML(text)
+		$(".show").html(markdown.toHTML(text))
+        // $("#textinput").text(text)
+    });
+    $(document).on('click','#img_up',function(){
+    	$("#myModalLabel").text('请上传图片')
+    	// alert('1')
+      // var user_id=$(this).attr('id')
+      // window.location.href='work_detail.html?id='+user_id
+    })
+    function kind_2_set(){
+    	var value=$("#kind_1").val()
+    	$("#kind_2").empty()
+    	if (value==1) {
+    		$("#kind_2").append("<option value='1'>计算机</option>")
+    		$("#kind_2").append("<option value='2'>文学</option>")
+    		$("#kind_2").append("<option value='0'>其它</option>")
+    	}else if (value==2) {
+    		$("#kind_2").append("<option value='1'>娱乐</option>")
+    		$("#kind_2").append("<option value='2'>感情</option>")
+    		$("#kind_2").append("<option value='3'>食物</option>")
+    		$("#kind_2").append("<option value='0'>其它</option>")
+    	}else if (value==3) {
+    		$("#kind_2").append("<option value='1'>经验</option>")
+    		$("#kind_2").append("<option value='0'>其它</option>")
+    	}else if (value==4) {
+    		$("#kind_2").append("<option value='0'>其它</option>")
+    	}
+    }
+    $("#kind_1").change(function(){
+    	kind_2_set()
+    })
+    kind_2_set()
+    $("#save-text").click(function(){
+    	// alert(blogId)
+    	var kind=$("#kind_1").val()+'00'+$("#kind_2").val()
+    	var title=$(".title").val()
+    	var markdown=$(".textinput").val()
+    	if (title=='') {
+    		alert('标题不能为空不能为空')
+    	}else if (markdown=='') {
+    		alert('内容不能为空')
+    	}else{
+    		if (blogId!='') {
+    		M={}
+    		 M.dialog3=jqueryAlert({
+		      'title'   : '提示',
+		      'content' : '确定要保存吗',
+		      'modal'   : true,
+		      'buttons' :{
+		        '取消' : function(){
+		          M.dialog3.close();
+		        },
+		        '确定' : function(){
+		          	var param = "Id="+Number(blogId)+"&Blog="+encodeURIComponent(JSON.stringify(
+					{ 
+						Status:2,
+		    			Type:Number(kind),
+		    			Title:title,
+		    			Content:markdown,
+		    		}))
+		    		var Id="Id="+blogId
+		          	var jsonResult=$.ajax({
+    					type:"POST",
+		    			url:'/blog/updata',
+		    			data:param,
+		    			async:false, 
+		    			success:function(jsonResult){
+		    				console.log(jsonResult)
+			              	jqueryAlert({
+			                	// 'icon': 'static/img/right.png',
+			                	'content' : '操作成功',
+			                	'closeTime' : 2000,
+			              	})
+			              	M.dialog3.close();
+		    			},
+		    			error:function(){
+							jqueryAlert({
+		                		// 'icon'    : 'static/img/error.png',
+		                		'content' : '网络出现问题了！',
+		              		})
+		              		M.dialog3.close();
+		    			}
+		    		})
+		        }
+		      }
+		    })    			
+    		}else{
+    			M={}
+    		 M.dialog3=jqueryAlert({
+		      'title'   : '提示',
+		      'content' : '确定要保存吗',
+		      'modal'   : true,
+		      'buttons' :{
+		        '取消' : function(){
+		          M.dialog3.close();
+		        },
+		        '确定' : function(){
+		          	var param = "Blog="+encodeURIComponent(JSON.stringify(
+					{ 
+						Status:2,
+		    			Type:Number(kind),
+		    			Title:title,
+		    			Content:markdown,
+		    		}))
+		          	var jsonResult=$.ajax({
+    					type:"POST",
+		    			url:'/blog/pulish',
+		    			data:param,
+		    			async:false, 
+		    			success:function(jsonResult){
+		    				console.log(jsonResult)
+		    				var result=JSON.parse(jsonResult)
+		    				result=result.data
+		    				blogId=result.Id
+			              	jqueryAlert({
+			                	// 'icon': 'static/img/right.png',
+			                	'content' : '操作成功',
+			                	'closeTime' : 2000,
+			              	})
+			              	M.dialog3.close();
+		    			},
+		    			error:function(){
+							jqueryAlert({
+		                		// 'icon'    : 'static/img/error.png',
+		                		'content' : '网络出现问题了！',
+		              		})
+		              		M.dialog3.close();
+		    			}
+		    		})
+		        }
+		      }
+		    })    			
+    		}
+
+    	}
+    })
+    $("#add-text").click(function(){
+    	var kind=$("#kind_1").val()+'00'+$("#kind_2").val()
+    	var title=$(".title").val()
+    	var markdown=$(".textinput").val()
+    	if (title=='') {
+    		jqueryAlert({
+        		'icon'    : 'static/img/error.png',
+        		'content' : '标题不能为空不能为空',
+      		})
+    	}else if (markdown=='') {
+    		jqueryAlert({
+        		'icon'    : 'static/img/error.png',
+        		'content' : '内容不能为空',
+      		})
+    	}else{
+		    M={}
+		    M.dialog3=jqueryAlert({
+		      'title'   : '提示',
+		      'content' : '确定要发布吗',
+		      'modal'   : true,
+		      'buttons' :{
+		        '取消' : function(){
+		          M.dialog3.close();
+		        },
+		        '确定' : function(){
+		          	var param = "Blog="+encodeURIComponent(JSON.stringify(
+						{ 
+							Status:1,
+			    			Type:Number(kind),
+			    			Title:title,
+			    			Content:markdown,
+			    		}
+					))
+		          	var jsonResult=$.ajax({
+    					type:"POST",
+		    			url:'/blog/pulish',
+		    			data:param,
+		    			async:false, 
+		    			success:function(jsonResult){
+		    				console.log(jsonResult)
+		    				var result=JSON.parse(jsonResult)
+		    				result=result.data
+		    				blogId=result.Id
+			              	jqueryAlert({
+			                	// 'icon': 'static/img/right.png',
+			                	'content' : '操作成功',
+			                	'closeTime' : 2000,
+			              	})
+			              	M.dialog3.close();
+		    			},
+		    			error:function(){
+							jqueryAlert({
+		                		// 'icon'    : 'static/img/error.png',
+		                		'content' : '网络出现问题了！',
+		              		})
+		              		M.dialog3.close();
+		    			}
+		    		})
+		        }
+		      }
+		    })
+    		// console.log(jsonResult)
+    	}
+    })
+	// $.ajax({
+	// 	url:'/upload/file',
+	// })
+</script>
+</html>

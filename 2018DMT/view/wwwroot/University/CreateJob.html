@@ -40,6 +40,9 @@
 						<li>
 							<a href="#">工作资讯</a>
 						</li>
+						<li>
+		                    <a href="BlogList.html">博客列表</a>
+		                </li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 						<li>
@@ -190,7 +193,14 @@
 					async: true,
 					data:param,
 					success: function(result) {
-						console.log(result)
+						var data = result
+						if(data.status == 1)
+						{
+							alert("发布成功！")
+							window.location = "index.html"
+						}else{
+							alert("发布失败："+data.msg)
+						}
 					}
 
 				});

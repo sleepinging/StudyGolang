@@ -1,0 +1,10 @@
+{
+    "openid": "oujX2wzzv2kQImD20rDhTcTn7vtc",
+    "limit": 20,
+    "smtp": {
+        "sender": "237731947@qq.com",
+        "to": "237731947@qq.com",
+        "pwd": "lnfajglgxwonbhbg",
+        "host": "smtp.qq.com:587"
+    }
+}

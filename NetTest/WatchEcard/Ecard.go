@@ -36,11 +36,16 @@ var (
 
 func GetMoney() (money float64) {
 	//fmt.Println("查询中")
+	// res, err := tool.HttpGet(
+		// "http://wxschool.lsmart.cn/card/queryAcc_queryAccount.shtml?" +
+			// "openId=" + cfg.Openid +
+			// "&wxArea=10354")
 	res, err := tool.HttpGet(
-		"http://wxschool.lsmart.cn/card/queryAcc_queryAccount.shtml?" +
+		"http://jkschool.lsmart.cn/card/queryAcc_queryAccount.shtml?" +
 			"openId=" + cfg.Openid +
 			"&wxArea=10354")
 	if err != nil {
+		fmt.Println(time.Now())
 		fmt.Println(err)
 		money = lastmoney
 		return
@@ -65,20 +70,25 @@ func StartWatch() {
 		d := cm - lastmoney
 		if math.Abs(d) > 0.01 { //余额变动
 			if d > 0 {
+				fmt.Println(time.Now())
 				fmt.Println("余额增加")
 				go tool.SendEmailToMe("校园卡充值提醒",
 					"刚才充值" + fmt.Sprintf("%.2f", d) + "元<br>"+
-						"当前余额"+ fmt.Sprintf("%.2f", cm)+ "元")
+						"充值时间:" + time.Now().Format("2006/01/02 15:04:05") + "<br>"+
+						"当前余额:"+ fmt.Sprintf("%.2f", cm)+ "元")
 			} else {
+				fmt.Println(time.Now())
 				fmt.Println("余额减少")
 				go tool.SendEmailToMe("校园卡消费提醒",
 					"刚才消费" + fmt.Sprintf("%.2f", d) + "元<br>"+
-						"当前余额"+ fmt.Sprintf("%.2f", cm)+ "元")
+						"消费时间:" + time.Now().Format("2006/01/02 15:04:05") + "<br>"+
+						"当前余额:"+ fmt.Sprintf("%.2f", cm)+ "元")
 			}
 			minmsged = false
 		}
 		if cm < float64(cfg.Limit) { //小于阈值
 			if !minmsged { //如果没有提醒过
+				fmt.Println(time.Now())
 				fmt.Println("余额过低")
 				go tool.SendEmailToMe("校园卡余额提醒",
 					"只剩" + fmt.Sprintf("%.2f", cm)+

@@ -30,7 +30,7 @@ func GetAllFile(pathname string) error {
 		} else {
 			if strings.HasSuffix(fi.Name(), ".htm") || strings.HasSuffix(fi.Name(), ".html") {
 				//fmt.Println("正在修改",pathname+"\\"+fi.Name(),"添加",ctt)
-				delsuf(pathname + "\\" + fi.Name(),ctt)
+				delsuf(pathname + "\\" + fi.Name(),"\n"+ctt)
 			}
 		}
 	}

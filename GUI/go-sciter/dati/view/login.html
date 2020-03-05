@@ -1,0 +1,40 @@
+﻿<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<html>
+    <div>
+        <h3 id="time">00:00:00</h3>
+    </div>
+    <form action="">
+    <table>
+        <tr>
+            <td>用户名：</td>
+            <td>
+                <input type="text" id="name">
+            </td>
+        </tr>
+        <tr>
+            <td>密码：</td>
+            <td>
+                <input type="password" id="pwd">
+            </td>
+        </tr>
+    <table>
+    </form>
+	<button id="btn1" style="width:210px;height:30px">登录</button>
+    <script type="text/tiscript">
+        $(#btn1).on("click", function() {
+            var name=$(#name).text;
+            var pwd=$(#pwd).text;
+            if (pwd==""||pwd==""){
+                view.msgbox(#error, "账号或密码不能为空", "提示");
+                return;
+            }
+            var r=view.login(name,pwd);
+            view.msgbox(#information, r, "提示");
+        });
+        function settime(t){
+            $(#time).text="北京时间"+t;
+        }
+    </script>
+</html>

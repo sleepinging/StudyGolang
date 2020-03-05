@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<!--[if IE 6]><html class="ie lt-ie8"><![endif]-->
+<!--[if IE 7]><html class="ie lt-ie8"><![endif]-->
+<!--[if IE 8]><html class="ie ie8"><![endif]-->
+<!--[if IE 9]><html class="ie ie9"><![endif]-->
+<!--[if !IE]><!-->
+<html>
+	<!--<![endif]-->
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+
+		<!-- Start of Baidu Transcode -->
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta http-equiv="Cache-Control" content="no-transform" />
+		<meta name="applicable-device" content="pc,mobile">
+		<meta name="MobileOptimized" content="width" />
+		<meta name="HandheldFriendly" content="true" />
+		<meta name="mobile-agent" content="format=html5;url=http://localhost/">
+		<meta name="360-site-verification" content="604a14b53c6b871206001285921e81d8" />
+		<meta property="wb:webmaster" content="294ec9de89e7fadb" />
+		<meta property="qc:admins" content="104102651453316562112116375" />
+		<meta property="qc:admins" content="11635613706305617" />
+		<meta property="qc:admins" content="1163561616621163056375" />
+		<meta name="google-site-verification" content="cV4-qkUJZR6gmFeajx_UyPe47GW9vY6cnCrYtCHYNh4" />
+		<meta name="google-site-verification" content="HF7lfF8YEGs1qtCE-kPml8Z469e2RHhGajy6JPVy5XI" />
+		<meta http-equiv="mobile-agent" content="format=html5; url=http://localhost/">
+
+		<!-- Apple -->
+		<title>大学帮——做你身边的校友</title>
+		<meta name="csrf-param" content="authenticity_token" />
+		<meta name="csrf-token" content="LehytbE6BeiF/FmPlxaxE7DdvuK9u9IVPhRCJF0QWA50U6QLKNKd+uMnH0B9mf3XZ3QaY2n9lpG16M8ZQqcV2w==" />
+
+		<link rel="stylesheet" media="all" href="assets/web-e7e403d2843dd1edd8db.css" />
+
+		<link rel="stylesheet" media="all" href="assets/web/pages/home/index/entry-7642b94e17df29096c13.css" />
+		<link rel="stylesheet" media="all" href="assets/web/pages/recommendations/users/entry-d9c558a309bc9df579a8.css" />
+		<link rel="stylesheet" href="css/alert.css">
+		<script language="JavaScript" src="js/alert.js"></script>
+		<script type="text/javascript" src="js/jquery.min3.3.1.js"></script>
+		<script type="text/javascript" src="js/js.cookie.min.js"></script>
+		<script src="js/markdown.min.js"></script>
+	</head>
+
+	<body lang="zh-CN" class="reader-black-font">
+
+		<!-- 全局顶部导航栏 -->
+		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+			<div class="width-limit">
+				<!-- 左上方 Logo -->
+				<a class="logo" href="index.html"><img src="assets/web/logo.png" alt="Logo" /></a>
+
+				<!-- 右上角 -->
+				<!-- 未登录显示登录/注册/写文章 -->
+				<a class="btn write-btn" target="_blank" href="Add.html">
+					<i class="iconfont ic-write"></i>写文章
+				</a>
+				<div id="nologin">
+					<a class="btn sign-up" href="register.html">注册</a>
+					<a id="btn_login" class="btn log-in" href="login.html">登录</a>
+				</div>
+				<!-- 如果用户登录，显示下拉菜单 -->
+				<!-- 如果用户登录，显示下拉菜单 -->
+				<div id="islogin" style="display: none;" class="user">
+					<div data-hover="dropdown">
+						<a class="avatar" href="javascript:;"><img id="headicon" alt="120" /></a>
+					</div>
+					<ul class="dropdown-menu">
+						<li>
+							<a href="index.html">
+								<i class="iconfont ic-navigation-profile"></i><span>我的主页</span>
+							</a>
+						</li>
+						<li id="btn_loginout">
+							<a data-method="delete" href="javascript:;">
+								<i class="iconfont ic-navigation-signout"></i><span>退出</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div id="view-mode-ctrl">
+				</div>
+				<div class="container">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu" aria-expanded="false">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					</div>
+					<div class="collapse navbar-collapse" id="menu">
+						<ul class="nav navbar-nav">
+							<li class="">
+								<a href="index.html">
+									首页
+								</a>
+							</li>
+							<li class="">
+								<a href="AllHelp.html">互帮互助</a>
+							</li>
+							<li class="">
+								<a href="JobList.html">工作资讯</a>
+							</li>
+							<li class="active">
+								<a href="BlogList.html">博客列表</a>
+							</li>
+							<li class="search">
+								<form target="_blank" action="/search" accept-charset="UTF-8" method="get"><input name="utf8" type="hidden" value="&#x2713;" />
+									<input type="text" name="q" id="q" value="" autocomplete="off" placeholder="搜索" class="search-input" />
+									<a class="search-btn" href="javascript:void(null)"><i class="iconfont ic-search"></i></a>
+								</form>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+		<div class="container index">
+			<div class="row">
+
+				<!-- Banner -->
+				<div class="col-xs-16 main">
+
+					<div class="split-line"></div>
+					<div id="list-container">
+						<!-- 文章列表模块 -->
+						<ul class="note-list" infinite-scroll-url="javascript:;">
+
+						</ul>
+						<!-- 文章列表模块 -->
+					</div>
+					<!-- <div class="container recommend">
+						<div id="appvue"></div>
+						<div class="row" id="layout"> 
+						</div> -->
+					<div class="recommend">
+						<a class="btn btn-danger load-more-btn load-more" data-next-page="2" href="javascript:;">加载更多</a>
+					</div>
+						
+					<!-- </div> -->
+				</div>
+
+				<div class="col-xs-7 col-xs-offset-1 aside">
+
+					<hr />
+					<!-- 简书日报 -->
+					<div class="jianshu-daily">
+						<div class="title">
+							我的发布
+							<!-- <a target="_blank" href="javascript:;" class="click_watch">点击查看</a> -->
+						</div>
+						<div class="mypush_list">
+						</div>
+					</div>
+					<!-- 简书日报 -->
+					<!-- <div class="jianshu-daily">
+						<div class="title">
+							我的草稿
+							<a target="_blank" href="AllHelp.html">点击查看</a>
+						</div>
+						<a target="_blank" class="note" href="javascript:;">
+							<div class="note-title">黛玉早报170918 —— 《23岁的我，开始逼着我妈去相亲角》</div>
+						</a>
+					</div> -->
+
+					<!-- 推荐作者 -->
+					<div data-vcomp="recommended-author-list"></div>
+				</div>
+			</div>
+		</div>
+		<div data-vcomp="side-tool"></div>
+	
+		<script type="application/json" data-name="page-data">
+			{
+				"user_signed_in": false,
+				"locale": "zh-CN",
+				"os": "other",
+				"read_mode": "day",
+				"read_font": "font2"
+			}
+		</script>
+
+		<script src="assets/babel-polyfill-8053f0c4c81c27b7aff2.js"></script>
+		<script src="assets/web-base-cc0ef4171979d91c5884.js"></script>
+		<script src="assets/web-780e8747353f13ebad82.js"></script>
+		<!-- <script src="assets/web/pages/home/index/entry-91155bcdfdd2414381a7.js"></script> -->
+		<script>
+			var userinfo = Cookies.getJSON("userinfo")
+			var page='1'
+			var num=''
+			var type='0'
+			var page_1='1'
+			var num_1=''
+			if(userinfo == null || userinfo == "" || userinfo == "undefined") //如果没有登录
+			{
+				$('#nologin').show()
+				$('#islogin').hide()
+			} else { 
+				var headimg = userinfo.Head
+				$('#headicon').attr('src', headimg)
+				console.log("用户信息：")
+				console.log(userinfo)
+				console.log(headimg)
+				$('#islogin').show()
+				$('#nologin').hide()
+			}
+			$('#btn_loginout').click(function() {
+				Cookies.remove('userinfo');
+				window.location.reload()
+			})
+			
+			var html='';
+			function get_page(page1){
+				num=0;
+				var param = "Blog="+JSON.stringify(
+			        { 
+			          Title:'',
+			        }
+			      )
+				$.ajax({
+			        type:"GET",
+			        url:'/blog/search?Limit=10&Page='+page1,
+			        data:param,
+			        success:function(jsonResult){
+			        	console.log(jsonResult)
+			          var result=JSON.parse(jsonResult)
+			          result=result.data
+			          for (var i = Object.keys(result).length-1; i >= 0; i--) {
+			          	if (result[i].Content.length>=200) {
+			          		result[i].Content=result[i].Content.substring(0,200)
+			          	}
+			          	html+='<li id="note-17215651" data-note-id="17215651" class="have-img" style="min-height: 40px;">\
+									<div class="content">\
+										<div class="author">\
+											<a class="avatar" target="_blank" href="ShowBlog.html?id='+result[i].Id+'">\
+												<img src="'+result[i].PublisherHead+'" alt="64" />\
+											</a>\
+											<div class="name">\
+												<a class="blue-link" href="ShowBlog.html?id='+result[i].Id+'">'+result[i].PublisherName+'</a>\
+												<span class="time" data-shared-at="">'+result[i].Time.substring(0,10)+'</span>\
+											</div>\
+										</div>\
+										<a class="title" href="ShowBlog.html?id='+result[i].Id+'">'+result[i].Title+'</a>\
+										<a href="ShowBlog.html?id='+result[i].Id+'">\
+										<p class="abstract">\
+										'+markdown.toHTML(result[i].Content)+'\
+										</p>\
+										</a>\
+									</div>\
+								</li>'
+						num++;
+			          }
+			          $(".note-list").html(html)
+			          page++;
+			        },
+			        error:function(){
+			          jqueryAlert({
+			            'icon'    : 'static/img/error.png',
+			            'content' : '网络出现问题了！',
+			          })
+			        }
+			    })				
+			}
+			get_page(page)
+		    $(".load-more").click(function(){
+		    	if (num<10) {
+		    		jqueryAlert({
+		            'icon'    : 'static/img/error.png',
+		            'content' : '已经到底了',
+		          })
+		    	}else if(type='0'){
+		    		get_page(page)
+		    	}
+		    })
+		    var push_list_html='';
+		    // console.log(Cookies.getJSON("userinfo").Id)
+		    $(function(){
+		    	$.ajax({
+			        type:"GET",
+			        url:'/blog/search/user?Id='+Number(userinfo.Id),
+			        // data:param,
+			        success:function(jsonResult){
+			        	console.log(jsonResult)
+			          var result=JSON.parse(jsonResult)
+			          result=result.data
+			          for (var i = Object.keys(result).length-1; i >= 0; i--) {
+			          	push_list_html+='<a class="note" href="ShowBlog.html?id='+result[i].Id+'">\
+								<div class="note-title"style="color:black;">'+result[i].Title+'</div>\
+							</a>'
+			          }
+			          $(".mypush_list").html(push_list_html)
+			        },
+			        error:function(){
+			          jqueryAlert({
+			            'icon'    : 'static/img/error.png',
+			            'content' : '网络出现问题了！',
+			          })
+			        }
+			    })	
+		    })
+		</script>
+	</body>
+
+</html>

@@ -6,6 +6,7 @@ import (
 	"../control/Permission"
 	"../models"
 	"net/url"
+	"fmt"
 )
 
 //发布博客
@@ -17,6 +18,7 @@ func PublishBlog(w http.ResponseWriter, r *http.Request){
 	}
 	r.ParseForm()
 	blogs,err:=GetPostString("Blog",w,r)
+	fmt.Println(blogs)
 	if err != nil {
 		models.SendRetJson2(0, "错误", err.Error(), w)
 		return
@@ -232,7 +234,7 @@ func UpdateBlog(w http.ResponseWriter, r *http.Request){
 		models.SendRetJson2(0, "错误", err.Error(), w)
 		return
 	}
-	models.SendRetJson2(1, "成功", err.Error(), w)
+	models.SendRetJson2(1, "成功", blog, w)
 }
 
 //删除博客

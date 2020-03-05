@@ -1,0 +1,50 @@
+html,body,.row{height: 100%;padding: 0;margin: 0;}
+hr{height:3px;border:none;border-top:3px groove;}
+span p{display: inline;font-size: 16px;}
+.select{width: 90px; float: right;}
+.select select{height: 32px;}
+.box{
+	height: 100%;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	border-right:1px solid rgb(89,89,89)
+}
+.box-show{
+	background-color: rgb(252,250,242);
+	height: 100%;
+	overflow-y: auto;
+	padding: 0px 40px 80px;
+	font-size: 16px;
+	line-height: 1.75;
+}
+.title{
+	padding: 20px 80px 10px 40px;
+	width: 100%;
+	font-size: 30px;
+	font-weight: 400;
+	line-height: 30px;
+	border-radius: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	border: none;
+	background-color: rgb(241,241,241);
+}
+.breadcrumb li a{
+	border: none;
+	font-size: 16px;
+}
+.breadcrumb{
+	margin: 0;
+	background-color: rgb(250,250,250);
+}
+.textinput{
+	background-color: rgb(241,241,241);
+	border: none;
+	width: 100%;
+	padding: 40px 40px 80px;
+	flex: 1;
+	font-size: 18px;
+	line-height: 30px;
+}

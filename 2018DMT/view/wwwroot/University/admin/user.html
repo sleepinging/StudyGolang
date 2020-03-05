@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>大学帮管理平台 | 用户管理</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="bower_components/jvectormap/jquery-jvectormap.css">
+  <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" type="text/css" href="static/css/alert.css"/>
+  <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"> -->
+  <style>
+    .info-box-icon{
+      width: 70px;
+    }
+    .info-box-content{
+      margin-left: 70px;
+    }
+  </style>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+  <header class="main-header">
+  </header>
+  <!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        信息管理
+        <small>用户管理</small>
+      </h1>
+    </section>
+    <section class="content">
+      <div class="row">
+        <div class="col-md-12">
+            <!-- USERS LIST -->
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">用户列表</h3>
+                    <div class="box-tools">
+                        <div class="input-group" style="width: 200px;">
+                            <input id="keyword" type="text" name="table_search" class="form-control input-sm pull-right" value="" placeholder="用户名/昵称">
+                            <div class="input-group-btn">
+                                <button id="searchBtn" class="btn btn-sm btn-default"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body no-padding">
+                    <ul class="users-list clearfix user_add">
+                        <!-- {volist name="list" id="v"}
+                            <li>
+                                <a href="{:url('detail')}?id={$v.uid}"><img src="{$v['img_url']}"></a>
+                                <a class="users-list-name" href="{:url('detail')}?id={$v.uid}">{$v['nickname']}</a>
+                                <a href="{:url('detail')}?id={$v.uid}"><span class="users-list-date">{$v['username']}</span></a>
+                            </li>
+                        {/volist} -->
+                    </ul>
+                    <!-- /.users-list -->
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer text-center">
+                    <div class="dataTables_paginate">
+                        <ul class="pagination" id="newterm_page">
+                            <!-- {$page} -->
+                        </ul>
+                    </div>
+                </div>
+                <!-- /.box-footer -->
+            </div>
+            <!--/.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+    </section>
+  </div>
+  <!-- /.content-wrapper -->
+
+  <footer class="main-footer"></footer>
+
+
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 3 -->
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="static/js/jquery.session.js"></script>
+<!-- load -->
+<script>
+  if (!$.session.get('username')) {
+    $(location).attr('href','index.html')
+  }
+  $(".main-header").load("pageload/title.html");
+  $(".main-sidebar").load("pageload/leftlist.html");
+  $(".main-footer").load("pageload/foot.html");
+</script>
+<!-- 弹出框js -->
+<script src="static/js/alert.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="bower_components/fastclick/lib/fastclick.js"></script>
+<script src="dist/js/adminlte.min.js"></script>
+<script src="bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+<script src="plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+<script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="bower_components/chart.js/Chart.js"></script>
+<script src="dist/js/demo.js"></script>
+
+</body>
+<script>
+  $(function(){
+    var page_now='';
+    function html_set(keyword='',page='1') {
+      function get_page(total,num=20){
+        totalPage = Math.ceil(total/num)
+        j = page_now + 3
+        pages = '';
+        for(var i=page_now-6;i<=j&&i<=totalPage;i++){
+          if(i<=-2) continue;
+          if(i<=0){
+            j++;
+            continue;
+          }
+          active = i==page_now?'active':'';
+          pages += '<li class="paginate_button'+active+'"><a href="javascript:void(0);" data-index="'+i+'">'+i+'</a></li>';
+        }
+        prevDisabled = page_now==1?' disabled':'';
+        nextDisabled = page_now==totalPage?' disabled':'';
+
+        return '<li class="paginate_button previous'+prevDisabled+'"><a href="javascript:void(0);" data-index="1">首页</a></li>'+pages+'<li class="paginate_button next'+nextDisabled+'"><a href="javascript:void(0);" data-index="'+totalPage+'">尾页</a></li>';
+        // console.log(pages)
+      }
+      // 获取博客数量
+      var param = "User="+encodeURIComponent(JSON.stringify(
+        { 
+          Name:keyword,
+        }
+      ))
+      $.ajax({
+        type:"GET",
+        url:'/statistics/register?Day=9999',
+        data:param,
+        success:function(jsonResult){
+          var result=JSON.parse(jsonResult)
+          var page=get_page(result.data)
+          // 添加底层分页栏
+          $("#newterm_page").html(page)
+        },
+        error:function(){
+          jqueryAlert({
+            'icon'    : 'static/img/error.png',
+            'content' : '网络出现问题了！',
+          })
+        }
+      })
+
+      // 搜索博客
+      $.ajax({
+        type:"GET",
+        url:'/user/search?Limit=20&Page='+page,
+        data:param,
+        success:function(jsonResult){
+          console.log(jsonResult)
+          var result=JSON.parse(jsonResult)
+          result=result.data
+          var html_add=''
+          var x=0
+          for (var i = Object.keys(result).length-1; i >= 0; i--) {
+            html_add+='<li>\
+                       <a href="user_detail.html?id='+result[i].Id+'"><img src="'+result[i].Head+'"></a>\
+                       <a class="users-list-name" href="user_detail.html?id='+result[i].Id+'">'+result[i].Email+'</a>\
+                       <a href="user_detail.html?id='+result[i].Id+'"><span class="users-list-date">'+result[i].Name+'</span></a>\
+                       </li>'
+          }
+          // console.log(html_add)
+          $(".user_add").html(html_add)
+        },
+        error:function(){
+          jqueryAlert({
+            'icon'    : 'static/img/error.png',
+            'content' : '网络出现问题了！',
+          })
+        }
+      })
+    }
+    html_set()
+    $('#newterm_page').click(function(event) {
+        var index = $(event.target).data('index')
+        // var keyword='{$keyword}';
+        var keyword = $('#keyword').val()
+        if (keyword!='') {
+          html_set(keyword,index)
+        }else{
+          html_set('',index)
+        }
+    });
+    $('#searchBtn').click(function() {
+        var keyword = $('#keyword').val();
+        html_set(keyword)
+    });
+  });
+</script>
+</html>

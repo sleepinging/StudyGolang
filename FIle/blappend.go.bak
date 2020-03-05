@@ -49,7 +49,7 @@ func GetAllFile(pathname string) error {
 			if strings.HasSuffix(fi.Name(), ".htm") || strings.HasSuffix(fi.Name(), ".html") {
 				//fmt.Println("正在修改",pathname+"\\"+fi.Name(),"添加",ctt)
 				if !isappend(pathname + "\\" + fi.Name()) {
-					appendToFile(pathname+"\\"+fi.Name(), ctt)
+					appendToFile(pathname+"\\"+fi.Name(), "\n"+ctt)
 				}
 			}
 		}

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title> 博客列表 | 大学帮</title>
+		<link rel="stylesheet" href="css/bootstrap.css" />
+		
+		<!-- <link rel="stylesheet" href="css/bloglist.css"> -->
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<script type="text/javascript" src="js/jquery.min3.3.1.js"></script>
+		<script type="text/javascript" src="js/js.cookie.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<style>
+			.item {
+				margin: 20px;
+			}
+			.droplist li{
+				font-size: 20px;
+			}
+			.blog-header h1{
+				display: inline;
+			}
+			.blog-header input{
+				float: right;
+				width: 30%;
+			}
+			.blog-header button{
+				float: right;
+			}
+		</style>
+		<link rel="stylesheet" href="css/doc.css">
+	</head>
+
+	<body class="bg-info">
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+					<a class="navbar-brand" href="index.html">大学帮</a>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li>
+							<a href="index.html">大学圈子 <span class="sr-only">(current)</span></a>
+						</li>
+						<li>
+							<a href="HelpCircle.html">互帮互助 <span class="sr-only">(current)</span></a>
+						</li>
+						<li>
+							<a href="ChooseJob.html">工作资讯</a>
+						</li>
+						<li class="active">
+							<a href="BlogList.html">博客列表</a>
+						</li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li>
+							<a id="btn_nlogin" data-toggle="modal" data-target="#myModal">登录</a>
+						</li>
+
+						<li>
+							<a id="btn_register" href="register.html">注册</a>
+						</li>
+						<li id="userinfo" class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span id="username"></span> <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li>
+									<a href="UserInfo.html">个人信息</a>
+								</li>
+								<li>
+									<a href="#">Something else here</a>
+								</li>
+								<li role="separator" class="divider"></li>
+								<li>
+									<a id="btn_loginout">退出登录</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<script>
+			var user = Cookies.get('user')
+			if(user == null) {
+				$('#userinfo').hide()
+			} else {
+				$('#btn_nlogin').hide()
+				$('#username').text(Cookies.getJSON('userinfo').Email)
+				$('#btn_register').hide()
+			}
+			$('#btn_loginout').click(function(){
+				Cookies.remove('user')
+				Cookies.remove('userinfo')
+				window.location.reload()
+			})
+		</script>
+		<div class="container">
+			<!--左边内容区-->
+			<div class="col-lg-11 col-md-11">
+				<div class="page-header blog-header">
+				  <h1>全部<small style="margin-left: 20px">全部</small></h1>
+				  <button class="btn btn-primary"><span class="glyphicon glyphicon-search"></span></button>
+				  <input type="text" class="form-control" placeholder="请输入要搜索的相关标题关键字">
+				</div>
+				<div>
+					<div class="panel">
+						<div class="media">
+							<div class="media-body">
+								<div class="panel">
+									<div class="panel-heading" style="font-family: '微软雅黑'; font-style:initial;font-size: large;">
+										先努力，才能变的有底气
+									</div>
+									<div class="panel-body">
+										<p class="text-danger">2018年4月20号 星期五 晴 前段时间，面试结束后，我在简书发了一篇文章。有人祝贺，有人嘲讽，有人劝，有人羡。 读者的评论，都有属于自己的故...</p>
+									</div>
+									<div class="panel-footer">
+										<div class="row" style="margin: 0 auto;">
+											<span class="glyphicon glyphicon-user"></span>Master
+											<span class="glyphicon glyphicon-heart"></span>123
+											<span class="glyphicon glyphicon-apple"></span>128
+										</div>
+									</div>
+								</div>
+
+							</div>
+							<div class="media-right media-middle">
+								<a href="#">
+									<img class="media-object img-circle" style="width: 80px;height: 80px;" src="img/testicon.jpg" alt="...">
+								</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="panel">
+						<div class="media">
+							<div class="media-body">
+								<div class="panel">
+									<div class="panel-heading" style="font-family: '微软雅黑'; font-style:initial;font-size: large;">
+										先努力，才能变的有底气
+									</div>
+									<div class="panel-body">
+										<p>2018年4月20号 星期五 晴 前段时间，面试结束后，我在简书发了一篇文章。有人祝贺，有人嘲讽，有人劝，有人羡。 读者的评论，都有属于自己的故...</p>
+									</div>
+									<div class="panel-footer">
+										<div class="row" style="margin: 0 auto;">
+											<span class="glyphicon glyphicon-user"></span>Master
+											<span class="glyphicon glyphicon-heart"></span>123
+											<span class="glyphicon glyphicon-apple"></span>128
+										</div>
+									</div>
+								</div>
+
+							</div>
+							<div class="media-right media-middle">
+								<a href="#">
+									<img class="media-object img-circle" style="width: 80px;height: 80px;" src="img/testicon.jpg" alt="...">
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="panel">
+						<div class="media">
+							<div class="media-body">
+								<div class="panel">
+									<div class="panel-heading" style="font-family: '微软雅黑'; font-style:initial;font-size: large;">
+										先努力，才能变的有底气
+									</div>
+									<div class="panel-body">
+										<p>2018年4月20号 星期五 晴 前段时间，面试结束后，我在简书发了一篇文章。有人祝贺，有人嘲讽，有人劝，有人羡。 读者的评论，都有属于自己的故...</p>
+									</div>
+									<div class="panel-footer">
+										<div class="row" style="margin: 0 auto;">
+											<span class="glyphicon glyphicon-user"></span>Master
+											<span class="glyphicon glyphicon-heart"></span>123
+											<span class="glyphicon glyphicon-apple"></span>128
+										</div>
+									</div>
+								</div>
+
+							</div>
+							<div class="media-right media-middle">
+								<a href="#">
+									<img class="media-object img-circle" style="width: 80px;height: 80px;" src="img/testicon.jpg" alt="...">
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="panel">
+						<div class="media">
+							<div class="media-body">
+								<div class="panel">
+									<div class="panel-heading" style="font-family: '微软雅黑'; font-style:initial;font-size: large;">
+										先努力，才能变的有底气
+									</div>
+									<div class="panel-body">
+										<p>2018年4月20号 星期五 晴 前段时间，面试结束后，我在简书发了一篇文章。有人祝贺，有人嘲讽，有人劝，有人羡。 读者的评论，都有属于自己的故...</p>
+									</div>
+									<div class="panel-footer">
+										<div class="row" style="margin: 0 auto;">
+											<span class="glyphicon glyphicon-user"></span>Master
+											<span class="glyphicon glyphicon-heart"></span>123
+											<span class="glyphicon glyphicon-apple"></span>128
+										</div>
+									</div>
+								</div>
+
+							</div>
+							<div class="media-right media-middle">
+								<a href="#">
+									<img class="media-object img-circle" style="width: 80px;height: 80px;" src="img/testicon.jpg" alt="...">
+								</a>
+							</div>
+						</div>
+					</div>
+					<div class="panel">
+						<button class="btn btn-primary btn-block">阅读更多</button>
+					</div>
+				</div>
+			</div>
+			<!--右边内容区-->
+			<div class="col-lg-1 col-md-1" role="complementary">
+				<nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix droplist" style="margin-top: 50px">
+					<ul class="nav bs-docs-sidenav">
+						<li>我的</li>
+						<li>
+							<a href="javascript:void(0);">已发布</a>
+						</li>
+						<li>
+							<a href="javascript:void(0);">草稿箱</a>
+						</li>
+						<li>
+							<a href="javascript:void(0);">垃圾箱</a>
+						</li>
+						<li>
+							<a href="javascript:void(0);">写博客</a>
+						</li>
+						<li>学习</li>
+						<li>
+							<a href="javascript:void(0);">计算机</a>
+						</li>
+						<li>
+							<a href="javascript:void(0);">文学</a>
+						</li>
+						<li>
+							<a href="javascript:void(0);">其它</a>
+						</li>
+						<li>生活</li>
+						<li>
+							<a href="javascript:void(0);">娱乐</a>
+						</li>
+						<li>
+							<a href="javascript:void(0);">感情</a>
+						</li>
+						<li>
+							<a href="javascript:void(0);">食物</a>
+						</li>
+						<li>
+							<a href="javascript:void(0);">其它</a>
+						</li>
+						<li>工作</li>
+						<li>
+							<a href="javascript:void(0);">经验</a>
+						</li>
+						<li>
+							<a href="javascript:void(0);">其它</a>
+						</li>
+						<li>其它</li>
+						<li>
+							<a href="javascript:void(0);">其它</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="js/bootstrap.js"></script>
+		<script type="text/javascript" src="js/API.js"></script>
+		<script type="text/javascript" src="js/md5.js"></script>
+	</body>
+
+</html>

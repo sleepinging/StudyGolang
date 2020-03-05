@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>大学帮管理平台 | 工作管理</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="bower_components/jvectormap/jquery-jvectormap.css">
+  <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" type="text/css" href="static/css/alert.css"/>
+  <!-- <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"> -->
+  <style>
+    .info-box-icon{
+      width: 70px;
+    }
+    .info-box-content{
+      margin-left: 70px;
+    }
+    td,th{
+      text-align: center;
+    }
+  </style>
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+  <header class="main-header">
+  </header>
+  <!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        工作管理
+        <small>详细信息</small>
+      </h1>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+      <section class="invoice">
+        <!-- title row -->
+        <div class="row">
+          <div class="col-xs-12">
+            <h2 class="page-header Name">
+              <i><img src="" class="PublisherHead" width="40" height="40" alt=""></i>
+              <small class="pull-right PublishTime">Date:</small>
+            </h2>
+          </div>
+        </div>
+        <!-- info row -->
+        <div class="row invoice-info">
+          <div class="col-sm-4 invoice-col">
+            From
+            <address>
+              <a class="user_detail_set" href=""><strong class="PublisherName"></strong></a><br>
+            </address>
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+
+        <!-- Table row -->
+        <div class="row">
+          <div class="col-xs-12 table-responsive">
+            <table class="table table-striped">
+              <thead>
+              <tr>
+                <th>工作时间</th>
+                <th>有无双休</th>
+                <th>是否包接送</th>
+                <th>是否包吃</th>
+                <th>是否包住</th>
+                <th>有无五险一金</th>
+                <th>工作地点</th>
+                <th>月薪</th>
+              </tr>
+              </thead>
+              <tbody>
+                <td class="Time"></td>
+                <td class="Weekend"></td>
+                <td class="Pickup"></td>
+                <td class="Eat"></td>
+                <td class="Live"></td>
+                <td class="WuXianYiJin"></td>
+                <td class="Place"></td>
+                <td class="Salary"></td>
+              </tbody>
+            </table>
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+
+        <div class="row">
+          <!-- accepted payments column -->
+          <div class="col-xs-12">
+            <p class="lead">详细内容:</p>
+
+            <p class="text-muted well well-sm no-shadow Detail" style="margin-top: 10px;">
+              
+            </p>
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+
+        <!-- this row will not appear when printing -->
+        <div class="row no-print">
+          <div class="col-xs-12">
+            <button type="button" class="btn btn-success pull-right" onclick="history.back()" style="margin-right: 5px;">
+              <i class="fa fa-mail-reply"></i> 返回
+            </button>
+            <button type="button" class="btn btn-primary pull-right del" style="margin-right: 5px;">
+              <i class="fa fa-times-circle"></i> 删除
+            </button>
+          </div>
+        </div>
+      </section>  
+    </section>
+    
+    <!-- /.content -->
+
+  </div>
+  <!-- /.content-wrapper -->
+
+  <footer class="main-footer"></footer>
+
+
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery 3 -->
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="static/js/jquery.session.js"></script>
+<!-- load -->
+<script>
+  if (!$.session.get('username')) {
+    $(location).attr('href','index.html')
+  }
+  $(".main-header").load("pageload/title.html");
+  $(".main-sidebar").load("pageload/leftlist.html");
+  $(".main-footer").load("pageload/foot.html");
+</script>
+<!-- 弹出框js -->
+<script src="static/js/alert.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="bower_components/fastclick/lib/fastclick.js"></script>
+<script src="dist/js/adminlte.min.js"></script>
+<script src="bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+<script src="plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+<script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<script src="bower_components/chart.js/Chart.js"></script>
+<script src="dist/js/demo.js"></script>
+
+</body>
+<script>
+$(function(){
+  function GetRequest() {   
+    var url = location.search; //获取url中"?"符后的字串   
+    var theRequest = new Object();   
+    if (url.indexOf("?") != -1) {   
+      var str = url.substr(1);   
+      strs = str.split("&");   
+      for(var i = 0; i < strs.length; i ++) {   
+         theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);   
+      }   
+     }   
+     return theRequest;   
+  }
+  var request=GetRequest()
+  // 搜索博客
+  $.ajax({
+    type:"GET",
+    url:'/job?Id='+request.id,
+    // data:param,
+    success:function(jsonResult){
+      console.log(jsonResult)
+      var result=JSON.parse(jsonResult)
+      result=result.data
+      $(".PublishTime").append(result.PublishTime.substring(0,10))
+      $(".Detail").text(result.Detail)
+      $(".PublisherHead").attr("src",result.PublisherHead)
+      $(".PublisherName").text(result.PublisherName)
+      $(".Name").append(result.Name)
+      $(".Time").text(result.Time)
+      $(".user_detail_set").attr("href",'user_detail.html?id='+result.PublisherId)
+      result.Weekend=='1'?$(".Weekend").text('是'):$(".Weekend").text('否')
+      result.Pickup=='1'?$(".Pickup").text('是'):$(".Pickup").text('否')
+      result.Eat=='1'?$(".Eat").text('是'):$(".Eat").text('否')
+      result.Live='1'?$(".Live").text('是'):$(".Live").text('否')
+      result.WuXianYiJin='1'?$(".WuXianYiJin").text('是'):$(".WuXianYiJin").text('否')
+      $(".Place").text(result.Place)
+      $(".Salary").text(result.Place)
+    },
+    error:function(){
+      jqueryAlert({
+        'icon'    : 'static/img/error.png',
+        'content' : '网络出现问题了！',
+      })
+    }
+  })
+  $(".del").click(function(){
+    M={}
+    M.dialog3=jqueryAlert({
+      'title'   : '提示',
+      'content' : '确定要删除吗',
+      'modal'   : true,
+      'buttons' :{
+        '取消' : function(){
+          M.dialog3.close();
+        },
+        '确定' : function(){
+          var param = "Id="+request.id
+          $.ajax({
+            type:"POST",
+            url:'/job/delete',
+            data:param,
+            success:function(jsonResult){
+              console.log(jsonResult)
+              jqueryAlert({
+                'icon'    : 'static/img/right.png',
+                'content' : '操作成功',
+                'closeTime' : 2000,
+              })
+              window.location.href='work.html'
+              // history.go(0)
+            },
+            error:function(){
+              jqueryAlert({
+                'icon'    : 'static/img/error.png',
+                'content' : '网络出现问题了！',
+              })
+            }
+          })
+        }
+      }
+    })
+  })
+  // console.log(request)
+});
+</script>
+</html>

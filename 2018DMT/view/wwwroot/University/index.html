@@ -35,10 +35,13 @@
 							<a href="index.html">大学圈子 <span class="sr-only">(current)</span></a>
 						</li>
 						<li>
-							<a href="#">互帮互助 <span class="sr-only">(current)</span></a>
+							<a href="HelpCircle.html">互帮互助 <span class="sr-only">(current)</span></a>
 						</li>
 						<li>
-							<a href="#">工作资讯</a>
+							<a href="ChooseJob.html">工作资讯</a>
+						</li>
+						<li>
+							<a href="BlogList.html">博客列表</a>
 						</li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
@@ -422,9 +425,17 @@
 			</div>
 		</div>
 		<script type="text/javascript" src="js/bootstrap.js"></script>
+		<script type="text/javascript" src="js/axios.min.js" ></script>
 		<script type="text/javascript" src="js/API.js"></script>
 		<script type="text/javascript" src="js/md5.js"></script>
 		<script>
+			window.onload = function(){
+				axios.get(API_GETINDEXJOB).then(function(res){
+					console.log(res)
+				})
+			}
+			
+			
 			//登录监听
 			$('#btn_login').click(function() {
 				var email = $('#email').val()
@@ -443,9 +454,14 @@
 							Password: password
 						},
 						success: function(result) {
+							var data = JSON.parse(result)
+							if(data.status==1){
 							var juser = JSON.parse(result).data
-							Cookies.set("userinfo",juser)
 							window.location.reload()
+							Cookies.set("userinfo",juser) 
+							}else{
+								alert("登录失败:"+data.msg)
+							}
 						}
 					});
 				}

@@ -1,0 +1,2 @@
+webpackJsonp([28],{"./javascripts/web/pages/apps/index/entry.js":function(s,e,t){"use strict";t("./stylesheets/web/page/misc.scss"),$(document).ready(function(){})},"./stylesheets/web/page/misc.scss":function(s,e){}},["./javascripts/web/pages/apps/index/entry.js"]);
+//# sourceMappingURL=entry-38332313a2d21396292d.js.map

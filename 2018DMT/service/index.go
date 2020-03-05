@@ -24,15 +24,15 @@ func GetIndex(w http.ResponseWriter, r *http.Request) {
 	global.RootFileServer.ServeHTTP(w, r)
 
 	cookie, err := r.Cookie("user")
-	go showinfo(cookie, r.RemoteAddr,err)
-}
-
-func showinfo(cookie *http.Cookie,ip string, err error) {
 	if err != nil {
 		return
 	}
-	user, t, err := dao.GetUserIdFromCookie(cookie.Value)
-	fmt.Println(tools.FmtTime(), "Cookie userid:", user, t)
+	go showinfo(cookie, r.RemoteAddr,r.RequestURI)
+}
+
+func showinfo(cookie *http.Cookie,ip ,uri string) {
+	user, _, _ := dao.GetUserIdFromCookie(cookie.Value)
+	fmt.Println(tools.FmtTime(), "Cookie userid:", user, "request uri:",uri)
 }
 
 func VisitRecordCount(w http.ResponseWriter, r *http.Request){

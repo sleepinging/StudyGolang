@@ -1,6 +1,6 @@
 {
   "Wwwroot": "view\\wwwroot\\University\\",
-  "Port": 80,
+  "Port": 8900,
   "DbInfo": {
     "EmailVerifyDb": "data\\db\\emailverify.db",
     "EmailVerifyDbType": "sqlite3",

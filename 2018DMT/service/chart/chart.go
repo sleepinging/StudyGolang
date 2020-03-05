@@ -52,7 +52,7 @@ func OnChartConnections(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			//log.Printf("error: %v", err)
 			persons--
-			broadmsg(fmt.Sprintf("有人离开房间，当前%d人在线", persons))
+			broadmsg(fmt.Sprintf("有人离开房间，，当前%d人在线", persons))
 			delete(clients, ws)
 			break
 		}

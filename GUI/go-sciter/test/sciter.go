@@ -16,7 +16,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	//os.Chdir("view/login/")
+	//os.Chdir("view/login/mylogin")
 	w.LoadFile("view/mylogin/index.html")
 	//w.LoadHtml("", "")
 
@@ -37,7 +37,7 @@ func login(name ,pwd string,w *window.Window)(res string){
 	res="登录失败"
 	if name==pwd{
 		res="登录成功"
-		w.LoadFile("su.html")
+		w.LoadFile("view/mylogin/su.html")
 		w.Show()
 	}
 	return
